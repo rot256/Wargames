@@ -1,0 +1,15 @@
+Download file
+> scp -P 2225 level1@blackbox.smashthestack.org:~/login2 login2
+
+Open in IDA, decompile, see password:
+
+...
+...
+int __cdecl main(int argc, const char **argv, const char **envp)
+__int8)std::operator==<char,std::char_traits<char>,std::allocator<char>>(
+                            (std::string *)&v7,
+                            "PassFor2") ^ 1);
+...
+...
+
+PassFor2

