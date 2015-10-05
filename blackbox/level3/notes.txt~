@@ -1,0 +1,10 @@
+The program calls /bin/ps with an abseloute path.
+But it calls grep without one.
+
+We create a program which gives us the password for the next level.
+Compiles it.
+Adds it to path.
+Win.
+
+The password is:
+BashingSh
