@@ -45,7 +45,3 @@ __pycache__/
 
 # Misc
 *.old
-
-# Ignore without extensions
-*
-!*.*
