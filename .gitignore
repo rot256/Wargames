@@ -1,0 +1,51 @@
+# Linux + vim
+*~
+*.swp
+.Trash-*
+
+# Python
+*.pyc
+pip-log.txt
+pip-delete-this-directory.txt
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.out
+*.app
+
+# IDA
+*.nam
+*.id0
+*.id1
+*.idb
+*.til
+
+# Misc
+*.old
+
+# Ignore without extensions
+*
+!*.*
