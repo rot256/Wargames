@@ -1,0 +1,39 @@
+### MISTAKE ###
+
+We all make mistakes, let's move on.
+(don't take this too seriously, no fancy hacking skill is required at all)
+
+This task is based on real event
+Thanks to dhmonkey
+
+hint : operator priority
+
+ssh mistake@pwnable.kr -p2222 (pw:guest)
+
+--------------------------------------------------------------------------
+
+The hint leads us to line 17:
+    if(fd=open("/home/mistake/password",O_RDONLY,0400) < 0){
+
+Since < has higher precedens than =,
+the file descripter is set to the result of:
+
+open("/home/mistake/password",O_RDONLY,0400) < 0
+
+This being 0 on success, means that fd is set to 0,
+therefore it reads from STDIN
+
+Now we just need to find two strings such that : s1 = (s2 xor 1)
+
+
+mistake@ubuntu:~$ ./mistake
+do not bruteforce...
+AAAAAAAAAA
+input password : @@@@@@@@@@
+Password OK
+Mommy, the operator priority always confuses me :(
+
+
+References:
+
+http://en.cppreference.com/w/cpp/language/operator_precedence
