@@ -1,0 +1,49 @@
+The oracle creates a valid "session-cookie-like" string
+and encrypts it using ECB
+
+It will only create cookies of the form
+
+email=xxx&uid=10&role=user
+
+Our goal is to create a cookie for, role=admin
+This is done by stitching such a cookie together from multiple other cookies,
+which individually follow the above format but mixed allows us to create a
+role=admin session.
+
+We start by creating a cookie for
+
+email=xxx&uid=10&role=|user
+
+Where | indicates that we wish to have a block "split" here.
+We simply manipulate the email length to make this the case - easy.
+
+We now create a cookie for:
+
+email=yyy|admin&uid=10&role=user
+
+Again by mainpulating the email length (not much else we can do)
+
+We now stitch this together into
+
+email=xxx&uid=10&role=admin&uid=10&role=user
+
+But! The last variable will override the first! We counter this by removing
+the last block, leaving us with
+
+email=yyy&uid=10&role=admin&uid=10&rol
+
+But this will fail to decode, since the last key is not followed by a value,
+luckly we can juse the first part of the second cookie we created:
+
+email=yyy
+
+And append this to get:
+
+email=xxx&uid=10&role=admin&uid=10&rolemail=yyy
+
+This key is just ignored by the server, lastly we generate a valid padding
+block, this can be done in two ways, by making the server encrypt a block with
+padding specifically or making sure the server generates a full block of
+padding (by making the plaintext a multiple of 16).
+
+And we win!
