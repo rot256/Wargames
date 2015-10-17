@@ -1,0 +1,29 @@
+Let p be a choosen plain text (by the attacker - us)
+Let k be an unknown key (from the attackers POV)
+Let s be a secret (our target)
+
+ENC_k denotes encryption with a blockcipher in ECB mode under k
+
+Given an encryption oracle which computes:
+    e = ENC_k(p | s)
+
+We can find s - without knowning k, this is done by bruteforcing a single byte of s every time.
+The way we do this intuitively is by letting a single unknown byte of s call
+into a seperate block (from the unknown part of s).
+
+Below is a simplified example of this strategy for a 4 byte block cipher:
+
+p = AAA
+s = SSSSSSSSS
+e = ENC_k(AAAS SSSS SSSS)
+
+We now ask the oracle to compute:
+
+p = AAAX
+s = SSSSSSSS
+e = ENC_k(AAAX SSSS SSSS S)
+
+We try all possible values of X untill the first 4 bytes of the cipher texts
+matches the original encryption for (p = AAA), then we known X = s_1
+
+This attack is not limited to the first block, we aes2.py for a full attack
