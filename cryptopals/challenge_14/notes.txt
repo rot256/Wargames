@@ -1,0 +1,35 @@
+See challenge 12
+
+The oracle now encrypts:
+
+e = ENC_k(r + p + s)
+
+Where r is a random sequence of bytes of a random length
+(in our example [0,100[ but could be anything)
+
+We start by finding the length of r
+
+First we encrypt two random strings (p1, p2) and count the blocks which are
+identical (see line 56-58 in "prefix_pwn.py"), these must necessarily hold
+just the random prefix (some part of it)
+
+Next we encrypt
+
+A
+AA
+AAA
+
+And so on, untill the next block (after the ones we counted before) stops
+changing with each iteration. This works since the next block will
+contain only part of the random prefix and A's.
+
+If it dosen't stop changing within 16 interations, we know that this block
+contains no prefix bytes.
+
+After finding the length of the prefix, we define a function ("crypt") which prefixes
+the content we wish to encrypt with enough bytes to fill out the last block
+completely [0, 16[ bytes. After encryption the padding we added and the prefix
+is stripped.
+
+We apply the same attack as in challenge 12, but this time using the newly
+defined "crypt" function.
