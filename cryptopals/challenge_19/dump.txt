@@ -1,0 +1,41 @@
+[180, 41, 190, 198, 150, 130, 32, 78, 216, 57, 22, 115, 202, 24, 210, 207, 113, 10, 51, 118, 230, 64, 11, 160, 19, 145, 57, 209, 116, 49, 153, 65, 30, 135, 187, 136, 159, 50]
+  0 : I have met them at close of day
+  1 : Coming with vivid faces
+  2 : From counter or desk among grey
+  3 : Eighteenth-century houses.
+  4 : I have passed with a nod of the head
+  5 : Or polite meaningless words,
+  6 : Or have lingered awhile and said
+  7 : Polite meaningless words,
+  8 : And thought before I had done
+  9 : Of a mocking tale or a gibe
+ 10 : To please a companion
+ 11 : Around the fire at the club,
+ 12 : Being certain that they and I
+ 13 : But lived where motley is worn:
+ 14 : All changed, changed utterly:
+ 15 : A terrible beauty is born.
+ 16 : That woman's days were spent
+ 17 : In ignorant good will,
+ 18 : Her nights in argument
+ 19 : Until her voice grew shrill.
+ 20 : What voice more sweet than hers
+ 21 : When young and beautiful,
+ 22 : She rode to harriers?
+ 23 : This man had kept a school
+ 24 : And rode our winged horse.
+ 25 : This other his helper and friend
+ 26 : Was coming into his force;
+ 27 : He might have won fame in the end,
+ 28 : So sensitive his nature seemed,
+ 29 : So daring and sweet his thought.
+ 30 : This other man I had dreamed
+ 31 : A drunken, vain-glorious lout.
+ 32 : He had done most bitter wrong
+ 33 : To some who are near my heart,
+ 34 : Yet I number him in the song;
+ 35 : He, too, has resigned his part
+ 36 : In the casual comedy;
+ 37 : He, too, has been changed in his turn;
+ 38 : Transformed utterly:
+ 39 : A terrible beauty is born.
