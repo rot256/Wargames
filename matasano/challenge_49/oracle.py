@@ -37,6 +37,7 @@ def cbc(s, key, l=urandom(16)):
         out += l
     return out
 
+# Broken CBC MAC
 def cbc_mac(s, key, iv=urandom(16)):
     return cbc(s, key, iv)[-16:]
 
@@ -64,7 +65,7 @@ def handle_request(m):
     for kv in msg.split('&'):
         k, v = kv.split('=')
         p[k] = v
-    return 'Sending: $%d from [%s] to [%s]\n' % (int(p['amount']), p['from'], p['to'])
+    return 'Sending: $%d from [%s] to [%s]' % (int(p['amount']), p['from'], p['to'])
 
 
 ### Client ###
@@ -79,12 +80,30 @@ def generate_request(f, t, a):
 
 ### Attack ###
 
-# Sniff some messages
 
-m1 = generate_request('elsa', 'john', 100)
+# Assuming we have accounts
+#   even
+#   eve
 
-# This is where we ruin elsa
+# Create a transactions to self for 1 million
+m1 = generate_request('even', 'eve', 10**6)
 
-r1 = handle_request(m1)
+# Split and unhex message
+m = [unhex(v) for v in m1.decode('ascii').split('|')]
 
-print(r1)
+# Calculate input to AES (post XOR with IV)
+org = xor(m[0][:16], m[1])
+
+# Calculate IV for forged block (to achieve same AES input)
+msg = b'from=elsa&to=eve'
+iv = xor(org, msg)
+msg += m[0][16:]
+print('IV:', hex(iv))
+print('Original:', m[0])
+print('Forge:', msg)
+
+# Put message back together
+o = hex(msg) + b'|' + hex(iv) + b'|' + hex(m[2])
+print('Full Message:', o)
+res = handle_request(o)
+print('Feedback:\n', res)
