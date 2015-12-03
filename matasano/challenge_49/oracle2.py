@@ -29,8 +29,13 @@ def xor(a, b):
     return out
 
 def cbc(s, key, l=urandom(16)):
+
+    # HOW TO AVOID THIS
+    if len(s) % 16 != 0:
+        s = pkcs7(s)
+    # HOT TO AVOID THIS
+
     out = l
-    s = pkcs7(s)
     c = AES.AESCipher(key, AES.MODE_ECB)
     for b in [s[i:i+16] for i in range(0, len(s), 16)]:
         l = c.encrypt(xor(b, l))
@@ -61,13 +66,17 @@ def handle_request(m):
         return 'Nice try criminal scum'
     if not is_ascii(msg):
         return 'Not a valid message sir'
-    msg = msg.decode('utf-8')
+    msg = msg.decode('utf-8')[:-1]
     p = {}
     for kv in msg.split('&'):
         k, v = kv.split('=')
         p[k] = v
-    return 'Sending: $%d from [%s] to [%s]' % (int(p['amount']), p['from'], p['to'])
 
+    out = 'Send money from "%s" to:\n' % p['from']
+    for t in p['tx_list'].split(';'):
+        acc, val = t.split(':')
+        out += '\t%20s : %d \n' % (acc, int(val))
+    return out
 
 ### Client ###
 
@@ -78,34 +87,79 @@ def generate_request(f, trans):
     msg = 'from=%s&tx_list=' % f
     for t, a in trans:
         msg += '%s:%d;' % (t, a)
-    msg = msg[:-1]
     mac = cbc_mac(msg.encode('utf-8'), secret, iv)
     return hex(msg.encode('utf-8')) + b'|' + hex(mac)
 
 ### Sniffed ###
 
-c1 = generate_request('elsa', [('mom', 137), ('dave', 55)])
+sniffed = generate_request('elsa', [('dave', 13371337)])
 
 ### Attack ###
 
-ext = lambda x: map(unhex, x.split(b'|'))
+ext = lambda x: tuple(map(unhex, x.split(b'|')))
+concat = lambda x: hex(x[0]) + b'|' + hex(x[1])
 
-m1, t1 = ext(c1)
+def string_gen(pad):
+    a = b'abcdefghijklmnopqrstuvwxyz'
+    nums = b'0123456789'
+    alfa = a + a.upper()
+    out = []
+    for p in pad:
+        for v in nums + alfa:
+            if p ^ v in nums + alfa:
+                out.append(v)
+                break
+        else:
+            return None
+    if len(out) == len(pad):
+        return ''.join(map(chr, out))
+    return None
 
-## Gen attack string ##
 
-c2 = generate_request('eve', [('eve', 99999999999), ('eve', 10**6)])
+"""
+Find A and B, such that:
 
-m2, t2 = ext(c2)
+mac  ^ A       = feed ^ B
+feed ^ mac ^ A = B
 
-print(m2[32:])
+Where feed is the mac of the message up to B
 
+Note that such an A might not exists
+since we require that both A and B be ascii strings.
+If this is the case, we alter "feed" by signing another string prior to B.
 
+Trying ~(2^16) should yield a result
 
+"""
 
-c2 = generate_request('eve', [('eve', 10**6), ('eve', 999)])
+msg, mac = ext(sniffed)
+print('Captured msg:', msg.decode('ascii'))
+n = 1
+while True:
+    c = generate_request('eve', [('eve', 10**10 - n)])
+    m, feed = ext(c)
+    pad = xor(feed, mac)
+    A = string_gen(pad)
+    if A:
+        A = A.encode('ascii')
+        B = xor(A, pad)
 
-m2, t2 = ext(c2)
+        print('mac  ^ A:', hex(xor(A, mac)).decode('ascii'))
+        print('feed ^ B:', hex(xor(B, feed)).decode('ascii'))
 
-print(m1, t1)
-print(m2, t2)
+        k = generate_request('eve', [('eve', 10**10 - n), (B.decode('ascii'), 0), ('eve', 10**6)])
+        msg0, mac0 = ext(k)
+        print('Org msg:', msg0.decode('ascii'))
+
+        add = A + msg0[32 + 16:]
+        print('New msg:', (msg + add).decode('ascii'))
+
+        valid = (msg + add, mac0)
+        valid = concat(valid)
+
+        ret = handle_request(valid)
+        print('\n' + ret)
+
+        break
+    n += 1
+
