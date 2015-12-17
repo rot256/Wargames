@@ -42,6 +42,7 @@ __pycache__/
 *.id1
 *.idb
 *.til
+*.i64
 
 # Misc
 *.old
