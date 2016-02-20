@@ -1,0 +1,73 @@
+   [[ 0 : Enter]]
+   0x080483fd <+0>:	push   ebp
+   0x080483fe <+1>:	mov    ebp,esp
+   0x08048400 <+3>:	push   ebx
+   0x08048401 <+4>:	and    esp,0xfffffff0
+   0x08048404 <+7>:	sub    esp,0x40
+   0x08048407 <+10>:	mov    DWORD PTR [esp+0x38],0x0
+   0x0804840f <+18>:	mov    eax,DWORD PTR [esp+0x38]
+   0x08048413 <+22>:	mov    DWORD PTR [esp+0x3c],eax
+   0x08048417 <+26>:	jmp    0x804846e <main+113>
+
+   [[ 4 : v5[i] = v7 ]]
+   0x08048419 <+28>:	mov    eax,DWORD PTR [esp+0x38]
+   0x0804841d <+32>:	lea    ecx,[esp+0x8]
+   0x08048421 <+36>:	mov    edx,DWORD PTR [esp+0x3c]
+   0x08048425 <+40>:	add    edx,ecx
+   0x08048427 <+42>:	mov    BYTE PTR [edx],al
+
+   [[ 5 : v5[i] ^= 3 * i ]]
+   0x08048429 <+44>:	lea    edx,[esp+0x8]
+   0x0804842d <+48>:	mov    eax,DWORD PTR [esp+0x3c]
+   0x08048431 <+52>:	add    eax,edx
+   0x08048433 <+54>:	movzx  ecx,BYTE PTR [eax]
+   0x08048436 <+57>:	mov    eax,DWORD PTR [esp+0x3c]
+   0x0804843a <+61>:	mov    edx,eax
+   
+   [[ 6 : Calc : 3 * i]]
+   0x0804843c <+63>:	mov    eax,edx
+   0x0804843e <+65>:	add    eax,eax
+   0x08048440 <+67>:	add    eax,edx
+
+   [[ 7 : Reference and set v5[i] ]]
+   0x08048442 <+69>:	xor    eax,ecx
+   0x08048444 <+71>:	lea    ecx,[esp+0x8]
+   0x08048448 <+75>:	mov    edx,DWORD PTR [esp+0x3c]
+   0x0804844c <+79>:	add    edx,ecx
+   0x0804844e <+81>:	mov    BYTE PTR [edx],al
+   
+   [[ 8 : v3 = v5[i] ]]
+   0x08048450 <+83>:	lea    edx,[esp+0x8]
+   0x08048454 <+87>:	mov    eax,DWORD PTR [esp+0x3c]
+   0x08048458 <+91>:	add    eax,edx
+   0x0804845a <+93>:	movzx  eax,BYTE PTR [eax]
+   0x0804845d <+96>:	movsx  ebx,al
+
+   [[ 9 : v6[v3] = getchar() ]]
+   0x08048460 <+99>:	call   0x80482d0 <getchar@plt>
+   0x08048465 <+104>:	mov    BYTE PTR [esp+ebx*1+0x20],al
+   
+   [[ 10 : i++ ]]
+   0x08048469 <+108>:	add    DWORD PTR [esp+0x3c],0x1
+   
+   [[ 1 : v7 = getchar() ]]
+   0x0804846e <+113>:	call   0x80482d0 <getchar@plt>
+
+   [[ 2 : Test if -1 ]]
+   0x08048473 <+118>:	mov    DWORD PTR [esp+0x38],eax
+   0x08048477 <+122>:	cmp    DWORD PTR [esp+0x38],0xffffffff
+   0x0804847c <+127>:	je     0x8048485 <main+136>
+
+   [[ 3: Check if i > 23 ]]
+   0x0804847e <+129>:	cmp    DWORD PTR [esp+0x3c],0x17
+   0x08048483 <+134>:	jle    0x8048419 <main+28>
+   
+   [[ Return ]]
+   0x08048485 <+136>:	mov    eax,0x0
+   0x0804848a <+141>:	mov    ebx,DWORD PTR [ebp-0x4]
+   0x0804848d <+144>:	leave  
+   0x0804848e <+145>:	ret
+
+   [esp+0x38] : Index getchar()
+   [esp+0x8]  : v5
+   [esp+0x3c] : i
