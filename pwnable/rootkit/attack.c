@@ -61,7 +61,17 @@ int main(int argc, char *argv[]) {
    // Open file
    int fd = open_by_handle_at(AT_FDCWD, fhp, O_RDONLY);
    char a[1024];
-   read(fd, a, 1000);
-   printf("%d > %s\n", fd, a);
+   int r = read(fd, a, 1000);
+   printf("%d > %s [%d]\n", fd, a, r);
+   for(int i = 0; i < r; i++) {
+       printf("%02x", a[i] & 0xff);
+   }
+   printf("\n");
+   for(int i = 0; i < r; i++) {
+       printf("%02x ", a[i] & 0xff);
+   }
+   printf("\n");
+   printf("END\n");
+
    exit(EXIT_SUCCESS);
 }
