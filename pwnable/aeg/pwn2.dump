@@ -1,0 +1,1300 @@
+
+pwn2:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000005638000 <.text>:
+ 5638000:	31 ed                	xor    ebp,ebp
+ 5638002:	49 89 d1             	mov    r9,rdx
+ 5638005:	5e                   	pop    rsi
+ 5638006:	48 89 e2             	mov    rdx,rsp
+ 5638009:	48 83 e4 f0          	and    rsp,0xfffffffffffffff0
+ 563800d:	50                   	push   rax
+ 563800e:	54                   	push   rsp
+ 563800f:	49 c7 c0 10 8e 63 05 	mov    r8,0x5638e10
+ 5638016:	48 c7 c1 80 8d 63 05 	mov    rcx,0x5638d80
+ 563801d:	48 c7 c7 1a 8a 63 05 	mov    rdi,0x5638a1a
+ 5638024:	e8 47 87 dc fa       	call   400770 <__libc_start_main@plt>
+ 5638029:	f4                   	hlt    
+ 563802a:	90                   	nop
+ 563802b:	90                   	nop
+ 563802c:	48 83 ec 08          	sub    rsp,0x8
+ 5638030:	48 8b 05 a9 1f 20 00 	mov    rax,QWORD PTR [rip+0x201fa9]        # 5839fe0 <mprotect@plt+0x54397f0>
+ 5638037:	48 85 c0             	test   rax,rax
+ 563803a:	74 02                	je     563803e <mprotect@plt+0x523784e>
+ 563803c:	ff d0                	call   rax
+ 563803e:	48 83 c4 08          	add    rsp,0x8
+ 5638042:	c3                   	ret    
+ 5638043:	90                   	nop
+ 5638044:	90                   	nop
+ 5638045:	90                   	nop
+ 5638046:	90                   	nop
+ 5638047:	90                   	nop
+ 5638048:	90                   	nop
+ 5638049:	90                   	nop
+ 563804a:	90                   	nop
+ 563804b:	90                   	nop
+ 563804c:	90                   	nop
+ 563804d:	90                   	nop
+ 563804e:	90                   	nop
+ 563804f:	90                   	nop
+ 5638050:	55                   	push   rbp
+ 5638051:	48 89 e5             	mov    rbp,rsp
+ 5638054:	53                   	push   rbx
+ 5638055:	48 83 ec 08          	sub    rsp,0x8
+ 5638059:	80 3d 20 20 20 00 00 	cmp    BYTE PTR [rip+0x202020],0x0        # 583a080 <mprotect@plt+0x5439890>
+ 5638060:	75 4b                	jne    56380ad <mprotect@plt+0x52378bd>
+ 5638062:	bb 40 9e 83 05       	mov    ebx,0x5839e40
+ 5638067:	48 8b 05 1a 20 20 00 	mov    rax,QWORD PTR [rip+0x20201a]        # 583a088 <mprotect@plt+0x5439898>
+ 563806e:	48 81 eb 38 9e 83 05 	sub    rbx,0x5839e38
+ 5638075:	48 c1 fb 03          	sar    rbx,0x3
+ 5638079:	48 83 eb 01          	sub    rbx,0x1
+ 563807d:	48 39 d8             	cmp    rax,rbx
+ 5638080:	73 24                	jae    56380a6 <mprotect@plt+0x52378b6>
+ 5638082:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+ 5638088:	48 83 c0 01          	add    rax,0x1
+ 563808c:	48 89 05 f5 1f 20 00 	mov    QWORD PTR [rip+0x201ff5],rax        # 583a088 <mprotect@plt+0x5439898>
+ 5638093:	ff 14 c5 38 9e 83 05 	call   QWORD PTR [rax*8+0x5839e38]
+ 563809a:	48 8b 05 e7 1f 20 00 	mov    rax,QWORD PTR [rip+0x201fe7]        # 583a088 <mprotect@plt+0x5439898>
+ 56380a1:	48 39 d8             	cmp    rax,rbx
+ 56380a4:	72 e2                	jb     5638088 <mprotect@plt+0x5237898>
+ 56380a6:	c6 05 d3 1f 20 00 01 	mov    BYTE PTR [rip+0x201fd3],0x1        # 583a080 <mprotect@plt+0x5439890>
+ 56380ad:	48 83 c4 08          	add    rsp,0x8
+ 56380b1:	5b                   	pop    rbx
+ 56380b2:	5d                   	pop    rbp
+ 56380b3:	c3                   	ret    
+ 56380b4:	66 66 66 2e 0f 1f 84 	data16 data16 nop WORD PTR cs:[rax+rax*1+0x0]
+ 56380bb:	00 00 00 00 00 
+ 56380c0:	48 83 3d 80 1d 20 00 	cmp    QWORD PTR [rip+0x201d80],0x0        # 5839e48 <mprotect@plt+0x5439658>
+ 56380c7:	00 
+ 56380c8:	55                   	push   rbp
+ 56380c9:	48 89 e5             	mov    rbp,rsp
+ 56380cc:	74 12                	je     56380e0 <mprotect@plt+0x52378f0>
+ 56380ce:	b8 00 00 00 00       	mov    eax,0x0
+ 56380d3:	48 85 c0             	test   rax,rax
+ 56380d6:	74 08                	je     56380e0 <mprotect@plt+0x52378f0>
+ 56380d8:	5d                   	pop    rbp
+ 56380d9:	bf 48 9e 83 05       	mov    edi,0x5839e48
+ 56380de:	ff e0                	jmp    rax
+ 56380e0:	5d                   	pop    rbp
+ 56380e1:	c3                   	ret    
+ 56380e2:	90                   	nop
+ 56380e3:	90                   	nop
+ 56380e4:	55                   	push   rbp
+ 56380e5:	48 89 e5             	mov    rbp,rsp
+ 56380e8:	ba 00 00 00 00       	mov    edx,0x0
+ 56380ed:	be 00 00 00 00       	mov    esi,0x0
+ 56380f2:	bf 00 00 00 00       	mov    edi,0x0
+ 56380f7:	e8 f4 86 dc fa       	call   4007f0 <mprotect@plt>
+ 56380fc:	5d                   	pop    rbp
+ 56380fd:	c3                   	ret    
+ 56380fe:	55                   	push   rbp
+ 56380ff:	48 89 e5             	mov    rbp,rsp
+ 5638102:	41 b9 00 00 00 00    	mov    r9d,0x0
+ 5638108:	41 b8 00 00 00 00    	mov    r8d,0x0
+ 563810e:	b9 00 00 00 00       	mov    ecx,0x0
+ 5638113:	ba 00 00 00 00       	mov    edx,0x0
+ 5638118:	be 00 00 00 00       	mov    esi,0x0
+ 563811d:	bf 00 00 00 00       	mov    edi,0x0
+ 5638122:	e8 29 86 dc fa       	call   400750 <mmap@plt>
+ 5638127:	5d                   	pop    rbp
+ 5638128:	c3                   	ret    
+ 5638129:	55                   	push   rbp
+ 563812a:	48 89 e5             	mov    rbp,rsp
+ 563812d:	b8 00 00 00 00       	mov    eax,0x0
+ 5638132:	e8 09 86 dc fa       	call   400740 <getuid@plt>
+ 5638137:	5d                   	pop    rbp
+ 5638138:	c3                   	ret    
+ 5638139:	55                   	push   rbp
+ 563813a:	48 89 e5             	mov    rbp,rsp
+ 563813d:	5d                   	pop    rbp
+ 563813e:	c3                   	ret    
+ 563813f:	55                   	push   rbp
+ 5638140:	48 89 e5             	mov    rbp,rsp
+ 5638143:	bf 00 00 00 00       	mov    edi,0x0
+ 5638148:	b8 00 00 00 00       	mov    eax,0x0
+ 563814d:	e8 4e 86 dc fa       	call   4007a0 <time@plt>
+ 5638152:	5d                   	pop    rbp
+ 5638153:	c3                   	ret    
+ 5638154:	55                   	push   rbp
+ 5638155:	48 89 e5             	mov    rbp,rsp
+ 5638158:	be 0a 00 00 00       	mov    esi,0xa
+ 563815d:	bf 0a 00 00 00       	mov    edi,0xa
+ 5638162:	b8 00 00 00 00       	mov    eax,0x0
+ 5638167:	e8 f4 85 dc fa       	call   400760 <dup2@plt>
+ 563816c:	5d                   	pop    rbp
+ 563816d:	c3                   	ret    
+ 563816e:	55                   	push   rbp
+ 563816f:	48 89 e5             	mov    rbp,rsp
+ 5638172:	b8 00 00 00 00       	mov    eax,0x0
+ 5638177:	e8 34 86 dc fa       	call   4007b0 <getgid@plt>
+ 563817c:	5d                   	pop    rbp
+ 563817d:	c3                   	ret    
+ 563817e:	55                   	push   rbp
+ 563817f:	48 89 e5             	mov    rbp,rsp
+ 5638182:	bf 00 00 00 00       	mov    edi,0x0
+ 5638187:	b8 00 00 00 00       	mov    eax,0x0
+ 563818c:	e8 8f 85 dc fa       	call   400720 <personality@plt>
+ 5638191:	5d                   	pop    rbp
+ 5638192:	c3                   	ret    
+ 5638193:	55                   	push   rbp
+ 5638194:	48 89 e5             	mov    rbp,rsp
+ 5638197:	ba 09 00 00 00       	mov    edx,0x9
+ 563819c:	be 09 00 00 00       	mov    esi,0x9
+ 56381a1:	bf 09 00 00 00       	mov    edi,0x9
+ 56381a6:	b8 00 00 00 00       	mov    eax,0x0
+ 56381ab:	e8 20 86 dc fa       	call   4007d0 <setreuid@plt>
+ 56381b0:	5d                   	pop    rbp
+ 56381b1:	c3                   	ret    
+ 56381b2:	55                   	push   rbp
+ 56381b3:	48 89 e5             	mov    rbp,rsp
+ 56381b6:	bf 09 00 00 00       	mov    edi,0x9
+ 56381bb:	b8 00 00 00 00       	mov    eax,0x0
+ 56381c0:	e8 1b 86 dc fa       	call   4007e0 <setgid@plt>
+ 56381c5:	5d                   	pop    rbp
+ 56381c6:	c3                   	ret    
+ 56381c7:	55                   	push   rbp
+ 56381c8:	48 89 e5             	mov    rbp,rsp
+ 56381cb:	48 83 ec 10          	sub    rsp,0x10
+ 56381cf:	8b 05 6f 23 20 00    	mov    eax,DWORD PTR [rip+0x20236f]        # 583a544 <mprotect@plt+0x5439d54>
+ 56381d5:	83 e8 30             	sub    eax,0x30
+ 56381d8:	48 63 d0             	movsxd rdx,eax
+ 56381db:	b9 b0 a8 83 05       	mov    ecx,0x583a8b0
+ 56381e0:	48 8d 45 fc          	lea    rax,[rbp-0x4]
+ 56381e4:	48 89 ce             	mov    rsi,rcx
+ 56381e7:	48 89 c7             	mov    rdi,rax
+ 56381ea:	e8 a1 85 dc fa       	call   400790 <memcpy@plt>
+ 56381ef:	c9                   	leave  
+ 56381f0:	c3                   	ret    
+ 56381f1:	55                   	push   rbp
+ 56381f2:	48 89 e5             	mov    rbp,rsp
+ 56381f5:	48 83 ec 10          	sub    rsp,0x10
+ 56381f9:	89 f1                	mov    ecx,esi
+ 56381fb:	89 d0                	mov    eax,edx
+ 56381fd:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 5638201:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 5638204:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 5638207:	80 7d fc 39          	cmp    BYTE PTR [rbp-0x4],0x39
+ 563820b:	75 46                	jne    5638253 <mprotect@plt+0x5237a63>
+ 563820d:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 5638211:	89 d0                	mov    eax,edx
+ 5638213:	c1 e0 05             	shl    eax,0x5
+ 5638216:	01 d0                	add    eax,edx
+ 5638218:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 563821b:	3c 63                	cmp    al,0x63
+ 563821d:	75 34                	jne    5638253 <mprotect@plt+0x5237a63>
+ 563821f:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 5638223:	88 45 f3             	mov    BYTE PTR [rbp-0xd],al
+ 5638226:	ba 27 00 00 00       	mov    edx,0x27
+ 563822b:	0f b6 45 f3          	movzx  eax,BYTE PTR [rbp-0xd]
+ 563822f:	0f af c2             	imul   eax,edx
+ 5638232:	89 c2                	mov    edx,eax
+ 5638234:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 5638238:	b9 3b 00 00 00       	mov    ecx,0x3b
+ 563823d:	0f af c1             	imul   eax,ecx
+ 5638240:	01 d0                	add    eax,edx
+ 5638242:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 5638245:	3c 2b                	cmp    al,0x2b
+ 5638247:	75 0a                	jne    5638253 <mprotect@plt+0x5237a63>
+ 5638249:	b8 00 00 00 00       	mov    eax,0x0
+ 563824e:	e8 74 ff ff ff       	call   56381c7 <mprotect@plt+0x52379d7>
+ 5638253:	c9                   	leave  
+ 5638254:	c3                   	ret    
+ 5638255:	55                   	push   rbp
+ 5638256:	48 89 e5             	mov    rbp,rsp
+ 5638259:	48 83 ec 10          	sub    rsp,0x10
+ 563825d:	89 f1                	mov    ecx,esi
+ 563825f:	89 d0                	mov    eax,edx
+ 5638261:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 5638265:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 5638268:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 563826b:	80 7d fc e8          	cmp    BYTE PTR [rbp-0x4],0xe8
+ 563826f:	75 62                	jne    56382d3 <mprotect@plt+0x5237ae3>
+ 5638271:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 5638275:	ba 47 00 00 00       	mov    edx,0x47
+ 563827a:	0f af c2             	imul   eax,edx
+ 563827d:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 5638280:	3c 3b                	cmp    al,0x3b
+ 5638282:	75 4f                	jne    56382d3 <mprotect@plt+0x5237ae3>
+ 5638284:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 5638288:	c1 e0 03             	shl    eax,0x3
+ 563828b:	8d 14 c5 00 00 00 00 	lea    edx,[rax*8+0x0]
+ 5638292:	89 d1                	mov    ecx,edx
+ 5638294:	28 c1                	sub    cl,al
+ 5638296:	0f b6 55 f8          	movzx  edx,BYTE PTR [rbp-0x8]
+ 563829a:	89 d0                	mov    eax,edx
+ 563829c:	c1 e0 03             	shl    eax,0x3
+ 563829f:	01 d0                	add    eax,edx
+ 56382a1:	01 c0                	add    eax,eax
+ 56382a3:	01 c8                	add    eax,ecx
+ 56382a5:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 56382a8:	3c 1f                	cmp    al,0x1f
+ 56382aa:	75 27                	jne    56382d3 <mprotect@plt+0x5237ae3>
+ 56382ac:	0f b6 05 fc 25 20 00 	movzx  eax,BYTE PTR [rip+0x2025fc]        # 583a8af <mprotect@plt+0x543a0bf>
+ 56382b3:	0f b6 d0             	movzx  edx,al
+ 56382b6:	0f b6 05 f1 25 20 00 	movzx  eax,BYTE PTR [rip+0x2025f1]        # 583a8ae <mprotect@plt+0x543a0be>
+ 56382bd:	0f b6 c8             	movzx  ecx,al
+ 56382c0:	0f b6 05 e6 25 20 00 	movzx  eax,BYTE PTR [rip+0x2025e6]        # 583a8ad <mprotect@plt+0x543a0bd>
+ 56382c7:	0f b6 c0             	movzx  eax,al
+ 56382ca:	89 ce                	mov    esi,ecx
+ 56382cc:	89 c7                	mov    edi,eax
+ 56382ce:	e8 1e ff ff ff       	call   56381f1 <mprotect@plt+0x5237a01>
+ 56382d3:	c9                   	leave  
+ 56382d4:	c3                   	ret    
+ 56382d5:	55                   	push   rbp
+ 56382d6:	48 89 e5             	mov    rbp,rsp
+ 56382d9:	48 83 ec 10          	sub    rsp,0x10
+ 56382dd:	89 f1                	mov    ecx,esi
+ 56382df:	89 d0                	mov    eax,edx
+ 56382e1:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 56382e5:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 56382e8:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 56382eb:	80 7d fc dc          	cmp    BYTE PTR [rbp-0x4],0xdc
+ 56382ef:	75 62                	jne    5638353 <mprotect@plt+0x5237b63>
+ 56382f1:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 56382f5:	89 d0                	mov    eax,edx
+ 56382f7:	c1 e0 02             	shl    eax,0x2
+ 56382fa:	01 d0                	add    eax,edx
+ 56382fc:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 56382ff:	3c 24                	cmp    al,0x24
+ 5638301:	75 50                	jne    5638353 <mprotect@plt+0x5237b63>
+ 5638303:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 5638307:	89 d0                	mov    eax,edx
+ 5638309:	c1 e0 02             	shl    eax,0x2
+ 563830c:	01 d0                	add    eax,edx
+ 563830e:	01 c0                	add    eax,eax
+ 5638310:	8d 0c 10             	lea    ecx,[rax+rdx*1]
+ 5638313:	0f b6 55 f8          	movzx  edx,BYTE PTR [rbp-0x8]
+ 5638317:	89 d0                	mov    eax,edx
+ 5638319:	c1 e0 02             	shl    eax,0x2
+ 563831c:	01 d0                	add    eax,edx
+ 563831e:	c1 e0 02             	shl    eax,0x2
+ 5638321:	01 d0                	add    eax,edx
+ 5638323:	01 c8                	add    eax,ecx
+ 5638325:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 5638328:	3c 32                	cmp    al,0x32
+ 563832a:	75 27                	jne    5638353 <mprotect@plt+0x5237b63>
+ 563832c:	0f b6 05 79 25 20 00 	movzx  eax,BYTE PTR [rip+0x202579]        # 583a8ac <mprotect@plt+0x543a0bc>
+ 5638333:	0f b6 d0             	movzx  edx,al
+ 5638336:	0f b6 05 6e 25 20 00 	movzx  eax,BYTE PTR [rip+0x20256e]        # 583a8ab <mprotect@plt+0x543a0bb>
+ 563833d:	0f b6 c8             	movzx  ecx,al
+ 5638340:	0f b6 05 63 25 20 00 	movzx  eax,BYTE PTR [rip+0x202563]        # 583a8aa <mprotect@plt+0x543a0ba>
+ 5638347:	0f b6 c0             	movzx  eax,al
+ 563834a:	89 ce                	mov    esi,ecx
+ 563834c:	89 c7                	mov    edi,eax
+ 563834e:	e8 02 ff ff ff       	call   5638255 <mprotect@plt+0x5237a65>
+ 5638353:	c9                   	leave  
+ 5638354:	c3                   	ret    
+ 5638355:	55                   	push   rbp
+ 5638356:	48 89 e5             	mov    rbp,rsp
+ 5638359:	48 83 ec 10          	sub    rsp,0x10
+ 563835d:	89 f1                	mov    ecx,esi
+ 563835f:	89 d0                	mov    eax,edx
+ 5638361:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 5638365:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 5638368:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 563836b:	80 7d fc 36          	cmp    BYTE PTR [rbp-0x4],0x36
+ 563836f:	75 65                	jne    56383d6 <mprotect@plt+0x5237be6>
+ 5638371:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 5638375:	89 d0                	mov    eax,edx
+ 5638377:	01 c0                	add    eax,eax
+ 5638379:	01 d0                	add    eax,edx
+ 563837b:	c1 e0 04             	shl    eax,0x4
+ 563837e:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 5638381:	3c 09                	cmp    al,0x9
+ 5638383:	75 51                	jne    56383d6 <mprotect@plt+0x5237be6>
+ 5638385:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 5638389:	88 45 f3             	mov    BYTE PTR [rbp-0xd],al
+ 563838c:	ba 52 00 00 00       	mov    edx,0x52
+ 5638391:	0f b6 45 f3          	movzx  eax,BYTE PTR [rbp-0xd]
+ 5638395:	0f af c2             	imul   eax,edx
+ 5638398:	89 c2                	mov    edx,eax
+ 563839a:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 563839e:	b9 45 00 00 00       	mov    ecx,0x45
+ 56383a3:	0f af c1             	imul   eax,ecx
+ 56383a6:	01 d0                	add    eax,edx
+ 56383a8:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 56383ab:	3c 32                	cmp    al,0x32
+ 56383ad:	75 27                	jne    56383d6 <mprotect@plt+0x5237be6>
+ 56383af:	0f b6 05 f3 24 20 00 	movzx  eax,BYTE PTR [rip+0x2024f3]        # 583a8a9 <mprotect@plt+0x543a0b9>
+ 56383b6:	0f b6 d0             	movzx  edx,al
+ 56383b9:	0f b6 05 e8 24 20 00 	movzx  eax,BYTE PTR [rip+0x2024e8]        # 583a8a8 <mprotect@plt+0x543a0b8>
+ 56383c0:	0f b6 c8             	movzx  ecx,al
+ 56383c3:	0f b6 05 dd 24 20 00 	movzx  eax,BYTE PTR [rip+0x2024dd]        # 583a8a7 <mprotect@plt+0x543a0b7>
+ 56383ca:	0f b6 c0             	movzx  eax,al
+ 56383cd:	89 ce                	mov    esi,ecx
+ 56383cf:	89 c7                	mov    edi,eax
+ 56383d1:	e8 ff fe ff ff       	call   56382d5 <mprotect@plt+0x5237ae5>
+ 56383d6:	c9                   	leave  
+ 56383d7:	c3                   	ret    
+ 56383d8:	55                   	push   rbp
+ 56383d9:	48 89 e5             	mov    rbp,rsp
+ 56383dc:	48 83 ec 10          	sub    rsp,0x10
+ 56383e0:	89 f1                	mov    ecx,esi
+ 56383e2:	89 d0                	mov    eax,edx
+ 56383e4:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 56383e8:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 56383eb:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 56383ee:	80 7d fc cd          	cmp    BYTE PTR [rbp-0x4],0xcd
+ 56383f2:	75 6f                	jne    5638463 <mprotect@plt+0x5237c73>
+ 56383f4:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 56383f8:	89 d0                	mov    eax,edx
+ 56383fa:	c1 e0 03             	shl    eax,0x3
+ 56383fd:	01 d0                	add    eax,edx
+ 56383ff:	01 c0                	add    eax,eax
+ 5638401:	01 d0                	add    eax,edx
+ 5638403:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 5638406:	3c 4b                	cmp    al,0x4b
+ 5638408:	75 59                	jne    5638463 <mprotect@plt+0x5237c73>
+ 563840a:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 563840e:	88 45 f3             	mov    BYTE PTR [rbp-0xd],al
+ 5638411:	ba 4e 00 00 00       	mov    edx,0x4e
+ 5638416:	0f b6 45 f3          	movzx  eax,BYTE PTR [rbp-0xd]
+ 563841a:	0f af c2             	imul   eax,edx
+ 563841d:	89 c1                	mov    ecx,eax
+ 563841f:	0f b6 55 f8          	movzx  edx,BYTE PTR [rbp-0x8]
+ 5638423:	89 d0                	mov    eax,edx
+ 5638425:	c1 e0 02             	shl    eax,0x2
+ 5638428:	01 d0                	add    eax,edx
+ 563842a:	8d 14 85 00 00 00 00 	lea    edx,[rax*4+0x0]
+ 5638431:	01 d0                	add    eax,edx
+ 5638433:	01 c8                	add    eax,ecx
+ 5638435:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 5638438:	3c 39                	cmp    al,0x39
+ 563843a:	75 27                	jne    5638463 <mprotect@plt+0x5237c73>
+ 563843c:	0f b6 05 63 24 20 00 	movzx  eax,BYTE PTR [rip+0x202463]        # 583a8a6 <mprotect@plt+0x543a0b6>
+ 5638443:	0f b6 d0             	movzx  edx,al
+ 5638446:	0f b6 05 58 24 20 00 	movzx  eax,BYTE PTR [rip+0x202458]        # 583a8a5 <mprotect@plt+0x543a0b5>
+ 563844d:	0f b6 c8             	movzx  ecx,al
+ 5638450:	0f b6 05 4d 24 20 00 	movzx  eax,BYTE PTR [rip+0x20244d]        # 583a8a4 <mprotect@plt+0x543a0b4>
+ 5638457:	0f b6 c0             	movzx  eax,al
+ 563845a:	89 ce                	mov    esi,ecx
+ 563845c:	89 c7                	mov    edi,eax
+ 563845e:	e8 f2 fe ff ff       	call   5638355 <mprotect@plt+0x5237b65>
+ 5638463:	c9                   	leave  
+ 5638464:	c3                   	ret    
+ 5638465:	55                   	push   rbp
+ 5638466:	48 89 e5             	mov    rbp,rsp
+ 5638469:	48 83 ec 10          	sub    rsp,0x10
+ 563846d:	89 f1                	mov    ecx,esi
+ 563846f:	89 d0                	mov    eax,edx
+ 5638471:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 5638475:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 5638478:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 563847b:	80 7d fc f7          	cmp    BYTE PTR [rbp-0x4],0xf7
+ 563847f:	75 63                	jne    56384e4 <mprotect@plt+0x5237cf4>
+ 5638481:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 5638485:	89 d0                	mov    eax,edx
+ 5638487:	01 c0                	add    eax,eax
+ 5638489:	01 d0                	add    eax,edx
+ 563848b:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 563848e:	3c 60                	cmp    al,0x60
+ 5638490:	75 52                	jne    56384e4 <mprotect@plt+0x5237cf4>
+ 5638492:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 5638496:	88 45 f3             	mov    BYTE PTR [rbp-0xd],al
+ 5638499:	ba 55 00 00 00       	mov    edx,0x55
+ 563849e:	0f b6 45 f3          	movzx  eax,BYTE PTR [rbp-0xd]
+ 56384a2:	0f af c2             	imul   eax,edx
+ 56384a5:	89 c2                	mov    edx,eax
+ 56384a7:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 56384ab:	01 c0                	add    eax,eax
+ 56384ad:	89 c1                	mov    ecx,eax
+ 56384af:	c1 e1 04             	shl    ecx,0x4
+ 56384b2:	01 c8                	add    eax,ecx
+ 56384b4:	01 d0                	add    eax,edx
+ 56384b6:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 56384b9:	3c 4c                	cmp    al,0x4c
+ 56384bb:	75 27                	jne    56384e4 <mprotect@plt+0x5237cf4>
+ 56384bd:	0f b6 05 df 23 20 00 	movzx  eax,BYTE PTR [rip+0x2023df]        # 583a8a3 <mprotect@plt+0x543a0b3>
+ 56384c4:	0f b6 d0             	movzx  edx,al
+ 56384c7:	0f b6 05 d4 23 20 00 	movzx  eax,BYTE PTR [rip+0x2023d4]        # 583a8a2 <mprotect@plt+0x543a0b2>
+ 56384ce:	0f b6 c8             	movzx  ecx,al
+ 56384d1:	0f b6 05 c9 23 20 00 	movzx  eax,BYTE PTR [rip+0x2023c9]        # 583a8a1 <mprotect@plt+0x543a0b1>
+ 56384d8:	0f b6 c0             	movzx  eax,al
+ 56384db:	89 ce                	mov    esi,ecx
+ 56384dd:	89 c7                	mov    edi,eax
+ 56384df:	e8 f4 fe ff ff       	call   56383d8 <mprotect@plt+0x5237be8>
+ 56384e4:	c9                   	leave  
+ 56384e5:	c3                   	ret    
+ 56384e6:	55                   	push   rbp
+ 56384e7:	48 89 e5             	mov    rbp,rsp
+ 56384ea:	48 83 ec 10          	sub    rsp,0x10
+ 56384ee:	89 f1                	mov    ecx,esi
+ 56384f0:	89 d0                	mov    eax,edx
+ 56384f2:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 56384f6:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 56384f9:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 56384fc:	80 7d fc 13          	cmp    BYTE PTR [rbp-0x4],0x13
+ 5638500:	75 64                	jne    5638566 <mprotect@plt+0x5237d76>
+ 5638502:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 5638506:	ba 35 00 00 00       	mov    edx,0x35
+ 563850b:	0f af c2             	imul   eax,edx
+ 563850e:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 5638511:	3c 51                	cmp    al,0x51
+ 5638513:	75 51                	jne    5638566 <mprotect@plt+0x5237d76>
+ 5638515:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 5638519:	88 45 f3             	mov    BYTE PTR [rbp-0xd],al
+ 563851c:	ba 2d 00 00 00       	mov    edx,0x2d
+ 5638521:	0f b6 45 f3          	movzx  eax,BYTE PTR [rbp-0xd]
+ 5638525:	0f af c2             	imul   eax,edx
+ 5638528:	89 c2                	mov    edx,eax
+ 563852a:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 563852e:	b9 4e 00 00 00       	mov    ecx,0x4e
+ 5638533:	0f af c1             	imul   eax,ecx
+ 5638536:	01 d0                	add    eax,edx
+ 5638538:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 563853b:	3c 2c                	cmp    al,0x2c
+ 563853d:	75 27                	jne    5638566 <mprotect@plt+0x5237d76>
+ 563853f:	0f b6 05 5a 23 20 00 	movzx  eax,BYTE PTR [rip+0x20235a]        # 583a8a0 <mprotect@plt+0x543a0b0>
+ 5638546:	0f b6 d0             	movzx  edx,al
+ 5638549:	0f b6 05 4f 23 20 00 	movzx  eax,BYTE PTR [rip+0x20234f]        # 583a89f <mprotect@plt+0x543a0af>
+ 5638550:	0f b6 c8             	movzx  ecx,al
+ 5638553:	0f b6 05 44 23 20 00 	movzx  eax,BYTE PTR [rip+0x202344]        # 583a89e <mprotect@plt+0x543a0ae>
+ 563855a:	0f b6 c0             	movzx  eax,al
+ 563855d:	89 ce                	mov    esi,ecx
+ 563855f:	89 c7                	mov    edi,eax
+ 5638561:	e8 ff fe ff ff       	call   5638465 <mprotect@plt+0x5237c75>
+ 5638566:	c9                   	leave  
+ 5638567:	c3                   	ret    
+ 5638568:	55                   	push   rbp
+ 5638569:	48 89 e5             	mov    rbp,rsp
+ 563856c:	48 83 ec 10          	sub    rsp,0x10
+ 5638570:	89 f1                	mov    ecx,esi
+ 5638572:	89 d0                	mov    eax,edx
+ 5638574:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 5638578:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 563857b:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 563857e:	80 7d fc 23          	cmp    BYTE PTR [rbp-0x4],0x23
+ 5638582:	75 5d                	jne    56385e1 <mprotect@plt+0x5237df1>
+ 5638584:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 5638588:	ba 57 00 00 00       	mov    edx,0x57
+ 563858d:	0f af c2             	imul   eax,edx
+ 5638590:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 5638593:	3c 4a                	cmp    al,0x4a
+ 5638595:	75 4a                	jne    56385e1 <mprotect@plt+0x5237df1>
+ 5638597:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 563859b:	01 c0                	add    eax,eax
+ 563859d:	89 c2                	mov    edx,eax
+ 563859f:	c1 e2 05             	shl    edx,0x5
+ 56385a2:	8d 0c 10             	lea    ecx,[rax+rdx*1]
+ 56385a5:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 56385a9:	ba 4d 00 00 00       	mov    edx,0x4d
+ 56385ae:	0f af c2             	imul   eax,edx
+ 56385b1:	01 c8                	add    eax,ecx
+ 56385b3:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 56385b6:	3c 63                	cmp    al,0x63
+ 56385b8:	75 27                	jne    56385e1 <mprotect@plt+0x5237df1>
+ 56385ba:	0f b6 05 dc 22 20 00 	movzx  eax,BYTE PTR [rip+0x2022dc]        # 583a89d <mprotect@plt+0x543a0ad>
+ 56385c1:	0f b6 d0             	movzx  edx,al
+ 56385c4:	0f b6 05 d1 22 20 00 	movzx  eax,BYTE PTR [rip+0x2022d1]        # 583a89c <mprotect@plt+0x543a0ac>
+ 56385cb:	0f b6 c8             	movzx  ecx,al
+ 56385ce:	0f b6 05 c6 22 20 00 	movzx  eax,BYTE PTR [rip+0x2022c6]        # 583a89b <mprotect@plt+0x543a0ab>
+ 56385d5:	0f b6 c0             	movzx  eax,al
+ 56385d8:	89 ce                	mov    esi,ecx
+ 56385da:	89 c7                	mov    edi,eax
+ 56385dc:	e8 05 ff ff ff       	call   56384e6 <mprotect@plt+0x5237cf6>
+ 56385e1:	c9                   	leave  
+ 56385e2:	c3                   	ret    
+ 56385e3:	55                   	push   rbp
+ 56385e4:	48 89 e5             	mov    rbp,rsp
+ 56385e7:	48 83 ec 10          	sub    rsp,0x10
+ 56385eb:	89 f1                	mov    ecx,esi
+ 56385ed:	89 d0                	mov    eax,edx
+ 56385ef:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 56385f3:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 56385f6:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 56385f9:	80 7d fc 14          	cmp    BYTE PTR [rbp-0x4],0x14
+ 56385fd:	75 52                	jne    5638651 <mprotect@plt+0x5237e61>
+ 56385ff:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 5638603:	ba 31 00 00 00       	mov    edx,0x31
+ 5638608:	0f af c2             	imul   eax,edx
+ 563860b:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 563860e:	3c 53                	cmp    al,0x53
+ 5638610:	75 3f                	jne    5638651 <mprotect@plt+0x5237e61>
+ 5638612:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 5638616:	89 d0                	mov    eax,edx
+ 5638618:	c1 e0 02             	shl    eax,0x2
+ 563861b:	01 d0                	add    eax,edx
+ 563861d:	c1 e0 03             	shl    eax,0x3
+ 5638620:	02 45 f8             	add    al,BYTE PTR [rbp-0x8]
+ 5638623:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 5638626:	3c 42                	cmp    al,0x42
+ 5638628:	75 27                	jne    5638651 <mprotect@plt+0x5237e61>
+ 563862a:	0f b6 05 69 22 20 00 	movzx  eax,BYTE PTR [rip+0x202269]        # 583a89a <mprotect@plt+0x543a0aa>
+ 5638631:	0f b6 d0             	movzx  edx,al
+ 5638634:	0f b6 05 5e 22 20 00 	movzx  eax,BYTE PTR [rip+0x20225e]        # 583a899 <mprotect@plt+0x543a0a9>
+ 563863b:	0f b6 c8             	movzx  ecx,al
+ 563863e:	0f b6 05 53 22 20 00 	movzx  eax,BYTE PTR [rip+0x202253]        # 583a898 <mprotect@plt+0x543a0a8>
+ 5638645:	0f b6 c0             	movzx  eax,al
+ 5638648:	89 ce                	mov    esi,ecx
+ 563864a:	89 c7                	mov    edi,eax
+ 563864c:	e8 17 ff ff ff       	call   5638568 <mprotect@plt+0x5237d78>
+ 5638651:	c9                   	leave  
+ 5638652:	c3                   	ret    
+ 5638653:	55                   	push   rbp
+ 5638654:	48 89 e5             	mov    rbp,rsp
+ 5638657:	48 83 ec 10          	sub    rsp,0x10
+ 563865b:	89 f1                	mov    ecx,esi
+ 563865d:	89 d0                	mov    eax,edx
+ 563865f:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 5638663:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 5638666:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 5638669:	80 7d fc 29          	cmp    BYTE PTR [rbp-0x4],0x29
+ 563866d:	75 59                	jne    56386c8 <mprotect@plt+0x5237ed8>
+ 563866f:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 5638673:	01 c0                	add    eax,eax
+ 5638675:	89 c2                	mov    edx,eax
+ 5638677:	c1 e2 05             	shl    edx,0x5
+ 563867a:	01 d0                	add    eax,edx
+ 563867c:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 563867f:	3c 4d                	cmp    al,0x4d
+ 5638681:	75 45                	jne    56386c8 <mprotect@plt+0x5237ed8>
+ 5638683:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 5638687:	89 c1                	mov    ecx,eax
+ 5638689:	c1 e1 06             	shl    ecx,0x6
+ 563868c:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 5638690:	ba 63 00 00 00       	mov    edx,0x63
+ 5638695:	0f af c2             	imul   eax,edx
+ 5638698:	01 c8                	add    eax,ecx
+ 563869a:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 563869d:	3c 21                	cmp    al,0x21
+ 563869f:	75 27                	jne    56386c8 <mprotect@plt+0x5237ed8>
+ 56386a1:	0f b6 05 ef 21 20 00 	movzx  eax,BYTE PTR [rip+0x2021ef]        # 583a897 <mprotect@plt+0x543a0a7>
+ 56386a8:	0f b6 d0             	movzx  edx,al
+ 56386ab:	0f b6 05 e4 21 20 00 	movzx  eax,BYTE PTR [rip+0x2021e4]        # 583a896 <mprotect@plt+0x543a0a6>
+ 56386b2:	0f b6 c8             	movzx  ecx,al
+ 56386b5:	0f b6 05 d9 21 20 00 	movzx  eax,BYTE PTR [rip+0x2021d9]        # 583a895 <mprotect@plt+0x543a0a5>
+ 56386bc:	0f b6 c0             	movzx  eax,al
+ 56386bf:	89 ce                	mov    esi,ecx
+ 56386c1:	89 c7                	mov    edi,eax
+ 56386c3:	e8 1b ff ff ff       	call   56385e3 <mprotect@plt+0x5237df3>
+ 56386c8:	c9                   	leave  
+ 56386c9:	c3                   	ret    
+ 56386ca:	55                   	push   rbp
+ 56386cb:	48 89 e5             	mov    rbp,rsp
+ 56386ce:	48 83 ec 10          	sub    rsp,0x10
+ 56386d2:	89 f1                	mov    ecx,esi
+ 56386d4:	89 d0                	mov    eax,edx
+ 56386d6:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 56386da:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 56386dd:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 56386e0:	80 7d fc 1e          	cmp    BYTE PTR [rbp-0x4],0x1e
+ 56386e4:	75 5f                	jne    5638745 <mprotect@plt+0x5237f55>
+ 56386e6:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 56386ea:	89 d0                	mov    eax,edx
+ 56386ec:	c1 e0 03             	shl    eax,0x3
+ 56386ef:	01 d0                	add    eax,edx
+ 56386f1:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 56386f4:	3c 5f                	cmp    al,0x5f
+ 56386f6:	75 4d                	jne    5638745 <mprotect@plt+0x5237f55>
+ 56386f8:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 56386fc:	89 d0                	mov    eax,edx
+ 56386fe:	c1 e0 02             	shl    eax,0x2
+ 5638701:	01 d0                	add    eax,edx
+ 5638703:	c1 e0 02             	shl    eax,0x2
+ 5638706:	8d 0c 10             	lea    ecx,[rax+rdx*1]
+ 5638709:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 563870d:	ba 2b 00 00 00       	mov    edx,0x2b
+ 5638712:	0f af c2             	imul   eax,edx
+ 5638715:	01 c8                	add    eax,ecx
+ 5638717:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 563871a:	3c 16                	cmp    al,0x16
+ 563871c:	75 27                	jne    5638745 <mprotect@plt+0x5237f55>
+ 563871e:	0f b6 05 6f 21 20 00 	movzx  eax,BYTE PTR [rip+0x20216f]        # 583a894 <mprotect@plt+0x543a0a4>
+ 5638725:	0f b6 d0             	movzx  edx,al
+ 5638728:	0f b6 05 64 21 20 00 	movzx  eax,BYTE PTR [rip+0x202164]        # 583a893 <mprotect@plt+0x543a0a3>
+ 563872f:	0f b6 c8             	movzx  ecx,al
+ 5638732:	0f b6 05 59 21 20 00 	movzx  eax,BYTE PTR [rip+0x202159]        # 583a892 <mprotect@plt+0x543a0a2>
+ 5638739:	0f b6 c0             	movzx  eax,al
+ 563873c:	89 ce                	mov    esi,ecx
+ 563873e:	89 c7                	mov    edi,eax
+ 5638740:	e8 0e ff ff ff       	call   5638653 <mprotect@plt+0x5237e63>
+ 5638745:	c9                   	leave  
+ 5638746:	c3                   	ret    
+ 5638747:	55                   	push   rbp
+ 5638748:	48 89 e5             	mov    rbp,rsp
+ 563874b:	48 83 ec 10          	sub    rsp,0x10
+ 563874f:	89 f1                	mov    ecx,esi
+ 5638751:	89 d0                	mov    eax,edx
+ 5638753:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 5638757:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 563875a:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 563875d:	80 7d fc 12          	cmp    BYTE PTR [rbp-0x4],0x12
+ 5638761:	75 60                	jne    56387c3 <mprotect@plt+0x5237fd3>
+ 5638763:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 5638767:	01 c0                	add    eax,eax
+ 5638769:	89 c2                	mov    edx,eax
+ 563876b:	c1 e2 04             	shl    edx,0x4
+ 563876e:	89 d1                	mov    ecx,edx
+ 5638770:	28 c1                	sub    cl,al
+ 5638772:	89 c8                	mov    eax,ecx
+ 5638774:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 5638777:	3c 5e                	cmp    al,0x5e
+ 5638779:	75 48                	jne    56387c3 <mprotect@plt+0x5237fd3>
+ 563877b:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 563877f:	89 d0                	mov    eax,edx
+ 5638781:	c1 e0 06             	shl    eax,0x6
+ 5638784:	8d 0c 10             	lea    ecx,[rax+rdx*1]
+ 5638787:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 563878b:	ba 61 00 00 00       	mov    edx,0x61
+ 5638790:	0f af c2             	imul   eax,edx
+ 5638793:	01 c8                	add    eax,ecx
+ 5638795:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 5638798:	3c 1e                	cmp    al,0x1e
+ 563879a:	75 27                	jne    56387c3 <mprotect@plt+0x5237fd3>
+ 563879c:	0f b6 05 ee 20 20 00 	movzx  eax,BYTE PTR [rip+0x2020ee]        # 583a891 <mprotect@plt+0x543a0a1>
+ 56387a3:	0f b6 d0             	movzx  edx,al
+ 56387a6:	0f b6 05 e3 20 20 00 	movzx  eax,BYTE PTR [rip+0x2020e3]        # 583a890 <mprotect@plt+0x543a0a0>
+ 56387ad:	0f b6 c8             	movzx  ecx,al
+ 56387b0:	0f b6 05 d8 20 20 00 	movzx  eax,BYTE PTR [rip+0x2020d8]        # 583a88f <mprotect@plt+0x543a09f>
+ 56387b7:	0f b6 c0             	movzx  eax,al
+ 56387ba:	89 ce                	mov    esi,ecx
+ 56387bc:	89 c7                	mov    edi,eax
+ 56387be:	e8 07 ff ff ff       	call   56386ca <mprotect@plt+0x5237eda>
+ 56387c3:	c9                   	leave  
+ 56387c4:	c3                   	ret    
+ 56387c5:	55                   	push   rbp
+ 56387c6:	48 89 e5             	mov    rbp,rsp
+ 56387c9:	48 83 ec 10          	sub    rsp,0x10
+ 56387cd:	89 f1                	mov    ecx,esi
+ 56387cf:	89 d0                	mov    eax,edx
+ 56387d1:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 56387d5:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 56387d8:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 56387db:	80 7d fc 3d          	cmp    BYTE PTR [rbp-0x4],0x3d
+ 56387df:	75 5b                	jne    563883c <mprotect@plt+0x523804c>
+ 56387e1:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 56387e5:	89 d0                	mov    eax,edx
+ 56387e7:	c1 e0 03             	shl    eax,0x3
+ 56387ea:	01 d0                	add    eax,edx
+ 56387ec:	01 c0                	add    eax,eax
+ 56387ee:	01 d0                	add    eax,edx
+ 56387f0:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 56387f3:	3c 0b                	cmp    al,0xb
+ 56387f5:	75 45                	jne    563883c <mprotect@plt+0x523804c>
+ 56387f7:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 56387fb:	89 c1                	mov    ecx,eax
+ 56387fd:	c1 e1 04             	shl    ecx,0x4
+ 5638800:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 5638804:	ba 43 00 00 00       	mov    edx,0x43
+ 5638809:	0f af c2             	imul   eax,edx
+ 563880c:	01 c8                	add    eax,ecx
+ 563880e:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 5638811:	3c 1c                	cmp    al,0x1c
+ 5638813:	75 27                	jne    563883c <mprotect@plt+0x523804c>
+ 5638815:	0f b6 05 72 20 20 00 	movzx  eax,BYTE PTR [rip+0x202072]        # 583a88e <mprotect@plt+0x543a09e>
+ 563881c:	0f b6 d0             	movzx  edx,al
+ 563881f:	0f b6 05 67 20 20 00 	movzx  eax,BYTE PTR [rip+0x202067]        # 583a88d <mprotect@plt+0x543a09d>
+ 5638826:	0f b6 c8             	movzx  ecx,al
+ 5638829:	0f b6 05 5c 20 20 00 	movzx  eax,BYTE PTR [rip+0x20205c]        # 583a88c <mprotect@plt+0x543a09c>
+ 5638830:	0f b6 c0             	movzx  eax,al
+ 5638833:	89 ce                	mov    esi,ecx
+ 5638835:	89 c7                	mov    edi,eax
+ 5638837:	e8 0b ff ff ff       	call   5638747 <mprotect@plt+0x5237f57>
+ 563883c:	c9                   	leave  
+ 563883d:	c3                   	ret    
+ 563883e:	55                   	push   rbp
+ 563883f:	48 89 e5             	mov    rbp,rsp
+ 5638842:	48 83 ec 10          	sub    rsp,0x10
+ 5638846:	89 f1                	mov    ecx,esi
+ 5638848:	89 d0                	mov    eax,edx
+ 563884a:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 563884e:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 5638851:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 5638854:	80 7d fc 10          	cmp    BYTE PTR [rbp-0x4],0x10
+ 5638858:	75 66                	jne    56388c0 <mprotect@plt+0x52380d0>
+ 563885a:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 563885e:	ba 5e 00 00 00       	mov    edx,0x5e
+ 5638863:	0f af c2             	imul   eax,edx
+ 5638866:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 5638869:	3c 5c                	cmp    al,0x5c
+ 563886b:	75 53                	jne    56388c0 <mprotect@plt+0x52380d0>
+ 563886d:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 5638871:	88 45 f3             	mov    BYTE PTR [rbp-0xd],al
+ 5638874:	ba 54 00 00 00       	mov    edx,0x54
+ 5638879:	0f b6 45 f3          	movzx  eax,BYTE PTR [rbp-0xd]
+ 563887d:	0f af c2             	imul   eax,edx
+ 5638880:	89 c1                	mov    ecx,eax
+ 5638882:	0f b6 55 f8          	movzx  edx,BYTE PTR [rbp-0x8]
+ 5638886:	89 d0                	mov    eax,edx
+ 5638888:	c1 e0 02             	shl    eax,0x2
+ 563888b:	01 d0                	add    eax,edx
+ 563888d:	c1 e0 03             	shl    eax,0x3
+ 5638890:	01 c8                	add    eax,ecx
+ 5638892:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 5638895:	3c 3f                	cmp    al,0x3f
+ 5638897:	75 27                	jne    56388c0 <mprotect@plt+0x52380d0>
+ 5638899:	0f b6 05 eb 1f 20 00 	movzx  eax,BYTE PTR [rip+0x201feb]        # 583a88b <mprotect@plt+0x543a09b>
+ 56388a0:	0f b6 d0             	movzx  edx,al
+ 56388a3:	0f b6 05 e0 1f 20 00 	movzx  eax,BYTE PTR [rip+0x201fe0]        # 583a88a <mprotect@plt+0x543a09a>
+ 56388aa:	0f b6 c8             	movzx  ecx,al
+ 56388ad:	0f b6 05 d5 1f 20 00 	movzx  eax,BYTE PTR [rip+0x201fd5]        # 583a889 <mprotect@plt+0x543a099>
+ 56388b4:	0f b6 c0             	movzx  eax,al
+ 56388b7:	89 ce                	mov    esi,ecx
+ 56388b9:	89 c7                	mov    edi,eax
+ 56388bb:	e8 05 ff ff ff       	call   56387c5 <mprotect@plt+0x5237fd5>
+ 56388c0:	c9                   	leave  
+ 56388c1:	c3                   	ret    
+ 56388c2:	55                   	push   rbp
+ 56388c3:	48 89 e5             	mov    rbp,rsp
+ 56388c6:	48 83 ec 10          	sub    rsp,0x10
+ 56388ca:	89 f1                	mov    ecx,esi
+ 56388cc:	89 d0                	mov    eax,edx
+ 56388ce:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 56388d2:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 56388d5:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 56388d8:	80 7d fc a7          	cmp    BYTE PTR [rbp-0x4],0xa7
+ 56388dc:	75 4f                	jne    563892d <mprotect@plt+0x523813d>
+ 56388de:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 56388e2:	c1 e0 02             	shl    eax,0x2
+ 56388e5:	89 c2                	mov    edx,eax
+ 56388e7:	c1 e2 04             	shl    edx,0x4
+ 56388ea:	01 d0                	add    eax,edx
+ 56388ec:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 56388ef:	3c 41                	cmp    al,0x41
+ 56388f1:	75 3a                	jne    563892d <mprotect@plt+0x523813d>
+ 56388f3:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 56388f7:	ba 39 00 00 00       	mov    edx,0x39
+ 56388fc:	0f af c2             	imul   eax,edx
+ 56388ff:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 5638902:	3c 0f                	cmp    al,0xf
+ 5638904:	75 27                	jne    563892d <mprotect@plt+0x523813d>
+ 5638906:	0f b6 05 7b 1f 20 00 	movzx  eax,BYTE PTR [rip+0x201f7b]        # 583a888 <mprotect@plt+0x543a098>
+ 563890d:	0f b6 d0             	movzx  edx,al
+ 5638910:	0f b6 05 70 1f 20 00 	movzx  eax,BYTE PTR [rip+0x201f70]        # 583a887 <mprotect@plt+0x543a097>
+ 5638917:	0f b6 c8             	movzx  ecx,al
+ 563891a:	0f b6 05 65 1f 20 00 	movzx  eax,BYTE PTR [rip+0x201f65]        # 583a886 <mprotect@plt+0x543a096>
+ 5638921:	0f b6 c0             	movzx  eax,al
+ 5638924:	89 ce                	mov    esi,ecx
+ 5638926:	89 c7                	mov    edi,eax
+ 5638928:	e8 11 ff ff ff       	call   563883e <mprotect@plt+0x523804e>
+ 563892d:	c9                   	leave  
+ 563892e:	c3                   	ret    
+ 563892f:	55                   	push   rbp
+ 5638930:	48 89 e5             	mov    rbp,rsp
+ 5638933:	48 83 ec 10          	sub    rsp,0x10
+ 5638937:	89 f1                	mov    ecx,esi
+ 5638939:	89 d0                	mov    eax,edx
+ 563893b:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 563893f:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 5638942:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 5638945:	80 7d fc 45          	cmp    BYTE PTR [rbp-0x4],0x45
+ 5638949:	75 5c                	jne    56389a7 <mprotect@plt+0x52381b7>
+ 563894b:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 563894f:	89 d0                	mov    eax,edx
+ 5638951:	c1 e0 03             	shl    eax,0x3
+ 5638954:	01 d0                	add    eax,edx
+ 5638956:	01 c0                	add    eax,eax
+ 5638958:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 563895b:	3c 34                	cmp    al,0x34
+ 563895d:	75 48                	jne    56389a7 <mprotect@plt+0x52381b7>
+ 563895f:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 5638963:	89 d0                	mov    eax,edx
+ 5638965:	c1 e0 05             	shl    eax,0x5
+ 5638968:	89 c1                	mov    ecx,eax
+ 563896a:	28 d1                	sub    cl,dl
+ 563896c:	0f b6 55 f8          	movzx  edx,BYTE PTR [rbp-0x8]
+ 5638970:	89 d0                	mov    eax,edx
+ 5638972:	c1 e0 06             	shl    eax,0x6
+ 5638975:	01 d0                	add    eax,edx
+ 5638977:	01 c8                	add    eax,ecx
+ 5638979:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 563897c:	3c 34                	cmp    al,0x34
+ 563897e:	75 27                	jne    56389a7 <mprotect@plt+0x52381b7>
+ 5638980:	0f b6 05 fe 1e 20 00 	movzx  eax,BYTE PTR [rip+0x201efe]        # 583a885 <mprotect@plt+0x543a095>
+ 5638987:	0f b6 d0             	movzx  edx,al
+ 563898a:	0f b6 05 f3 1e 20 00 	movzx  eax,BYTE PTR [rip+0x201ef3]        # 583a884 <mprotect@plt+0x543a094>
+ 5638991:	0f b6 c8             	movzx  ecx,al
+ 5638994:	0f b6 05 e8 1e 20 00 	movzx  eax,BYTE PTR [rip+0x201ee8]        # 583a883 <mprotect@plt+0x543a093>
+ 563899b:	0f b6 c0             	movzx  eax,al
+ 563899e:	89 ce                	mov    esi,ecx
+ 56389a0:	89 c7                	mov    edi,eax
+ 56389a2:	e8 1b ff ff ff       	call   56388c2 <mprotect@plt+0x52380d2>
+ 56389a7:	c9                   	leave  
+ 56389a8:	c3                   	ret    
+ 56389a9:	55                   	push   rbp
+ 56389aa:	48 89 e5             	mov    rbp,rsp
+ 56389ad:	48 89 7d e8          	mov    QWORD PTR [rbp-0x18],rdi
+ 56389b1:	48 89 75 e0          	mov    QWORD PTR [rbp-0x20],rsi
+ 56389b5:	48 89 55 d8          	mov    QWORD PTR [rbp-0x28],rdx
+ 56389b9:	48 89 4d d0          	mov    QWORD PTR [rbp-0x30],rcx
+ 56389bd:	4c 89 45 c8          	mov    QWORD PTR [rbp-0x38],r8
+ 56389c1:	4c 89 4d c0          	mov    QWORD PTR [rbp-0x40],r9
+ 56389c5:	b8 00 00 00 00       	mov    eax,0x0
+ 56389ca:	5d                   	pop    rbp
+ 56389cb:	c3                   	ret    
+ 56389cc:	55                   	push   rbp
+ 56389cd:	48 89 e5             	mov    rbp,rsp
+ 56389d0:	48 83 ec 40          	sub    rsp,0x40
+ 56389d4:	48 89 7d e8          	mov    QWORD PTR [rbp-0x18],rdi
+ 56389d8:	48 89 75 e0          	mov    QWORD PTR [rbp-0x20],rsi
+ 56389dc:	48 89 55 d8          	mov    QWORD PTR [rbp-0x28],rdx
+ 56389e0:	48 89 4d d0          	mov    QWORD PTR [rbp-0x30],rcx
+ 56389e4:	4c 89 45 c8          	mov    QWORD PTR [rbp-0x38],r8
+ 56389e8:	4c 89 4d c0          	mov    QWORD PTR [rbp-0x40],r9
+ 56389ec:	4c 8b 45 d0          	mov    r8,QWORD PTR [rbp-0x30]
+ 56389f0:	48 8b 7d c0          	mov    rdi,QWORD PTR [rbp-0x40]
+ 56389f4:	48 8b 4d c8          	mov    rcx,QWORD PTR [rbp-0x38]
+ 56389f8:	48 8b 55 e0          	mov    rdx,QWORD PTR [rbp-0x20]
+ 56389fc:	48 8b 75 d8          	mov    rsi,QWORD PTR [rbp-0x28]
+ 5638a00:	48 8b 45 e8          	mov    rax,QWORD PTR [rbp-0x18]
+ 5638a04:	4d 89 c1             	mov    r9,r8
+ 5638a07:	49 89 f8             	mov    r8,rdi
+ 5638a0a:	48 89 c7             	mov    rdi,rax
+ 5638a0d:	e8 97 ff ff ff       	call   56389a9 <mprotect@plt+0x52381b9>
+ 5638a12:	89 45 f8             	mov    DWORD PTR [rbp-0x8],eax
+ 5638a15:	8b 45 f8             	mov    eax,DWORD PTR [rbp-0x8]
+ 5638a18:	c9                   	leave  
+ 5638a19:	c3                   	ret    
+ 5638a1a:	55                   	push   rbp
+ 5638a1b:	48 89 e5             	mov    rbp,rsp
+ 5638a1e:	48 83 ec 50          	sub    rsp,0x50
+ 5638a22:	89 7d cc             	mov    DWORD PTR [rbp-0x34],edi
+ 5638a25:	48 89 75 c0          	mov    QWORD PTR [rbp-0x40],rsi
+ 5638a29:	83 7d cc 02          	cmp    DWORD PTR [rbp-0x34],0x2
+ 5638a2d:	74 14                	je     5638a43 <mprotect@plt+0x5238253>
+ 5638a2f:	bf 70 8e 63 05       	mov    edi,0x5638e70
+ 5638a34:	e8 f7 7c dc fa       	call   400730 <puts@plt>
+ 5638a39:	b8 00 00 00 00       	mov    eax,0x0
+ 5638a3e:	e9 2d 03 00 00       	jmp    5638d70 <mprotect@plt+0x5238580>
+ 5638a43:	41 b9 06 00 00 00    	mov    r9d,0x6
+ 5638a49:	41 b8 05 00 00 00    	mov    r8d,0x5
+ 5638a4f:	b9 04 00 00 00       	mov    ecx,0x4
+ 5638a54:	ba 03 00 00 00       	mov    edx,0x3
+ 5638a59:	be 02 00 00 00       	mov    esi,0x2
+ 5638a5e:	bf 01 00 00 00       	mov    edi,0x1
+ 5638a63:	e8 64 ff ff ff       	call   56389cc <mprotect@plt+0x52381dc>
+ 5638a68:	89 c7                	mov    edi,eax
+ 5638a6a:	e8 11 7d dc fa       	call   400780 <srand@plt>
+ 5638a6f:	48 8b 45 c0          	mov    rax,QWORD PTR [rbp-0x40]
+ 5638a73:	48 83 c0 08          	add    rax,0x8
+ 5638a77:	48 8b 00             	mov    rax,QWORD PTR [rax]
+ 5638a7a:	48 c7 45 b8 ff ff ff 	mov    QWORD PTR [rbp-0x48],0xffffffffffffffff
+ 5638a81:	ff 
+ 5638a82:	48 89 c2             	mov    rdx,rax
+ 5638a85:	b8 00 00 00 00       	mov    eax,0x0
+ 5638a8a:	48 8b 4d b8          	mov    rcx,QWORD PTR [rbp-0x48]
+ 5638a8e:	48 89 d7             	mov    rdi,rdx
+ 5638a91:	f2 ae                	repnz scas al,BYTE PTR es:[rdi]
+ 5638a93:	48 89 c8             	mov    rax,rcx
+ 5638a96:	48 f7 d0             	not    rax
+ 5638a99:	48 83 e8 01          	sub    rax,0x1
+ 5638a9d:	48 d1 e8             	shr    rax,1
+ 5638aa0:	89 05 9e 1a 20 00    	mov    DWORD PTR [rip+0x201a9e],eax        # 583a544 <mprotect@plt+0x5439d54>
+ 5638aa6:	8b 05 98 1a 20 00    	mov    eax,DWORD PTR [rip+0x201a98]        # 583a544 <mprotect@plt+0x5439d54>
+ 5638aac:	3d e8 03 00 00       	cmp    eax,0x3e8
+ 5638ab1:	7e 14                	jle    5638ac7 <mprotect@plt+0x52382d7>
+ 5638ab3:	bf 98 8e 63 05       	mov    edi,0x5638e98
+ 5638ab8:	e8 73 7c dc fa       	call   400730 <puts@plt>
+ 5638abd:	b8 00 00 00 00       	mov    eax,0x0
+ 5638ac2:	e9 a9 02 00 00       	jmp    5638d70 <mprotect@plt+0x5238580>
+ 5638ac7:	c7 45 d8 00 00 00 00 	mov    DWORD PTR [rbp-0x28],0x0
+ 5638ace:	c7 45 dc 00 00 00 00 	mov    DWORD PTR [rbp-0x24],0x0
+ 5638ad5:	eb 68                	jmp    5638b3f <mprotect@plt+0x523834f>
+ 5638ad7:	48 8b 45 c0          	mov    rax,QWORD PTR [rbp-0x40]
+ 5638adb:	48 83 c0 08          	add    rax,0x8
+ 5638adf:	48 8b 10             	mov    rdx,QWORD PTR [rax]
+ 5638ae2:	8b 45 d8             	mov    eax,DWORD PTR [rbp-0x28]
+ 5638ae5:	48 98                	cdqe   
+ 5638ae7:	48 01 d0             	add    rax,rdx
+ 5638aea:	0f b6 00             	movzx  eax,BYTE PTR [rax]
+ 5638aed:	88 45 f0             	mov    BYTE PTR [rbp-0x10],al
+ 5638af0:	48 8b 45 c0          	mov    rax,QWORD PTR [rbp-0x40]
+ 5638af4:	48 83 c0 08          	add    rax,0x8
+ 5638af8:	48 8b 00             	mov    rax,QWORD PTR [rax]
+ 5638afb:	8b 55 d8             	mov    edx,DWORD PTR [rbp-0x28]
+ 5638afe:	48 63 d2             	movsxd rdx,edx
+ 5638b01:	48 83 c2 01          	add    rdx,0x1
+ 5638b05:	48 01 d0             	add    rax,rdx
+ 5638b08:	0f b6 00             	movzx  eax,BYTE PTR [rax]
+ 5638b0b:	88 45 f1             	mov    BYTE PTR [rbp-0xf],al
+ 5638b0e:	c6 45 f2 00          	mov    BYTE PTR [rbp-0xe],0x0
+ 5638b12:	8b 45 dc             	mov    eax,DWORD PTR [rbp-0x24]
+ 5638b15:	48 98                	cdqe   
+ 5638b17:	48 8d 90 80 a8 83 05 	lea    rdx,[rax+0x583a880]
+ 5638b1e:	83 45 dc 01          	add    DWORD PTR [rbp-0x24],0x1
+ 5638b22:	b9 b8 8e 63 05       	mov    ecx,0x5638eb8
+ 5638b27:	48 8d 45 f0          	lea    rax,[rbp-0x10]
+ 5638b2b:	48 89 ce             	mov    rsi,rcx
+ 5638b2e:	48 89 c7             	mov    rdi,rax
+ 5638b31:	b8 00 00 00 00       	mov    eax,0x0
+ 5638b36:	e8 85 7c dc fa       	call   4007c0 <__isoc99_sscanf@plt>
+ 5638b3b:	83 45 d8 02          	add    DWORD PTR [rbp-0x28],0x2
+ 5638b3f:	8b 05 ff 19 20 00    	mov    eax,DWORD PTR [rip+0x2019ff]        # 583a544 <mprotect@plt+0x5439d54>
+ 5638b45:	01 c0                	add    eax,eax
+ 5638b47:	3b 45 d8             	cmp    eax,DWORD PTR [rbp-0x28]
+ 5638b4a:	7f 8b                	jg     5638ad7 <mprotect@plt+0x52382e7>
+ 5638b4c:	c7 45 ec 00 00 00 00 	mov    DWORD PTR [rbp-0x14],0x0
+ 5638b53:	e9 c9 01 00 00       	jmp    5638d21 <mprotect@plt+0x5238531>
+ 5638b58:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 5638b5b:	3c cd                	cmp    al,0xcd
+ 5638b5d:	75 60                	jne    5638bbf <mprotect@plt+0x52383cf>
+ 5638b5f:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 5638b62:	89 c2                	mov    edx,eax
+ 5638b64:	89 d0                	mov    eax,edx
+ 5638b66:	c1 e0 03             	shl    eax,0x3
+ 5638b69:	01 d0                	add    eax,edx
+ 5638b6b:	01 c0                	add    eax,eax
+ 5638b6d:	01 c2                	add    edx,eax
+ 5638b6f:	8b 45 e4             	mov    eax,DWORD PTR [rbp-0x1c]
+ 5638b72:	89 d1                	mov    ecx,edx
+ 5638b74:	28 c1                	sub    cl,al
+ 5638b76:	89 c8                	mov    eax,ecx
+ 5638b78:	3c 4b                	cmp    al,0x4b
+ 5638b7a:	75 43                	jne    5638bbf <mprotect@plt+0x52383cf>
+ 5638b7c:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 5638b7f:	88 45 cb             	mov    BYTE PTR [rbp-0x35],al
+ 5638b82:	ba 4e 00 00 00       	mov    edx,0x4e
+ 5638b87:	0f b6 45 cb          	movzx  eax,BYTE PTR [rbp-0x35]
+ 5638b8b:	0f af c2             	imul   eax,edx
+ 5638b8e:	89 c1                	mov    ecx,eax
+ 5638b90:	8b 45 e4             	mov    eax,DWORD PTR [rbp-0x1c]
+ 5638b93:	89 c2                	mov    edx,eax
+ 5638b95:	89 d0                	mov    eax,edx
+ 5638b97:	c1 e0 02             	shl    eax,0x2
+ 5638b9a:	01 d0                	add    eax,edx
+ 5638b9c:	8d 14 85 00 00 00 00 	lea    edx,[rax*4+0x0]
+ 5638ba3:	01 d0                	add    eax,edx
+ 5638ba5:	8d 14 01             	lea    edx,[rcx+rax*1]
+ 5638ba8:	8b 45 e8             	mov    eax,DWORD PTR [rbp-0x18]
+ 5638bab:	89 d1                	mov    ecx,edx
+ 5638bad:	28 c1                	sub    cl,al
+ 5638baf:	89 c8                	mov    eax,ecx
+ 5638bb1:	3c 39                	cmp    al,0x39
+ 5638bb3:	75 0a                	jne    5638bbf <mprotect@plt+0x52383cf>
+ 5638bb5:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 5638bb8:	89 45 e4             	mov    DWORD PTR [rbp-0x1c],eax
+ 5638bbb:	83 45 e0 01          	add    DWORD PTR [rbp-0x20],0x1
+ 5638bbf:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 5638bc2:	3c 12                	cmp    al,0x12
+ 5638bc4:	75 4b                	jne    5638c11 <mprotect@plt+0x5238421>
+ 5638bc6:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 5638bc9:	01 c0                	add    eax,eax
+ 5638bcb:	89 c2                	mov    edx,eax
+ 5638bcd:	c1 e2 04             	shl    edx,0x4
+ 5638bd0:	28 c2                	sub    dl,al
+ 5638bd2:	8b 45 e4             	mov    eax,DWORD PTR [rbp-0x1c]
+ 5638bd5:	89 d1                	mov    ecx,edx
+ 5638bd7:	28 c1                	sub    cl,al
+ 5638bd9:	89 c8                	mov    eax,ecx
+ 5638bdb:	3c 5e                	cmp    al,0x5e
+ 5638bdd:	75 32                	jne    5638c11 <mprotect@plt+0x5238421>
+ 5638bdf:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 5638be2:	89 c2                	mov    edx,eax
+ 5638be4:	89 d0                	mov    eax,edx
+ 5638be6:	c1 e0 06             	shl    eax,0x6
+ 5638be9:	8d 0c 10             	lea    ecx,[rax+rdx*1]
+ 5638bec:	8b 45 e4             	mov    eax,DWORD PTR [rbp-0x1c]
+ 5638bef:	ba 61 00 00 00       	mov    edx,0x61
+ 5638bf4:	0f af c2             	imul   eax,edx
+ 5638bf7:	8d 14 01             	lea    edx,[rcx+rax*1]
+ 5638bfa:	8b 45 e8             	mov    eax,DWORD PTR [rbp-0x18]
+ 5638bfd:	89 d1                	mov    ecx,edx
+ 5638bff:	28 c1                	sub    cl,al
+ 5638c01:	89 c8                	mov    eax,ecx
+ 5638c03:	3c 1e                	cmp    al,0x1e
+ 5638c05:	75 0a                	jne    5638c11 <mprotect@plt+0x5238421>
+ 5638c07:	8b 45 e4             	mov    eax,DWORD PTR [rbp-0x1c]
+ 5638c0a:	89 45 e8             	mov    DWORD PTR [rbp-0x18],eax
+ 5638c0d:	83 45 e4 01          	add    DWORD PTR [rbp-0x1c],0x1
+ 5638c11:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 5638c14:	3c dc                	cmp    al,0xdc
+ 5638c16:	75 55                	jne    5638c6d <mprotect@plt+0x523847d>
+ 5638c18:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 5638c1b:	89 c2                	mov    edx,eax
+ 5638c1d:	89 d0                	mov    eax,edx
+ 5638c1f:	c1 e0 02             	shl    eax,0x2
+ 5638c22:	01 c2                	add    edx,eax
+ 5638c24:	8b 45 e4             	mov    eax,DWORD PTR [rbp-0x1c]
+ 5638c27:	89 d1                	mov    ecx,edx
+ 5638c29:	28 c1                	sub    cl,al
+ 5638c2b:	89 c8                	mov    eax,ecx
+ 5638c2d:	3c 24                	cmp    al,0x24
+ 5638c2f:	75 3c                	jne    5638c6d <mprotect@plt+0x523847d>
+ 5638c31:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 5638c34:	89 c2                	mov    edx,eax
+ 5638c36:	89 d0                	mov    eax,edx
+ 5638c38:	c1 e0 02             	shl    eax,0x2
+ 5638c3b:	01 d0                	add    eax,edx
+ 5638c3d:	01 c0                	add    eax,eax
+ 5638c3f:	8d 0c 10             	lea    ecx,[rax+rdx*1]
+ 5638c42:	8b 45 e4             	mov    eax,DWORD PTR [rbp-0x1c]
+ 5638c45:	89 c2                	mov    edx,eax
+ 5638c47:	89 d0                	mov    eax,edx
+ 5638c49:	c1 e0 02             	shl    eax,0x2
+ 5638c4c:	01 d0                	add    eax,edx
+ 5638c4e:	c1 e0 02             	shl    eax,0x2
+ 5638c51:	01 d0                	add    eax,edx
+ 5638c53:	8d 14 01             	lea    edx,[rcx+rax*1]
+ 5638c56:	8b 45 e8             	mov    eax,DWORD PTR [rbp-0x18]
+ 5638c59:	89 d1                	mov    ecx,edx
+ 5638c5b:	28 c1                	sub    cl,al
+ 5638c5d:	89 c8                	mov    eax,ecx
+ 5638c5f:	3c 32                	cmp    al,0x32
+ 5638c61:	75 0a                	jne    5638c6d <mprotect@plt+0x523847d>
+ 5638c63:	8b 45 e8             	mov    eax,DWORD PTR [rbp-0x18]
+ 5638c66:	89 45 e0             	mov    DWORD PTR [rbp-0x20],eax
+ 5638c69:	83 45 e8 01          	add    DWORD PTR [rbp-0x18],0x1
+ 5638c6d:	8b 45 ec             	mov    eax,DWORD PTR [rbp-0x14]
+ 5638c70:	83 e0 01             	and    eax,0x1
+ 5638c73:	85 c0                	test   eax,eax
+ 5638c75:	75 1e                	jne    5638c95 <mprotect@plt+0x52384a5>
+ 5638c77:	8b 45 ec             	mov    eax,DWORD PTR [rbp-0x14]
+ 5638c7a:	48 98                	cdqe   
+ 5638c7c:	0f b6 80 80 a8 83 05 	movzx  eax,BYTE PTR [rax+0x583a880]
+ 5638c83:	89 c2                	mov    edx,eax
+ 5638c85:	83 f2 b8             	xor    edx,0xffffffb8
+ 5638c88:	8b 45 ec             	mov    eax,DWORD PTR [rbp-0x14]
+ 5638c8b:	48 98                	cdqe   
+ 5638c8d:	88 90 80 a8 83 05    	mov    BYTE PTR [rax+0x583a880],dl
+ 5638c93:	eb 1c                	jmp    5638cb1 <mprotect@plt+0x52384c1>
+ 5638c95:	8b 45 ec             	mov    eax,DWORD PTR [rbp-0x14]
+ 5638c98:	48 98                	cdqe   
+ 5638c9a:	0f b6 80 80 a8 83 05 	movzx  eax,BYTE PTR [rax+0x583a880]
+ 5638ca1:	89 c2                	mov    edx,eax
+ 5638ca3:	83 f2 fd             	xor    edx,0xfffffffd
+ 5638ca6:	8b 45 ec             	mov    eax,DWORD PTR [rbp-0x14]
+ 5638ca9:	48 98                	cdqe   
+ 5638cab:	88 90 80 a8 83 05    	mov    BYTE PTR [rax+0x583a880],dl
+ 5638cb1:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 5638cb4:	3c cd                	cmp    al,0xcd
+ 5638cb6:	75 65                	jne    5638d1d <mprotect@plt+0x523852d>
+ 5638cb8:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 5638cbb:	89 c2                	mov    edx,eax
+ 5638cbd:	89 d0                	mov    eax,edx
+ 5638cbf:	c1 e0 03             	shl    eax,0x3
+ 5638cc2:	01 d0                	add    eax,edx
+ 5638cc4:	01 c0                	add    eax,eax
+ 5638cc6:	01 c2                	add    edx,eax
+ 5638cc8:	8b 45 e4             	mov    eax,DWORD PTR [rbp-0x1c]
+ 5638ccb:	89 d1                	mov    ecx,edx
+ 5638ccd:	28 c1                	sub    cl,al
+ 5638ccf:	89 c8                	mov    eax,ecx
+ 5638cd1:	3c 4b                	cmp    al,0x4b
+ 5638cd3:	75 48                	jne    5638d1d <mprotect@plt+0x523852d>
+ 5638cd5:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 5638cd8:	88 45 cb             	mov    BYTE PTR [rbp-0x35],al
+ 5638cdb:	ba 4e 00 00 00       	mov    edx,0x4e
+ 5638ce0:	0f b6 45 cb          	movzx  eax,BYTE PTR [rbp-0x35]
+ 5638ce4:	0f af c2             	imul   eax,edx
+ 5638ce7:	89 c1                	mov    ecx,eax
+ 5638ce9:	8b 45 e4             	mov    eax,DWORD PTR [rbp-0x1c]
+ 5638cec:	89 c2                	mov    edx,eax
+ 5638cee:	89 d0                	mov    eax,edx
+ 5638cf0:	c1 e0 02             	shl    eax,0x2
+ 5638cf3:	01 d0                	add    eax,edx
+ 5638cf5:	8d 14 85 00 00 00 00 	lea    edx,[rax*4+0x0]
+ 5638cfc:	01 d0                	add    eax,edx
+ 5638cfe:	8d 14 01             	lea    edx,[rcx+rax*1]
+ 5638d01:	8b 45 e8             	mov    eax,DWORD PTR [rbp-0x18]
+ 5638d04:	89 d1                	mov    ecx,edx
+ 5638d06:	28 c1                	sub    cl,al
+ 5638d08:	89 c8                	mov    eax,ecx
+ 5638d0a:	3c 39                	cmp    al,0x39
+ 5638d0c:	75 0f                	jne    5638d1d <mprotect@plt+0x523852d>
+ 5638d0e:	8b 45 e8             	mov    eax,DWORD PTR [rbp-0x18]
+ 5638d11:	8b 55 e0             	mov    edx,DWORD PTR [rbp-0x20]
+ 5638d14:	89 d7                	mov    edi,edx
+ 5638d16:	29 c7                	sub    edi,eax
+ 5638d18:	89 f8                	mov    eax,edi
+ 5638d1a:	89 45 e4             	mov    DWORD PTR [rbp-0x1c],eax
+ 5638d1d:	83 45 ec 01          	add    DWORD PTR [rbp-0x14],0x1
+ 5638d21:	8b 05 1d 18 20 00    	mov    eax,DWORD PTR [rip+0x20181d]        # 583a544 <mprotect@plt+0x5439d54>
+ 5638d27:	39 45 ec             	cmp    DWORD PTR [rbp-0x14],eax
+ 5638d2a:	0f 8c 28 fe ff ff    	jl     5638b58 <mprotect@plt+0x5238368>
+ 5638d30:	bf bd 8e 63 05       	mov    edi,0x5638ebd
+ 5638d35:	e8 f6 79 dc fa       	call   400730 <puts@plt>
+ 5638d3a:	0f b6 05 41 1b 20 00 	movzx  eax,BYTE PTR [rip+0x201b41]        # 583a882 <mprotect@plt+0x543a092>
+ 5638d41:	0f b6 d0             	movzx  edx,al
+ 5638d44:	0f b6 05 36 1b 20 00 	movzx  eax,BYTE PTR [rip+0x201b36]        # 583a881 <mprotect@plt+0x543a091>
+ 5638d4b:	0f b6 c8             	movzx  ecx,al
+ 5638d4e:	0f b6 05 2b 1b 20 00 	movzx  eax,BYTE PTR [rip+0x201b2b]        # 583a880 <mprotect@plt+0x543a090>
+ 5638d55:	0f b6 c0             	movzx  eax,al
+ 5638d58:	89 ce                	mov    esi,ecx
+ 5638d5a:	89 c7                	mov    edi,eax
+ 5638d5c:	e8 ce fb ff ff       	call   563892f <mprotect@plt+0x523813f>
+ 5638d61:	bf d8 8e 63 05       	mov    edi,0x5638ed8
+ 5638d66:	e8 c5 79 dc fa       	call   400730 <puts@plt>
+ 5638d6b:	b8 00 00 00 00       	mov    eax,0x0
+ 5638d70:	c9                   	leave  
+ 5638d71:	c3                   	ret    
+ 5638d72:	90                   	nop
+ 5638d73:	90                   	nop
+ 5638d74:	90                   	nop
+ 5638d75:	90                   	nop
+ 5638d76:	90                   	nop
+ 5638d77:	90                   	nop
+ 5638d78:	90                   	nop
+ 5638d79:	90                   	nop
+ 5638d7a:	90                   	nop
+ 5638d7b:	90                   	nop
+ 5638d7c:	90                   	nop
+ 5638d7d:	90                   	nop
+ 5638d7e:	90                   	nop
+ 5638d7f:	90                   	nop
+ 5638d80:	48 89 6c 24 d8       	mov    QWORD PTR [rsp-0x28],rbp
+ 5638d85:	4c 89 64 24 e0       	mov    QWORD PTR [rsp-0x20],r12
+ 5638d8a:	48 8d 2d 93 10 20 00 	lea    rbp,[rip+0x201093]        # 5839e24 <mprotect@plt+0x5439634>
+ 5638d91:	4c 8d 25 8c 10 20 00 	lea    r12,[rip+0x20108c]        # 5839e24 <mprotect@plt+0x5439634>
+ 5638d98:	4c 89 6c 24 e8       	mov    QWORD PTR [rsp-0x18],r13
+ 5638d9d:	4c 89 74 24 f0       	mov    QWORD PTR [rsp-0x10],r14
+ 5638da2:	4c 89 7c 24 f8       	mov    QWORD PTR [rsp-0x8],r15
+ 5638da7:	48 89 5c 24 d0       	mov    QWORD PTR [rsp-0x30],rbx
+ 5638dac:	48 83 ec 38          	sub    rsp,0x38
+ 5638db0:	4c 29 e5             	sub    rbp,r12
+ 5638db3:	41 89 fd             	mov    r13d,edi
+ 5638db6:	49 89 f6             	mov    r14,rsi
+ 5638db9:	48 c1 fd 03          	sar    rbp,0x3
+ 5638dbd:	49 89 d7             	mov    r15,rdx
+ 5638dc0:	e8 2b 79 dc fa       	call   4006f0 <personality@plt-0x30>
+ 5638dc5:	48 85 ed             	test   rbp,rbp
+ 5638dc8:	74 1c                	je     5638de6 <mprotect@plt+0x52385f6>
+ 5638dca:	31 db                	xor    ebx,ebx
+ 5638dcc:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+ 5638dd0:	4c 89 fa             	mov    rdx,r15
+ 5638dd3:	4c 89 f6             	mov    rsi,r14
+ 5638dd6:	44 89 ef             	mov    edi,r13d
+ 5638dd9:	41 ff 14 dc          	call   QWORD PTR [r12+rbx*8]
+ 5638ddd:	48 83 c3 01          	add    rbx,0x1
+ 5638de1:	48 39 eb             	cmp    rbx,rbp
+ 5638de4:	75 ea                	jne    5638dd0 <mprotect@plt+0x52385e0>
+ 5638de6:	48 8b 5c 24 08       	mov    rbx,QWORD PTR [rsp+0x8]
+ 5638deb:	48 8b 6c 24 10       	mov    rbp,QWORD PTR [rsp+0x10]
+ 5638df0:	4c 8b 64 24 18       	mov    r12,QWORD PTR [rsp+0x18]
+ 5638df5:	4c 8b 6c 24 20       	mov    r13,QWORD PTR [rsp+0x20]
+ 5638dfa:	4c 8b 74 24 28       	mov    r14,QWORD PTR [rsp+0x28]
+ 5638dff:	4c 8b 7c 24 30       	mov    r15,QWORD PTR [rsp+0x30]
+ 5638e04:	48 83 c4 38          	add    rsp,0x38
+ 5638e08:	c3                   	ret    
+ 5638e09:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+ 5638e10:	f3 c3                	repz ret 
+ 5638e12:	90                   	nop
+ 5638e13:	90                   	nop
+ 5638e14:	90                   	nop
+ 5638e15:	90                   	nop
+ 5638e16:	90                   	nop
+ 5638e17:	90                   	nop
+ 5638e18:	90                   	nop
+ 5638e19:	90                   	nop
+ 5638e1a:	90                   	nop
+ 5638e1b:	90                   	nop
+ 5638e1c:	90                   	nop
+ 5638e1d:	90                   	nop
+ 5638e1e:	90                   	nop
+ 5638e1f:	90                   	nop
+ 5638e20:	55                   	push   rbp
+ 5638e21:	48 89 e5             	mov    rbp,rsp
+ 5638e24:	53                   	push   rbx
+ 5638e25:	48 83 ec 08          	sub    rsp,0x8
+ 5638e29:	48 8b 05 f8 0f 20 00 	mov    rax,QWORD PTR [rip+0x200ff8]        # 5839e28 <mprotect@plt+0x5439638>
+ 5638e30:	48 83 f8 ff          	cmp    rax,0xffffffffffffffff
+ 5638e34:	74 19                	je     5638e4f <mprotect@plt+0x523865f>
+ 5638e36:	bb 28 9e 83 05       	mov    ebx,0x5839e28
+ 5638e3b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+ 5638e40:	48 83 eb 08          	sub    rbx,0x8
+ 5638e44:	ff d0                	call   rax
+ 5638e46:	48 8b 03             	mov    rax,QWORD PTR [rbx]
+ 5638e49:	48 83 f8 ff          	cmp    rax,0xffffffffffffffff
+ 5638e4d:	75 f1                	jne    5638e40 <mprotect@plt+0x5238650>
+ 5638e4f:	48 83 c4 08          	add    rsp,0x8
+ 5638e53:	5b                   	pop    rbx
+ 5638e54:	5d                   	pop    rbp
+ 5638e55:	c3                   	ret    
+ 5638e56:	90                   	nop
+ 5638e57:	90                   	nop
+
+Disassembly of section .init:
+
+00000000004006f0 <.init>:
+  4006f0:	48 83 ec 08          	sub    rsp,0x8
+  4006f4:	e8 33 79 23 05       	call   563802c <mprotect@plt+0x523783c>
+  4006f9:	e8 c2 79 23 05       	call   56380c0 <mprotect@plt+0x52378d0>
+  4006fe:	e8 1d 87 23 05       	call   5638e20 <mprotect@plt+0x5238630>
+  400703:	48 83 c4 08          	add    rsp,0x8
+  400707:	c3                   	ret    
+
+Disassembly of section .plt:
+
+0000000000400710 <personality@plt-0x10>:
+  400710:	ff 35 da 98 43 05    	push   QWORD PTR [rip+0x54398da]        # 5839ff0 <mprotect@plt+0x5439800>
+  400716:	ff 25 dc 98 43 05    	jmp    QWORD PTR [rip+0x54398dc]        # 5839ff8 <mprotect@plt+0x5439808>
+  40071c:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+
+0000000000400720 <personality@plt>:
+  400720:	ff 25 da 98 43 05    	jmp    QWORD PTR [rip+0x54398da]        # 583a000 <mprotect@plt+0x5439810>
+  400726:	68 00 00 00 00       	push   0x0
+  40072b:	e9 e0 ff ff ff       	jmp    400710 <personality@plt-0x10>
+
+0000000000400730 <puts@plt>:
+  400730:	ff 25 d2 98 43 05    	jmp    QWORD PTR [rip+0x54398d2]        # 583a008 <mprotect@plt+0x5439818>
+  400736:	68 01 00 00 00       	push   0x1
+  40073b:	e9 d0 ff ff ff       	jmp    400710 <personality@plt-0x10>
+
+0000000000400740 <getuid@plt>:
+  400740:	ff 25 ca 98 43 05    	jmp    QWORD PTR [rip+0x54398ca]        # 583a010 <mprotect@plt+0x5439820>
+  400746:	68 02 00 00 00       	push   0x2
+  40074b:	e9 c0 ff ff ff       	jmp    400710 <personality@plt-0x10>
+
+0000000000400750 <mmap@plt>:
+  400750:	ff 25 c2 98 43 05    	jmp    QWORD PTR [rip+0x54398c2]        # 583a018 <mprotect@plt+0x5439828>
+  400756:	68 03 00 00 00       	push   0x3
+  40075b:	e9 b0 ff ff ff       	jmp    400710 <personality@plt-0x10>
+
+0000000000400760 <dup2@plt>:
+  400760:	ff 25 ba 98 43 05    	jmp    QWORD PTR [rip+0x54398ba]        # 583a020 <mprotect@plt+0x5439830>
+  400766:	68 04 00 00 00       	push   0x4
+  40076b:	e9 a0 ff ff ff       	jmp    400710 <personality@plt-0x10>
+
+0000000000400770 <__libc_start_main@plt>:
+  400770:	ff 25 b2 98 43 05    	jmp    QWORD PTR [rip+0x54398b2]        # 583a028 <mprotect@plt+0x5439838>
+  400776:	68 05 00 00 00       	push   0x5
+  40077b:	e9 90 ff ff ff       	jmp    400710 <personality@plt-0x10>
+
+0000000000400780 <srand@plt>:
+  400780:	ff 25 aa 98 43 05    	jmp    QWORD PTR [rip+0x54398aa]        # 583a030 <mprotect@plt+0x5439840>
+  400786:	68 06 00 00 00       	push   0x6
+  40078b:	e9 80 ff ff ff       	jmp    400710 <personality@plt-0x10>
+
+0000000000400790 <memcpy@plt>:
+  400790:	ff 25 a2 98 43 05    	jmp    QWORD PTR [rip+0x54398a2]        # 583a038 <mprotect@plt+0x5439848>
+  400796:	68 07 00 00 00       	push   0x7
+  40079b:	e9 70 ff ff ff       	jmp    400710 <personality@plt-0x10>
+
+00000000004007a0 <time@plt>:
+  4007a0:	ff 25 9a 98 43 05    	jmp    QWORD PTR [rip+0x543989a]        # 583a040 <mprotect@plt+0x5439850>
+  4007a6:	68 08 00 00 00       	push   0x8
+  4007ab:	e9 60 ff ff ff       	jmp    400710 <personality@plt-0x10>
+
+00000000004007b0 <getgid@plt>:
+  4007b0:	ff 25 92 98 43 05    	jmp    QWORD PTR [rip+0x5439892]        # 583a048 <mprotect@plt+0x5439858>
+  4007b6:	68 09 00 00 00       	push   0x9
+  4007bb:	e9 50 ff ff ff       	jmp    400710 <personality@plt-0x10>
+
+00000000004007c0 <__isoc99_sscanf@plt>:
+  4007c0:	ff 25 8a 98 43 05    	jmp    QWORD PTR [rip+0x543988a]        # 583a050 <mprotect@plt+0x5439860>
+  4007c6:	68 0a 00 00 00       	push   0xa
+  4007cb:	e9 40 ff ff ff       	jmp    400710 <personality@plt-0x10>
+
+00000000004007d0 <setreuid@plt>:
+  4007d0:	ff 25 82 98 43 05    	jmp    QWORD PTR [rip+0x5439882]        # 583a058 <mprotect@plt+0x5439868>
+  4007d6:	68 0b 00 00 00       	push   0xb
+  4007db:	e9 30 ff ff ff       	jmp    400710 <personality@plt-0x10>
+
+00000000004007e0 <setgid@plt>:
+  4007e0:	ff 25 7a 98 43 05    	jmp    QWORD PTR [rip+0x543987a]        # 583a060 <mprotect@plt+0x5439870>
+  4007e6:	68 0c 00 00 00       	push   0xc
+  4007eb:	e9 20 ff ff ff       	jmp    400710 <personality@plt-0x10>
+
+00000000004007f0 <mprotect@plt>:
+  4007f0:	ff 25 72 98 43 05    	jmp    QWORD PTR [rip+0x5439872]        # 583a068 <mprotect@plt+0x5439878>
+  4007f6:	68 0d 00 00 00       	push   0xd
+  4007fb:	e9 10 ff ff ff       	jmp    400710 <personality@plt-0x10>
+
+Disassembly of section .fini:
+
+0000000005638e58 <.fini>:
+ 5638e58:	48 83 ec 08          	sub    rsp,0x8
+ 5638e5c:	e8 ef f1 ff ff       	call   5638050 <mprotect@plt+0x5237860>
+ 5638e61:	48 83 c4 08          	add    rsp,0x8
+ 5638e65:	c3                   	ret    

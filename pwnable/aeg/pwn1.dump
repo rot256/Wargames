@@ -1,0 +1,1223 @@
+
+pwn1:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000007522000 <.text>:
+ 7522000:	31 ed                	xor    ebp,ebp
+ 7522002:	49 89 d1             	mov    r9,rdx
+ 7522005:	5e                   	pop    rsi
+ 7522006:	48 89 e2             	mov    rdx,rsp
+ 7522009:	48 83 e4 f0          	and    rsp,0xfffffffffffffff0
+ 752200d:	50                   	push   rax
+ 752200e:	54                   	push   rsp
+ 752200f:	49 c7 c0 40 2d 52 07 	mov    r8,0x7522d40
+ 7522016:	48 c7 c1 b0 2c 52 07 	mov    rcx,0x7522cb0
+ 752201d:	48 c7 c7 19 2a 52 07 	mov    rdi,0x7522a19
+ 7522024:	e8 f7 e6 ed f8       	call   400720 <__libc_start_main@plt>
+ 7522029:	f4                   	hlt    
+ 752202a:	90                   	nop
+ 752202b:	90                   	nop
+ 752202c:	48 83 ec 08          	sub    rsp,0x8
+ 7522030:	48 8b 05 a9 1f 20 00 	mov    rax,QWORD PTR [rip+0x201fa9]        # 7723fe0 <getppid@plt+0x7323840>
+ 7522037:	48 85 c0             	test   rax,rax
+ 752203a:	74 02                	je     752203e <getppid@plt+0x712189e>
+ 752203c:	ff d0                	call   rax
+ 752203e:	48 83 c4 08          	add    rsp,0x8
+ 7522042:	c3                   	ret    
+ 7522043:	90                   	nop
+ 7522044:	90                   	nop
+ 7522045:	90                   	nop
+ 7522046:	90                   	nop
+ 7522047:	90                   	nop
+ 7522048:	90                   	nop
+ 7522049:	90                   	nop
+ 752204a:	90                   	nop
+ 752204b:	90                   	nop
+ 752204c:	90                   	nop
+ 752204d:	90                   	nop
+ 752204e:	90                   	nop
+ 752204f:	90                   	nop
+ 7522050:	55                   	push   rbp
+ 7522051:	48 89 e5             	mov    rbp,rsp
+ 7522054:	53                   	push   rbx
+ 7522055:	48 83 ec 08          	sub    rsp,0x8
+ 7522059:	80 3d 20 20 20 00 00 	cmp    BYTE PTR [rip+0x202020],0x0        # 7724080 <getppid@plt+0x73238e0>
+ 7522060:	75 4b                	jne    75220ad <getppid@plt+0x712190d>
+ 7522062:	bb 40 3e 72 07       	mov    ebx,0x7723e40
+ 7522067:	48 8b 05 1a 20 20 00 	mov    rax,QWORD PTR [rip+0x20201a]        # 7724088 <getppid@plt+0x73238e8>
+ 752206e:	48 81 eb 38 3e 72 07 	sub    rbx,0x7723e38
+ 7522075:	48 c1 fb 03          	sar    rbx,0x3
+ 7522079:	48 83 eb 01          	sub    rbx,0x1
+ 752207d:	48 39 d8             	cmp    rax,rbx
+ 7522080:	73 24                	jae    75220a6 <getppid@plt+0x7121906>
+ 7522082:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+ 7522088:	48 83 c0 01          	add    rax,0x1
+ 752208c:	48 89 05 f5 1f 20 00 	mov    QWORD PTR [rip+0x201ff5],rax        # 7724088 <getppid@plt+0x73238e8>
+ 7522093:	ff 14 c5 38 3e 72 07 	call   QWORD PTR [rax*8+0x7723e38]
+ 752209a:	48 8b 05 e7 1f 20 00 	mov    rax,QWORD PTR [rip+0x201fe7]        # 7724088 <getppid@plt+0x73238e8>
+ 75220a1:	48 39 d8             	cmp    rax,rbx
+ 75220a4:	72 e2                	jb     7522088 <getppid@plt+0x71218e8>
+ 75220a6:	c6 05 d3 1f 20 00 01 	mov    BYTE PTR [rip+0x201fd3],0x1        # 7724080 <getppid@plt+0x73238e0>
+ 75220ad:	48 83 c4 08          	add    rsp,0x8
+ 75220b1:	5b                   	pop    rbx
+ 75220b2:	5d                   	pop    rbp
+ 75220b3:	c3                   	ret    
+ 75220b4:	66 66 66 2e 0f 1f 84 	data16 data16 nop WORD PTR cs:[rax+rax*1+0x0]
+ 75220bb:	00 00 00 00 00 
+ 75220c0:	48 83 3d 80 1d 20 00 	cmp    QWORD PTR [rip+0x201d80],0x0        # 7723e48 <getppid@plt+0x73236a8>
+ 75220c7:	00 
+ 75220c8:	55                   	push   rbp
+ 75220c9:	48 89 e5             	mov    rbp,rsp
+ 75220cc:	74 12                	je     75220e0 <getppid@plt+0x7121940>
+ 75220ce:	b8 00 00 00 00       	mov    eax,0x0
+ 75220d3:	48 85 c0             	test   rax,rax
+ 75220d6:	74 08                	je     75220e0 <getppid@plt+0x7121940>
+ 75220d8:	5d                   	pop    rbp
+ 75220d9:	bf 48 3e 72 07       	mov    edi,0x7723e48
+ 75220de:	ff e0                	jmp    rax
+ 75220e0:	5d                   	pop    rbp
+ 75220e1:	c3                   	ret    
+ 75220e2:	90                   	nop
+ 75220e3:	90                   	nop
+ 75220e4:	55                   	push   rbp
+ 75220e5:	48 89 e5             	mov    rbp,rsp
+ 75220e8:	ba 00 00 00 00       	mov    edx,0x0
+ 75220ed:	be 00 00 00 00       	mov    esi,0x0
+ 75220f2:	bf 00 00 00 00       	mov    edi,0x0
+ 75220f7:	e8 94 e6 ed f8       	call   400790 <mprotect@plt>
+ 75220fc:	5d                   	pop    rbp
+ 75220fd:	c3                   	ret    
+ 75220fe:	55                   	push   rbp
+ 75220ff:	48 89 e5             	mov    rbp,rsp
+ 7522102:	5d                   	pop    rbp
+ 7522103:	c3                   	ret    
+ 7522104:	55                   	push   rbp
+ 7522105:	48 89 e5             	mov    rbp,rsp
+ 7522108:	b8 00 00 00 00       	mov    eax,0x0
+ 752210d:	e8 de e5 ed f8       	call   4006f0 <getpid@plt>
+ 7522112:	5d                   	pop    rbp
+ 7522113:	c3                   	ret    
+ 7522114:	55                   	push   rbp
+ 7522115:	48 89 e5             	mov    rbp,rsp
+ 7522118:	b8 00 00 00 00       	mov    eax,0x0
+ 752211d:	e8 7e e6 ed f8       	call   4007a0 <getppid@plt>
+ 7522122:	5d                   	pop    rbp
+ 7522123:	c3                   	ret    
+ 7522124:	55                   	push   rbp
+ 7522125:	48 89 e5             	mov    rbp,rsp
+ 7522128:	bf 00 00 00 00       	mov    edi,0x0
+ 752212d:	b8 00 00 00 00       	mov    eax,0x0
+ 7522132:	e8 19 e6 ed f8       	call   400750 <time@plt>
+ 7522137:	5d                   	pop    rbp
+ 7522138:	c3                   	ret    
+ 7522139:	55                   	push   rbp
+ 752213a:	48 89 e5             	mov    rbp,rsp
+ 752213d:	bf 0a 00 00 00       	mov    edi,0xa
+ 7522142:	b8 00 00 00 00       	mov    eax,0x0
+ 7522147:	e8 c4 e5 ed f8       	call   400710 <dup@plt>
+ 752214c:	5d                   	pop    rbp
+ 752214d:	c3                   	ret    
+ 752214e:	55                   	push   rbp
+ 752214f:	48 89 e5             	mov    rbp,rsp
+ 7522152:	be 0a 00 00 00       	mov    esi,0xa
+ 7522157:	bf 0a 00 00 00       	mov    edi,0xa
+ 752215c:	b8 00 00 00 00       	mov    eax,0x0
+ 7522161:	e8 9a e5 ed f8       	call   400700 <dup2@plt>
+ 7522166:	5d                   	pop    rbp
+ 7522167:	c3                   	ret    
+ 7522168:	55                   	push   rbp
+ 7522169:	48 89 e5             	mov    rbp,rsp
+ 752216c:	ba 09 00 00 00       	mov    edx,0x9
+ 7522171:	be 09 00 00 00       	mov    esi,0x9
+ 7522176:	bf 09 00 00 00       	mov    edi,0x9
+ 752217b:	b8 00 00 00 00       	mov    eax,0x0
+ 7522180:	e8 eb e5 ed f8       	call   400770 <setreuid@plt>
+ 7522185:	5d                   	pop    rbp
+ 7522186:	c3                   	ret    
+ 7522187:	55                   	push   rbp
+ 7522188:	48 89 e5             	mov    rbp,rsp
+ 752218b:	bf 09 00 00 00       	mov    edi,0x9
+ 7522190:	b8 00 00 00 00       	mov    eax,0x0
+ 7522195:	e8 e6 e5 ed f8       	call   400780 <setgid@plt>
+ 752219a:	5d                   	pop    rbp
+ 752219b:	c3                   	ret    
+ 752219c:	55                   	push   rbp
+ 752219d:	48 89 e5             	mov    rbp,rsp
+ 75221a0:	48 83 ec 30          	sub    rsp,0x30
+ 75221a4:	8b 05 ca 20 20 00    	mov    eax,DWORD PTR [rip+0x2020ca]        # 7724274 <getppid@plt+0x7323ad4>
+ 75221aa:	83 e8 30             	sub    eax,0x30
+ 75221ad:	48 63 d0             	movsxd rdx,eax
+ 75221b0:	b9 b0 42 72 07       	mov    ecx,0x77242b0
+ 75221b5:	48 8d 45 d0          	lea    rax,[rbp-0x30]
+ 75221b9:	48 89 ce             	mov    rsi,rcx
+ 75221bc:	48 89 c7             	mov    rdi,rax
+ 75221bf:	e8 7c e5 ed f8       	call   400740 <memcpy@plt>
+ 75221c4:	c9                   	leave  
+ 75221c5:	c3                   	ret    
+ 75221c6:	55                   	push   rbp
+ 75221c7:	48 89 e5             	mov    rbp,rsp
+ 75221ca:	53                   	push   rbx
+ 75221cb:	48 83 ec 18          	sub    rsp,0x18
+ 75221cf:	89 f1                	mov    ecx,esi
+ 75221d1:	89 d0                	mov    eax,edx
+ 75221d3:	40 88 7d ec          	mov    BYTE PTR [rbp-0x14],dil
+ 75221d7:	88 4d e8             	mov    BYTE PTR [rbp-0x18],cl
+ 75221da:	88 45 e4             	mov    BYTE PTR [rbp-0x1c],al
+ 75221dd:	80 7d ec 0d          	cmp    BYTE PTR [rbp-0x14],0xd
+ 75221e1:	75 4e                	jne    7522231 <getppid@plt+0x7121a91>
+ 75221e3:	0f b6 45 ec          	movzx  eax,BYTE PTR [rbp-0x14]
+ 75221e7:	ba 27 00 00 00       	mov    edx,0x27
+ 75221ec:	0f af c2             	imul   eax,edx
+ 75221ef:	2a 45 e8             	sub    al,BYTE PTR [rbp-0x18]
+ 75221f2:	3c 07                	cmp    al,0x7
+ 75221f4:	75 3b                	jne    7522231 <getppid@plt+0x7121a91>
+ 75221f6:	0f b6 45 ec          	movzx  eax,BYTE PTR [rbp-0x14]
+ 75221fa:	88 45 e3             	mov    BYTE PTR [rbp-0x1d],al
+ 75221fd:	ba 26 00 00 00       	mov    edx,0x26
+ 7522202:	0f b6 45 e3          	movzx  eax,BYTE PTR [rbp-0x1d]
+ 7522206:	0f af c2             	imul   eax,edx
+ 7522209:	89 c2                	mov    edx,eax
+ 752220b:	0f b6 45 e8          	movzx  eax,BYTE PTR [rbp-0x18]
+ 752220f:	01 c0                	add    eax,eax
+ 7522211:	8d 0c c5 00 00 00 00 	lea    ecx,[rax*8+0x0]
+ 7522218:	89 cb                	mov    ebx,ecx
+ 752221a:	28 c3                	sub    bl,al
+ 752221c:	89 d8                	mov    eax,ebx
+ 752221e:	01 d0                	add    eax,edx
+ 7522220:	2a 45 e4             	sub    al,BYTE PTR [rbp-0x1c]
+ 7522223:	3c 3d                	cmp    al,0x3d
+ 7522225:	75 0a                	jne    7522231 <getppid@plt+0x7121a91>
+ 7522227:	b8 00 00 00 00       	mov    eax,0x0
+ 752222c:	e8 6b ff ff ff       	call   752219c <getppid@plt+0x71219fc>
+ 7522231:	48 83 c4 18          	add    rsp,0x18
+ 7522235:	5b                   	pop    rbx
+ 7522236:	5d                   	pop    rbp
+ 7522237:	c3                   	ret    
+ 7522238:	55                   	push   rbp
+ 7522239:	48 89 e5             	mov    rbp,rsp
+ 752223c:	48 83 ec 10          	sub    rsp,0x10
+ 7522240:	89 f1                	mov    ecx,esi
+ 7522242:	89 d0                	mov    eax,edx
+ 7522244:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 7522248:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 752224b:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 752224e:	80 7d fc de          	cmp    BYTE PTR [rbp-0x4],0xde
+ 7522252:	75 6f                	jne    75222c3 <getppid@plt+0x7121b23>
+ 7522254:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 7522258:	c1 e0 02             	shl    eax,0x2
+ 752225b:	8d 14 c5 00 00 00 00 	lea    edx,[rax*8+0x0]
+ 7522262:	89 d1                	mov    ecx,edx
+ 7522264:	28 c1                	sub    cl,al
+ 7522266:	89 c8                	mov    eax,ecx
+ 7522268:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 752226b:	3c 08                	cmp    al,0x8
+ 752226d:	75 54                	jne    75222c3 <getppid@plt+0x7121b23>
+ 752226f:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 7522273:	88 45 f3             	mov    BYTE PTR [rbp-0xd],al
+ 7522276:	ba 23 00 00 00       	mov    edx,0x23
+ 752227b:	0f b6 45 f3          	movzx  eax,BYTE PTR [rbp-0xd]
+ 752227f:	0f af c2             	imul   eax,edx
+ 7522282:	89 c1                	mov    ecx,eax
+ 7522284:	0f b6 55 f8          	movzx  edx,BYTE PTR [rbp-0x8]
+ 7522288:	89 d0                	mov    eax,edx
+ 752228a:	c1 e0 03             	shl    eax,0x3
+ 752228d:	01 d0                	add    eax,edx
+ 752228f:	01 c0                	add    eax,eax
+ 7522291:	01 d0                	add    eax,edx
+ 7522293:	01 c8                	add    eax,ecx
+ 7522295:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 7522298:	3c 4c                	cmp    al,0x4c
+ 752229a:	75 27                	jne    75222c3 <getppid@plt+0x7121b23>
+ 752229c:	0f b6 05 0c 20 20 00 	movzx  eax,BYTE PTR [rip+0x20200c]        # 77242af <getppid@plt+0x7323b0f>
+ 75222a3:	0f b6 d0             	movzx  edx,al
+ 75222a6:	0f b6 05 01 20 20 00 	movzx  eax,BYTE PTR [rip+0x202001]        # 77242ae <getppid@plt+0x7323b0e>
+ 75222ad:	0f b6 c8             	movzx  ecx,al
+ 75222b0:	0f b6 05 f6 1f 20 00 	movzx  eax,BYTE PTR [rip+0x201ff6]        # 77242ad <getppid@plt+0x7323b0d>
+ 75222b7:	0f b6 c0             	movzx  eax,al
+ 75222ba:	89 ce                	mov    esi,ecx
+ 75222bc:	89 c7                	mov    edi,eax
+ 75222be:	e8 03 ff ff ff       	call   75221c6 <getppid@plt+0x7121a26>
+ 75222c3:	c9                   	leave  
+ 75222c4:	c3                   	ret    
+ 75222c5:	55                   	push   rbp
+ 75222c6:	48 89 e5             	mov    rbp,rsp
+ 75222c9:	48 83 ec 10          	sub    rsp,0x10
+ 75222cd:	89 f1                	mov    ecx,esi
+ 75222cf:	89 d0                	mov    eax,edx
+ 75222d1:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 75222d5:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 75222d8:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 75222db:	80 7d fc 02          	cmp    BYTE PTR [rbp-0x4],0x2
+ 75222df:	75 61                	jne    7522342 <getppid@plt+0x7121ba2>
+ 75222e1:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 75222e5:	c1 e0 03             	shl    eax,0x3
+ 75222e8:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 75222eb:	3c 2c                	cmp    al,0x2c
+ 75222ed:	75 53                	jne    7522342 <getppid@plt+0x7121ba2>
+ 75222ef:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 75222f3:	88 45 f3             	mov    BYTE PTR [rbp-0xd],al
+ 75222f6:	ba 4d 00 00 00       	mov    edx,0x4d
+ 75222fb:	0f b6 45 f3          	movzx  eax,BYTE PTR [rbp-0xd]
+ 75222ff:	0f af c2             	imul   eax,edx
+ 7522302:	89 c1                	mov    ecx,eax
+ 7522304:	0f b6 55 f8          	movzx  edx,BYTE PTR [rbp-0x8]
+ 7522308:	89 d0                	mov    eax,edx
+ 752230a:	c1 e0 03             	shl    eax,0x3
+ 752230d:	01 d0                	add    eax,edx
+ 752230f:	c1 e0 02             	shl    eax,0x2
+ 7522312:	01 c8                	add    eax,ecx
+ 7522314:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 7522317:	3c 29                	cmp    al,0x29
+ 7522319:	75 27                	jne    7522342 <getppid@plt+0x7121ba2>
+ 752231b:	0f b6 05 8a 1f 20 00 	movzx  eax,BYTE PTR [rip+0x201f8a]        # 77242ac <getppid@plt+0x7323b0c>
+ 7522322:	0f b6 d0             	movzx  edx,al
+ 7522325:	0f b6 05 7f 1f 20 00 	movzx  eax,BYTE PTR [rip+0x201f7f]        # 77242ab <getppid@plt+0x7323b0b>
+ 752232c:	0f b6 c8             	movzx  ecx,al
+ 752232f:	0f b6 05 74 1f 20 00 	movzx  eax,BYTE PTR [rip+0x201f74]        # 77242aa <getppid@plt+0x7323b0a>
+ 7522336:	0f b6 c0             	movzx  eax,al
+ 7522339:	89 ce                	mov    esi,ecx
+ 752233b:	89 c7                	mov    edi,eax
+ 752233d:	e8 f6 fe ff ff       	call   7522238 <getppid@plt+0x7121a98>
+ 7522342:	c9                   	leave  
+ 7522343:	c3                   	ret    
+ 7522344:	55                   	push   rbp
+ 7522345:	48 89 e5             	mov    rbp,rsp
+ 7522348:	48 83 ec 10          	sub    rsp,0x10
+ 752234c:	89 f1                	mov    ecx,esi
+ 752234e:	89 d0                	mov    eax,edx
+ 7522350:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 7522354:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 7522357:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 752235a:	80 7d fc c2          	cmp    BYTE PTR [rbp-0x4],0xc2
+ 752235e:	75 5f                	jne    75223bf <getppid@plt+0x7121c1f>
+ 7522360:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 7522364:	c1 e0 02             	shl    eax,0x2
+ 7522367:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 752236a:	3c 2c                	cmp    al,0x2c
+ 752236c:	75 51                	jne    75223bf <getppid@plt+0x7121c1f>
+ 752236e:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 7522372:	88 45 f3             	mov    BYTE PTR [rbp-0xd],al
+ 7522375:	ba 53 00 00 00       	mov    edx,0x53
+ 752237a:	0f b6 45 f3          	movzx  eax,BYTE PTR [rbp-0xd]
+ 752237e:	0f af c2             	imul   eax,edx
+ 7522381:	89 c1                	mov    ecx,eax
+ 7522383:	0f b6 55 f8          	movzx  edx,BYTE PTR [rbp-0x8]
+ 7522387:	89 d0                	mov    eax,edx
+ 7522389:	01 c0                	add    eax,eax
+ 752238b:	01 d0                	add    eax,edx
+ 752238d:	01 c0                	add    eax,eax
+ 752238f:	01 c8                	add    eax,ecx
+ 7522391:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 7522394:	3c 30                	cmp    al,0x30
+ 7522396:	75 27                	jne    75223bf <getppid@plt+0x7121c1f>
+ 7522398:	0f b6 05 0a 1f 20 00 	movzx  eax,BYTE PTR [rip+0x201f0a]        # 77242a9 <getppid@plt+0x7323b09>
+ 752239f:	0f b6 d0             	movzx  edx,al
+ 75223a2:	0f b6 05 ff 1e 20 00 	movzx  eax,BYTE PTR [rip+0x201eff]        # 77242a8 <getppid@plt+0x7323b08>
+ 75223a9:	0f b6 c8             	movzx  ecx,al
+ 75223ac:	0f b6 05 f4 1e 20 00 	movzx  eax,BYTE PTR [rip+0x201ef4]        # 77242a7 <getppid@plt+0x7323b07>
+ 75223b3:	0f b6 c0             	movzx  eax,al
+ 75223b6:	89 ce                	mov    esi,ecx
+ 75223b8:	89 c7                	mov    edi,eax
+ 75223ba:	e8 06 ff ff ff       	call   75222c5 <getppid@plt+0x7121b25>
+ 75223bf:	c9                   	leave  
+ 75223c0:	c3                   	ret    
+ 75223c1:	55                   	push   rbp
+ 75223c2:	48 89 e5             	mov    rbp,rsp
+ 75223c5:	53                   	push   rbx
+ 75223c6:	48 83 ec 18          	sub    rsp,0x18
+ 75223ca:	89 f1                	mov    ecx,esi
+ 75223cc:	89 d0                	mov    eax,edx
+ 75223ce:	40 88 7d ec          	mov    BYTE PTR [rbp-0x14],dil
+ 75223d2:	88 4d e8             	mov    BYTE PTR [rbp-0x18],cl
+ 75223d5:	88 45 e4             	mov    BYTE PTR [rbp-0x1c],al
+ 75223d8:	80 7d ec cf          	cmp    BYTE PTR [rbp-0x14],0xcf
+ 75223dc:	75 65                	jne    7522443 <getppid@plt+0x7121ca3>
+ 75223de:	0f b6 55 ec          	movzx  edx,BYTE PTR [rbp-0x14]
+ 75223e2:	89 d0                	mov    eax,edx
+ 75223e4:	01 c0                	add    eax,eax
+ 75223e6:	01 d0                	add    eax,edx
+ 75223e8:	2a 45 e8             	sub    al,BYTE PTR [rbp-0x18]
+ 75223eb:	3c 29                	cmp    al,0x29
+ 75223ed:	75 54                	jne    7522443 <getppid@plt+0x7121ca3>
+ 75223ef:	0f b6 55 ec          	movzx  edx,BYTE PTR [rbp-0x14]
+ 75223f3:	89 d0                	mov    eax,edx
+ 75223f5:	c1 e0 03             	shl    eax,0x3
+ 75223f8:	01 d0                	add    eax,edx
+ 75223fa:	c1 e0 02             	shl    eax,0x2
+ 75223fd:	8d 0c 10             	lea    ecx,[rax+rdx*1]
+ 7522400:	0f b6 45 e8          	movzx  eax,BYTE PTR [rbp-0x18]
+ 7522404:	01 c0                	add    eax,eax
+ 7522406:	8d 14 c5 00 00 00 00 	lea    edx,[rax*8+0x0]
+ 752240d:	89 d3                	mov    ebx,edx
+ 752240f:	28 c3                	sub    bl,al
+ 7522411:	89 d8                	mov    eax,ebx
+ 7522413:	01 c8                	add    eax,ecx
+ 7522415:	2a 45 e4             	sub    al,BYTE PTR [rbp-0x1c]
+ 7522418:	3c 16                	cmp    al,0x16
+ 752241a:	75 27                	jne    7522443 <getppid@plt+0x7121ca3>
+ 752241c:	0f b6 05 83 1e 20 00 	movzx  eax,BYTE PTR [rip+0x201e83]        # 77242a6 <getppid@plt+0x7323b06>
+ 7522423:	0f b6 d0             	movzx  edx,al
+ 7522426:	0f b6 05 78 1e 20 00 	movzx  eax,BYTE PTR [rip+0x201e78]        # 77242a5 <getppid@plt+0x7323b05>
+ 752242d:	0f b6 c8             	movzx  ecx,al
+ 7522430:	0f b6 05 6d 1e 20 00 	movzx  eax,BYTE PTR [rip+0x201e6d]        # 77242a4 <getppid@plt+0x7323b04>
+ 7522437:	0f b6 c0             	movzx  eax,al
+ 752243a:	89 ce                	mov    esi,ecx
+ 752243c:	89 c7                	mov    edi,eax
+ 752243e:	e8 01 ff ff ff       	call   7522344 <getppid@plt+0x7121ba4>
+ 7522443:	48 83 c4 18          	add    rsp,0x18
+ 7522447:	5b                   	pop    rbx
+ 7522448:	5d                   	pop    rbp
+ 7522449:	c3                   	ret    
+ 752244a:	55                   	push   rbp
+ 752244b:	48 89 e5             	mov    rbp,rsp
+ 752244e:	48 83 ec 10          	sub    rsp,0x10
+ 7522452:	89 f1                	mov    ecx,esi
+ 7522454:	89 d0                	mov    eax,edx
+ 7522456:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 752245a:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 752245d:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 7522460:	80 7d fc f3          	cmp    BYTE PTR [rbp-0x4],0xf3
+ 7522464:	75 57                	jne    75224bd <getppid@plt+0x7121d1d>
+ 7522466:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 752246a:	01 c0                	add    eax,eax
+ 752246c:	89 c2                	mov    edx,eax
+ 752246e:	c1 e2 05             	shl    edx,0x5
+ 7522471:	01 d0                	add    eax,edx
+ 7522473:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 7522476:	3c 06                	cmp    al,0x6
+ 7522478:	75 43                	jne    75224bd <getppid@plt+0x7121d1d>
+ 752247a:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 752247e:	ba 2b 00 00 00       	mov    edx,0x2b
+ 7522483:	0f af c2             	imul   eax,edx
+ 7522486:	0f b6 55 f8          	movzx  edx,BYTE PTR [rbp-0x8]
+ 752248a:	c1 e2 03             	shl    edx,0x3
+ 752248d:	01 d0                	add    eax,edx
+ 752248f:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 7522492:	3c 57                	cmp    al,0x57
+ 7522494:	75 27                	jne    75224bd <getppid@plt+0x7121d1d>
+ 7522496:	0f b6 05 06 1e 20 00 	movzx  eax,BYTE PTR [rip+0x201e06]        # 77242a3 <getppid@plt+0x7323b03>
+ 752249d:	0f b6 d0             	movzx  edx,al
+ 75224a0:	0f b6 05 fb 1d 20 00 	movzx  eax,BYTE PTR [rip+0x201dfb]        # 77242a2 <getppid@plt+0x7323b02>
+ 75224a7:	0f b6 c8             	movzx  ecx,al
+ 75224aa:	0f b6 05 f0 1d 20 00 	movzx  eax,BYTE PTR [rip+0x201df0]        # 77242a1 <getppid@plt+0x7323b01>
+ 75224b1:	0f b6 c0             	movzx  eax,al
+ 75224b4:	89 ce                	mov    esi,ecx
+ 75224b6:	89 c7                	mov    edi,eax
+ 75224b8:	e8 04 ff ff ff       	call   75223c1 <getppid@plt+0x7121c21>
+ 75224bd:	c9                   	leave  
+ 75224be:	c3                   	ret    
+ 75224bf:	55                   	push   rbp
+ 75224c0:	48 89 e5             	mov    rbp,rsp
+ 75224c3:	48 83 ec 10          	sub    rsp,0x10
+ 75224c7:	89 f1                	mov    ecx,esi
+ 75224c9:	89 d0                	mov    eax,edx
+ 75224cb:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 75224cf:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 75224d2:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 75224d5:	80 7d fc e2          	cmp    BYTE PTR [rbp-0x4],0xe2
+ 75224d9:	75 68                	jne    7522543 <getppid@plt+0x7121da3>
+ 75224db:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 75224df:	89 d0                	mov    eax,edx
+ 75224e1:	c1 e0 02             	shl    eax,0x2
+ 75224e4:	01 d0                	add    eax,edx
+ 75224e6:	c1 e0 02             	shl    eax,0x2
+ 75224e9:	01 d0                	add    eax,edx
+ 75224eb:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 75224ee:	3c 37                	cmp    al,0x37
+ 75224f0:	75 51                	jne    7522543 <getppid@plt+0x7121da3>
+ 75224f2:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 75224f6:	88 45 f3             	mov    BYTE PTR [rbp-0xd],al
+ 75224f9:	ba 2b 00 00 00       	mov    edx,0x2b
+ 75224fe:	0f b6 45 f3          	movzx  eax,BYTE PTR [rbp-0xd]
+ 7522502:	0f af c2             	imul   eax,edx
+ 7522505:	89 c2                	mov    edx,eax
+ 7522507:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 752250b:	b9 4a 00 00 00       	mov    ecx,0x4a
+ 7522510:	0f af c1             	imul   eax,ecx
+ 7522513:	01 d0                	add    eax,edx
+ 7522515:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 7522518:	3c 10                	cmp    al,0x10
+ 752251a:	75 27                	jne    7522543 <getppid@plt+0x7121da3>
+ 752251c:	0f b6 05 7d 1d 20 00 	movzx  eax,BYTE PTR [rip+0x201d7d]        # 77242a0 <getppid@plt+0x7323b00>
+ 7522523:	0f b6 d0             	movzx  edx,al
+ 7522526:	0f b6 05 72 1d 20 00 	movzx  eax,BYTE PTR [rip+0x201d72]        # 772429f <getppid@plt+0x7323aff>
+ 752252d:	0f b6 c8             	movzx  ecx,al
+ 7522530:	0f b6 05 67 1d 20 00 	movzx  eax,BYTE PTR [rip+0x201d67]        # 772429e <getppid@plt+0x7323afe>
+ 7522537:	0f b6 c0             	movzx  eax,al
+ 752253a:	89 ce                	mov    esi,ecx
+ 752253c:	89 c7                	mov    edi,eax
+ 752253e:	e8 07 ff ff ff       	call   752244a <getppid@plt+0x7121caa>
+ 7522543:	c9                   	leave  
+ 7522544:	c3                   	ret    
+ 7522545:	55                   	push   rbp
+ 7522546:	48 89 e5             	mov    rbp,rsp
+ 7522549:	48 83 ec 10          	sub    rsp,0x10
+ 752254d:	89 f1                	mov    ecx,esi
+ 752254f:	89 d0                	mov    eax,edx
+ 7522551:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 7522555:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 7522558:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 752255b:	80 7d fc 19          	cmp    BYTE PTR [rbp-0x4],0x19
+ 752255f:	75 59                	jne    75225ba <getppid@plt+0x7121e1a>
+ 7522561:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 7522565:	01 c0                	add    eax,eax
+ 7522567:	89 c2                	mov    edx,eax
+ 7522569:	c1 e2 05             	shl    edx,0x5
+ 752256c:	01 d0                	add    eax,edx
+ 752256e:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 7522571:	3c 53                	cmp    al,0x53
+ 7522573:	75 45                	jne    75225ba <getppid@plt+0x7121e1a>
+ 7522575:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 7522579:	89 c1                	mov    ecx,eax
+ 752257b:	c1 e1 05             	shl    ecx,0x5
+ 752257e:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 7522582:	ba 16 00 00 00       	mov    edx,0x16
+ 7522587:	0f af c2             	imul   eax,edx
+ 752258a:	01 c8                	add    eax,ecx
+ 752258c:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 752258f:	3c 39                	cmp    al,0x39
+ 7522591:	75 27                	jne    75225ba <getppid@plt+0x7121e1a>
+ 7522593:	0f b6 05 03 1d 20 00 	movzx  eax,BYTE PTR [rip+0x201d03]        # 772429d <getppid@plt+0x7323afd>
+ 752259a:	0f b6 d0             	movzx  edx,al
+ 752259d:	0f b6 05 f8 1c 20 00 	movzx  eax,BYTE PTR [rip+0x201cf8]        # 772429c <getppid@plt+0x7323afc>
+ 75225a4:	0f b6 c8             	movzx  ecx,al
+ 75225a7:	0f b6 05 ed 1c 20 00 	movzx  eax,BYTE PTR [rip+0x201ced]        # 772429b <getppid@plt+0x7323afb>
+ 75225ae:	0f b6 c0             	movzx  eax,al
+ 75225b1:	89 ce                	mov    esi,ecx
+ 75225b3:	89 c7                	mov    edi,eax
+ 75225b5:	e8 05 ff ff ff       	call   75224bf <getppid@plt+0x7121d1f>
+ 75225ba:	c9                   	leave  
+ 75225bb:	c3                   	ret    
+ 75225bc:	55                   	push   rbp
+ 75225bd:	48 89 e5             	mov    rbp,rsp
+ 75225c0:	48 83 ec 10          	sub    rsp,0x10
+ 75225c4:	89 f1                	mov    ecx,esi
+ 75225c6:	89 d0                	mov    eax,edx
+ 75225c8:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 75225cc:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 75225cf:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 75225d2:	80 7d fc 06          	cmp    BYTE PTR [rbp-0x4],0x6
+ 75225d6:	75 5b                	jne    7522633 <getppid@plt+0x7121e93>
+ 75225d8:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 75225dc:	ba 2f 00 00 00       	mov    edx,0x2f
+ 75225e1:	0f af c2             	imul   eax,edx
+ 75225e4:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 75225e7:	3c 51                	cmp    al,0x51
+ 75225e9:	75 48                	jne    7522633 <getppid@plt+0x7121e93>
+ 75225eb:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 75225ef:	89 d0                	mov    eax,edx
+ 75225f1:	c1 e0 03             	shl    eax,0x3
+ 75225f4:	89 c1                	mov    ecx,eax
+ 75225f6:	28 d1                	sub    cl,dl
+ 75225f8:	0f b6 55 f8          	movzx  edx,BYTE PTR [rbp-0x8]
+ 75225fc:	89 d0                	mov    eax,edx
+ 75225fe:	c1 e0 06             	shl    eax,0x6
+ 7522601:	01 d0                	add    eax,edx
+ 7522603:	01 c8                	add    eax,ecx
+ 7522605:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 7522608:	3c 31                	cmp    al,0x31
+ 752260a:	75 27                	jne    7522633 <getppid@plt+0x7121e93>
+ 752260c:	0f b6 05 87 1c 20 00 	movzx  eax,BYTE PTR [rip+0x201c87]        # 772429a <getppid@plt+0x7323afa>
+ 7522613:	0f b6 d0             	movzx  edx,al
+ 7522616:	0f b6 05 7c 1c 20 00 	movzx  eax,BYTE PTR [rip+0x201c7c]        # 7724299 <getppid@plt+0x7323af9>
+ 752261d:	0f b6 c8             	movzx  ecx,al
+ 7522620:	0f b6 05 71 1c 20 00 	movzx  eax,BYTE PTR [rip+0x201c71]        # 7724298 <getppid@plt+0x7323af8>
+ 7522627:	0f b6 c0             	movzx  eax,al
+ 752262a:	89 ce                	mov    esi,ecx
+ 752262c:	89 c7                	mov    edi,eax
+ 752262e:	e8 12 ff ff ff       	call   7522545 <getppid@plt+0x7121da5>
+ 7522633:	c9                   	leave  
+ 7522634:	c3                   	ret    
+ 7522635:	55                   	push   rbp
+ 7522636:	48 89 e5             	mov    rbp,rsp
+ 7522639:	48 83 ec 10          	sub    rsp,0x10
+ 752263d:	89 f1                	mov    ecx,esi
+ 752263f:	89 d0                	mov    eax,edx
+ 7522641:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 7522645:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 7522648:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 752264b:	80 7d fc 1f          	cmp    BYTE PTR [rbp-0x4],0x1f
+ 752264f:	75 5c                	jne    75226ad <getppid@plt+0x7121f0d>
+ 7522651:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 7522655:	ba 4e 00 00 00       	mov    edx,0x4e
+ 752265a:	0f af c2             	imul   eax,edx
+ 752265d:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 7522660:	3c 4c                	cmp    al,0x4c
+ 7522662:	75 49                	jne    75226ad <getppid@plt+0x7121f0d>
+ 7522664:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 7522668:	01 c0                	add    eax,eax
+ 752266a:	89 c2                	mov    edx,eax
+ 752266c:	c1 e2 05             	shl    edx,0x5
+ 752266f:	8d 0c 10             	lea    ecx,[rax+rdx*1]
+ 7522672:	0f b6 55 f8          	movzx  edx,BYTE PTR [rbp-0x8]
+ 7522676:	89 d0                	mov    eax,edx
+ 7522678:	c1 e0 05             	shl    eax,0x5
+ 752267b:	28 d0                	sub    al,dl
+ 752267d:	01 c8                	add    eax,ecx
+ 752267f:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 7522682:	3c 13                	cmp    al,0x13
+ 7522684:	75 27                	jne    75226ad <getppid@plt+0x7121f0d>
+ 7522686:	0f b6 05 0a 1c 20 00 	movzx  eax,BYTE PTR [rip+0x201c0a]        # 7724297 <getppid@plt+0x7323af7>
+ 752268d:	0f b6 d0             	movzx  edx,al
+ 7522690:	0f b6 05 ff 1b 20 00 	movzx  eax,BYTE PTR [rip+0x201bff]        # 7724296 <getppid@plt+0x7323af6>
+ 7522697:	0f b6 c8             	movzx  ecx,al
+ 752269a:	0f b6 05 f4 1b 20 00 	movzx  eax,BYTE PTR [rip+0x201bf4]        # 7724295 <getppid@plt+0x7323af5>
+ 75226a1:	0f b6 c0             	movzx  eax,al
+ 75226a4:	89 ce                	mov    esi,ecx
+ 75226a6:	89 c7                	mov    edi,eax
+ 75226a8:	e8 0f ff ff ff       	call   75225bc <getppid@plt+0x7121e1c>
+ 75226ad:	c9                   	leave  
+ 75226ae:	c3                   	ret    
+ 75226af:	55                   	push   rbp
+ 75226b0:	48 89 e5             	mov    rbp,rsp
+ 75226b3:	53                   	push   rbx
+ 75226b4:	48 83 ec 18          	sub    rsp,0x18
+ 75226b8:	89 f1                	mov    ecx,esi
+ 75226ba:	89 d0                	mov    eax,edx
+ 75226bc:	40 88 7d ec          	mov    BYTE PTR [rbp-0x14],dil
+ 75226c0:	88 4d e8             	mov    BYTE PTR [rbp-0x18],cl
+ 75226c3:	88 45 e4             	mov    BYTE PTR [rbp-0x1c],al
+ 75226c6:	80 7d ec 21          	cmp    BYTE PTR [rbp-0x14],0x21
+ 75226ca:	75 60                	jne    752272c <getppid@plt+0x7121f8c>
+ 75226cc:	0f b6 45 ec          	movzx  eax,BYTE PTR [rbp-0x14]
+ 75226d0:	ba 45 00 00 00       	mov    edx,0x45
+ 75226d5:	0f af c2             	imul   eax,edx
+ 75226d8:	2a 45 e8             	sub    al,BYTE PTR [rbp-0x18]
+ 75226db:	3c 0e                	cmp    al,0xe
+ 75226dd:	75 4d                	jne    752272c <getppid@plt+0x7121f8c>
+ 75226df:	0f b6 55 ec          	movzx  edx,BYTE PTR [rbp-0x14]
+ 75226e3:	89 d0                	mov    eax,edx
+ 75226e5:	c1 e0 02             	shl    eax,0x2
+ 75226e8:	01 c2                	add    edx,eax
+ 75226ea:	0f b6 45 e8          	movzx  eax,BYTE PTR [rbp-0x18]
+ 75226ee:	c1 e0 02             	shl    eax,0x2
+ 75226f1:	89 c1                	mov    ecx,eax
+ 75226f3:	c1 e1 04             	shl    ecx,0x4
+ 75226f6:	89 cb                	mov    ebx,ecx
+ 75226f8:	28 c3                	sub    bl,al
+ 75226fa:	89 d8                	mov    eax,ebx
+ 75226fc:	01 d0                	add    eax,edx
+ 75226fe:	2a 45 e4             	sub    al,BYTE PTR [rbp-0x1c]
+ 7522701:	3c 57                	cmp    al,0x57
+ 7522703:	75 27                	jne    752272c <getppid@plt+0x7121f8c>
+ 7522705:	0f b6 05 88 1b 20 00 	movzx  eax,BYTE PTR [rip+0x201b88]        # 7724294 <getppid@plt+0x7323af4>
+ 752270c:	0f b6 d0             	movzx  edx,al
+ 752270f:	0f b6 05 7d 1b 20 00 	movzx  eax,BYTE PTR [rip+0x201b7d]        # 7724293 <getppid@plt+0x7323af3>
+ 7522716:	0f b6 c8             	movzx  ecx,al
+ 7522719:	0f b6 05 72 1b 20 00 	movzx  eax,BYTE PTR [rip+0x201b72]        # 7724292 <getppid@plt+0x7323af2>
+ 7522720:	0f b6 c0             	movzx  eax,al
+ 7522723:	89 ce                	mov    esi,ecx
+ 7522725:	89 c7                	mov    edi,eax
+ 7522727:	e8 09 ff ff ff       	call   7522635 <getppid@plt+0x7121e95>
+ 752272c:	48 83 c4 18          	add    rsp,0x18
+ 7522730:	5b                   	pop    rbx
+ 7522731:	5d                   	pop    rbp
+ 7522732:	c3                   	ret    
+ 7522733:	55                   	push   rbp
+ 7522734:	48 89 e5             	mov    rbp,rsp
+ 7522737:	48 83 ec 10          	sub    rsp,0x10
+ 752273b:	89 f1                	mov    ecx,esi
+ 752273d:	89 d0                	mov    eax,edx
+ 752273f:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 7522743:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 7522746:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 7522749:	80 7d fc 4a          	cmp    BYTE PTR [rbp-0x4],0x4a
+ 752274d:	75 65                	jne    75227b4 <getppid@plt+0x7122014>
+ 752274f:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 7522753:	89 d0                	mov    eax,edx
+ 7522755:	c1 e0 05             	shl    eax,0x5
+ 7522758:	01 d0                	add    eax,edx
+ 752275a:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 752275d:	3c 37                	cmp    al,0x37
+ 752275f:	75 53                	jne    75227b4 <getppid@plt+0x7122014>
+ 7522761:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 7522765:	88 45 f3             	mov    BYTE PTR [rbp-0xd],al
+ 7522768:	ba 4a 00 00 00       	mov    edx,0x4a
+ 752276d:	0f b6 45 f3          	movzx  eax,BYTE PTR [rbp-0xd]
+ 7522771:	0f af c2             	imul   eax,edx
+ 7522774:	89 c1                	mov    ecx,eax
+ 7522776:	0f b6 55 f8          	movzx  edx,BYTE PTR [rbp-0x8]
+ 752277a:	89 d0                	mov    eax,edx
+ 752277c:	c1 e0 03             	shl    eax,0x3
+ 752277f:	01 d0                	add    eax,edx
+ 7522781:	c1 e0 03             	shl    eax,0x3
+ 7522784:	01 c8                	add    eax,ecx
+ 7522786:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 7522789:	3c 0d                	cmp    al,0xd
+ 752278b:	75 27                	jne    75227b4 <getppid@plt+0x7122014>
+ 752278d:	0f b6 05 fd 1a 20 00 	movzx  eax,BYTE PTR [rip+0x201afd]        # 7724291 <getppid@plt+0x7323af1>
+ 7522794:	0f b6 d0             	movzx  edx,al
+ 7522797:	0f b6 05 f2 1a 20 00 	movzx  eax,BYTE PTR [rip+0x201af2]        # 7724290 <getppid@plt+0x7323af0>
+ 752279e:	0f b6 c8             	movzx  ecx,al
+ 75227a1:	0f b6 05 e7 1a 20 00 	movzx  eax,BYTE PTR [rip+0x201ae7]        # 772428f <getppid@plt+0x7323aef>
+ 75227a8:	0f b6 c0             	movzx  eax,al
+ 75227ab:	89 ce                	mov    esi,ecx
+ 75227ad:	89 c7                	mov    edi,eax
+ 75227af:	e8 fb fe ff ff       	call   75226af <getppid@plt+0x7121f0f>
+ 75227b4:	c9                   	leave  
+ 75227b5:	c3                   	ret    
+ 75227b6:	55                   	push   rbp
+ 75227b7:	48 89 e5             	mov    rbp,rsp
+ 75227ba:	48 83 ec 10          	sub    rsp,0x10
+ 75227be:	89 f1                	mov    ecx,esi
+ 75227c0:	89 d0                	mov    eax,edx
+ 75227c2:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 75227c6:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 75227c9:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 75227cc:	80 7d fc 00          	cmp    BYTE PTR [rbp-0x4],0x0
+ 75227d0:	75 59                	jne    752282b <getppid@plt+0x712208b>
+ 75227d2:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 75227d6:	89 d0                	mov    eax,edx
+ 75227d8:	01 c0                	add    eax,eax
+ 75227da:	01 d0                	add    eax,edx
+ 75227dc:	c1 e0 05             	shl    eax,0x5
+ 75227df:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 75227e2:	3c 14                	cmp    al,0x14
+ 75227e4:	75 45                	jne    752282b <getppid@plt+0x712208b>
+ 75227e6:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 75227ea:	89 c1                	mov    ecx,eax
+ 75227ec:	c1 e1 04             	shl    ecx,0x4
+ 75227ef:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 75227f3:	ba 43 00 00 00       	mov    edx,0x43
+ 75227f8:	0f af c2             	imul   eax,edx
+ 75227fb:	01 c8                	add    eax,ecx
+ 75227fd:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 7522800:	3c 1b                	cmp    al,0x1b
+ 7522802:	75 27                	jne    752282b <getppid@plt+0x712208b>
+ 7522804:	0f b6 05 83 1a 20 00 	movzx  eax,BYTE PTR [rip+0x201a83]        # 772428e <getppid@plt+0x7323aee>
+ 752280b:	0f b6 d0             	movzx  edx,al
+ 752280e:	0f b6 05 78 1a 20 00 	movzx  eax,BYTE PTR [rip+0x201a78]        # 772428d <getppid@plt+0x7323aed>
+ 7522815:	0f b6 c8             	movzx  ecx,al
+ 7522818:	0f b6 05 6d 1a 20 00 	movzx  eax,BYTE PTR [rip+0x201a6d]        # 772428c <getppid@plt+0x7323aec>
+ 752281f:	0f b6 c0             	movzx  eax,al
+ 7522822:	89 ce                	mov    esi,ecx
+ 7522824:	89 c7                	mov    edi,eax
+ 7522826:	e8 08 ff ff ff       	call   7522733 <getppid@plt+0x7121f93>
+ 752282b:	c9                   	leave  
+ 752282c:	c3                   	ret    
+ 752282d:	55                   	push   rbp
+ 752282e:	48 89 e5             	mov    rbp,rsp
+ 7522831:	48 83 ec 10          	sub    rsp,0x10
+ 7522835:	89 f1                	mov    ecx,esi
+ 7522837:	89 d0                	mov    eax,edx
+ 7522839:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 752283d:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 7522840:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 7522843:	80 7d fc 23          	cmp    BYTE PTR [rbp-0x4],0x23
+ 7522847:	75 65                	jne    75228ae <getppid@plt+0x712210e>
+ 7522849:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 752284d:	c1 e0 02             	shl    eax,0x2
+ 7522850:	89 c2                	mov    edx,eax
+ 7522852:	c1 e2 04             	shl    edx,0x4
+ 7522855:	89 d1                	mov    ecx,edx
+ 7522857:	28 c1                	sub    cl,al
+ 7522859:	89 c8                	mov    eax,ecx
+ 752285b:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 752285e:	3c 40                	cmp    al,0x40
+ 7522860:	75 4c                	jne    75228ae <getppid@plt+0x712210e>
+ 7522862:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 7522866:	c1 e0 02             	shl    eax,0x2
+ 7522869:	89 c2                	mov    edx,eax
+ 752286b:	c1 e2 04             	shl    edx,0x4
+ 752286e:	89 d1                	mov    ecx,edx
+ 7522870:	28 c1                	sub    cl,al
+ 7522872:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 7522876:	ba 2f 00 00 00       	mov    edx,0x2f
+ 752287b:	0f af c2             	imul   eax,edx
+ 752287e:	01 c8                	add    eax,ecx
+ 7522880:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 7522883:	3c 63                	cmp    al,0x63
+ 7522885:	75 27                	jne    75228ae <getppid@plt+0x712210e>
+ 7522887:	0f b6 05 fd 19 20 00 	movzx  eax,BYTE PTR [rip+0x2019fd]        # 772428b <getppid@plt+0x7323aeb>
+ 752288e:	0f b6 d0             	movzx  edx,al
+ 7522891:	0f b6 05 f2 19 20 00 	movzx  eax,BYTE PTR [rip+0x2019f2]        # 772428a <getppid@plt+0x7323aea>
+ 7522898:	0f b6 c8             	movzx  ecx,al
+ 752289b:	0f b6 05 e7 19 20 00 	movzx  eax,BYTE PTR [rip+0x2019e7]        # 7724289 <getppid@plt+0x7323ae9>
+ 75228a2:	0f b6 c0             	movzx  eax,al
+ 75228a5:	89 ce                	mov    esi,ecx
+ 75228a7:	89 c7                	mov    edi,eax
+ 75228a9:	e8 08 ff ff ff       	call   75227b6 <getppid@plt+0x7122016>
+ 75228ae:	c9                   	leave  
+ 75228af:	c3                   	ret    
+ 75228b0:	55                   	push   rbp
+ 75228b1:	48 89 e5             	mov    rbp,rsp
+ 75228b4:	48 83 ec 10          	sub    rsp,0x10
+ 75228b8:	89 f1                	mov    ecx,esi
+ 75228ba:	89 d0                	mov    eax,edx
+ 75228bc:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 75228c0:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 75228c3:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 75228c6:	80 7d fc 21          	cmp    BYTE PTR [rbp-0x4],0x21
+ 75228ca:	75 4b                	jne    7522917 <getppid@plt+0x7122177>
+ 75228cc:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 75228d0:	c1 e0 03             	shl    eax,0x3
+ 75228d3:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 75228d6:	3c 3e                	cmp    al,0x3e
+ 75228d8:	75 3d                	jne    7522917 <getppid@plt+0x7122177>
+ 75228da:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 75228de:	ba 39 00 00 00       	mov    edx,0x39
+ 75228e3:	0f af c2             	imul   eax,edx
+ 75228e6:	02 45 fc             	add    al,BYTE PTR [rbp-0x4]
+ 75228e9:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 75228ec:	3c 08                	cmp    al,0x8
+ 75228ee:	75 27                	jne    7522917 <getppid@plt+0x7122177>
+ 75228f0:	0f b6 05 91 19 20 00 	movzx  eax,BYTE PTR [rip+0x201991]        # 7724288 <getppid@plt+0x7323ae8>
+ 75228f7:	0f b6 d0             	movzx  edx,al
+ 75228fa:	0f b6 05 86 19 20 00 	movzx  eax,BYTE PTR [rip+0x201986]        # 7724287 <getppid@plt+0x7323ae7>
+ 7522901:	0f b6 c8             	movzx  ecx,al
+ 7522904:	0f b6 05 7b 19 20 00 	movzx  eax,BYTE PTR [rip+0x20197b]        # 7724286 <getppid@plt+0x7323ae6>
+ 752290b:	0f b6 c0             	movzx  eax,al
+ 752290e:	89 ce                	mov    esi,ecx
+ 7522910:	89 c7                	mov    edi,eax
+ 7522912:	e8 16 ff ff ff       	call   752282d <getppid@plt+0x712208d>
+ 7522917:	c9                   	leave  
+ 7522918:	c3                   	ret    
+ 7522919:	55                   	push   rbp
+ 752291a:	48 89 e5             	mov    rbp,rsp
+ 752291d:	53                   	push   rbx
+ 752291e:	48 83 ec 18          	sub    rsp,0x18
+ 7522922:	89 f1                	mov    ecx,esi
+ 7522924:	89 d0                	mov    eax,edx
+ 7522926:	40 88 7d ec          	mov    BYTE PTR [rbp-0x14],dil
+ 752292a:	88 4d e8             	mov    BYTE PTR [rbp-0x18],cl
+ 752292d:	88 45 e4             	mov    BYTE PTR [rbp-0x1c],al
+ 7522930:	80 7d ec 29          	cmp    BYTE PTR [rbp-0x14],0x29
+ 7522934:	75 6b                	jne    75229a1 <getppid@plt+0x7122201>
+ 7522936:	0f b6 45 ec          	movzx  eax,BYTE PTR [rbp-0x14]
+ 752293a:	ba 52 00 00 00       	mov    edx,0x52
+ 752293f:	0f af c2             	imul   eax,edx
+ 7522942:	2a 45 e8             	sub    al,BYTE PTR [rbp-0x18]
+ 7522945:	3c 1a                	cmp    al,0x1a
+ 7522947:	75 58                	jne    75229a1 <getppid@plt+0x7122201>
+ 7522949:	0f b6 45 ec          	movzx  eax,BYTE PTR [rbp-0x14]
+ 752294d:	88 45 e3             	mov    BYTE PTR [rbp-0x1d],al
+ 7522950:	ba 52 00 00 00       	mov    edx,0x52
+ 7522955:	0f b6 45 e3          	movzx  eax,BYTE PTR [rbp-0x1d]
+ 7522959:	0f af c2             	imul   eax,edx
+ 752295c:	89 c2                	mov    edx,eax
+ 752295e:	0f b6 45 e8          	movzx  eax,BYTE PTR [rbp-0x18]
+ 7522962:	01 c0                	add    eax,eax
+ 7522964:	8d 0c c5 00 00 00 00 	lea    ecx,[rax*8+0x0]
+ 752296b:	89 cb                	mov    ebx,ecx
+ 752296d:	28 c3                	sub    bl,al
+ 752296f:	89 d8                	mov    eax,ebx
+ 7522971:	01 d0                	add    eax,edx
+ 7522973:	2a 45 e4             	sub    al,BYTE PTR [rbp-0x1c]
+ 7522976:	3c 45                	cmp    al,0x45
+ 7522978:	75 27                	jne    75229a1 <getppid@plt+0x7122201>
+ 752297a:	0f b6 05 04 19 20 00 	movzx  eax,BYTE PTR [rip+0x201904]        # 7724285 <getppid@plt+0x7323ae5>
+ 7522981:	0f b6 d0             	movzx  edx,al
+ 7522984:	0f b6 05 f9 18 20 00 	movzx  eax,BYTE PTR [rip+0x2018f9]        # 7724284 <getppid@plt+0x7323ae4>
+ 752298b:	0f b6 c8             	movzx  ecx,al
+ 752298e:	0f b6 05 ee 18 20 00 	movzx  eax,BYTE PTR [rip+0x2018ee]        # 7724283 <getppid@plt+0x7323ae3>
+ 7522995:	0f b6 c0             	movzx  eax,al
+ 7522998:	89 ce                	mov    esi,ecx
+ 752299a:	89 c7                	mov    edi,eax
+ 752299c:	e8 0f ff ff ff       	call   75228b0 <getppid@plt+0x7122110>
+ 75229a1:	48 83 c4 18          	add    rsp,0x18
+ 75229a5:	5b                   	pop    rbx
+ 75229a6:	5d                   	pop    rbp
+ 75229a7:	c3                   	ret    
+ 75229a8:	55                   	push   rbp
+ 75229a9:	48 89 e5             	mov    rbp,rsp
+ 75229ac:	48 89 7d c8          	mov    QWORD PTR [rbp-0x38],rdi
+ 75229b0:	48 89 75 c0          	mov    QWORD PTR [rbp-0x40],rsi
+ 75229b4:	48 89 55 b8          	mov    QWORD PTR [rbp-0x48],rdx
+ 75229b8:	48 89 4d b0          	mov    QWORD PTR [rbp-0x50],rcx
+ 75229bc:	4c 89 45 a8          	mov    QWORD PTR [rbp-0x58],r8
+ 75229c0:	4c 89 4d a0          	mov    QWORD PTR [rbp-0x60],r9
+ 75229c4:	b8 00 00 00 00       	mov    eax,0x0
+ 75229c9:	5d                   	pop    rbp
+ 75229ca:	c3                   	ret    
+ 75229cb:	55                   	push   rbp
+ 75229cc:	48 89 e5             	mov    rbp,rsp
+ 75229cf:	48 83 ec 60          	sub    rsp,0x60
+ 75229d3:	48 89 7d c8          	mov    QWORD PTR [rbp-0x38],rdi
+ 75229d7:	48 89 75 c0          	mov    QWORD PTR [rbp-0x40],rsi
+ 75229db:	48 89 55 b8          	mov    QWORD PTR [rbp-0x48],rdx
+ 75229df:	48 89 4d b0          	mov    QWORD PTR [rbp-0x50],rcx
+ 75229e3:	4c 89 45 a8          	mov    QWORD PTR [rbp-0x58],r8
+ 75229e7:	4c 89 4d a0          	mov    QWORD PTR [rbp-0x60],r9
+ 75229eb:	4c 8b 45 b0          	mov    r8,QWORD PTR [rbp-0x50]
+ 75229ef:	48 8b 7d a0          	mov    rdi,QWORD PTR [rbp-0x60]
+ 75229f3:	48 8b 4d a8          	mov    rcx,QWORD PTR [rbp-0x58]
+ 75229f7:	48 8b 55 c0          	mov    rdx,QWORD PTR [rbp-0x40]
+ 75229fb:	48 8b 75 b8          	mov    rsi,QWORD PTR [rbp-0x48]
+ 75229ff:	48 8b 45 c8          	mov    rax,QWORD PTR [rbp-0x38]
+ 7522a03:	4d 89 c1             	mov    r9,r8
+ 7522a06:	49 89 f8             	mov    r8,rdi
+ 7522a09:	48 89 c7             	mov    rdi,rax
+ 7522a0c:	e8 97 ff ff ff       	call   75229a8 <getppid@plt+0x7122208>
+ 7522a11:	89 45 fc             	mov    DWORD PTR [rbp-0x4],eax
+ 7522a14:	8b 45 fc             	mov    eax,DWORD PTR [rbp-0x4]
+ 7522a17:	c9                   	leave  
+ 7522a18:	c3                   	ret    
+ 7522a19:	55                   	push   rbp
+ 7522a1a:	48 89 e5             	mov    rbp,rsp
+ 7522a1d:	53                   	push   rbx
+ 7522a1e:	48 83 ec 58          	sub    rsp,0x58
+ 7522a22:	89 7d bc             	mov    DWORD PTR [rbp-0x44],edi
+ 7522a25:	48 89 75 b0          	mov    QWORD PTR [rbp-0x50],rsi
+ 7522a29:	83 7d bc 02          	cmp    DWORD PTR [rbp-0x44],0x2
+ 7522a2d:	74 14                	je     7522a43 <getppid@plt+0x71222a3>
+ 7522a2f:	bf a0 2d 52 07       	mov    edi,0x7522da0
+ 7522a34:	e8 a7 dc ed f8       	call   4006e0 <puts@plt>
+ 7522a39:	b8 00 00 00 00       	mov    eax,0x0
+ 7522a3e:	e9 58 02 00 00       	jmp    7522c9b <getppid@plt+0x71224fb>
+ 7522a43:	41 b9 06 00 00 00    	mov    r9d,0x6
+ 7522a49:	41 b8 05 00 00 00    	mov    r8d,0x5
+ 7522a4f:	b9 04 00 00 00       	mov    ecx,0x4
+ 7522a54:	ba 03 00 00 00       	mov    edx,0x3
+ 7522a59:	be 02 00 00 00       	mov    esi,0x2
+ 7522a5e:	bf 01 00 00 00       	mov    edi,0x1
+ 7522a63:	e8 63 ff ff ff       	call   75229cb <getppid@plt+0x712222b>
+ 7522a68:	89 c7                	mov    edi,eax
+ 7522a6a:	e8 c1 dc ed f8       	call   400730 <srand@plt>
+ 7522a6f:	48 8b 45 b0          	mov    rax,QWORD PTR [rbp-0x50]
+ 7522a73:	48 83 c0 08          	add    rax,0x8
+ 7522a77:	48 8b 00             	mov    rax,QWORD PTR [rax]
+ 7522a7a:	48 c7 45 a8 ff ff ff 	mov    QWORD PTR [rbp-0x58],0xffffffffffffffff
+ 7522a81:	ff 
+ 7522a82:	48 89 c2             	mov    rdx,rax
+ 7522a85:	b8 00 00 00 00       	mov    eax,0x0
+ 7522a8a:	48 8b 4d a8          	mov    rcx,QWORD PTR [rbp-0x58]
+ 7522a8e:	48 89 d7             	mov    rdi,rdx
+ 7522a91:	f2 ae                	repnz scas al,BYTE PTR es:[rdi]
+ 7522a93:	48 89 c8             	mov    rax,rcx
+ 7522a96:	48 f7 d0             	not    rax
+ 7522a99:	48 83 e8 01          	sub    rax,0x1
+ 7522a9d:	48 d1 e8             	shr    rax,1
+ 7522aa0:	89 05 ce 17 20 00    	mov    DWORD PTR [rip+0x2017ce],eax        # 7724274 <getppid@plt+0x7323ad4>
+ 7522aa6:	8b 05 c8 17 20 00    	mov    eax,DWORD PTR [rip+0x2017c8]        # 7724274 <getppid@plt+0x7323ad4>
+ 7522aac:	3d e8 03 00 00       	cmp    eax,0x3e8
+ 7522ab1:	7e 14                	jle    7522ac7 <getppid@plt+0x7122327>
+ 7522ab3:	bf c8 2d 52 07       	mov    edi,0x7522dc8
+ 7522ab8:	e8 23 dc ed f8       	call   4006e0 <puts@plt>
+ 7522abd:	b8 00 00 00 00       	mov    eax,0x0
+ 7522ac2:	e9 d4 01 00 00       	jmp    7522c9b <getppid@plt+0x71224fb>
+ 7522ac7:	c7 45 c8 00 00 00 00 	mov    DWORD PTR [rbp-0x38],0x0
+ 7522ace:	c7 45 cc 00 00 00 00 	mov    DWORD PTR [rbp-0x34],0x0
+ 7522ad5:	eb 68                	jmp    7522b3f <getppid@plt+0x712239f>
+ 7522ad7:	48 8b 45 b0          	mov    rax,QWORD PTR [rbp-0x50]
+ 7522adb:	48 83 c0 08          	add    rax,0x8
+ 7522adf:	48 8b 10             	mov    rdx,QWORD PTR [rax]
+ 7522ae2:	8b 45 c8             	mov    eax,DWORD PTR [rbp-0x38]
+ 7522ae5:	48 98                	cdqe   
+ 7522ae7:	48 01 d0             	add    rax,rdx
+ 7522aea:	0f b6 00             	movzx  eax,BYTE PTR [rax]
+ 7522aed:	88 45 e0             	mov    BYTE PTR [rbp-0x20],al
+ 7522af0:	48 8b 45 b0          	mov    rax,QWORD PTR [rbp-0x50]
+ 7522af4:	48 83 c0 08          	add    rax,0x8
+ 7522af8:	48 8b 00             	mov    rax,QWORD PTR [rax]
+ 7522afb:	8b 55 c8             	mov    edx,DWORD PTR [rbp-0x38]
+ 7522afe:	48 63 d2             	movsxd rdx,edx
+ 7522b01:	48 83 c2 01          	add    rdx,0x1
+ 7522b05:	48 01 d0             	add    rax,rdx
+ 7522b08:	0f b6 00             	movzx  eax,BYTE PTR [rax]
+ 7522b0b:	88 45 e1             	mov    BYTE PTR [rbp-0x1f],al
+ 7522b0e:	c6 45 e2 00          	mov    BYTE PTR [rbp-0x1e],0x0
+ 7522b12:	8b 45 cc             	mov    eax,DWORD PTR [rbp-0x34]
+ 7522b15:	48 98                	cdqe   
+ 7522b17:	48 8d 90 80 42 72 07 	lea    rdx,[rax+0x7724280]
+ 7522b1e:	83 45 cc 01          	add    DWORD PTR [rbp-0x34],0x1
+ 7522b22:	b9 e8 2d 52 07       	mov    ecx,0x7522de8
+ 7522b27:	48 8d 45 e0          	lea    rax,[rbp-0x20]
+ 7522b2b:	48 89 ce             	mov    rsi,rcx
+ 7522b2e:	48 89 c7             	mov    rdi,rax
+ 7522b31:	b8 00 00 00 00       	mov    eax,0x0
+ 7522b36:	e8 25 dc ed f8       	call   400760 <__isoc99_sscanf@plt>
+ 7522b3b:	83 45 c8 02          	add    DWORD PTR [rbp-0x38],0x2
+ 7522b3f:	8b 05 2f 17 20 00    	mov    eax,DWORD PTR [rip+0x20172f]        # 7724274 <getppid@plt+0x7323ad4>
+ 7522b45:	01 c0                	add    eax,eax
+ 7522b47:	3b 45 c8             	cmp    eax,DWORD PTR [rbp-0x38]
+ 7522b4a:	7f 8b                	jg     7522ad7 <getppid@plt+0x7122337>
+ 7522b4c:	c7 45 dc 00 00 00 00 	mov    DWORD PTR [rbp-0x24],0x0
+ 7522b53:	e9 f4 00 00 00       	jmp    7522c4c <getppid@plt+0x71224ac>
+ 7522b58:	8b 45 dc             	mov    eax,DWORD PTR [rbp-0x24]
+ 7522b5b:	83 e0 01             	and    eax,0x1
+ 7522b5e:	85 c0                	test   eax,eax
+ 7522b60:	75 1e                	jne    7522b80 <getppid@plt+0x71223e0>
+ 7522b62:	8b 45 dc             	mov    eax,DWORD PTR [rbp-0x24]
+ 7522b65:	48 98                	cdqe   
+ 7522b67:	0f b6 80 80 42 72 07 	movzx  eax,BYTE PTR [rax+0x7724280]
+ 7522b6e:	89 c2                	mov    edx,eax
+ 7522b70:	83 f2 2f             	xor    edx,0x2f
+ 7522b73:	8b 45 dc             	mov    eax,DWORD PTR [rbp-0x24]
+ 7522b76:	48 98                	cdqe   
+ 7522b78:	88 90 80 42 72 07    	mov    BYTE PTR [rax+0x7724280],dl
+ 7522b7e:	eb 1c                	jmp    7522b9c <getppid@plt+0x71223fc>
+ 7522b80:	8b 45 dc             	mov    eax,DWORD PTR [rbp-0x24]
+ 7522b83:	48 98                	cdqe   
+ 7522b85:	0f b6 80 80 42 72 07 	movzx  eax,BYTE PTR [rax+0x7724280]
+ 7522b8c:	89 c2                	mov    edx,eax
+ 7522b8e:	83 f2 47             	xor    edx,0x47
+ 7522b91:	8b 45 dc             	mov    eax,DWORD PTR [rbp-0x24]
+ 7522b94:	48 98                	cdqe   
+ 7522b96:	88 90 80 42 72 07    	mov    BYTE PTR [rax+0x7724280],dl
+ 7522b9c:	8b 45 d0             	mov    eax,DWORD PTR [rbp-0x30]
+ 7522b9f:	3c cf                	cmp    al,0xcf
+ 7522ba1:	75 5b                	jne    7522bfe <getppid@plt+0x712245e>
+ 7522ba3:	8b 45 d0             	mov    eax,DWORD PTR [rbp-0x30]
+ 7522ba6:	89 c2                	mov    edx,eax
+ 7522ba8:	89 d0                	mov    eax,edx
+ 7522baa:	01 c0                	add    eax,eax
+ 7522bac:	01 c2                	add    edx,eax
+ 7522bae:	8b 45 d4             	mov    eax,DWORD PTR [rbp-0x2c]
+ 7522bb1:	89 d1                	mov    ecx,edx
+ 7522bb3:	28 c1                	sub    cl,al
+ 7522bb5:	89 c8                	mov    eax,ecx
+ 7522bb7:	3c 29                	cmp    al,0x29
+ 7522bb9:	75 43                	jne    7522bfe <getppid@plt+0x712245e>
+ 7522bbb:	8b 45 d0             	mov    eax,DWORD PTR [rbp-0x30]
+ 7522bbe:	89 c2                	mov    edx,eax
+ 7522bc0:	89 d0                	mov    eax,edx
+ 7522bc2:	c1 e0 03             	shl    eax,0x3
+ 7522bc5:	01 d0                	add    eax,edx
+ 7522bc7:	c1 e0 02             	shl    eax,0x2
+ 7522bca:	8d 0c 10             	lea    ecx,[rax+rdx*1]
+ 7522bcd:	8b 45 d4             	mov    eax,DWORD PTR [rbp-0x2c]
+ 7522bd0:	01 c0                	add    eax,eax
+ 7522bd2:	8d 14 c5 00 00 00 00 	lea    edx,[rax*8+0x0]
+ 7522bd9:	89 d3                	mov    ebx,edx
+ 7522bdb:	28 c3                	sub    bl,al
+ 7522bdd:	89 d8                	mov    eax,ebx
+ 7522bdf:	8d 14 01             	lea    edx,[rcx+rax*1]
+ 7522be2:	8b 45 d8             	mov    eax,DWORD PTR [rbp-0x28]
+ 7522be5:	89 d1                	mov    ecx,edx
+ 7522be7:	28 c1                	sub    cl,al
+ 7522be9:	89 c8                	mov    eax,ecx
+ 7522beb:	3c 16                	cmp    al,0x16
+ 7522bed:	75 0f                	jne    7522bfe <getppid@plt+0x712245e>
+ 7522bef:	8b 45 d8             	mov    eax,DWORD PTR [rbp-0x28]
+ 7522bf2:	8b 55 d0             	mov    edx,DWORD PTR [rbp-0x30]
+ 7522bf5:	89 d3                	mov    ebx,edx
+ 7522bf7:	29 c3                	sub    ebx,eax
+ 7522bf9:	89 d8                	mov    eax,ebx
+ 7522bfb:	89 45 d4             	mov    DWORD PTR [rbp-0x2c],eax
+ 7522bfe:	8b 45 d0             	mov    eax,DWORD PTR [rbp-0x30]
+ 7522c01:	3c f3                	cmp    al,0xf3
+ 7522c03:	75 43                	jne    7522c48 <getppid@plt+0x71224a8>
+ 7522c05:	8b 45 d0             	mov    eax,DWORD PTR [rbp-0x30]
+ 7522c08:	01 c0                	add    eax,eax
+ 7522c0a:	89 c2                	mov    edx,eax
+ 7522c0c:	c1 e2 05             	shl    edx,0x5
+ 7522c0f:	01 c2                	add    edx,eax
+ 7522c11:	8b 45 d4             	mov    eax,DWORD PTR [rbp-0x2c]
+ 7522c14:	89 d1                	mov    ecx,edx
+ 7522c16:	28 c1                	sub    cl,al
+ 7522c18:	89 c8                	mov    eax,ecx
+ 7522c1a:	3c 06                	cmp    al,0x6
+ 7522c1c:	75 2a                	jne    7522c48 <getppid@plt+0x71224a8>
+ 7522c1e:	8b 45 d0             	mov    eax,DWORD PTR [rbp-0x30]
+ 7522c21:	ba 2b 00 00 00       	mov    edx,0x2b
+ 7522c26:	0f af c2             	imul   eax,edx
+ 7522c29:	8b 55 d4             	mov    edx,DWORD PTR [rbp-0x2c]
+ 7522c2c:	c1 e2 03             	shl    edx,0x3
+ 7522c2f:	01 c2                	add    edx,eax
+ 7522c31:	8b 45 d8             	mov    eax,DWORD PTR [rbp-0x28]
+ 7522c34:	89 d3                	mov    ebx,edx
+ 7522c36:	28 c3                	sub    bl,al
+ 7522c38:	89 d8                	mov    eax,ebx
+ 7522c3a:	3c 57                	cmp    al,0x57
+ 7522c3c:	75 0a                	jne    7522c48 <getppid@plt+0x71224a8>
+ 7522c3e:	83 45 d0 01          	add    DWORD PTR [rbp-0x30],0x1
+ 7522c42:	8b 45 d0             	mov    eax,DWORD PTR [rbp-0x30]
+ 7522c45:	89 45 d8             	mov    DWORD PTR [rbp-0x28],eax
+ 7522c48:	83 45 dc 01          	add    DWORD PTR [rbp-0x24],0x1
+ 7522c4c:	8b 05 22 16 20 00    	mov    eax,DWORD PTR [rip+0x201622]        # 7724274 <getppid@plt+0x7323ad4>
+ 7522c52:	39 45 dc             	cmp    DWORD PTR [rbp-0x24],eax
+ 7522c55:	0f 8c fd fe ff ff    	jl     7522b58 <getppid@plt+0x71223b8>
+ 7522c5b:	bf ed 2d 52 07       	mov    edi,0x7522ded
+ 7522c60:	e8 7b da ed f8       	call   4006e0 <puts@plt>
+ 7522c65:	0f b6 05 16 16 20 00 	movzx  eax,BYTE PTR [rip+0x201616]        # 7724282 <getppid@plt+0x7323ae2>
+ 7522c6c:	0f b6 d0             	movzx  edx,al
+ 7522c6f:	0f b6 05 0b 16 20 00 	movzx  eax,BYTE PTR [rip+0x20160b]        # 7724281 <getppid@plt+0x7323ae1>
+ 7522c76:	0f b6 c8             	movzx  ecx,al
+ 7522c79:	0f b6 05 00 16 20 00 	movzx  eax,BYTE PTR [rip+0x201600]        # 7724280 <getppid@plt+0x7323ae0>
+ 7522c80:	0f b6 c0             	movzx  eax,al
+ 7522c83:	89 ce                	mov    esi,ecx
+ 7522c85:	89 c7                	mov    edi,eax
+ 7522c87:	e8 8d fc ff ff       	call   7522919 <getppid@plt+0x7122179>
+ 7522c8c:	bf 08 2e 52 07       	mov    edi,0x7522e08
+ 7522c91:	e8 4a da ed f8       	call   4006e0 <puts@plt>
+ 7522c96:	b8 00 00 00 00       	mov    eax,0x0
+ 7522c9b:	48 83 c4 58          	add    rsp,0x58
+ 7522c9f:	5b                   	pop    rbx
+ 7522ca0:	5d                   	pop    rbp
+ 7522ca1:	c3                   	ret    
+ 7522ca2:	90                   	nop
+ 7522ca3:	90                   	nop
+ 7522ca4:	90                   	nop
+ 7522ca5:	90                   	nop
+ 7522ca6:	90                   	nop
+ 7522ca7:	90                   	nop
+ 7522ca8:	90                   	nop
+ 7522ca9:	90                   	nop
+ 7522caa:	90                   	nop
+ 7522cab:	90                   	nop
+ 7522cac:	90                   	nop
+ 7522cad:	90                   	nop
+ 7522cae:	90                   	nop
+ 7522caf:	90                   	nop
+ 7522cb0:	48 89 6c 24 d8       	mov    QWORD PTR [rsp-0x28],rbp
+ 7522cb5:	4c 89 64 24 e0       	mov    QWORD PTR [rsp-0x20],r12
+ 7522cba:	48 8d 2d 63 11 20 00 	lea    rbp,[rip+0x201163]        # 7723e24 <getppid@plt+0x7323684>
+ 7522cc1:	4c 8d 25 5c 11 20 00 	lea    r12,[rip+0x20115c]        # 7723e24 <getppid@plt+0x7323684>
+ 7522cc8:	4c 89 6c 24 e8       	mov    QWORD PTR [rsp-0x18],r13
+ 7522ccd:	4c 89 74 24 f0       	mov    QWORD PTR [rsp-0x10],r14
+ 7522cd2:	4c 89 7c 24 f8       	mov    QWORD PTR [rsp-0x8],r15
+ 7522cd7:	48 89 5c 24 d0       	mov    QWORD PTR [rsp-0x30],rbx
+ 7522cdc:	48 83 ec 38          	sub    rsp,0x38
+ 7522ce0:	4c 29 e5             	sub    rbp,r12
+ 7522ce3:	41 89 fd             	mov    r13d,edi
+ 7522ce6:	49 89 f6             	mov    r14,rsi
+ 7522ce9:	48 c1 fd 03          	sar    rbp,0x3
+ 7522ced:	49 89 d7             	mov    r15,rdx
+ 7522cf0:	e8 bb d9 ed f8       	call   4006b0 <puts@plt-0x30>
+ 7522cf5:	48 85 ed             	test   rbp,rbp
+ 7522cf8:	74 1c                	je     7522d16 <getppid@plt+0x7122576>
+ 7522cfa:	31 db                	xor    ebx,ebx
+ 7522cfc:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+ 7522d00:	4c 89 fa             	mov    rdx,r15
+ 7522d03:	4c 89 f6             	mov    rsi,r14
+ 7522d06:	44 89 ef             	mov    edi,r13d
+ 7522d09:	41 ff 14 dc          	call   QWORD PTR [r12+rbx*8]
+ 7522d0d:	48 83 c3 01          	add    rbx,0x1
+ 7522d11:	48 39 eb             	cmp    rbx,rbp
+ 7522d14:	75 ea                	jne    7522d00 <getppid@plt+0x7122560>
+ 7522d16:	48 8b 5c 24 08       	mov    rbx,QWORD PTR [rsp+0x8]
+ 7522d1b:	48 8b 6c 24 10       	mov    rbp,QWORD PTR [rsp+0x10]
+ 7522d20:	4c 8b 64 24 18       	mov    r12,QWORD PTR [rsp+0x18]
+ 7522d25:	4c 8b 6c 24 20       	mov    r13,QWORD PTR [rsp+0x20]
+ 7522d2a:	4c 8b 74 24 28       	mov    r14,QWORD PTR [rsp+0x28]
+ 7522d2f:	4c 8b 7c 24 30       	mov    r15,QWORD PTR [rsp+0x30]
+ 7522d34:	48 83 c4 38          	add    rsp,0x38
+ 7522d38:	c3                   	ret    
+ 7522d39:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+ 7522d40:	f3 c3                	repz ret 
+ 7522d42:	90                   	nop
+ 7522d43:	90                   	nop
+ 7522d44:	90                   	nop
+ 7522d45:	90                   	nop
+ 7522d46:	90                   	nop
+ 7522d47:	90                   	nop
+ 7522d48:	90                   	nop
+ 7522d49:	90                   	nop
+ 7522d4a:	90                   	nop
+ 7522d4b:	90                   	nop
+ 7522d4c:	90                   	nop
+ 7522d4d:	90                   	nop
+ 7522d4e:	90                   	nop
+ 7522d4f:	90                   	nop
+ 7522d50:	55                   	push   rbp
+ 7522d51:	48 89 e5             	mov    rbp,rsp
+ 7522d54:	53                   	push   rbx
+ 7522d55:	48 83 ec 08          	sub    rsp,0x8
+ 7522d59:	48 8b 05 c8 10 20 00 	mov    rax,QWORD PTR [rip+0x2010c8]        # 7723e28 <getppid@plt+0x7323688>
+ 7522d60:	48 83 f8 ff          	cmp    rax,0xffffffffffffffff
+ 7522d64:	74 19                	je     7522d7f <getppid@plt+0x71225df>
+ 7522d66:	bb 28 3e 72 07       	mov    ebx,0x7723e28
+ 7522d6b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+ 7522d70:	48 83 eb 08          	sub    rbx,0x8
+ 7522d74:	ff d0                	call   rax
+ 7522d76:	48 8b 03             	mov    rax,QWORD PTR [rbx]
+ 7522d79:	48 83 f8 ff          	cmp    rax,0xffffffffffffffff
+ 7522d7d:	75 f1                	jne    7522d70 <getppid@plt+0x71225d0>
+ 7522d7f:	48 83 c4 08          	add    rsp,0x8
+ 7522d83:	5b                   	pop    rbx
+ 7522d84:	5d                   	pop    rbp
+ 7522d85:	c3                   	ret    
+ 7522d86:	90                   	nop
+ 7522d87:	90                   	nop
+
+Disassembly of section .init:
+
+00000000004006b0 <.init>:
+  4006b0:	48 83 ec 08          	sub    rsp,0x8
+  4006b4:	e8 73 19 12 07       	call   752202c <getppid@plt+0x712188c>
+  4006b9:	e8 02 1a 12 07       	call   75220c0 <getppid@plt+0x7121920>
+  4006be:	e8 8d 26 12 07       	call   7522d50 <getppid@plt+0x71225b0>
+  4006c3:	48 83 c4 08          	add    rsp,0x8
+  4006c7:	c3                   	ret    
+
+Disassembly of section .plt:
+
+00000000004006d0 <puts@plt-0x10>:
+  4006d0:	ff 35 1a 39 32 07    	push   QWORD PTR [rip+0x732391a]        # 7723ff0 <getppid@plt+0x7323850>
+  4006d6:	ff 25 1c 39 32 07    	jmp    QWORD PTR [rip+0x732391c]        # 7723ff8 <getppid@plt+0x7323858>
+  4006dc:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+
+00000000004006e0 <puts@plt>:
+  4006e0:	ff 25 1a 39 32 07    	jmp    QWORD PTR [rip+0x732391a]        # 7724000 <getppid@plt+0x7323860>
+  4006e6:	68 00 00 00 00       	push   0x0
+  4006eb:	e9 e0 ff ff ff       	jmp    4006d0 <puts@plt-0x10>
+
+00000000004006f0 <getpid@plt>:
+  4006f0:	ff 25 12 39 32 07    	jmp    QWORD PTR [rip+0x7323912]        # 7724008 <getppid@plt+0x7323868>
+  4006f6:	68 01 00 00 00       	push   0x1
+  4006fb:	e9 d0 ff ff ff       	jmp    4006d0 <puts@plt-0x10>
+
+0000000000400700 <dup2@plt>:
+  400700:	ff 25 0a 39 32 07    	jmp    QWORD PTR [rip+0x732390a]        # 7724010 <getppid@plt+0x7323870>
+  400706:	68 02 00 00 00       	push   0x2
+  40070b:	e9 c0 ff ff ff       	jmp    4006d0 <puts@plt-0x10>
+
+0000000000400710 <dup@plt>:
+  400710:	ff 25 02 39 32 07    	jmp    QWORD PTR [rip+0x7323902]        # 7724018 <getppid@plt+0x7323878>
+  400716:	68 03 00 00 00       	push   0x3
+  40071b:	e9 b0 ff ff ff       	jmp    4006d0 <puts@plt-0x10>
+
+0000000000400720 <__libc_start_main@plt>:
+  400720:	ff 25 fa 38 32 07    	jmp    QWORD PTR [rip+0x73238fa]        # 7724020 <getppid@plt+0x7323880>
+  400726:	68 04 00 00 00       	push   0x4
+  40072b:	e9 a0 ff ff ff       	jmp    4006d0 <puts@plt-0x10>
+
+0000000000400730 <srand@plt>:
+  400730:	ff 25 f2 38 32 07    	jmp    QWORD PTR [rip+0x73238f2]        # 7724028 <getppid@plt+0x7323888>
+  400736:	68 05 00 00 00       	push   0x5
+  40073b:	e9 90 ff ff ff       	jmp    4006d0 <puts@plt-0x10>
+
+0000000000400740 <memcpy@plt>:
+  400740:	ff 25 ea 38 32 07    	jmp    QWORD PTR [rip+0x73238ea]        # 7724030 <getppid@plt+0x7323890>
+  400746:	68 06 00 00 00       	push   0x6
+  40074b:	e9 80 ff ff ff       	jmp    4006d0 <puts@plt-0x10>
+
+0000000000400750 <time@plt>:
+  400750:	ff 25 e2 38 32 07    	jmp    QWORD PTR [rip+0x73238e2]        # 7724038 <getppid@plt+0x7323898>
+  400756:	68 07 00 00 00       	push   0x7
+  40075b:	e9 70 ff ff ff       	jmp    4006d0 <puts@plt-0x10>
+
+0000000000400760 <__isoc99_sscanf@plt>:
+  400760:	ff 25 da 38 32 07    	jmp    QWORD PTR [rip+0x73238da]        # 7724040 <getppid@plt+0x73238a0>
+  400766:	68 08 00 00 00       	push   0x8
+  40076b:	e9 60 ff ff ff       	jmp    4006d0 <puts@plt-0x10>
+
+0000000000400770 <setreuid@plt>:
+  400770:	ff 25 d2 38 32 07    	jmp    QWORD PTR [rip+0x73238d2]        # 7724048 <getppid@plt+0x73238a8>
+  400776:	68 09 00 00 00       	push   0x9
+  40077b:	e9 50 ff ff ff       	jmp    4006d0 <puts@plt-0x10>
+
+0000000000400780 <setgid@plt>:
+  400780:	ff 25 ca 38 32 07    	jmp    QWORD PTR [rip+0x73238ca]        # 7724050 <getppid@plt+0x73238b0>
+  400786:	68 0a 00 00 00       	push   0xa
+  40078b:	e9 40 ff ff ff       	jmp    4006d0 <puts@plt-0x10>
+
+0000000000400790 <mprotect@plt>:
+  400790:	ff 25 c2 38 32 07    	jmp    QWORD PTR [rip+0x73238c2]        # 7724058 <getppid@plt+0x73238b8>
+  400796:	68 0b 00 00 00       	push   0xb
+  40079b:	e9 30 ff ff ff       	jmp    4006d0 <puts@plt-0x10>
+
+00000000004007a0 <getppid@plt>:
+  4007a0:	ff 25 ba 38 32 07    	jmp    QWORD PTR [rip+0x73238ba]        # 7724060 <getppid@plt+0x73238c0>
+  4007a6:	68 0c 00 00 00       	push   0xc
+  4007ab:	e9 20 ff ff ff       	jmp    4006d0 <puts@plt-0x10>
+
+Disassembly of section .fini:
+
+0000000007522d88 <.fini>:
+ 7522d88:	48 83 ec 08          	sub    rsp,0x8
+ 7522d8c:	e8 bf f2 ff ff       	call   7522050 <getppid@plt+0x71218b0>
+ 7522d91:	48 83 c4 08          	add    rsp,0x8
+ 7522d95:	c3                   	ret    
