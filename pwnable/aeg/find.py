@@ -55,6 +55,7 @@ def get_addresses(path):
     # Find mprotect
     s = re.search(hex_rex + ' <mprotect@plt>', o).group(1).strip()
     res['plt_mprotect'] = int(s, 16)
+    print 'Mprotect = 0x%x' % res['plt_mprotect']
 
     # Find buffer location
     s = re.search('ecx,0x' + hex_rex + '.{0,512}rax,\[rbp-0x' + hex_rex + '\].{0,512}<memcpy@plt>', o, flags = re.DOTALL)
