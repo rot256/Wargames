@@ -1,0 +1,1352 @@
+
+pwn3:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000007505000 <.text>:
+ 7505000:	31 ed                	xor    ebp,ebp
+ 7505002:	49 89 d1             	mov    r9,rdx
+ 7505005:	5e                   	pop    rsi
+ 7505006:	48 89 e2             	mov    rdx,rsp
+ 7505009:	48 83 e4 f0          	and    rsp,0xfffffffffffffff0
+ 750500d:	50                   	push   rax
+ 750500e:	54                   	push   rsp
+ 750500f:	49 c7 c0 a0 5e 50 07 	mov    r8,0x7505ea0
+ 7505016:	48 c7 c1 10 5e 50 07 	mov    rcx,0x7505e10
+ 750501d:	48 c7 c7 6c 5a 50 07 	mov    rdi,0x7505a6c
+ 7505024:	e8 57 b8 ef f8       	call   400880 <__libc_start_main@plt>
+ 7505029:	f4                   	hlt    
+ 750502a:	90                   	nop
+ 750502b:	90                   	nop
+ 750502c:	48 83 ec 08          	sub    rsp,0x8
+ 7505030:	48 8b 05 a9 1f 20 00 	mov    rax,QWORD PTR [rip+0x201fa9]        # 7706fe0 <setuid@plt+0x73066e0>
+ 7505037:	48 85 c0             	test   rax,rax
+ 750503a:	74 02                	je     750503e <setuid@plt+0x710473e>
+ 750503c:	ff d0                	call   rax
+ 750503e:	48 83 c4 08          	add    rsp,0x8
+ 7505042:	c3                   	ret    
+ 7505043:	90                   	nop
+ 7505044:	90                   	nop
+ 7505045:	90                   	nop
+ 7505046:	90                   	nop
+ 7505047:	90                   	nop
+ 7505048:	90                   	nop
+ 7505049:	90                   	nop
+ 750504a:	90                   	nop
+ 750504b:	90                   	nop
+ 750504c:	90                   	nop
+ 750504d:	90                   	nop
+ 750504e:	90                   	nop
+ 750504f:	90                   	nop
+ 7505050:	55                   	push   rbp
+ 7505051:	48 89 e5             	mov    rbp,rsp
+ 7505054:	53                   	push   rbx
+ 7505055:	48 83 ec 08          	sub    rsp,0x8
+ 7505059:	80 3d 40 20 20 00 00 	cmp    BYTE PTR [rip+0x202040],0x0        # 77070a0 <setuid@plt+0x73067a0>
+ 7505060:	75 4b                	jne    75050ad <setuid@plt+0x71047ad>
+ 7505062:	bb 40 6e 70 07       	mov    ebx,0x7706e40
+ 7505067:	48 8b 05 3a 20 20 00 	mov    rax,QWORD PTR [rip+0x20203a]        # 77070a8 <setuid@plt+0x73067a8>
+ 750506e:	48 81 eb 38 6e 70 07 	sub    rbx,0x7706e38
+ 7505075:	48 c1 fb 03          	sar    rbx,0x3
+ 7505079:	48 83 eb 01          	sub    rbx,0x1
+ 750507d:	48 39 d8             	cmp    rax,rbx
+ 7505080:	73 24                	jae    75050a6 <setuid@plt+0x71047a6>
+ 7505082:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+ 7505088:	48 83 c0 01          	add    rax,0x1
+ 750508c:	48 89 05 15 20 20 00 	mov    QWORD PTR [rip+0x202015],rax        # 77070a8 <setuid@plt+0x73067a8>
+ 7505093:	ff 14 c5 38 6e 70 07 	call   QWORD PTR [rax*8+0x7706e38]
+ 750509a:	48 8b 05 07 20 20 00 	mov    rax,QWORD PTR [rip+0x202007]        # 77070a8 <setuid@plt+0x73067a8>
+ 75050a1:	48 39 d8             	cmp    rax,rbx
+ 75050a4:	72 e2                	jb     7505088 <setuid@plt+0x7104788>
+ 75050a6:	c6 05 f3 1f 20 00 01 	mov    BYTE PTR [rip+0x201ff3],0x1        # 77070a0 <setuid@plt+0x73067a0>
+ 75050ad:	48 83 c4 08          	add    rsp,0x8
+ 75050b1:	5b                   	pop    rbx
+ 75050b2:	5d                   	pop    rbp
+ 75050b3:	c3                   	ret    
+ 75050b4:	66 66 66 2e 0f 1f 84 	data16 data16 nop WORD PTR cs:[rax+rax*1+0x0]
+ 75050bb:	00 00 00 00 00 
+ 75050c0:	48 83 3d 80 1d 20 00 	cmp    QWORD PTR [rip+0x201d80],0x0        # 7706e48 <setuid@plt+0x7306548>
+ 75050c7:	00 
+ 75050c8:	55                   	push   rbp
+ 75050c9:	48 89 e5             	mov    rbp,rsp
+ 75050cc:	74 12                	je     75050e0 <setuid@plt+0x71047e0>
+ 75050ce:	b8 00 00 00 00       	mov    eax,0x0
+ 75050d3:	48 85 c0             	test   rax,rax
+ 75050d6:	74 08                	je     75050e0 <setuid@plt+0x71047e0>
+ 75050d8:	5d                   	pop    rbp
+ 75050d9:	bf 48 6e 70 07       	mov    edi,0x7706e48
+ 75050de:	ff e0                	jmp    rax
+ 75050e0:	5d                   	pop    rbp
+ 75050e1:	c3                   	ret    
+ 75050e2:	90                   	nop
+ 75050e3:	90                   	nop
+ 75050e4:	55                   	push   rbp
+ 75050e5:	48 89 e5             	mov    rbp,rsp
+ 75050e8:	ba 00 00 00 00       	mov    edx,0x0
+ 75050ed:	be 00 00 00 00       	mov    esi,0x0
+ 75050f2:	bf 00 00 00 00       	mov    edi,0x0
+ 75050f7:	e8 e4 b7 ef f8       	call   4008e0 <mprotect@plt>
+ 75050fc:	5d                   	pop    rbp
+ 75050fd:	c3                   	ret    
+ 75050fe:	55                   	push   rbp
+ 75050ff:	48 89 e5             	mov    rbp,rsp
+ 7505102:	41 b9 00 00 00 00    	mov    r9d,0x0
+ 7505108:	41 b8 00 00 00 00    	mov    r8d,0x0
+ 750510e:	b9 00 00 00 00       	mov    ecx,0x0
+ 7505113:	ba 00 00 00 00       	mov    edx,0x0
+ 7505118:	be 00 00 00 00       	mov    esi,0x0
+ 750511d:	bf 00 00 00 00       	mov    edi,0x0
+ 7505122:	e8 09 b7 ef f8       	call   400830 <mmap@plt>
+ 7505127:	5d                   	pop    rbp
+ 7505128:	c3                   	ret    
+ 7505129:	55                   	push   rbp
+ 750512a:	48 89 e5             	mov    rbp,rsp
+ 750512d:	b8 00 00 00 00       	mov    eax,0x0
+ 7505132:	e8 e9 b6 ef f8       	call   400820 <getuid@plt>
+ 7505137:	5d                   	pop    rbp
+ 7505138:	c3                   	ret    
+ 7505139:	55                   	push   rbp
+ 750513a:	48 89 e5             	mov    rbp,rsp
+ 750513d:	b8 00 00 00 00       	mov    eax,0x0
+ 7505142:	e8 19 b7 ef f8       	call   400860 <geteuid@plt>
+ 7505147:	5d                   	pop    rbp
+ 7505148:	c3                   	ret    
+ 7505149:	55                   	push   rbp
+ 750514a:	48 89 e5             	mov    rbp,rsp
+ 750514d:	5d                   	pop    rbp
+ 750514e:	c3                   	ret    
+ 750514f:	55                   	push   rbp
+ 7505150:	48 89 e5             	mov    rbp,rsp
+ 7505153:	b8 00 00 00 00       	mov    eax,0x0
+ 7505158:	e8 b3 b6 ef f8       	call   400810 <getpid@plt>
+ 750515d:	5d                   	pop    rbp
+ 750515e:	c3                   	ret    
+ 750515f:	55                   	push   rbp
+ 7505160:	48 89 e5             	mov    rbp,rsp
+ 7505163:	b8 00 00 00 00       	mov    eax,0x0
+ 7505168:	e8 83 b7 ef f8       	call   4008f0 <getppid@plt>
+ 750516d:	5d                   	pop    rbp
+ 750516e:	c3                   	ret    
+ 750516f:	55                   	push   rbp
+ 7505170:	48 89 e5             	mov    rbp,rsp
+ 7505173:	bf 0a 00 00 00       	mov    edi,0xa
+ 7505178:	b8 00 00 00 00       	mov    eax,0x0
+ 750517d:	e8 ee b6 ef f8       	call   400870 <close@plt>
+ 7505182:	5d                   	pop    rbp
+ 7505183:	c3                   	ret    
+ 7505184:	55                   	push   rbp
+ 7505185:	48 89 e5             	mov    rbp,rsp
+ 7505188:	bf 00 00 00 00       	mov    edi,0x0
+ 750518d:	b8 00 00 00 00       	mov    eax,0x0
+ 7505192:	e8 19 b7 ef f8       	call   4008b0 <time@plt>
+ 7505197:	5d                   	pop    rbp
+ 7505198:	c3                   	ret    
+ 7505199:	55                   	push   rbp
+ 750519a:	48 89 e5             	mov    rbp,rsp
+ 750519d:	bf 0a 00 00 00       	mov    edi,0xa
+ 75051a2:	b8 00 00 00 00       	mov    eax,0x0
+ 75051a7:	e8 a4 b6 ef f8       	call   400850 <dup@plt>
+ 75051ac:	5d                   	pop    rbp
+ 75051ad:	c3                   	ret    
+ 75051ae:	55                   	push   rbp
+ 75051af:	48 89 e5             	mov    rbp,rsp
+ 75051b2:	be 0a 00 00 00       	mov    esi,0xa
+ 75051b7:	bf 0a 00 00 00       	mov    edi,0xa
+ 75051bc:	b8 00 00 00 00       	mov    eax,0x0
+ 75051c1:	e8 7a b6 ef f8       	call   400840 <dup2@plt>
+ 75051c6:	5d                   	pop    rbp
+ 75051c7:	c3                   	ret    
+ 75051c8:	55                   	push   rbp
+ 75051c9:	48 89 e5             	mov    rbp,rsp
+ 75051cc:	bf 00 00 00 00       	mov    edi,0x0
+ 75051d1:	b8 00 00 00 00       	mov    eax,0x0
+ 75051d6:	e8 15 b6 ef f8       	call   4007f0 <personality@plt>
+ 75051db:	5d                   	pop    rbp
+ 75051dc:	c3                   	ret    
+ 75051dd:	55                   	push   rbp
+ 75051de:	48 89 e5             	mov    rbp,rsp
+ 75051e1:	bf 09 00 00 00       	mov    edi,0x9
+ 75051e6:	b8 00 00 00 00       	mov    eax,0x0
+ 75051eb:	e8 10 b7 ef f8       	call   400900 <setuid@plt>
+ 75051f0:	5d                   	pop    rbp
+ 75051f1:	c3                   	ret    
+ 75051f2:	55                   	push   rbp
+ 75051f3:	48 89 e5             	mov    rbp,rsp
+ 75051f6:	bf 00 00 00 00       	mov    edi,0x0
+ 75051fb:	b8 00 00 00 00       	mov    eax,0x0
+ 7505200:	e8 bb b6 ef f8       	call   4008c0 <nice@plt>
+ 7505205:	5d                   	pop    rbp
+ 7505206:	c3                   	ret    
+ 7505207:	55                   	push   rbp
+ 7505208:	48 89 e5             	mov    rbp,rsp
+ 750520b:	48 83 ec 20          	sub    rsp,0x20
+ 750520f:	8b 05 ef 3a 20 00    	mov    eax,DWORD PTR [rip+0x203aef]        # 7708d04 <setuid@plt+0x7308404>
+ 7505215:	83 e8 30             	sub    eax,0x30
+ 7505218:	48 63 d0             	movsxd rdx,eax
+ 750521b:	b9 50 8d 70 07       	mov    ecx,0x7708d50
+ 7505220:	48 8d 45 e0          	lea    rax,[rbp-0x20]
+ 7505224:	48 89 ce             	mov    rsi,rcx
+ 7505227:	48 89 c7             	mov    rdi,rax
+ 750522a:	e8 71 b6 ef f8       	call   4008a0 <memcpy@plt>
+ 750522f:	c9                   	leave  
+ 7505230:	c3                   	ret    
+ 7505231:	55                   	push   rbp
+ 7505232:	48 89 e5             	mov    rbp,rsp
+ 7505235:	48 83 ec 10          	sub    rsp,0x10
+ 7505239:	89 f1                	mov    ecx,esi
+ 750523b:	89 d0                	mov    eax,edx
+ 750523d:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 7505241:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 7505244:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 7505247:	80 7d fc 0f          	cmp    BYTE PTR [rbp-0x4],0xf
+ 750524b:	75 45                	jne    7505292 <setuid@plt+0x7104992>
+ 750524d:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 7505251:	89 d0                	mov    eax,edx
+ 7505253:	c1 e0 02             	shl    eax,0x2
+ 7505256:	01 d0                	add    eax,edx
+ 7505258:	c1 e0 02             	shl    eax,0x2
+ 750525b:	01 d0                	add    eax,edx
+ 750525d:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 7505260:	3c 04                	cmp    al,0x4
+ 7505262:	75 2e                	jne    7505292 <setuid@plt+0x7104992>
+ 7505264:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 7505268:	89 d0                	mov    eax,edx
+ 750526a:	c1 e0 06             	shl    eax,0x6
+ 750526d:	89 c1                	mov    ecx,eax
+ 750526f:	28 d1                	sub    cl,dl
+ 7505271:	0f b6 55 f8          	movzx  edx,BYTE PTR [rbp-0x8]
+ 7505275:	89 d0                	mov    eax,edx
+ 7505277:	c1 e0 02             	shl    eax,0x2
+ 750527a:	01 d0                	add    eax,edx
+ 750527c:	c1 e0 03             	shl    eax,0x3
+ 750527f:	01 c8                	add    eax,ecx
+ 7505281:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 7505284:	3c 32                	cmp    al,0x32
+ 7505286:	75 0a                	jne    7505292 <setuid@plt+0x7104992>
+ 7505288:	b8 00 00 00 00       	mov    eax,0x0
+ 750528d:	e8 75 ff ff ff       	call   7505207 <setuid@plt+0x7104907>
+ 7505292:	c9                   	leave  
+ 7505293:	c3                   	ret    
+ 7505294:	55                   	push   rbp
+ 7505295:	48 89 e5             	mov    rbp,rsp
+ 7505298:	48 83 ec 10          	sub    rsp,0x10
+ 750529c:	89 f1                	mov    ecx,esi
+ 750529e:	89 d0                	mov    eax,edx
+ 75052a0:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 75052a4:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 75052a7:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 75052aa:	80 7d fc e8          	cmp    BYTE PTR [rbp-0x4],0xe8
+ 75052ae:	75 57                	jne    7505307 <setuid@plt+0x7104a07>
+ 75052b0:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 75052b4:	ba 2b 00 00 00       	mov    edx,0x2b
+ 75052b9:	0f af c2             	imul   eax,edx
+ 75052bc:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 75052bf:	3c 62                	cmp    al,0x62
+ 75052c1:	75 44                	jne    7505307 <setuid@plt+0x7104a07>
+ 75052c3:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 75052c7:	89 c1                	mov    ecx,eax
+ 75052c9:	c1 e1 06             	shl    ecx,0x6
+ 75052cc:	0f b6 55 f8          	movzx  edx,BYTE PTR [rbp-0x8]
+ 75052d0:	89 d0                	mov    eax,edx
+ 75052d2:	c1 e0 04             	shl    eax,0x4
+ 75052d5:	01 d0                	add    eax,edx
+ 75052d7:	01 c8                	add    eax,ecx
+ 75052d9:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 75052dc:	3c 06                	cmp    al,0x6
+ 75052de:	75 27                	jne    7505307 <setuid@plt+0x7104a07>
+ 75052e0:	0f b6 05 68 3a 20 00 	movzx  eax,BYTE PTR [rip+0x203a68]        # 7708d4f <setuid@plt+0x730844f>
+ 75052e7:	0f b6 d0             	movzx  edx,al
+ 75052ea:	0f b6 05 5d 3a 20 00 	movzx  eax,BYTE PTR [rip+0x203a5d]        # 7708d4e <setuid@plt+0x730844e>
+ 75052f1:	0f b6 c8             	movzx  ecx,al
+ 75052f4:	0f b6 05 52 3a 20 00 	movzx  eax,BYTE PTR [rip+0x203a52]        # 7708d4d <setuid@plt+0x730844d>
+ 75052fb:	0f b6 c0             	movzx  eax,al
+ 75052fe:	89 ce                	mov    esi,ecx
+ 7505300:	89 c7                	mov    edi,eax
+ 7505302:	e8 2a ff ff ff       	call   7505231 <setuid@plt+0x7104931>
+ 7505307:	c9                   	leave  
+ 7505308:	c3                   	ret    
+ 7505309:	55                   	push   rbp
+ 750530a:	48 89 e5             	mov    rbp,rsp
+ 750530d:	48 83 ec 10          	sub    rsp,0x10
+ 7505311:	89 f1                	mov    ecx,esi
+ 7505313:	89 d0                	mov    eax,edx
+ 7505315:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 7505319:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 750531c:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 750531f:	80 7d fc ea          	cmp    BYTE PTR [rbp-0x4],0xea
+ 7505323:	75 6d                	jne    7505392 <setuid@plt+0x7104a92>
+ 7505325:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 7505329:	c1 e0 03             	shl    eax,0x3
+ 750532c:	8d 14 c5 00 00 00 00 	lea    edx,[rax*8+0x0]
+ 7505333:	89 d1                	mov    ecx,edx
+ 7505335:	28 c1                	sub    cl,al
+ 7505337:	89 c8                	mov    eax,ecx
+ 7505339:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 750533c:	3c 5a                	cmp    al,0x5a
+ 750533e:	75 52                	jne    7505392 <setuid@plt+0x7104a92>
+ 7505340:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 7505344:	c1 e0 03             	shl    eax,0x3
+ 7505347:	8d 14 c5 00 00 00 00 	lea    edx,[rax*8+0x0]
+ 750534e:	89 d1                	mov    ecx,edx
+ 7505350:	28 c1                	sub    cl,al
+ 7505352:	0f b6 55 f8          	movzx  edx,BYTE PTR [rbp-0x8]
+ 7505356:	89 d0                	mov    eax,edx
+ 7505358:	c1 e0 02             	shl    eax,0x2
+ 750535b:	01 d0                	add    eax,edx
+ 750535d:	c1 e0 02             	shl    eax,0x2
+ 7505360:	01 d0                	add    eax,edx
+ 7505362:	01 c8                	add    eax,ecx
+ 7505364:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 7505367:	3c 11                	cmp    al,0x11
+ 7505369:	75 27                	jne    7505392 <setuid@plt+0x7104a92>
+ 750536b:	0f b6 05 da 39 20 00 	movzx  eax,BYTE PTR [rip+0x2039da]        # 7708d4c <setuid@plt+0x730844c>
+ 7505372:	0f b6 d0             	movzx  edx,al
+ 7505375:	0f b6 05 cf 39 20 00 	movzx  eax,BYTE PTR [rip+0x2039cf]        # 7708d4b <setuid@plt+0x730844b>
+ 750537c:	0f b6 c8             	movzx  ecx,al
+ 750537f:	0f b6 05 c4 39 20 00 	movzx  eax,BYTE PTR [rip+0x2039c4]        # 7708d4a <setuid@plt+0x730844a>
+ 7505386:	0f b6 c0             	movzx  eax,al
+ 7505389:	89 ce                	mov    esi,ecx
+ 750538b:	89 c7                	mov    edi,eax
+ 750538d:	e8 02 ff ff ff       	call   7505294 <setuid@plt+0x7104994>
+ 7505392:	c9                   	leave  
+ 7505393:	c3                   	ret    
+ 7505394:	55                   	push   rbp
+ 7505395:	48 89 e5             	mov    rbp,rsp
+ 7505398:	48 83 ec 10          	sub    rsp,0x10
+ 750539c:	89 f1                	mov    ecx,esi
+ 750539e:	89 d0                	mov    eax,edx
+ 75053a0:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 75053a4:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 75053a7:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 75053aa:	80 7d fc 37          	cmp    BYTE PTR [rbp-0x4],0x37
+ 75053ae:	75 66                	jne    7505416 <setuid@plt+0x7104b16>
+ 75053b0:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 75053b4:	ba 63 00 00 00       	mov    edx,0x63
+ 75053b9:	0f af c2             	imul   eax,edx
+ 75053bc:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 75053bf:	3c 0a                	cmp    al,0xa
+ 75053c1:	75 53                	jne    7505416 <setuid@plt+0x7104b16>
+ 75053c3:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 75053c7:	88 45 f3             	mov    BYTE PTR [rbp-0xd],al
+ 75053ca:	ba 5b 00 00 00       	mov    edx,0x5b
+ 75053cf:	0f b6 45 f3          	movzx  eax,BYTE PTR [rbp-0xd]
+ 75053d3:	0f af c2             	imul   eax,edx
+ 75053d6:	89 c1                	mov    ecx,eax
+ 75053d8:	0f b6 55 f8          	movzx  edx,BYTE PTR [rbp-0x8]
+ 75053dc:	89 d0                	mov    eax,edx
+ 75053de:	c1 e0 03             	shl    eax,0x3
+ 75053e1:	01 d0                	add    eax,edx
+ 75053e3:	c1 e0 03             	shl    eax,0x3
+ 75053e6:	01 c8                	add    eax,ecx
+ 75053e8:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 75053eb:	3c 32                	cmp    al,0x32
+ 75053ed:	75 27                	jne    7505416 <setuid@plt+0x7104b16>
+ 75053ef:	0f b6 05 53 39 20 00 	movzx  eax,BYTE PTR [rip+0x203953]        # 7708d49 <setuid@plt+0x7308449>
+ 75053f6:	0f b6 d0             	movzx  edx,al
+ 75053f9:	0f b6 05 48 39 20 00 	movzx  eax,BYTE PTR [rip+0x203948]        # 7708d48 <setuid@plt+0x7308448>
+ 7505400:	0f b6 c8             	movzx  ecx,al
+ 7505403:	0f b6 05 3d 39 20 00 	movzx  eax,BYTE PTR [rip+0x20393d]        # 7708d47 <setuid@plt+0x7308447>
+ 750540a:	0f b6 c0             	movzx  eax,al
+ 750540d:	89 ce                	mov    esi,ecx
+ 750540f:	89 c7                	mov    edi,eax
+ 7505411:	e8 f3 fe ff ff       	call   7505309 <setuid@plt+0x7104a09>
+ 7505416:	c9                   	leave  
+ 7505417:	c3                   	ret    
+ 7505418:	55                   	push   rbp
+ 7505419:	48 89 e5             	mov    rbp,rsp
+ 750541c:	48 83 ec 10          	sub    rsp,0x10
+ 7505420:	89 f1                	mov    ecx,esi
+ 7505422:	89 d0                	mov    eax,edx
+ 7505424:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 7505428:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 750542b:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 750542e:	80 7d fc 19          	cmp    BYTE PTR [rbp-0x4],0x19
+ 7505432:	75 54                	jne    7505488 <setuid@plt+0x7104b88>
+ 7505434:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 7505438:	01 c0                	add    eax,eax
+ 750543a:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 750543d:	3c 62                	cmp    al,0x62
+ 750543f:	75 47                	jne    7505488 <setuid@plt+0x7104b88>
+ 7505441:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 7505445:	89 d0                	mov    eax,edx
+ 7505447:	01 c0                	add    eax,eax
+ 7505449:	8d 0c 10             	lea    ecx,[rax+rdx*1]
+ 750544c:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 7505450:	ba 2a 00 00 00       	mov    edx,0x2a
+ 7505455:	0f af c2             	imul   eax,edx
+ 7505458:	01 c8                	add    eax,ecx
+ 750545a:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 750545d:	3c 08                	cmp    al,0x8
+ 750545f:	75 27                	jne    7505488 <setuid@plt+0x7104b88>
+ 7505461:	0f b6 05 de 38 20 00 	movzx  eax,BYTE PTR [rip+0x2038de]        # 7708d46 <setuid@plt+0x7308446>
+ 7505468:	0f b6 d0             	movzx  edx,al
+ 750546b:	0f b6 05 d3 38 20 00 	movzx  eax,BYTE PTR [rip+0x2038d3]        # 7708d45 <setuid@plt+0x7308445>
+ 7505472:	0f b6 c8             	movzx  ecx,al
+ 7505475:	0f b6 05 c8 38 20 00 	movzx  eax,BYTE PTR [rip+0x2038c8]        # 7708d44 <setuid@plt+0x7308444>
+ 750547c:	0f b6 c0             	movzx  eax,al
+ 750547f:	89 ce                	mov    esi,ecx
+ 7505481:	89 c7                	mov    edi,eax
+ 7505483:	e8 0c ff ff ff       	call   7505394 <setuid@plt+0x7104a94>
+ 7505488:	c9                   	leave  
+ 7505489:	c3                   	ret    
+ 750548a:	55                   	push   rbp
+ 750548b:	48 89 e5             	mov    rbp,rsp
+ 750548e:	48 83 ec 10          	sub    rsp,0x10
+ 7505492:	89 f1                	mov    ecx,esi
+ 7505494:	89 d0                	mov    eax,edx
+ 7505496:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 750549a:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 750549d:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 75054a0:	80 7d fc ba          	cmp    BYTE PTR [rbp-0x4],0xba
+ 75054a4:	75 64                	jne    750550a <setuid@plt+0x7104c0a>
+ 75054a6:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 75054aa:	ba 4a 00 00 00       	mov    edx,0x4a
+ 75054af:	0f af c2             	imul   eax,edx
+ 75054b2:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 75054b5:	3c 35                	cmp    al,0x35
+ 75054b7:	75 51                	jne    750550a <setuid@plt+0x7104c0a>
+ 75054b9:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 75054bd:	88 45 f3             	mov    BYTE PTR [rbp-0xd],al
+ 75054c0:	ba 4c 00 00 00       	mov    edx,0x4c
+ 75054c5:	0f b6 45 f3          	movzx  eax,BYTE PTR [rbp-0xd]
+ 75054c9:	0f af c2             	imul   eax,edx
+ 75054cc:	89 c2                	mov    edx,eax
+ 75054ce:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 75054d2:	b9 35 00 00 00       	mov    ecx,0x35
+ 75054d7:	0f af c1             	imul   eax,ecx
+ 75054da:	01 d0                	add    eax,edx
+ 75054dc:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 75054df:	3c 27                	cmp    al,0x27
+ 75054e1:	75 27                	jne    750550a <setuid@plt+0x7104c0a>
+ 75054e3:	0f b6 05 59 38 20 00 	movzx  eax,BYTE PTR [rip+0x203859]        # 7708d43 <setuid@plt+0x7308443>
+ 75054ea:	0f b6 d0             	movzx  edx,al
+ 75054ed:	0f b6 05 4e 38 20 00 	movzx  eax,BYTE PTR [rip+0x20384e]        # 7708d42 <setuid@plt+0x7308442>
+ 75054f4:	0f b6 c8             	movzx  ecx,al
+ 75054f7:	0f b6 05 43 38 20 00 	movzx  eax,BYTE PTR [rip+0x203843]        # 7708d41 <setuid@plt+0x7308441>
+ 75054fe:	0f b6 c0             	movzx  eax,al
+ 7505501:	89 ce                	mov    esi,ecx
+ 7505503:	89 c7                	mov    edi,eax
+ 7505505:	e8 0e ff ff ff       	call   7505418 <setuid@plt+0x7104b18>
+ 750550a:	c9                   	leave  
+ 750550b:	c3                   	ret    
+ 750550c:	55                   	push   rbp
+ 750550d:	48 89 e5             	mov    rbp,rsp
+ 7505510:	48 83 ec 10          	sub    rsp,0x10
+ 7505514:	89 f1                	mov    ecx,esi
+ 7505516:	89 d0                	mov    eax,edx
+ 7505518:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 750551c:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 750551f:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 7505522:	80 7d fc fd          	cmp    BYTE PTR [rbp-0x4],0xfd
+ 7505526:	75 6b                	jne    7505593 <setuid@plt+0x7104c93>
+ 7505528:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 750552c:	89 d0                	mov    eax,edx
+ 750552e:	01 c0                	add    eax,eax
+ 7505530:	01 d0                	add    eax,edx
+ 7505532:	8d 14 c5 00 00 00 00 	lea    edx,[rax*8+0x0]
+ 7505539:	01 d0                	add    eax,edx
+ 750553b:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 750553e:	3c 09                	cmp    al,0x9
+ 7505540:	75 51                	jne    7505593 <setuid@plt+0x7104c93>
+ 7505542:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 7505546:	88 45 f3             	mov    BYTE PTR [rbp-0xd],al
+ 7505549:	ba 47 00 00 00       	mov    edx,0x47
+ 750554e:	0f b6 45 f3          	movzx  eax,BYTE PTR [rbp-0xd]
+ 7505552:	0f af c2             	imul   eax,edx
+ 7505555:	89 c2                	mov    edx,eax
+ 7505557:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 750555b:	b9 43 00 00 00       	mov    ecx,0x43
+ 7505560:	0f af c1             	imul   eax,ecx
+ 7505563:	01 d0                	add    eax,edx
+ 7505565:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 7505568:	3c 40                	cmp    al,0x40
+ 750556a:	75 27                	jne    7505593 <setuid@plt+0x7104c93>
+ 750556c:	0f b6 05 cd 37 20 00 	movzx  eax,BYTE PTR [rip+0x2037cd]        # 7708d40 <setuid@plt+0x7308440>
+ 7505573:	0f b6 d0             	movzx  edx,al
+ 7505576:	0f b6 05 c2 37 20 00 	movzx  eax,BYTE PTR [rip+0x2037c2]        # 7708d3f <setuid@plt+0x730843f>
+ 750557d:	0f b6 c8             	movzx  ecx,al
+ 7505580:	0f b6 05 b7 37 20 00 	movzx  eax,BYTE PTR [rip+0x2037b7]        # 7708d3e <setuid@plt+0x730843e>
+ 7505587:	0f b6 c0             	movzx  eax,al
+ 750558a:	89 ce                	mov    esi,ecx
+ 750558c:	89 c7                	mov    edi,eax
+ 750558e:	e8 f7 fe ff ff       	call   750548a <setuid@plt+0x7104b8a>
+ 7505593:	c9                   	leave  
+ 7505594:	c3                   	ret    
+ 7505595:	55                   	push   rbp
+ 7505596:	48 89 e5             	mov    rbp,rsp
+ 7505599:	48 83 ec 10          	sub    rsp,0x10
+ 750559d:	89 f1                	mov    ecx,esi
+ 750559f:	89 d0                	mov    eax,edx
+ 75055a1:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 75055a5:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 75055a8:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 75055ab:	80 7d fc 2e          	cmp    BYTE PTR [rbp-0x4],0x2e
+ 75055af:	75 50                	jne    7505601 <setuid@plt+0x7104d01>
+ 75055b1:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 75055b5:	89 d0                	mov    eax,edx
+ 75055b7:	01 c0                	add    eax,eax
+ 75055b9:	01 d0                	add    eax,edx
+ 75055bb:	01 c0                	add    eax,eax
+ 75055bd:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 75055c0:	3c 21                	cmp    al,0x21
+ 75055c2:	75 3d                	jne    7505601 <setuid@plt+0x7104d01>
+ 75055c4:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 75055c8:	ba 5d 00 00 00       	mov    edx,0x5d
+ 75055cd:	0f af c2             	imul   eax,edx
+ 75055d0:	02 45 f8             	add    al,BYTE PTR [rbp-0x8]
+ 75055d3:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 75055d6:	3c 50                	cmp    al,0x50
+ 75055d8:	75 27                	jne    7505601 <setuid@plt+0x7104d01>
+ 75055da:	0f b6 05 5c 37 20 00 	movzx  eax,BYTE PTR [rip+0x20375c]        # 7708d3d <setuid@plt+0x730843d>
+ 75055e1:	0f b6 d0             	movzx  edx,al
+ 75055e4:	0f b6 05 51 37 20 00 	movzx  eax,BYTE PTR [rip+0x203751]        # 7708d3c <setuid@plt+0x730843c>
+ 75055eb:	0f b6 c8             	movzx  ecx,al
+ 75055ee:	0f b6 05 46 37 20 00 	movzx  eax,BYTE PTR [rip+0x203746]        # 7708d3b <setuid@plt+0x730843b>
+ 75055f5:	0f b6 c0             	movzx  eax,al
+ 75055f8:	89 ce                	mov    esi,ecx
+ 75055fa:	89 c7                	mov    edi,eax
+ 75055fc:	e8 0b ff ff ff       	call   750550c <setuid@plt+0x7104c0c>
+ 7505601:	c9                   	leave  
+ 7505602:	c3                   	ret    
+ 7505603:	55                   	push   rbp
+ 7505604:	48 89 e5             	mov    rbp,rsp
+ 7505607:	53                   	push   rbx
+ 7505608:	48 83 ec 18          	sub    rsp,0x18
+ 750560c:	89 f1                	mov    ecx,esi
+ 750560e:	89 d0                	mov    eax,edx
+ 7505610:	40 88 7d ec          	mov    BYTE PTR [rbp-0x14],dil
+ 7505614:	88 4d e8             	mov    BYTE PTR [rbp-0x18],cl
+ 7505617:	88 45 e4             	mov    BYTE PTR [rbp-0x1c],al
+ 750561a:	80 7d ec 12          	cmp    BYTE PTR [rbp-0x14],0x12
+ 750561e:	75 66                	jne    7505686 <setuid@plt+0x7104d86>
+ 7505620:	0f b6 55 ec          	movzx  edx,BYTE PTR [rbp-0x14]
+ 7505624:	89 d0                	mov    eax,edx
+ 7505626:	c1 e0 04             	shl    eax,0x4
+ 7505629:	28 d0                	sub    al,dl
+ 750562b:	2a 45 e8             	sub    al,BYTE PTR [rbp-0x18]
+ 750562e:	3c 27                	cmp    al,0x27
+ 7505630:	75 54                	jne    7505686 <setuid@plt+0x7104d86>
+ 7505632:	0f b6 55 ec          	movzx  edx,BYTE PTR [rbp-0x14]
+ 7505636:	89 d0                	mov    eax,edx
+ 7505638:	c1 e0 02             	shl    eax,0x2
+ 750563b:	01 d0                	add    eax,edx
+ 750563d:	c1 e0 02             	shl    eax,0x2
+ 7505640:	89 c2                	mov    edx,eax
+ 7505642:	0f b6 45 e8          	movzx  eax,BYTE PTR [rbp-0x18]
+ 7505646:	c1 e0 03             	shl    eax,0x3
+ 7505649:	8d 0c c5 00 00 00 00 	lea    ecx,[rax*8+0x0]
+ 7505650:	89 cb                	mov    ebx,ecx
+ 7505652:	28 c3                	sub    bl,al
+ 7505654:	89 d8                	mov    eax,ebx
+ 7505656:	01 d0                	add    eax,edx
+ 7505658:	2a 45 e4             	sub    al,BYTE PTR [rbp-0x1c]
+ 750565b:	3c 21                	cmp    al,0x21
+ 750565d:	75 27                	jne    7505686 <setuid@plt+0x7104d86>
+ 750565f:	0f b6 05 d4 36 20 00 	movzx  eax,BYTE PTR [rip+0x2036d4]        # 7708d3a <setuid@plt+0x730843a>
+ 7505666:	0f b6 d0             	movzx  edx,al
+ 7505669:	0f b6 05 c9 36 20 00 	movzx  eax,BYTE PTR [rip+0x2036c9]        # 7708d39 <setuid@plt+0x7308439>
+ 7505670:	0f b6 c8             	movzx  ecx,al
+ 7505673:	0f b6 05 be 36 20 00 	movzx  eax,BYTE PTR [rip+0x2036be]        # 7708d38 <setuid@plt+0x7308438>
+ 750567a:	0f b6 c0             	movzx  eax,al
+ 750567d:	89 ce                	mov    esi,ecx
+ 750567f:	89 c7                	mov    edi,eax
+ 7505681:	e8 0f ff ff ff       	call   7505595 <setuid@plt+0x7104c95>
+ 7505686:	48 83 c4 18          	add    rsp,0x18
+ 750568a:	5b                   	pop    rbx
+ 750568b:	5d                   	pop    rbp
+ 750568c:	c3                   	ret    
+ 750568d:	55                   	push   rbp
+ 750568e:	48 89 e5             	mov    rbp,rsp
+ 7505691:	48 83 ec 10          	sub    rsp,0x10
+ 7505695:	89 f1                	mov    ecx,esi
+ 7505697:	89 d0                	mov    eax,edx
+ 7505699:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 750569d:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 75056a0:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 75056a3:	80 7d fc ed          	cmp    BYTE PTR [rbp-0x4],0xed
+ 75056a7:	75 5e                	jne    7505707 <setuid@plt+0x7104e07>
+ 75056a9:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 75056ad:	ba 62 00 00 00       	mov    edx,0x62
+ 75056b2:	0f af c2             	imul   eax,edx
+ 75056b5:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 75056b8:	3c 15                	cmp    al,0x15
+ 75056ba:	75 4b                	jne    7505707 <setuid@plt+0x7104e07>
+ 75056bc:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 75056c0:	89 d0                	mov    eax,edx
+ 75056c2:	01 c0                	add    eax,eax
+ 75056c4:	01 d0                	add    eax,edx
+ 75056c6:	c1 e0 04             	shl    eax,0x4
+ 75056c9:	89 c2                	mov    edx,eax
+ 75056cb:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 75056cf:	b9 56 00 00 00       	mov    ecx,0x56
+ 75056d4:	0f af c1             	imul   eax,ecx
+ 75056d7:	01 d0                	add    eax,edx
+ 75056d9:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 75056dc:	3c 57                	cmp    al,0x57
+ 75056de:	75 27                	jne    7505707 <setuid@plt+0x7104e07>
+ 75056e0:	0f b6 05 50 36 20 00 	movzx  eax,BYTE PTR [rip+0x203650]        # 7708d37 <setuid@plt+0x7308437>
+ 75056e7:	0f b6 d0             	movzx  edx,al
+ 75056ea:	0f b6 05 45 36 20 00 	movzx  eax,BYTE PTR [rip+0x203645]        # 7708d36 <setuid@plt+0x7308436>
+ 75056f1:	0f b6 c8             	movzx  ecx,al
+ 75056f4:	0f b6 05 3a 36 20 00 	movzx  eax,BYTE PTR [rip+0x20363a]        # 7708d35 <setuid@plt+0x7308435>
+ 75056fb:	0f b6 c0             	movzx  eax,al
+ 75056fe:	89 ce                	mov    esi,ecx
+ 7505700:	89 c7                	mov    edi,eax
+ 7505702:	e8 fc fe ff ff       	call   7505603 <setuid@plt+0x7104d03>
+ 7505707:	c9                   	leave  
+ 7505708:	c3                   	ret    
+ 7505709:	55                   	push   rbp
+ 750570a:	48 89 e5             	mov    rbp,rsp
+ 750570d:	48 83 ec 10          	sub    rsp,0x10
+ 7505711:	89 f1                	mov    ecx,esi
+ 7505713:	89 d0                	mov    eax,edx
+ 7505715:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 7505719:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 750571c:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 750571f:	80 7d fc 1a          	cmp    BYTE PTR [rbp-0x4],0x1a
+ 7505723:	75 4d                	jne    7505772 <setuid@plt+0x7104e72>
+ 7505725:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 7505729:	ba 62 00 00 00       	mov    edx,0x62
+ 750572e:	0f af c2             	imul   eax,edx
+ 7505731:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 7505734:	3c 17                	cmp    al,0x17
+ 7505736:	75 3a                	jne    7505772 <setuid@plt+0x7104e72>
+ 7505738:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 750573c:	ba 47 00 00 00       	mov    edx,0x47
+ 7505741:	0f af c2             	imul   eax,edx
+ 7505744:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 7505747:	3c 48                	cmp    al,0x48
+ 7505749:	75 27                	jne    7505772 <setuid@plt+0x7104e72>
+ 750574b:	0f b6 05 e2 35 20 00 	movzx  eax,BYTE PTR [rip+0x2035e2]        # 7708d34 <setuid@plt+0x7308434>
+ 7505752:	0f b6 d0             	movzx  edx,al
+ 7505755:	0f b6 05 d7 35 20 00 	movzx  eax,BYTE PTR [rip+0x2035d7]        # 7708d33 <setuid@plt+0x7308433>
+ 750575c:	0f b6 c8             	movzx  ecx,al
+ 750575f:	0f b6 05 cc 35 20 00 	movzx  eax,BYTE PTR [rip+0x2035cc]        # 7708d32 <setuid@plt+0x7308432>
+ 7505766:	0f b6 c0             	movzx  eax,al
+ 7505769:	89 ce                	mov    esi,ecx
+ 750576b:	89 c7                	mov    edi,eax
+ 750576d:	e8 1b ff ff ff       	call   750568d <setuid@plt+0x7104d8d>
+ 7505772:	c9                   	leave  
+ 7505773:	c3                   	ret    
+ 7505774:	55                   	push   rbp
+ 7505775:	48 89 e5             	mov    rbp,rsp
+ 7505778:	48 83 ec 10          	sub    rsp,0x10
+ 750577c:	89 f1                	mov    ecx,esi
+ 750577e:	89 d0                	mov    eax,edx
+ 7505780:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 7505784:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 7505787:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 750578a:	80 7d fc 2d          	cmp    BYTE PTR [rbp-0x4],0x2d
+ 750578e:	75 5e                	jne    75057ee <setuid@plt+0x7104eee>
+ 7505790:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 7505794:	ba 62 00 00 00       	mov    edx,0x62
+ 7505799:	0f af c2             	imul   eax,edx
+ 750579c:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 750579f:	3c 25                	cmp    al,0x25
+ 75057a1:	75 4b                	jne    75057ee <setuid@plt+0x7104eee>
+ 75057a3:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 75057a7:	8d 0c c5 00 00 00 00 	lea    ecx,[rax*8+0x0]
+ 75057ae:	0f b6 55 f8          	movzx  edx,BYTE PTR [rbp-0x8]
+ 75057b2:	89 d0                	mov    eax,edx
+ 75057b4:	c1 e0 02             	shl    eax,0x2
+ 75057b7:	01 d0                	add    eax,edx
+ 75057b9:	c1 e0 02             	shl    eax,0x2
+ 75057bc:	01 d0                	add    eax,edx
+ 75057be:	01 c8                	add    eax,ecx
+ 75057c0:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 75057c3:	3c 27                	cmp    al,0x27
+ 75057c5:	75 27                	jne    75057ee <setuid@plt+0x7104eee>
+ 75057c7:	0f b6 05 63 35 20 00 	movzx  eax,BYTE PTR [rip+0x203563]        # 7708d31 <setuid@plt+0x7308431>
+ 75057ce:	0f b6 d0             	movzx  edx,al
+ 75057d1:	0f b6 05 58 35 20 00 	movzx  eax,BYTE PTR [rip+0x203558]        # 7708d30 <setuid@plt+0x7308430>
+ 75057d8:	0f b6 c8             	movzx  ecx,al
+ 75057db:	0f b6 05 4d 35 20 00 	movzx  eax,BYTE PTR [rip+0x20354d]        # 7708d2f <setuid@plt+0x730842f>
+ 75057e2:	0f b6 c0             	movzx  eax,al
+ 75057e5:	89 ce                	mov    esi,ecx
+ 75057e7:	89 c7                	mov    edi,eax
+ 75057e9:	e8 1b ff ff ff       	call   7505709 <setuid@plt+0x7104e09>
+ 75057ee:	c9                   	leave  
+ 75057ef:	c3                   	ret    
+ 75057f0:	55                   	push   rbp
+ 75057f1:	48 89 e5             	mov    rbp,rsp
+ 75057f4:	48 83 ec 10          	sub    rsp,0x10
+ 75057f8:	89 f1                	mov    ecx,esi
+ 75057fa:	89 d0                	mov    eax,edx
+ 75057fc:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 7505800:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 7505803:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 7505806:	80 7d fc cb          	cmp    BYTE PTR [rbp-0x4],0xcb
+ 750580a:	75 61                	jne    750586d <setuid@plt+0x7104f6d>
+ 750580c:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 7505810:	89 d0                	mov    eax,edx
+ 7505812:	01 c0                	add    eax,eax
+ 7505814:	01 d0                	add    eax,edx
+ 7505816:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 7505819:	3c 37                	cmp    al,0x37
+ 750581b:	75 50                	jne    750586d <setuid@plt+0x7104f6d>
+ 750581d:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 7505821:	88 45 f3             	mov    BYTE PTR [rbp-0xd],al
+ 7505824:	ba 59 00 00 00       	mov    edx,0x59
+ 7505829:	0f b6 45 f3          	movzx  eax,BYTE PTR [rbp-0xd]
+ 750582d:	0f af c2             	imul   eax,edx
+ 7505830:	89 c1                	mov    ecx,eax
+ 7505832:	0f b6 55 f8          	movzx  edx,BYTE PTR [rbp-0x8]
+ 7505836:	89 d0                	mov    eax,edx
+ 7505838:	c1 e0 03             	shl    eax,0x3
+ 750583b:	01 d0                	add    eax,edx
+ 750583d:	01 c8                	add    eax,ecx
+ 750583f:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 7505842:	3c 1e                	cmp    al,0x1e
+ 7505844:	75 27                	jne    750586d <setuid@plt+0x7104f6d>
+ 7505846:	0f b6 05 e1 34 20 00 	movzx  eax,BYTE PTR [rip+0x2034e1]        # 7708d2e <setuid@plt+0x730842e>
+ 750584d:	0f b6 d0             	movzx  edx,al
+ 7505850:	0f b6 05 d6 34 20 00 	movzx  eax,BYTE PTR [rip+0x2034d6]        # 7708d2d <setuid@plt+0x730842d>
+ 7505857:	0f b6 c8             	movzx  ecx,al
+ 750585a:	0f b6 05 cb 34 20 00 	movzx  eax,BYTE PTR [rip+0x2034cb]        # 7708d2c <setuid@plt+0x730842c>
+ 7505861:	0f b6 c0             	movzx  eax,al
+ 7505864:	89 ce                	mov    esi,ecx
+ 7505866:	89 c7                	mov    edi,eax
+ 7505868:	e8 07 ff ff ff       	call   7505774 <setuid@plt+0x7104e74>
+ 750586d:	c9                   	leave  
+ 750586e:	c3                   	ret    
+ 750586f:	55                   	push   rbp
+ 7505870:	48 89 e5             	mov    rbp,rsp
+ 7505873:	48 83 ec 10          	sub    rsp,0x10
+ 7505877:	89 f1                	mov    ecx,esi
+ 7505879:	89 d0                	mov    eax,edx
+ 750587b:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 750587f:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 7505882:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 7505885:	80 7d fc 31          	cmp    BYTE PTR [rbp-0x4],0x31
+ 7505889:	75 5f                	jne    75058ea <setuid@plt+0x7104fea>
+ 750588b:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 750588f:	ba 37 00 00 00       	mov    edx,0x37
+ 7505894:	0f af c2             	imul   eax,edx
+ 7505897:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 750589a:	3c 14                	cmp    al,0x14
+ 750589c:	75 4c                	jne    75058ea <setuid@plt+0x7104fea>
+ 750589e:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 75058a2:	89 d0                	mov    eax,edx
+ 75058a4:	c1 e0 02             	shl    eax,0x2
+ 75058a7:	01 d0                	add    eax,edx
+ 75058a9:	c1 e0 04             	shl    eax,0x4
+ 75058ac:	89 c2                	mov    edx,eax
+ 75058ae:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 75058b2:	b9 32 00 00 00       	mov    ecx,0x32
+ 75058b7:	0f af c1             	imul   eax,ecx
+ 75058ba:	01 d0                	add    eax,edx
+ 75058bc:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 75058bf:	3c 60                	cmp    al,0x60
+ 75058c1:	75 27                	jne    75058ea <setuid@plt+0x7104fea>
+ 75058c3:	0f b6 05 61 34 20 00 	movzx  eax,BYTE PTR [rip+0x203461]        # 7708d2b <setuid@plt+0x730842b>
+ 75058ca:	0f b6 d0             	movzx  edx,al
+ 75058cd:	0f b6 05 56 34 20 00 	movzx  eax,BYTE PTR [rip+0x203456]        # 7708d2a <setuid@plt+0x730842a>
+ 75058d4:	0f b6 c8             	movzx  ecx,al
+ 75058d7:	0f b6 05 4b 34 20 00 	movzx  eax,BYTE PTR [rip+0x20344b]        # 7708d29 <setuid@plt+0x7308429>
+ 75058de:	0f b6 c0             	movzx  eax,al
+ 75058e1:	89 ce                	mov    esi,ecx
+ 75058e3:	89 c7                	mov    edi,eax
+ 75058e5:	e8 06 ff ff ff       	call   75057f0 <setuid@plt+0x7104ef0>
+ 75058ea:	c9                   	leave  
+ 75058eb:	c3                   	ret    
+ 75058ec:	55                   	push   rbp
+ 75058ed:	48 89 e5             	mov    rbp,rsp
+ 75058f0:	48 83 ec 10          	sub    rsp,0x10
+ 75058f4:	89 f1                	mov    ecx,esi
+ 75058f6:	89 d0                	mov    eax,edx
+ 75058f8:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 75058fc:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 75058ff:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 7505902:	80 7d fc 01          	cmp    BYTE PTR [rbp-0x4],0x1
+ 7505906:	75 74                	jne    750597c <setuid@plt+0x710507c>
+ 7505908:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 750590c:	c1 e0 02             	shl    eax,0x2
+ 750590f:	8d 14 c5 00 00 00 00 	lea    edx,[rax*8+0x0]
+ 7505916:	89 d1                	mov    ecx,edx
+ 7505918:	28 c1                	sub    cl,al
+ 750591a:	89 c8                	mov    eax,ecx
+ 750591c:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 750591f:	3c 4e                	cmp    al,0x4e
+ 7505921:	75 59                	jne    750597c <setuid@plt+0x710507c>
+ 7505923:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 7505927:	88 45 f3             	mov    BYTE PTR [rbp-0xd],al
+ 750592a:	ba 1a 00 00 00       	mov    edx,0x1a
+ 750592f:	0f b6 45 f3          	movzx  eax,BYTE PTR [rbp-0xd]
+ 7505933:	0f af c2             	imul   eax,edx
+ 7505936:	89 c1                	mov    ecx,eax
+ 7505938:	0f b6 55 f8          	movzx  edx,BYTE PTR [rbp-0x8]
+ 750593c:	89 d0                	mov    eax,edx
+ 750593e:	c1 e0 03             	shl    eax,0x3
+ 7505941:	01 d0                	add    eax,edx
+ 7505943:	8d 14 c5 00 00 00 00 	lea    edx,[rax*8+0x0]
+ 750594a:	01 d0                	add    eax,edx
+ 750594c:	01 c8                	add    eax,ecx
+ 750594e:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 7505951:	3c 3a                	cmp    al,0x3a
+ 7505953:	75 27                	jne    750597c <setuid@plt+0x710507c>
+ 7505955:	0f b6 05 cc 33 20 00 	movzx  eax,BYTE PTR [rip+0x2033cc]        # 7708d28 <setuid@plt+0x7308428>
+ 750595c:	0f b6 d0             	movzx  edx,al
+ 750595f:	0f b6 05 c1 33 20 00 	movzx  eax,BYTE PTR [rip+0x2033c1]        # 7708d27 <setuid@plt+0x7308427>
+ 7505966:	0f b6 c8             	movzx  ecx,al
+ 7505969:	0f b6 05 b6 33 20 00 	movzx  eax,BYTE PTR [rip+0x2033b6]        # 7708d26 <setuid@plt+0x7308426>
+ 7505970:	0f b6 c0             	movzx  eax,al
+ 7505973:	89 ce                	mov    esi,ecx
+ 7505975:	89 c7                	mov    edi,eax
+ 7505977:	e8 f3 fe ff ff       	call   750586f <setuid@plt+0x7104f6f>
+ 750597c:	c9                   	leave  
+ 750597d:	c3                   	ret    
+ 750597e:	55                   	push   rbp
+ 750597f:	48 89 e5             	mov    rbp,rsp
+ 7505982:	48 83 ec 10          	sub    rsp,0x10
+ 7505986:	89 f1                	mov    ecx,esi
+ 7505988:	89 d0                	mov    eax,edx
+ 750598a:	40 88 7d fc          	mov    BYTE PTR [rbp-0x4],dil
+ 750598e:	88 4d f8             	mov    BYTE PTR [rbp-0x8],cl
+ 7505991:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+ 7505994:	80 7d fc 34          	cmp    BYTE PTR [rbp-0x4],0x34
+ 7505998:	75 5f                	jne    75059f9 <setuid@plt+0x71050f9>
+ 750599a:	0f b6 45 fc          	movzx  eax,BYTE PTR [rbp-0x4]
+ 750599e:	ba 45 00 00 00       	mov    edx,0x45
+ 75059a3:	0f af c2             	imul   eax,edx
+ 75059a6:	2a 45 f8             	sub    al,BYTE PTR [rbp-0x8]
+ 75059a9:	3c 0c                	cmp    al,0xc
+ 75059ab:	75 4c                	jne    75059f9 <setuid@plt+0x71050f9>
+ 75059ad:	0f b6 55 fc          	movzx  edx,BYTE PTR [rbp-0x4]
+ 75059b1:	89 d0                	mov    eax,edx
+ 75059b3:	c1 e0 02             	shl    eax,0x2
+ 75059b6:	01 d0                	add    eax,edx
+ 75059b8:	c1 e0 02             	shl    eax,0x2
+ 75059bb:	89 c2                	mov    edx,eax
+ 75059bd:	0f b6 45 f8          	movzx  eax,BYTE PTR [rbp-0x8]
+ 75059c1:	b9 5f 00 00 00       	mov    ecx,0x5f
+ 75059c6:	0f af c1             	imul   eax,ecx
+ 75059c9:	01 d0                	add    eax,edx
+ 75059cb:	2a 45 f4             	sub    al,BYTE PTR [rbp-0xc]
+ 75059ce:	3c 4a                	cmp    al,0x4a
+ 75059d0:	75 27                	jne    75059f9 <setuid@plt+0x71050f9>
+ 75059d2:	0f b6 05 4c 33 20 00 	movzx  eax,BYTE PTR [rip+0x20334c]        # 7708d25 <setuid@plt+0x7308425>
+ 75059d9:	0f b6 d0             	movzx  edx,al
+ 75059dc:	0f b6 05 41 33 20 00 	movzx  eax,BYTE PTR [rip+0x203341]        # 7708d24 <setuid@plt+0x7308424>
+ 75059e3:	0f b6 c8             	movzx  ecx,al
+ 75059e6:	0f b6 05 36 33 20 00 	movzx  eax,BYTE PTR [rip+0x203336]        # 7708d23 <setuid@plt+0x7308423>
+ 75059ed:	0f b6 c0             	movzx  eax,al
+ 75059f0:	89 ce                	mov    esi,ecx
+ 75059f2:	89 c7                	mov    edi,eax
+ 75059f4:	e8 f3 fe ff ff       	call   75058ec <setuid@plt+0x7104fec>
+ 75059f9:	c9                   	leave  
+ 75059fa:	c3                   	ret    
+ 75059fb:	55                   	push   rbp
+ 75059fc:	48 89 e5             	mov    rbp,rsp
+ 75059ff:	48 89 7d d8          	mov    QWORD PTR [rbp-0x28],rdi
+ 7505a03:	48 89 75 d0          	mov    QWORD PTR [rbp-0x30],rsi
+ 7505a07:	48 89 55 c8          	mov    QWORD PTR [rbp-0x38],rdx
+ 7505a0b:	48 89 4d c0          	mov    QWORD PTR [rbp-0x40],rcx
+ 7505a0f:	4c 89 45 b8          	mov    QWORD PTR [rbp-0x48],r8
+ 7505a13:	4c 89 4d b0          	mov    QWORD PTR [rbp-0x50],r9
+ 7505a17:	b8 00 00 00 00       	mov    eax,0x0
+ 7505a1c:	5d                   	pop    rbp
+ 7505a1d:	c3                   	ret    
+ 7505a1e:	55                   	push   rbp
+ 7505a1f:	48 89 e5             	mov    rbp,rsp
+ 7505a22:	48 83 ec 50          	sub    rsp,0x50
+ 7505a26:	48 89 7d d8          	mov    QWORD PTR [rbp-0x28],rdi
+ 7505a2a:	48 89 75 d0          	mov    QWORD PTR [rbp-0x30],rsi
+ 7505a2e:	48 89 55 c8          	mov    QWORD PTR [rbp-0x38],rdx
+ 7505a32:	48 89 4d c0          	mov    QWORD PTR [rbp-0x40],rcx
+ 7505a36:	4c 89 45 b8          	mov    QWORD PTR [rbp-0x48],r8
+ 7505a3a:	4c 89 4d b0          	mov    QWORD PTR [rbp-0x50],r9
+ 7505a3e:	4c 8b 45 c0          	mov    r8,QWORD PTR [rbp-0x40]
+ 7505a42:	48 8b 7d b0          	mov    rdi,QWORD PTR [rbp-0x50]
+ 7505a46:	48 8b 4d b8          	mov    rcx,QWORD PTR [rbp-0x48]
+ 7505a4a:	48 8b 55 d0          	mov    rdx,QWORD PTR [rbp-0x30]
+ 7505a4e:	48 8b 75 c8          	mov    rsi,QWORD PTR [rbp-0x38]
+ 7505a52:	48 8b 45 d8          	mov    rax,QWORD PTR [rbp-0x28]
+ 7505a56:	4d 89 c1             	mov    r9,r8
+ 7505a59:	49 89 f8             	mov    r8,rdi
+ 7505a5c:	48 89 c7             	mov    rdi,rax
+ 7505a5f:	e8 97 ff ff ff       	call   75059fb <setuid@plt+0x71050fb>
+ 7505a64:	89 45 fc             	mov    DWORD PTR [rbp-0x4],eax
+ 7505a67:	8b 45 fc             	mov    eax,DWORD PTR [rbp-0x4]
+ 7505a6a:	c9                   	leave  
+ 7505a6b:	c3                   	ret    
+ 7505a6c:	55                   	push   rbp
+ 7505a6d:	48 89 e5             	mov    rbp,rsp
+ 7505a70:	48 83 ec 50          	sub    rsp,0x50
+ 7505a74:	89 7d cc             	mov    DWORD PTR [rbp-0x34],edi
+ 7505a77:	48 89 75 c0          	mov    QWORD PTR [rbp-0x40],rsi
+ 7505a7b:	83 7d cc 02          	cmp    DWORD PTR [rbp-0x34],0x2
+ 7505a7f:	74 14                	je     7505a95 <setuid@plt+0x7105195>
+ 7505a81:	bf 00 5f 50 07       	mov    edi,0x7505f00
+ 7505a86:	e8 75 ad ef f8       	call   400800 <puts@plt>
+ 7505a8b:	b8 00 00 00 00       	mov    eax,0x0
+ 7505a90:	e9 76 03 00 00       	jmp    7505e0b <setuid@plt+0x710550b>
+ 7505a95:	41 b9 06 00 00 00    	mov    r9d,0x6
+ 7505a9b:	41 b8 05 00 00 00    	mov    r8d,0x5
+ 7505aa1:	b9 04 00 00 00       	mov    ecx,0x4
+ 7505aa6:	ba 03 00 00 00       	mov    edx,0x3
+ 7505aab:	be 02 00 00 00       	mov    esi,0x2
+ 7505ab0:	bf 01 00 00 00       	mov    edi,0x1
+ 7505ab5:	e8 64 ff ff ff       	call   7505a1e <setuid@plt+0x710511e>
+ 7505aba:	89 c7                	mov    edi,eax
+ 7505abc:	e8 cf ad ef f8       	call   400890 <srand@plt>
+ 7505ac1:	48 8b 45 c0          	mov    rax,QWORD PTR [rbp-0x40]
+ 7505ac5:	48 83 c0 08          	add    rax,0x8
+ 7505ac9:	48 8b 00             	mov    rax,QWORD PTR [rax]
+ 7505acc:	48 c7 45 b8 ff ff ff 	mov    QWORD PTR [rbp-0x48],0xffffffffffffffff
+ 7505ad3:	ff 
+ 7505ad4:	48 89 c2             	mov    rdx,rax
+ 7505ad7:	b8 00 00 00 00       	mov    eax,0x0
+ 7505adc:	48 8b 4d b8          	mov    rcx,QWORD PTR [rbp-0x48]
+ 7505ae0:	48 89 d7             	mov    rdi,rdx
+ 7505ae3:	f2 ae                	repnz scas al,BYTE PTR es:[rdi]
+ 7505ae5:	48 89 c8             	mov    rax,rcx
+ 7505ae8:	48 f7 d0             	not    rax
+ 7505aeb:	48 83 e8 01          	sub    rax,0x1
+ 7505aef:	48 d1 e8             	shr    rax,1
+ 7505af2:	89 05 0c 32 20 00    	mov    DWORD PTR [rip+0x20320c],eax        # 7708d04 <setuid@plt+0x7308404>
+ 7505af8:	8b 05 06 32 20 00    	mov    eax,DWORD PTR [rip+0x203206]        # 7708d04 <setuid@plt+0x7308404>
+ 7505afe:	3d e8 03 00 00       	cmp    eax,0x3e8
+ 7505b03:	7e 14                	jle    7505b19 <setuid@plt+0x7105219>
+ 7505b05:	bf 28 5f 50 07       	mov    edi,0x7505f28
+ 7505b0a:	e8 f1 ac ef f8       	call   400800 <puts@plt>
+ 7505b0f:	b8 00 00 00 00       	mov    eax,0x0
+ 7505b14:	e9 f2 02 00 00       	jmp    7505e0b <setuid@plt+0x710550b>
+ 7505b19:	c7 45 d8 00 00 00 00 	mov    DWORD PTR [rbp-0x28],0x0
+ 7505b20:	c7 45 dc 00 00 00 00 	mov    DWORD PTR [rbp-0x24],0x0
+ 7505b27:	eb 68                	jmp    7505b91 <setuid@plt+0x7105291>
+ 7505b29:	48 8b 45 c0          	mov    rax,QWORD PTR [rbp-0x40]
+ 7505b2d:	48 83 c0 08          	add    rax,0x8
+ 7505b31:	48 8b 10             	mov    rdx,QWORD PTR [rax]
+ 7505b34:	8b 45 d8             	mov    eax,DWORD PTR [rbp-0x28]
+ 7505b37:	48 98                	cdqe   
+ 7505b39:	48 01 d0             	add    rax,rdx
+ 7505b3c:	0f b6 00             	movzx  eax,BYTE PTR [rax]
+ 7505b3f:	88 45 f0             	mov    BYTE PTR [rbp-0x10],al
+ 7505b42:	48 8b 45 c0          	mov    rax,QWORD PTR [rbp-0x40]
+ 7505b46:	48 83 c0 08          	add    rax,0x8
+ 7505b4a:	48 8b 00             	mov    rax,QWORD PTR [rax]
+ 7505b4d:	8b 55 d8             	mov    edx,DWORD PTR [rbp-0x28]
+ 7505b50:	48 63 d2             	movsxd rdx,edx
+ 7505b53:	48 83 c2 01          	add    rdx,0x1
+ 7505b57:	48 01 d0             	add    rax,rdx
+ 7505b5a:	0f b6 00             	movzx  eax,BYTE PTR [rax]
+ 7505b5d:	88 45 f1             	mov    BYTE PTR [rbp-0xf],al
+ 7505b60:	c6 45 f2 00          	mov    BYTE PTR [rbp-0xe],0x0
+ 7505b64:	8b 45 dc             	mov    eax,DWORD PTR [rbp-0x24]
+ 7505b67:	48 98                	cdqe   
+ 7505b69:	48 8d 90 20 8d 70 07 	lea    rdx,[rax+0x7708d20]
+ 7505b70:	83 45 dc 01          	add    DWORD PTR [rbp-0x24],0x1
+ 7505b74:	b9 48 5f 50 07       	mov    ecx,0x7505f48
+ 7505b79:	48 8d 45 f0          	lea    rax,[rbp-0x10]
+ 7505b7d:	48 89 ce             	mov    rsi,rcx
+ 7505b80:	48 89 c7             	mov    rdi,rax
+ 7505b83:	b8 00 00 00 00       	mov    eax,0x0
+ 7505b88:	e8 43 ad ef f8       	call   4008d0 <__isoc99_sscanf@plt>
+ 7505b8d:	83 45 d8 02          	add    DWORD PTR [rbp-0x28],0x2
+ 7505b91:	8b 05 6d 31 20 00    	mov    eax,DWORD PTR [rip+0x20316d]        # 7708d04 <setuid@plt+0x7308404>
+ 7505b97:	01 c0                	add    eax,eax
+ 7505b99:	3b 45 d8             	cmp    eax,DWORD PTR [rbp-0x28]
+ 7505b9c:	7f 8b                	jg     7505b29 <setuid@plt+0x7105229>
+ 7505b9e:	c7 45 ec 00 00 00 00 	mov    DWORD PTR [rbp-0x14],0x0
+ 7505ba5:	e9 12 02 00 00       	jmp    7505dbc <setuid@plt+0x71054bc>
+ 7505baa:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 7505bad:	3c 2d                	cmp    al,0x2d
+ 7505baf:	75 56                	jne    7505c07 <setuid@plt+0x7105307>
+ 7505bb1:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 7505bb4:	88 45 cb             	mov    BYTE PTR [rbp-0x35],al
+ 7505bb7:	ba 62 00 00 00       	mov    edx,0x62
+ 7505bbc:	0f b6 45 cb          	movzx  eax,BYTE PTR [rbp-0x35]
+ 7505bc0:	0f af c2             	imul   eax,edx
+ 7505bc3:	89 c2                	mov    edx,eax
+ 7505bc5:	8b 45 e4             	mov    eax,DWORD PTR [rbp-0x1c]
+ 7505bc8:	89 d1                	mov    ecx,edx
+ 7505bca:	28 c1                	sub    cl,al
+ 7505bcc:	89 c8                	mov    eax,ecx
+ 7505bce:	3c 25                	cmp    al,0x25
+ 7505bd0:	75 35                	jne    7505c07 <setuid@plt+0x7105307>
+ 7505bd2:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 7505bd5:	8d 0c c5 00 00 00 00 	lea    ecx,[rax*8+0x0]
+ 7505bdc:	8b 45 e4             	mov    eax,DWORD PTR [rbp-0x1c]
+ 7505bdf:	89 c2                	mov    edx,eax
+ 7505be1:	89 d0                	mov    eax,edx
+ 7505be3:	c1 e0 02             	shl    eax,0x2
+ 7505be6:	01 d0                	add    eax,edx
+ 7505be8:	c1 e0 02             	shl    eax,0x2
+ 7505beb:	01 d0                	add    eax,edx
+ 7505bed:	8d 14 01             	lea    edx,[rcx+rax*1]
+ 7505bf0:	8b 45 e8             	mov    eax,DWORD PTR [rbp-0x18]
+ 7505bf3:	89 d1                	mov    ecx,edx
+ 7505bf5:	28 c1                	sub    cl,al
+ 7505bf7:	89 c8                	mov    eax,ecx
+ 7505bf9:	3c 27                	cmp    al,0x27
+ 7505bfb:	75 0a                	jne    7505c07 <setuid@plt+0x7105307>
+ 7505bfd:	8b 45 e4             	mov    eax,DWORD PTR [rbp-0x1c]
+ 7505c00:	89 45 e8             	mov    DWORD PTR [rbp-0x18],eax
+ 7505c03:	83 45 e4 01          	add    DWORD PTR [rbp-0x1c],0x1
+ 7505c07:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 7505c0a:	3c ea                	cmp    al,0xea
+ 7505c0c:	75 58                	jne    7505c66 <setuid@plt+0x7105366>
+ 7505c0e:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 7505c11:	c1 e0 03             	shl    eax,0x3
+ 7505c14:	8d 14 c5 00 00 00 00 	lea    edx,[rax*8+0x0]
+ 7505c1b:	28 c2                	sub    dl,al
+ 7505c1d:	8b 45 e4             	mov    eax,DWORD PTR [rbp-0x1c]
+ 7505c20:	89 d1                	mov    ecx,edx
+ 7505c22:	28 c1                	sub    cl,al
+ 7505c24:	89 c8                	mov    eax,ecx
+ 7505c26:	3c 5a                	cmp    al,0x5a
+ 7505c28:	75 3c                	jne    7505c66 <setuid@plt+0x7105366>
+ 7505c2a:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 7505c2d:	c1 e0 03             	shl    eax,0x3
+ 7505c30:	8d 14 c5 00 00 00 00 	lea    edx,[rax*8+0x0]
+ 7505c37:	89 d1                	mov    ecx,edx
+ 7505c39:	28 c1                	sub    cl,al
+ 7505c3b:	8b 45 e4             	mov    eax,DWORD PTR [rbp-0x1c]
+ 7505c3e:	89 c2                	mov    edx,eax
+ 7505c40:	89 d0                	mov    eax,edx
+ 7505c42:	c1 e0 02             	shl    eax,0x2
+ 7505c45:	01 d0                	add    eax,edx
+ 7505c47:	c1 e0 02             	shl    eax,0x2
+ 7505c4a:	01 d0                	add    eax,edx
+ 7505c4c:	8d 14 01             	lea    edx,[rcx+rax*1]
+ 7505c4f:	8b 45 e8             	mov    eax,DWORD PTR [rbp-0x18]
+ 7505c52:	89 d1                	mov    ecx,edx
+ 7505c54:	28 c1                	sub    cl,al
+ 7505c56:	89 c8                	mov    eax,ecx
+ 7505c58:	3c 11                	cmp    al,0x11
+ 7505c5a:	75 0a                	jne    7505c66 <setuid@plt+0x7105366>
+ 7505c5c:	8b 45 e8             	mov    eax,DWORD PTR [rbp-0x18]
+ 7505c5f:	89 45 e0             	mov    DWORD PTR [rbp-0x20],eax
+ 7505c62:	83 45 e8 01          	add    DWORD PTR [rbp-0x18],0x1
+ 7505c66:	8b 45 ec             	mov    eax,DWORD PTR [rbp-0x14]
+ 7505c69:	83 e0 01             	and    eax,0x1
+ 7505c6c:	85 c0                	test   eax,eax
+ 7505c6e:	75 1e                	jne    7505c8e <setuid@plt+0x710538e>
+ 7505c70:	8b 45 ec             	mov    eax,DWORD PTR [rbp-0x14]
+ 7505c73:	48 98                	cdqe   
+ 7505c75:	0f b6 80 20 8d 70 07 	movzx  eax,BYTE PTR [rax+0x7708d20]
+ 7505c7c:	89 c2                	mov    edx,eax
+ 7505c7e:	83 f2 11             	xor    edx,0x11
+ 7505c81:	8b 45 ec             	mov    eax,DWORD PTR [rbp-0x14]
+ 7505c84:	48 98                	cdqe   
+ 7505c86:	88 90 20 8d 70 07    	mov    BYTE PTR [rax+0x7708d20],dl
+ 7505c8c:	eb 1c                	jmp    7505caa <setuid@plt+0x71053aa>
+ 7505c8e:	8b 45 ec             	mov    eax,DWORD PTR [rbp-0x14]
+ 7505c91:	48 98                	cdqe   
+ 7505c93:	0f b6 80 20 8d 70 07 	movzx  eax,BYTE PTR [rax+0x7708d20]
+ 7505c9a:	89 c2                	mov    edx,eax
+ 7505c9c:	83 f2 d0             	xor    edx,0xffffffd0
+ 7505c9f:	8b 45 ec             	mov    eax,DWORD PTR [rbp-0x14]
+ 7505ca2:	48 98                	cdqe   
+ 7505ca4:	88 90 20 8d 70 07    	mov    BYTE PTR [rax+0x7708d20],dl
+ 7505caa:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 7505cad:	3c 31                	cmp    al,0x31
+ 7505caf:	75 57                	jne    7505d08 <setuid@plt+0x7105408>
+ 7505cb1:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 7505cb4:	88 45 cb             	mov    BYTE PTR [rbp-0x35],al
+ 7505cb7:	ba 37 00 00 00       	mov    edx,0x37
+ 7505cbc:	0f b6 45 cb          	movzx  eax,BYTE PTR [rbp-0x35]
+ 7505cc0:	0f af c2             	imul   eax,edx
+ 7505cc3:	89 c2                	mov    edx,eax
+ 7505cc5:	8b 45 e4             	mov    eax,DWORD PTR [rbp-0x1c]
+ 7505cc8:	89 d1                	mov    ecx,edx
+ 7505cca:	28 c1                	sub    cl,al
+ 7505ccc:	89 c8                	mov    eax,ecx
+ 7505cce:	3c 14                	cmp    al,0x14
+ 7505cd0:	75 36                	jne    7505d08 <setuid@plt+0x7105408>
+ 7505cd2:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 7505cd5:	89 c2                	mov    edx,eax
+ 7505cd7:	89 d0                	mov    eax,edx
+ 7505cd9:	c1 e0 02             	shl    eax,0x2
+ 7505cdc:	01 d0                	add    eax,edx
+ 7505cde:	c1 e0 04             	shl    eax,0x4
+ 7505ce1:	89 c2                	mov    edx,eax
+ 7505ce3:	8b 45 e4             	mov    eax,DWORD PTR [rbp-0x1c]
+ 7505ce6:	b9 32 00 00 00       	mov    ecx,0x32
+ 7505ceb:	0f af c1             	imul   eax,ecx
+ 7505cee:	01 c2                	add    edx,eax
+ 7505cf0:	8b 45 e8             	mov    eax,DWORD PTR [rbp-0x18]
+ 7505cf3:	89 d1                	mov    ecx,edx
+ 7505cf5:	28 c1                	sub    cl,al
+ 7505cf7:	89 c8                	mov    eax,ecx
+ 7505cf9:	3c 60                	cmp    al,0x60
+ 7505cfb:	75 0b                	jne    7505d08 <setuid@plt+0x7105408>
+ 7505cfd:	8b 45 e8             	mov    eax,DWORD PTR [rbp-0x18]
+ 7505d00:	8b 55 e4             	mov    edx,DWORD PTR [rbp-0x1c]
+ 7505d03:	01 d0                	add    eax,edx
+ 7505d05:	89 45 e0             	mov    DWORD PTR [rbp-0x20],eax
+ 7505d08:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 7505d0b:	3c 19                	cmp    al,0x19
+ 7505d0d:	75 49                	jne    7505d58 <setuid@plt+0x7105458>
+ 7505d0f:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 7505d12:	8d 14 00             	lea    edx,[rax+rax*1]
+ 7505d15:	8b 45 e4             	mov    eax,DWORD PTR [rbp-0x1c]
+ 7505d18:	89 d1                	mov    ecx,edx
+ 7505d1a:	28 c1                	sub    cl,al
+ 7505d1c:	89 c8                	mov    eax,ecx
+ 7505d1e:	3c 62                	cmp    al,0x62
+ 7505d20:	75 36                	jne    7505d58 <setuid@plt+0x7105458>
+ 7505d22:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 7505d25:	89 c2                	mov    edx,eax
+ 7505d27:	89 d0                	mov    eax,edx
+ 7505d29:	01 c0                	add    eax,eax
+ 7505d2b:	8d 0c 10             	lea    ecx,[rax+rdx*1]
+ 7505d2e:	8b 45 e4             	mov    eax,DWORD PTR [rbp-0x1c]
+ 7505d31:	ba 2a 00 00 00       	mov    edx,0x2a
+ 7505d36:	0f af c2             	imul   eax,edx
+ 7505d39:	8d 14 01             	lea    edx,[rcx+rax*1]
+ 7505d3c:	8b 45 e8             	mov    eax,DWORD PTR [rbp-0x18]
+ 7505d3f:	89 d1                	mov    ecx,edx
+ 7505d41:	28 c1                	sub    cl,al
+ 7505d43:	89 c8                	mov    eax,ecx
+ 7505d45:	3c 08                	cmp    al,0x8
+ 7505d47:	75 0f                	jne    7505d58 <setuid@plt+0x7105458>
+ 7505d49:	8b 45 e8             	mov    eax,DWORD PTR [rbp-0x18]
+ 7505d4c:	8b 55 e0             	mov    edx,DWORD PTR [rbp-0x20]
+ 7505d4f:	89 d7                	mov    edi,edx
+ 7505d51:	29 c7                	sub    edi,eax
+ 7505d53:	89 f8                	mov    eax,edi
+ 7505d55:	89 45 e4             	mov    DWORD PTR [rbp-0x1c],eax
+ 7505d58:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 7505d5b:	3c ba                	cmp    al,0xba
+ 7505d5d:	75 59                	jne    7505db8 <setuid@plt+0x71054b8>
+ 7505d5f:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 7505d62:	88 45 cb             	mov    BYTE PTR [rbp-0x35],al
+ 7505d65:	ba 4a 00 00 00       	mov    edx,0x4a
+ 7505d6a:	0f b6 45 cb          	movzx  eax,BYTE PTR [rbp-0x35]
+ 7505d6e:	0f af c2             	imul   eax,edx
+ 7505d71:	89 c2                	mov    edx,eax
+ 7505d73:	8b 45 e4             	mov    eax,DWORD PTR [rbp-0x1c]
+ 7505d76:	89 d1                	mov    ecx,edx
+ 7505d78:	28 c1                	sub    cl,al
+ 7505d7a:	89 c8                	mov    eax,ecx
+ 7505d7c:	3c 35                	cmp    al,0x35
+ 7505d7e:	75 38                	jne    7505db8 <setuid@plt+0x71054b8>
+ 7505d80:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 7505d83:	88 45 cb             	mov    BYTE PTR [rbp-0x35],al
+ 7505d86:	ba 4c 00 00 00       	mov    edx,0x4c
+ 7505d8b:	0f b6 45 cb          	movzx  eax,BYTE PTR [rbp-0x35]
+ 7505d8f:	0f af c2             	imul   eax,edx
+ 7505d92:	89 c2                	mov    edx,eax
+ 7505d94:	8b 45 e4             	mov    eax,DWORD PTR [rbp-0x1c]
+ 7505d97:	b9 35 00 00 00       	mov    ecx,0x35
+ 7505d9c:	0f af c1             	imul   eax,ecx
+ 7505d9f:	01 c2                	add    edx,eax
+ 7505da1:	8b 45 e8             	mov    eax,DWORD PTR [rbp-0x18]
+ 7505da4:	89 d1                	mov    ecx,edx
+ 7505da6:	28 c1                	sub    cl,al
+ 7505da8:	89 c8                	mov    eax,ecx
+ 7505daa:	3c 27                	cmp    al,0x27
+ 7505dac:	75 0a                	jne    7505db8 <setuid@plt+0x71054b8>
+ 7505dae:	83 45 e0 01          	add    DWORD PTR [rbp-0x20],0x1
+ 7505db2:	8b 45 e0             	mov    eax,DWORD PTR [rbp-0x20]
+ 7505db5:	89 45 e8             	mov    DWORD PTR [rbp-0x18],eax
+ 7505db8:	83 45 ec 01          	add    DWORD PTR [rbp-0x14],0x1
+ 7505dbc:	8b 05 42 2f 20 00    	mov    eax,DWORD PTR [rip+0x202f42]        # 7708d04 <setuid@plt+0x7308404>
+ 7505dc2:	39 45 ec             	cmp    DWORD PTR [rbp-0x14],eax
+ 7505dc5:	0f 8c df fd ff ff    	jl     7505baa <setuid@plt+0x71052aa>
+ 7505dcb:	bf 4d 5f 50 07       	mov    edi,0x7505f4d
+ 7505dd0:	e8 2b aa ef f8       	call   400800 <puts@plt>
+ 7505dd5:	0f b6 05 46 2f 20 00 	movzx  eax,BYTE PTR [rip+0x202f46]        # 7708d22 <setuid@plt+0x7308422>
+ 7505ddc:	0f b6 d0             	movzx  edx,al
+ 7505ddf:	0f b6 05 3b 2f 20 00 	movzx  eax,BYTE PTR [rip+0x202f3b]        # 7708d21 <setuid@plt+0x7308421>
+ 7505de6:	0f b6 c8             	movzx  ecx,al
+ 7505de9:	0f b6 05 30 2f 20 00 	movzx  eax,BYTE PTR [rip+0x202f30]        # 7708d20 <setuid@plt+0x7308420>
+ 7505df0:	0f b6 c0             	movzx  eax,al
+ 7505df3:	89 ce                	mov    esi,ecx
+ 7505df5:	89 c7                	mov    edi,eax
+ 7505df7:	e8 82 fb ff ff       	call   750597e <setuid@plt+0x710507e>
+ 7505dfc:	bf 68 5f 50 07       	mov    edi,0x7505f68
+ 7505e01:	e8 fa a9 ef f8       	call   400800 <puts@plt>
+ 7505e06:	b8 00 00 00 00       	mov    eax,0x0
+ 7505e0b:	c9                   	leave  
+ 7505e0c:	c3                   	ret    
+ 7505e0d:	90                   	nop
+ 7505e0e:	90                   	nop
+ 7505e0f:	90                   	nop
+ 7505e10:	48 89 6c 24 d8       	mov    QWORD PTR [rsp-0x28],rbp
+ 7505e15:	4c 89 64 24 e0       	mov    QWORD PTR [rsp-0x20],r12
+ 7505e1a:	48 8d 2d 03 10 20 00 	lea    rbp,[rip+0x201003]        # 7706e24 <setuid@plt+0x7306524>
+ 7505e21:	4c 8d 25 fc 0f 20 00 	lea    r12,[rip+0x200ffc]        # 7706e24 <setuid@plt+0x7306524>
+ 7505e28:	4c 89 6c 24 e8       	mov    QWORD PTR [rsp-0x18],r13
+ 7505e2d:	4c 89 74 24 f0       	mov    QWORD PTR [rsp-0x10],r14
+ 7505e32:	4c 89 7c 24 f8       	mov    QWORD PTR [rsp-0x8],r15
+ 7505e37:	48 89 5c 24 d0       	mov    QWORD PTR [rsp-0x30],rbx
+ 7505e3c:	48 83 ec 38          	sub    rsp,0x38
+ 7505e40:	4c 29 e5             	sub    rbp,r12
+ 7505e43:	41 89 fd             	mov    r13d,edi
+ 7505e46:	49 89 f6             	mov    r14,rsi
+ 7505e49:	48 c1 fd 03          	sar    rbp,0x3
+ 7505e4d:	49 89 d7             	mov    r15,rdx
+ 7505e50:	e8 73 a9 ef f8       	call   4007c8 <personality@plt-0x28>
+ 7505e55:	48 85 ed             	test   rbp,rbp
+ 7505e58:	74 1c                	je     7505e76 <setuid@plt+0x7105576>
+ 7505e5a:	31 db                	xor    ebx,ebx
+ 7505e5c:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+ 7505e60:	4c 89 fa             	mov    rdx,r15
+ 7505e63:	4c 89 f6             	mov    rsi,r14
+ 7505e66:	44 89 ef             	mov    edi,r13d
+ 7505e69:	41 ff 14 dc          	call   QWORD PTR [r12+rbx*8]
+ 7505e6d:	48 83 c3 01          	add    rbx,0x1
+ 7505e71:	48 39 eb             	cmp    rbx,rbp
+ 7505e74:	75 ea                	jne    7505e60 <setuid@plt+0x7105560>
+ 7505e76:	48 8b 5c 24 08       	mov    rbx,QWORD PTR [rsp+0x8]
+ 7505e7b:	48 8b 6c 24 10       	mov    rbp,QWORD PTR [rsp+0x10]
+ 7505e80:	4c 8b 64 24 18       	mov    r12,QWORD PTR [rsp+0x18]
+ 7505e85:	4c 8b 6c 24 20       	mov    r13,QWORD PTR [rsp+0x20]
+ 7505e8a:	4c 8b 74 24 28       	mov    r14,QWORD PTR [rsp+0x28]
+ 7505e8f:	4c 8b 7c 24 30       	mov    r15,QWORD PTR [rsp+0x30]
+ 7505e94:	48 83 c4 38          	add    rsp,0x38
+ 7505e98:	c3                   	ret    
+ 7505e99:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+ 7505ea0:	f3 c3                	repz ret 
+ 7505ea2:	90                   	nop
+ 7505ea3:	90                   	nop
+ 7505ea4:	90                   	nop
+ 7505ea5:	90                   	nop
+ 7505ea6:	90                   	nop
+ 7505ea7:	90                   	nop
+ 7505ea8:	90                   	nop
+ 7505ea9:	90                   	nop
+ 7505eaa:	90                   	nop
+ 7505eab:	90                   	nop
+ 7505eac:	90                   	nop
+ 7505ead:	90                   	nop
+ 7505eae:	90                   	nop
+ 7505eaf:	90                   	nop
+ 7505eb0:	55                   	push   rbp
+ 7505eb1:	48 89 e5             	mov    rbp,rsp
+ 7505eb4:	53                   	push   rbx
+ 7505eb5:	48 83 ec 08          	sub    rsp,0x8
+ 7505eb9:	48 8b 05 68 0f 20 00 	mov    rax,QWORD PTR [rip+0x200f68]        # 7706e28 <setuid@plt+0x7306528>
+ 7505ec0:	48 83 f8 ff          	cmp    rax,0xffffffffffffffff
+ 7505ec4:	74 19                	je     7505edf <setuid@plt+0x71055df>
+ 7505ec6:	bb 28 6e 70 07       	mov    ebx,0x7706e28
+ 7505ecb:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+ 7505ed0:	48 83 eb 08          	sub    rbx,0x8
+ 7505ed4:	ff d0                	call   rax
+ 7505ed6:	48 8b 03             	mov    rax,QWORD PTR [rbx]
+ 7505ed9:	48 83 f8 ff          	cmp    rax,0xffffffffffffffff
+ 7505edd:	75 f1                	jne    7505ed0 <setuid@plt+0x71055d0>
+ 7505edf:	48 83 c4 08          	add    rsp,0x8
+ 7505ee3:	5b                   	pop    rbx
+ 7505ee4:	5d                   	pop    rbp
+ 7505ee5:	c3                   	ret    
+ 7505ee6:	90                   	nop
+ 7505ee7:	90                   	nop
+
+Disassembly of section .init:
+
+00000000004007c8 <.init>:
+  4007c8:	48 83 ec 08          	sub    rsp,0x8
+  4007cc:	e8 5b 48 10 07       	call   750502c <setuid@plt+0x710472c>
+  4007d1:	e8 ea 48 10 07       	call   75050c0 <setuid@plt+0x71047c0>
+  4007d6:	e8 d5 56 10 07       	call   7505eb0 <setuid@plt+0x71055b0>
+  4007db:	48 83 c4 08          	add    rsp,0x8
+  4007df:	c3                   	ret    
+
+Disassembly of section .plt:
+
+00000000004007e0 <personality@plt-0x10>:
+  4007e0:	ff 35 0a 68 30 07    	push   QWORD PTR [rip+0x730680a]        # 7706ff0 <setuid@plt+0x73066f0>
+  4007e6:	ff 25 0c 68 30 07    	jmp    QWORD PTR [rip+0x730680c]        # 7706ff8 <setuid@plt+0x73066f8>
+  4007ec:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+
+00000000004007f0 <personality@plt>:
+  4007f0:	ff 25 0a 68 30 07    	jmp    QWORD PTR [rip+0x730680a]        # 7707000 <setuid@plt+0x7306700>
+  4007f6:	68 00 00 00 00       	push   0x0
+  4007fb:	e9 e0 ff ff ff       	jmp    4007e0 <personality@plt-0x10>
+
+0000000000400800 <puts@plt>:
+  400800:	ff 25 02 68 30 07    	jmp    QWORD PTR [rip+0x7306802]        # 7707008 <setuid@plt+0x7306708>
+  400806:	68 01 00 00 00       	push   0x1
+  40080b:	e9 d0 ff ff ff       	jmp    4007e0 <personality@plt-0x10>
+
+0000000000400810 <getpid@plt>:
+  400810:	ff 25 fa 67 30 07    	jmp    QWORD PTR [rip+0x73067fa]        # 7707010 <setuid@plt+0x7306710>
+  400816:	68 02 00 00 00       	push   0x2
+  40081b:	e9 c0 ff ff ff       	jmp    4007e0 <personality@plt-0x10>
+
+0000000000400820 <getuid@plt>:
+  400820:	ff 25 f2 67 30 07    	jmp    QWORD PTR [rip+0x73067f2]        # 7707018 <setuid@plt+0x7306718>
+  400826:	68 03 00 00 00       	push   0x3
+  40082b:	e9 b0 ff ff ff       	jmp    4007e0 <personality@plt-0x10>
+
+0000000000400830 <mmap@plt>:
+  400830:	ff 25 ea 67 30 07    	jmp    QWORD PTR [rip+0x73067ea]        # 7707020 <setuid@plt+0x7306720>
+  400836:	68 04 00 00 00       	push   0x4
+  40083b:	e9 a0 ff ff ff       	jmp    4007e0 <personality@plt-0x10>
+
+0000000000400840 <dup2@plt>:
+  400840:	ff 25 e2 67 30 07    	jmp    QWORD PTR [rip+0x73067e2]        # 7707028 <setuid@plt+0x7306728>
+  400846:	68 05 00 00 00       	push   0x5
+  40084b:	e9 90 ff ff ff       	jmp    4007e0 <personality@plt-0x10>
+
+0000000000400850 <dup@plt>:
+  400850:	ff 25 da 67 30 07    	jmp    QWORD PTR [rip+0x73067da]        # 7707030 <setuid@plt+0x7306730>
+  400856:	68 06 00 00 00       	push   0x6
+  40085b:	e9 80 ff ff ff       	jmp    4007e0 <personality@plt-0x10>
+
+0000000000400860 <geteuid@plt>:
+  400860:	ff 25 d2 67 30 07    	jmp    QWORD PTR [rip+0x73067d2]        # 7707038 <setuid@plt+0x7306738>
+  400866:	68 07 00 00 00       	push   0x7
+  40086b:	e9 70 ff ff ff       	jmp    4007e0 <personality@plt-0x10>
+
+0000000000400870 <close@plt>:
+  400870:	ff 25 ca 67 30 07    	jmp    QWORD PTR [rip+0x73067ca]        # 7707040 <setuid@plt+0x7306740>
+  400876:	68 08 00 00 00       	push   0x8
+  40087b:	e9 60 ff ff ff       	jmp    4007e0 <personality@plt-0x10>
+
+0000000000400880 <__libc_start_main@plt>:
+  400880:	ff 25 c2 67 30 07    	jmp    QWORD PTR [rip+0x73067c2]        # 7707048 <setuid@plt+0x7306748>
+  400886:	68 09 00 00 00       	push   0x9
+  40088b:	e9 50 ff ff ff       	jmp    4007e0 <personality@plt-0x10>
+
+0000000000400890 <srand@plt>:
+  400890:	ff 25 ba 67 30 07    	jmp    QWORD PTR [rip+0x73067ba]        # 7707050 <setuid@plt+0x7306750>
+  400896:	68 0a 00 00 00       	push   0xa
+  40089b:	e9 40 ff ff ff       	jmp    4007e0 <personality@plt-0x10>
+
+00000000004008a0 <memcpy@plt>:
+  4008a0:	ff 25 b2 67 30 07    	jmp    QWORD PTR [rip+0x73067b2]        # 7707058 <setuid@plt+0x7306758>
+  4008a6:	68 0b 00 00 00       	push   0xb
+  4008ab:	e9 30 ff ff ff       	jmp    4007e0 <personality@plt-0x10>
+
+00000000004008b0 <time@plt>:
+  4008b0:	ff 25 aa 67 30 07    	jmp    QWORD PTR [rip+0x73067aa]        # 7707060 <setuid@plt+0x7306760>
+  4008b6:	68 0c 00 00 00       	push   0xc
+  4008bb:	e9 20 ff ff ff       	jmp    4007e0 <personality@plt-0x10>
+
+00000000004008c0 <nice@plt>:
+  4008c0:	ff 25 a2 67 30 07    	jmp    QWORD PTR [rip+0x73067a2]        # 7707068 <setuid@plt+0x7306768>
+  4008c6:	68 0d 00 00 00       	push   0xd
+  4008cb:	e9 10 ff ff ff       	jmp    4007e0 <personality@plt-0x10>
+
+00000000004008d0 <__isoc99_sscanf@plt>:
+  4008d0:	ff 25 9a 67 30 07    	jmp    QWORD PTR [rip+0x730679a]        # 7707070 <setuid@plt+0x7306770>
+  4008d6:	68 0e 00 00 00       	push   0xe
+  4008db:	e9 00 ff ff ff       	jmp    4007e0 <personality@plt-0x10>
+
+00000000004008e0 <mprotect@plt>:
+  4008e0:	ff 25 92 67 30 07    	jmp    QWORD PTR [rip+0x7306792]        # 7707078 <setuid@plt+0x7306778>
+  4008e6:	68 0f 00 00 00       	push   0xf
+  4008eb:	e9 f0 fe ff ff       	jmp    4007e0 <personality@plt-0x10>
+
+00000000004008f0 <getppid@plt>:
+  4008f0:	ff 25 8a 67 30 07    	jmp    QWORD PTR [rip+0x730678a]        # 7707080 <setuid@plt+0x7306780>
+  4008f6:	68 10 00 00 00       	push   0x10
+  4008fb:	e9 e0 fe ff ff       	jmp    4007e0 <personality@plt-0x10>
+
+0000000000400900 <setuid@plt>:
+  400900:	ff 25 82 67 30 07    	jmp    QWORD PTR [rip+0x7306782]        # 7707088 <setuid@plt+0x7306788>
+  400906:	68 11 00 00 00       	push   0x11
+  40090b:	e9 d0 fe ff ff       	jmp    4007e0 <personality@plt-0x10>
+
+Disassembly of section .fini:
+
+0000000007505ee8 <.fini>:
+ 7505ee8:	48 83 ec 08          	sub    rsp,0x8
+ 7505eec:	e8 5f f1 ff ff       	call   7505050 <setuid@plt+0x7104750>
+ 7505ef1:	48 83 c4 08          	add    rsp,0x8
+ 7505ef5:	c3                   	ret    

