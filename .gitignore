@@ -46,3 +46,7 @@ __pycache__/
 
 # Misc
 *.old
+
+# GDB + Peda
+*.gdb_history
+peda-session-*
