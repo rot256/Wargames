@@ -1,0 +1,1639 @@
+   0x55557000:	jg     0x55557047
+   0x55557002:	dec    esp
+   0x55557003:	inc    esi
+   0x55557004:	add    DWORD PTR [ecx],eax
+   0x55557006:	add    DWORD PTR [eax],eax
+   0x55557008:	add    BYTE PTR [eax],al
+   0x5555700a:	add    BYTE PTR [eax],al
+   0x5555700c:	add    BYTE PTR [eax],al
+   0x5555700e:	add    BYTE PTR [eax],al
+   0x55557010:	add    eax,DWORD PTR [eax]
+   0x55557012:	add    eax,DWORD PTR [eax]
+   0x55557014:	add    DWORD PTR [eax],eax
+   0x55557016:	add    BYTE PTR [eax],al
+   0x55557018:	push   eax
+   0x55557019:	or     eax,DWORD PTR [eax]
+   0x5555701b:	add    BYTE PTR [eax+eax*1],dh
+   0x5555701e:	add    BYTE PTR [eax],al
+   0x55557020:	xor    BYTE PTR [eax+eax*1],cl
+   0x55557023:	add    BYTE PTR [eax],al
+   0x55557025:	add    BYTE PTR [eax],al
+   0x55557027:	add    BYTE PTR [eax+eax*1],dh
+   0x5555702a:	and    BYTE PTR [eax],al
+   0x5555702c:	add    al,0x0
+   0x5555702e:	sub    BYTE PTR [eax],al
+   0x55557030:	adc    BYTE PTR [eax],al
+   0x55557032:	sldt   WORD PTR [ecx]
+   0x55557035:	add    BYTE PTR [eax],al
+   0x55557037:	add    BYTE PTR [eax],al
+   0x55557039:	add    BYTE PTR [eax],al
+   0x5555703b:	add    BYTE PTR [eax],al
+   0x5555703d:	add    BYTE PTR [eax],al
+   0x5555703f:	add    BYTE PTR [eax],al
+   0x55557041:	add    BYTE PTR [eax],al
+   0x55557043:	add    BYTE PTR [ebx+ecx*1+0x0],ah
+   0x55557047:	add    BYTE PTR [ebx+ecx*1+0x0],ah
+   0x5555704b:	add    BYTE PTR ds:0x0,al
+   0x55557051:	adc    BYTE PTR [eax],al
+   0x55557053:	add    BYTE PTR [edx],al
+   0x55557055:	add    BYTE PTR [eax],al
+   0x55557057:	add    BYTE PTR [esp+eax*1],al
+   0x5555705a:	add    BYTE PTR [eax],al
+   0x5555705c:	add    al,0x4
+   0x5555705e:	add    BYTE PTR [eax],al
+   0x55557060:	add    al,0x4
+   0x55557062:	add    BYTE PTR [eax],al
+   0x55557064:	js     0x55557066
+   0x55557066:	add    BYTE PTR [eax],al
+   0x55557068:	js     0x5555706a
+   0x5555706a:	add    BYTE PTR [eax],al
+   0x5555706c:	add    al,0x0
+   0x5555706e:	add    BYTE PTR [eax],al
+   0x55557070:	add    al,0x0
+   0x55557072:	add    BYTE PTR [eax],al
+   0x55557074:	add    al,0x0
+   0x55557076:	add    BYTE PTR [eax],al
+   0x55557078:	js     0x5555707c
+   0x5555707a:	add    BYTE PTR [eax],al
+   0x5555707c:	js     0x55557080
+   0x5555707e:	add    BYTE PTR [eax],al
+   0x55557080:	js     0x55557084
+   0x55557082:	add    BYTE PTR [eax],al
+   0x55557084:	pusha  
+   0x55557085:	add    BYTE PTR [eax],al
+   0x55557087:	add    BYTE PTR [eax+0x0],ah
+   0x5555708a:	add    BYTE PTR [eax],al
+   0x5555708c:	add    al,0x0
+   0x5555708e:	add    BYTE PTR [eax],al
+   0x55557090:	add    al,0x0
+   0x55557092:	add    BYTE PTR [eax],al
+   0x55557094:	push   eax
+   0x55557095:	in     eax,0x74
+   0x55557097:	fadd   DWORD PTR fs:[edx]
+   0x5555709a:	add    BYTE PTR [eax],al
+   0x5555709c:	fadd   DWORD PTR [edx]
+   0x5555709e:	add    BYTE PTR [eax],al
+   0x555570a0:	fadd   DWORD PTR [edx]
+   0x555570a2:	add    BYTE PTR [eax],al
+   0x555570a4:	and    al,0x0
+   0x555570a6:	add    BYTE PTR [eax],al
+   0x555570a8:	and    al,0x0
+   0x555570aa:	add    BYTE PTR [eax],al
+   0x555570ac:	add    al,0x0
+   0x555570ae:	add    BYTE PTR [eax],al
+   0x555570b0:	add    al,0x0
+   0x555570b2:	add    BYTE PTR [eax],al
+   0x555570b4:	add    eax,DWORD PTR [eax]
+   0x555570b6:	add    BYTE PTR [eax],al
+   0x555570b8:	or     DWORD PTR [eax],eax
+   0x555570ba:	add    BYTE PTR [eax],al
+   0x555570bc:	or     BYTE PTR [eax],al
+   0x555570be:	add    BYTE PTR [eax],al
+   0x555570c0:	add    BYTE PTR [eax],al
+   0x555570c2:	add    BYTE PTR [eax],al
+   0x555570c4:	push   es
+   0x555570c5:	add    BYTE PTR [eax],al
+   0x555570c7:	add    BYTE PTR [eax],al
+   0x555570c9:	add    BYTE PTR [eax],al
+   0x555570cb:	add    BYTE PTR [eax],al
+   0x555570cd:	add    BYTE PTR [eax],al
+   0x555570cf:	add    BYTE PTR [eax],al
+   0x555570d1:	add    BYTE PTR [eax],al
+   0x555570d3:	add    BYTE PTR [ecx],al
+   0x555570d5:	add    BYTE PTR [eax],al
+   0x555570d7:	add    BYTE PTR [edx],al
+   0x555570d9:	add    BYTE PTR [eax],al
+   0x555570db:	add    BYTE PTR [eax+eax*1],al
+   0x555570de:	add    BYTE PTR [eax],al
+   0x555570e0:	add    eax,0x3000000
+   0x555570e5:	add    BYTE PTR [eax],al
+   0x555570e7:	add    BYTE PTR [edi],al
+   0x555570e9:	add    BYTE PTR [eax],al
+   0x555570eb:	add    BYTE PTR [eax],al
+   0x555570ed:	add    BYTE PTR [eax],al
+   0x555570ef:	add    BYTE PTR [eax],al
+   0x555570f1:	add    BYTE PTR [eax],al
+   0x555570f3:	add    BYTE PTR [eax],al
+   0x555570f5:	add    BYTE PTR [eax],al
+   0x555570f7:	add    BYTE PTR [eax],al
+   0x555570f9:	add    BYTE PTR [eax],al
+   0x555570fb:	add    BYTE PTR [ecx+0x0],al
+   0x55557101:	add    BYTE PTR [eax],al
+   0x55557103:	add    BYTE PTR [eax],al
+   0x55557105:	add    BYTE PTR [eax],al
+   0x55557107:	add    BYTE PTR [ecx],dl
+   0x55557109:	add    cl,dh
+   0x5555710b:	call   FWORD PTR [edi+0x0]
+   0x5555710e:	add    BYTE PTR [eax],al
+   0x55557110:	push   eax
+   0x55557111:	or     eax,DWORD PTR [eax]
+   0x55557113:	add    BYTE PTR [eax+eax*1],dl
+   0x55557116:	add    BYTE PTR [eax],al
+   0x55557118:	adc    al,BYTE PTR [eax]
+   0x5555711a:	or     eax,0x1600
+   0x5555711f:	add    BYTE PTR [eax],al
+   0x55557121:	or     DWORD PTR [eax],eax
+   0x55557123:	add    al,ch
+   0x55557125:	add    DWORD PTR [eax],eax
+   0x55557127:	add    BYTE PTR [edx],dl
+   0x55557129:	add    BYTE PTR ds:0x8b00,cl
+   0x5555712f:	add    BYTE PTR [eax],al
+   0x55557131:	add    BYTE PTR [eax],al
+   0x55557133:	add    BYTE PTR [eax],al
+   0x55557135:	add    BYTE PTR [eax],al
+   0x55557137:	add    BYTE PTR [ecx],dl
+   0x55557139:	add    cl,dh
+   0x5555713b:	dec    DWORD PTR [ecx+0x0]
+   0x5555713e:	add    BYTE PTR [eax],al
+   0x55557140:	inc    eax
+   0x55557141:	or     eax,DWORD PTR [eax]
+   0x55557143:	add    BYTE PTR [eax],cl
+   0x55557145:	add    BYTE PTR [eax],al
+   0x55557147:	add    BYTE PTR [edx],dl
+   0x55557149:	add    BYTE PTR ds:0x100,cl
+   0x5555714f:	add    BYTE PTR [eax+0x5],dh
+   0x55557152:	add    BYTE PTR [eax],al
+   0x55557154:	test   DWORD PTR [ebx],eax
+   0x55557156:	add    BYTE PTR [eax],al
+   0x55557158:	adc    al,BYTE PTR [eax]
+   0x5555715a:	or     eax,0x3600
+   0x5555715f:	add    BYTE PTR [eax],dh
+   0x55557161:	or     eax,DWORD PTR [eax]
+   0x55557163:	add    BYTE PTR [ecx],cl
+   0x55557165:	add    BYTE PTR [eax],al
+   0x55557167:	add    BYTE PTR [edx],dl
+   0x55557169:	add    BYTE PTR ds:0x2a00,cl
+   0x5555716f:	add    al,dh
+   0x55557171:	or     al,BYTE PTR [eax]
+   0x55557173:	add    BYTE PTR [eax],bh
+   0x55557175:	add    BYTE PTR [eax],al
+   0x55557177:	add    BYTE PTR [edx],dl
+   0x55557179:	add    BYTE PTR ds:0x5f5f0000,cl
+   0x5555717f:	jbe    0x555571e5
+   0x55557181:	jae    0x555571f2
+   0x55557183:	pop    edi
+   0x55557184:	arpl   WORD PTR [edi+ebp*2+0x63],bp
+   0x55557188:	imul   ebx,DWORD PTR [edi+0x67],0x65
+   0x5555718c:	je     0x55557202
+   0x5555718e:	imul   ebp,DWORD PTR [ebp+0x65],0x765f5f00
+   0x55557195:	fs
+   0x55557196:	jae    0x55557207
+   0x55557198:	pop    edi
+   0x55557199:	addr16
+   0x5555719a:	gs
+   0x5555719b:	je     0x55557211
+   0x5555719d:	imul   ebp,DWORD PTR [ebp+0x65],0x6164666f
+   0x555571a4:	jns    0x555571a6
+   0x555571a6:	pop    edi
+   0x555571a7:	pop    edi
+   0x555571a8:	jbe    0x5555720e
+   0x555571aa:	jae    0x5555721b
+   0x555571ac:	pop    edi
+   0x555571ad:	je     0x55557218
+   0x555571af:	ins    DWORD PTR es:[edi],dx
+   0x555571b0:	add    BYTE PTR gs:[edi+0x5f],bl
+   0x555571b4:	imul   esp,DWORD PTR [ebp+0x72],0x6e
+   0x555571b8:	gs
+   0x555571b9:	ins    BYTE PTR es:[edi],dx
+   0x555571ba:	pop    edi
+   0x555571bb:	jae    0x55557226
+   0x555571bd:	addr16 jb 0x55557225
+   0x555571c0:	je     0x55557237
+   0x555571c2:	jb     0x55557232
+   0x555571c4:	add    BYTE PTR [edi+0x5f],bl
+   0x555571c7:	imul   esp,DWORD PTR [ebp+0x72],0x6e
+   0x555571cb:	gs
+   0x555571cc:	ins    BYTE PTR es:[edi],dx
+   0x555571cd:	pop    edi
+   0x555571ce:	jb     0x55557244
+   0x555571d0:	pop    edi
+   0x555571d1:	jae    0x5555723c
+   0x555571d3:	addr16 jb 0x5555723b
+   0x555571d6:	je     0x5555724d
+   0x555571d8:	jb     0x55557248
+   0x555571da:	add    BYTE PTR [edi+0x5f],bl
+   0x555571dd:	imul   esp,DWORD PTR [ebp+0x72],0x6e
+   0x555571e1:	gs
+   0x555571e2:	ins    BYTE PTR es:[edi],dx
+   0x555571e3:	pop    edi
+   0x555571e4:	jbe    0x55557259
+   0x555571e6:	jns    0x5555725b
+   0x555571e8:	arpl   WORD PTR [ecx+0x6c],sp
+   0x555571eb:	ins    BYTE PTR es:[edi],dx
+   0x555571ec:	add    BYTE PTR [ecx+ebp*2+0x6e],ch
+   0x555571f0:	jne    0x5555726a
+   0x555571f2:	sub    eax,0x65746167
+   0x555571f7:	cs
+   0x555571f8:	jae    0x55557269
+   0x555571fa:	xor    DWORD PTR cs:[eax],eax
+   0x555571fd:	dec    esp
+   0x555571fe:	dec    ecx
+   0x555571ff:	dec    esi
+   0x55557200:	push   ebp
+   0x55557201:	pop    eax
+   0x55557202:	pop    edi
+   0x55557203:	xor    ch,BYTE PTR [esi]
+   0x55557205:	add    BYTE PTR ss:[ecx+ecx*2+0x4e],cl
+   0x5555720a:	push   ebp
+   0x5555720b:	pop    eax
+   0x5555720c:	pop    edi
+   0x5555720d:	xor    ch,BYTE PTR [esi]
+   0x5555720f:	xor    eax,0x0
+   0x55557214:	add    al,BYTE PTR [eax]
+   0x55557216:	add    eax,DWORD PTR [eax]
+   0x55557218:	add    al,BYTE PTR [eax]
+   0x5555721a:	add    eax,DWORD PTR [eax]
+   0x5555721c:	add    eax,DWORD PTR [eax]
+   0x5555721e:	add    al,BYTE PTR [eax]
+   0x55557220:	add    eax,DWORD PTR [eax]
+   0x55557222:	add    al,BYTE PTR [eax]
+   0x55557224:	add    DWORD PTR [eax],eax
+   0x55557226:	add    DWORD PTR [eax],eax
+   0x55557228:	add    DWORD PTR [eax],eax
+   0x5555722a:	add    DWORD PTR [eax],eax
+   0x5555722c:	xchg   ecx,eax
+   0x5555722d:	lock into 
+   0x5555722f:	unpcklps xmm0,XMMWORD PTR [eax]
+   0x55557232:	add    BYTE PTR [eax],al
+   0x55557234:	sbb    al,0x0
+   0x55557236:	add    BYTE PTR [eax],al
+   0x55557238:	jno    0x5555723a
+   0x5555723a:	add    BYTE PTR [eax],al
+   0x5555723c:	add    BYTE PTR [eax],al
+   0x5555723e:	add    BYTE PTR [eax],al
+   0x55557240:	add    DWORD PTR [eax],eax
+   0x55557242:	add    BYTE PTR [eax],al
+   0x55557244:	add    al,BYTE PTR [eax]
+   0x55557246:	add    DWORD PTR [eax],eax
+   0x55557248:	div    BYTE PTR [ebp-0x52]
+   0x5555724b:	add    edx,DWORD PTR [eax+eax*1]
+   0x5555724e:	add    BYTE PTR [eax],al
+   0x55557250:	sbb    al,0x0
+   0x55557252:	add    BYTE PTR [eax],al
+   0x55557254:	add    DWORD PTR [eax],0x0
+   0x5555725a:	add    BYTE PTR [eax],al
+   0x5555725c:	add    DWORD PTR [eax],eax
+   0x5555725e:	add    BYTE PTR [eax],al
+   0x55557260:	add    eax,DWORD PTR [eax]
+   0x55557262:	add    DWORD PTR [eax],eax
+   0x55557264:	cmc    
+   0x55557265:	jne    0x55557215
+   0x55557267:	add    edx,DWORD PTR [eax+eax*1]
+   0x5555726a:	add    BYTE PTR [eax],al
+   0x5555726c:	add    BYTE PTR [eax],al
+   0x5555726e:	add    BYTE PTR [eax],al
+   0x55557270:	mov    eax,DWORD PTR [eax]
+   0x55557272:	add    BYTE PTR [eax],al
+   0x55557274:	add    BYTE PTR [eax],al
+   0x55557276:	add    BYTE PTR [eax],al
+   0x55557278:	add    al,0x0
+   0x5555727a:	add    BYTE PTR [eax],al
+   0x5555727c:	adc    al,0x0
+   0x5555727e:	add    BYTE PTR [eax],al
+   0x55557280:	add    eax,DWORD PTR [eax]
+   0x55557282:	add    BYTE PTR [eax],al
+   0x55557284:	inc    edi
+   0x55557285:	dec    esi
+   0x55557286:	push   ebp
+   0x55557287:	add    BYTE PTR [edx+0xdaaa580],al
+   0x5555728d:	xchg   ecx,eax
+   0x5555728e:	sbb    eax,0xfd8759b1
+   0x55557293:	test   BYTE PTR [ecx],ah
+   0x55557295:	aad    0x4d
+   0x55557297:	add    edi,DWORD PTR [ecx]
+   0x55557299:	(bad)  
+   0x5555729a:	push   edi
+   0x5555729b:	add    DWORD PTR [esi],0x0
+   0x5555729e:	add    BYTE PTR [eax],al
+   0x555572a0:	add    al,0x0
+   0x555572a2:	add    BYTE PTR [eax],al
+   0x555572a4:	add    BYTE PTR [eax],al
+   0x555572a6:	add    BYTE PTR [eax],al
+   0x555572a8:	dec    esp
+   0x555572a9:	imul   ebp,DWORD PTR [esi+0x75],0x78
+   0x555572b0:	push   es
+   0x555572b1:	lsl    eax,WORD PTR [eax]
+   0x555572b4:	add    al,0x0
+   0x555572b6:	add    BYTE PTR [eax],al
+   0x555572b8:	adc    al,BYTE PTR [eax]
+   0x555572ba:	add    BYTE PTR [eax],al
+   0x555572bc:	add    al,BYTE PTR [eax]
+   0x555572be:	add    BYTE PTR [eax],al
+   0x555572c0:	inc    edi
+   0x555572c1:	dec    esi
+   0x555572c2:	push   ebp
+   0x555572c3:	add    BYTE PTR [ecx],al
+   0x555572c5:	add    BYTE PTR [eax],al
+   0x555572c7:	add    BYTE PTR [eax],al
+   0x555572c9:	add    BYTE PTR [eax],al
+   0x555572cb:	add    BYTE PTR [ecx],al
+   0x555572cd:	outs   dx,BYTE PTR ds:[esi]
+   0x555572ce:	outs   dx,DWORD PTR ds:[esi]
+   0x555572cf:	jae    0x55557336
+   0x555572d1:	outs   dx,BYTE PTR ds:[si]
+   0x555572d3:	add    BYTE PTR gs:[bx+si],al
+   0x555572d7:	add    BYTE PTR [ecx],al
+   0x555572d9:	sbb    eax,DWORD PTR [ebx]
+   0x555572db:	cmp    esp,DWORD PTR [eax]
+   0x555572dd:	add    BYTE PTR [eax],al
+   0x555572df:	add    BYTE PTR [ebx],al
+   0x555572e1:	add    BYTE PTR [eax],al
+   0x555572e3:	add    BYTE PTR [edi+0x8],dl
+   0x555572e6:	add    BYTE PTR [eax],al
+   0x555572e8:	cmp    BYTE PTR [eax],al
+   0x555572ea:	add    BYTE PTR [eax],al
+   0x555572ec:	or     BYTE PTR [bx+si],al
+   0x555572ef:	add    BYTE PTR [eax+eax*1+0x8780000],ah
+   0x555572f6:	add    BYTE PTR [eax],al
+   0x555572f8:	add    al,0x1
+   0x555572fa:	add    BYTE PTR [eax],al
+   0x555572fc:	adc    BYTE PTR [eax],al
+   0x555572fe:	add    BYTE PTR [eax],al
+   0x55557300:	add    BYTE PTR [eax],al
+   0x55557302:	add    BYTE PTR [eax],al
+   0x55557304:	add    DWORD PTR [edx+0x52],edi
+   0x55557307:	push   ebx
+   0x55557308:	add    BYTE PTR [ecx],al
+   0x5555730a:	jl     0x55557314
+   0x5555730c:	add    DWORD PTR [ebx],ebx
+   0x5555730e:	add    BYTE PTR [eax],al
+   0x55557310:	push   0x18000000
+   0x55557315:	add    BYTE PTR [eax],al
+   0x55557317:	add    BYTE PTR [edi],dl
+   0x55557319:	or     BYTE PTR [eax],al
+   0x5555731b:	add    BYTE PTR [ecx],cl
+   0x5555731d:	add    BYTE PTR [eax],al
+   0x5555731f:	add    BYTE PTR [eax],al
+   0x55557321:	lsl    esi,WORD PTR [eax+eiz*1+0x6]
+   0x55557326:	adc    BYTE PTR [eax],al
+   0x55557328:	add    dh,BYTE PTR [eax+esi*1+0x10]
+   0x5555732c:	add    DWORD PTR [edx],eax
+   0x5555732e:	je     0x5555735c
+   0x55557330:	adc    BYTE PTR [edx],al
+   0x55557332:	add    dh,BYTE PTR [eax+ebp*1+0x10]
+   0x55557336:	add    eax,DWORD PTR [edx]
+   0x55557338:	je     0x5555735e
+   0x5555733a:	adc    BYTE PTR ds:0x101c7402,al
+   0x55557340:	push   es
+   0x55557341:	add    dh,BYTE PTR [eax+ebx*1+0x10]
+   0x55557345:	pop    es
+   0x55557346:	add    dh,BYTE PTR [esp+edx*1+0x10]
+   0x5555734a:	or     BYTE PTR [edx],al
+   0x5555734c:	je     0x5555738a
+   0x5555734e:	inc    edx
+   0x5555734f:	lsl    esi,WORD PTR [esp+ebx*1+0x6]
+   0x55557354:	adc    BYTE PTR [eax],al
+   0x55557356:	add    dh,BYTE PTR [esp+ebp*1+0x10]
+   0x5555735a:	add    DWORD PTR [edx],eax
+   0x5555735c:	je     0x55557386
+   0x5555735e:	adc    BYTE PTR [edx],al
+   0x55557360:	add    dh,BYTE PTR [esp+0x10]
+   0x55557364:	add    eax,DWORD PTR [edx]
+   0x55557366:	je     0x55557388
+   0x55557368:	adc    BYTE PTR ds:0x10187402,al
+   0x5555736e:	push   es
+   0x5555736f:	add    dh,BYTE PTR [esp+edx*1+0x10]
+   0x55557373:	pop    es
+   0x55557374:	add    dh,BYTE PTR [eax+edx*1+0x10]
+   0x55557378:	or     BYTE PTR [edx],al
+   0x5555737a:	je     0x555573b4
+   0x5555737c:	inc    esp
+   0x5555737d:	add    BYTE PTR [eax],al
+   0x5555737f:	add    BYTE PTR [eax+eax*1+0x7bb0000],al
+   0x55557386:	add    BYTE PTR [eax],al
+   0x55557388:	or     BYTE PTR [eax],al
+   0x5555738a:	add    BYTE PTR [eax],al
+   0x5555738c:	add    BYTE PTR [edi],cl
+   0x5555738e:	add    al,0x74
+   0x55557390:	mov    esp,0x100601
+   0x55557395:	add    esi,DWORD PTR [esp+ecx*8+0x1]
+   0x55557399:	adc    BYTE PTR [ecx],al
+   0x5555739b:	add    esi,DWORD PTR [eax+ecx*8+0x1]
+   0x5555739f:	adc    BYTE PTR [edx],al
+   0x555573a1:	add    esi,DWORD PTR [esp+eax*8+0x1]
+   0x555573a5:	adc    BYTE PTR [ebx],al
+   0x555573a7:	add    esi,DWORD PTR [eax+eax*8+0x1]
+   0x555573ab:	adc    BYTE PTR ds:0x1b87403,al
+   0x555573b1:	adc    BYTE PTR [esi],al
+   0x555573b3:	add    esi,DWORD PTR [esp+esi*4+0x1]
+   0x555573b7:	adc    BYTE PTR [edi],al
+   0x555573b9:	add    esi,DWORD PTR [eax+esi*4+0x1]
+   0x555573bd:	adc    BYTE PTR [eax],cl
+   0x555573bf:	add    esi,DWORD PTR [eax+ebx*8+0x1]
+   0x555573c3:	add    BYTE PTR [eax+eax*1],dl
+   0x555573c6:	add    BYTE PTR [eax],al
+   0x555573c8:	add    BYTE PTR [eax],al
+   0x555573ca:	add    BYTE PTR [eax],al
+   0x555573cc:	add    DWORD PTR [edx+0x52],edi
+   0x555573cf:	add    BYTE PTR [ecx],al
+   0x555573d1:	jl     0x555573db
+   0x555573d3:	add    DWORD PTR [ebx],ebx
+   0x555573d5:	or     al,0x4
+   0x555573d7:	add    al,0x88
+   0x555573d9:	add    DWORD PTR [eax],eax
+   0x555573db:	add    BYTE PTR [eax+eax*1],ah
+   0x555573de:	add    BYTE PTR [eax],al
+   0x555573e0:	sbb    al,0x0
+   0x555573e2:	add    BYTE PTR [eax],al
+   0x555573e4:	ins    BYTE PTR es:[edi],dx
+   0x555573e5:	pop    es
+   0x555573e6:	add    BYTE PTR [eax],al
+   0x555573e8:	adc    al,0x0
+   0x555573ea:	add    BYTE PTR [eax],al
+   0x555573ec:	add    BYTE PTR [ecx+0xe],al
+   0x555573ef:	or     BYTE PTR [ecx+0xe],al
+   0x555573f2:	or     al,0x41
+   0x555573f4:	push   cs
+   0x555573f5:	adc    BYTE PTR [ebp+0xc0e4e04],al
+   0x555573fb:	lds    eax,FWORD PTR [ecx+0xe]
+   0x555573fe:	or     BYTE PTR [ecx+0xe],al
+   0x55557401:	add    al,0x0
+   0x55557403:	add    BYTE PTR [esi],cl
+   0x55557405:	add    BYTE PTR [eax],al
+   0x55557407:	add    BYTE PTR [ecx+0x0],dh
+   0x5555740a:	add    BYTE PTR [eax],al
+   0x5555740c:	add    al,0x0
+   0x5555740e:	add    BYTE PTR [eax],al
+   0x55557410:	mov    ah,0x0
+   0x55557412:	add    BYTE PTR [eax],al
+   0x55557414:	add    eax,0x7c000000
+   0x55557419:	add    DWORD PTR [eax],eax
+   0x5555741b:	add    BYTE PTR [esi],al
+   0x5555741d:	add    BYTE PTR [eax],al
+   0x5555741f:	add    ah,ch
+   0x55557421:	add    BYTE PTR [eax],al
+   0x55557423:	add    BYTE PTR [edx],cl
+   0x55557425:	add    BYTE PTR [eax],al
+   0x55557427:	add    BYTE PTR [ebp+0xb000000],dl
+   0x5555742d:	add    BYTE PTR [eax],al
+   0x5555742f:	add    BYTE PTR [eax],dl
+   0x55557431:	add    BYTE PTR [eax],al
+   0x55557433:	add    ah,bh
+   0x55557435:	(bad)  
+   0x55557436:	jmp    FWORD PTR [edi+0x24]
+   0x55557439:	add    al,BYTE PTR [eax]
+   0x5555743b:	add    ch,bh
+   0x5555743d:	(bad)  
+   0x5555743e:	jmp    FWORD PTR [edi+0x3]
+   0x55557441:	add    BYTE PTR [eax],al
+   0x55557443:	add    al,dh
+   0x55557445:	(bad)  
+   0x55557446:	jmp    FWORD PTR [edi+0x12]
+   0x55557449:	add    al,BYTE PTR [eax]
+   0x5555744b:	add    BYTE PTR [eax],al
+   0x5555744d:	add    BYTE PTR [eax],al
+   0x5555744f:	add    BYTE PTR [eax],al
+   0x55557451:	add    BYTE PTR [eax],al
+   0x55557453:	add    BYTE PTR [eax],al
+   0x55557455:	add    BYTE PTR [eax],al
+   0x55557457:	add    BYTE PTR [eax],al
+   0x55557459:	add    BYTE PTR [eax],al
+   0x5555745b:	add    BYTE PTR [eax],al
+   0x5555745d:	add    BYTE PTR [eax],al
+   0x5555745f:	add    BYTE PTR [eax],al
+   0x55557461:	add    BYTE PTR [eax],al
+   0x55557463:	add    BYTE PTR [eax],al
+   0x55557465:	add    BYTE PTR [eax],al
+   0x55557467:	add    BYTE PTR [eax],al
+   0x55557469:	add    BYTE PTR [eax],al
+   0x5555746b:	add    BYTE PTR [eax],al
+   0x5555746d:	add    BYTE PTR [eax],al
+   0x5555746f:	add    BYTE PTR [eax],al
+   0x55557471:	add    BYTE PTR [eax],al
+   0x55557473:	add    BYTE PTR [eax],al
+   0x55557475:	add    BYTE PTR [eax],al
+   0x55557477:	add    BYTE PTR [eax],al
+   0x55557479:	add    BYTE PTR [eax],al
+   0x5555747b:	add    BYTE PTR [esp+eax*1],al
+   0x5555747e:	add    BYTE PTR [eax],al
+   0x55557480:	add    BYTE PTR [eax],al
+   0x55557482:	add    BYTE PTR [eax],al
+   0x55557484:	add    BYTE PTR [eax],al
+   0x55557486:	add    BYTE PTR [eax],al
+   0x55557488:	pop    DWORD PTR [eax]
+   0x5555748a:	add    BYTE PTR [eax],al
+   0x5555748c:	adc    al,0x0
+   0x5555748e:	add    BYTE PTR [eax],al
+   0x55557490:	jno    0x55557492
+   0x55557492:	add    eax,DWORD PTR [ebx]
+   0x55557494:	xchg   BYTE PTR [eax],al
+   0x55557496:	add    BYTE PTR [eax],al
+   0x55557498:	or     eax,DWORD PTR [eax]
+   0x5555749a:	add    BYTE PTR [eax],al
+   0x5555749c:	jb     0x5555749e
+   0x5555749e:	add    eax,DWORD PTR [ebx]
+   0x555574a0:	mfence 
+   0x555574a3:	lfence 
+   0x555574a6:	add    BYTE PTR [eax],al
+   0x555574a8:	add    BYTE PTR [eax],al
+   0x555574aa:	add    BYTE PTR [eax],al
+   0x555574ac:	add    BYTE PTR [eax],al
+   0x555574ae:	add    BYTE PTR [eax],al
+   0x555574b0:	add    BYTE PTR [eax],al
+   0x555574b2:	add    BYTE PTR [eax],al
+   0x555574b4:	add    BYTE PTR [eax],al
+   0x555574b6:	add    BYTE PTR [eax],al
+   0x555574b8:	add    BYTE PTR [eax],al
+   0x555574ba:	add    BYTE PTR [eax],al
+   0x555574bc:	add    BYTE PTR [eax],al
+   0x555574be:	add    BYTE PTR [eax],al
+   0x555574c0:	add    BYTE PTR [eax],al
+   0x555574c2:	add    BYTE PTR [eax],al
+   0x555574c4:	add    BYTE PTR [eax],al
+   0x555574c6:	add    BYTE PTR [eax],al
+   0x555574c8:	add    BYTE PTR [eax],al
+   0x555574ca:	add    BYTE PTR [eax],al
+   0x555574cc:	add    BYTE PTR [eax],al
+   0x555574ce:	add    BYTE PTR [eax],al
+   0x555574d0:	add    BYTE PTR [eax],al
+   0x555574d2:	add    BYTE PTR [eax],al
+   0x555574d4:	add    BYTE PTR [eax],al
+   0x555574d6:	add    BYTE PTR [eax],al
+   0x555574d8:	add    BYTE PTR [eax],al
+   0x555574da:	add    BYTE PTR [eax],al
+   0x555574dc:	add    BYTE PTR [eax],al
+   0x555574de:	add    BYTE PTR [eax],al
+   0x555574e0:	add    BYTE PTR [eax],al
+   0x555574e2:	add    BYTE PTR [eax],al
+   0x555574e4:	add    BYTE PTR [eax],al
+   0x555574e6:	add    BYTE PTR [eax],al
+   0x555574e8:	add    BYTE PTR [eax],al
+   0x555574ea:	add    BYTE PTR [eax],al
+   0x555574ec:	add    BYTE PTR [eax],al
+   0x555574ee:	add    BYTE PTR [eax],al
+   0x555574f0:	add    BYTE PTR [eax],al
+   0x555574f2:	add    BYTE PTR [eax],al
+   0x555574f4:	add    BYTE PTR [eax],al
+   0x555574f6:	add    BYTE PTR [eax],al
+   0x555574f8:	add    BYTE PTR [eax],al
+   0x555574fa:	add    BYTE PTR [eax],al
+   0x555574fc:	add    BYTE PTR [eax],al
+   0x555574fe:	add    BYTE PTR [eax],al
+   0x55557500:	push   ebp
+   0x55557501:	mov    ebp,esp
+   0x55557503:	sub    esp,0x10
+   0x55557506:	mov    DWORD PTR [ebp-0x8],ebx
+   0x55557509:	mov    DWORD PTR [ebp-0x4],esi
+   0x5555750c:	call   0x55557b2c
+   0x55557511:	add    ebx,0xffffff6b
+   0x55557517:	lea    esi,[esi+0x0]
+   0x5555751a:	lfence 
+   0x5555751d:	rdtsc  
+   0x5555751f:	mov    DWORD PTR [ebp-0xc],edx
+   0x55557522:	mov    ecx,DWORD PTR [ebx-0x13f0]
+   0x55557528:	mov    edx,DWORD PTR [ebp-0xc]
+   0x5555752b:	mov    DWORD PTR [ebp-0x10],eax
+   0x5555752e:	mov    esi,DWORD PTR [ebx-0x13f4]
+   0x55557534:	mov    eax,DWORD PTR [ebp-0x10]
+   0x55557537:	cmp    ecx,edx
+   0x55557539:	jb     0x55557548
+   0x5555753b:	jbe    0x55557558
+   0x5555753d:	mov    eax,esi
+   0x5555753f:	mov    edx,ecx
+   0x55557541:	lea    esi,[esi+eiz*1+0x0]
+   0x55557548:	mov    ebx,DWORD PTR [ebp-0x8]
+   0x5555754b:	mov    esi,DWORD PTR [ebp-0x4]
+   0x5555754e:	mov    esp,ebp
+   0x55557550:	pop    ebp
+   0x55557551:	ret    
+   0x55557552:	lea    esi,[esi+0x0]
+   0x55557558:	cmp    esi,eax
+   0x5555755a:	ja     0x5555753d
+   0x5555755c:	mov    ebx,DWORD PTR [ebp-0x8]
+   0x5555755f:	mov    esi,DWORD PTR [ebp-0x4]
+   0x55557562:	mov    esp,ebp
+   0x55557564:	pop    ebp
+   0x55557565:	ret    
+   0x55557566:	lea    esi,[esi+0x0]
+   0x55557569:	lea    edi,[edi+eiz*1+0x0]
+   0x55557570 <__vdso_clock_gettime>:	push   ebp
+   0x55557571 <__vdso_clock_gettime+1>:	mov    ebp,esp
+   0x55557573 <__vdso_clock_gettime+3>:	push   edi
+   0x55557574 <__vdso_clock_gettime+4>:	push   esi
+   0x55557575 <__vdso_clock_gettime+5>:	push   ebx
+   0x55557576 <__vdso_clock_gettime+6>:	sub    esp,0x3c
+   0x55557579 <__vdso_clock_gettime+9>:	mov    esi,DWORD PTR [ebp+0xc]
+   0x5555757c <__vdso_clock_gettime+12>:	call   0x55557b2c
+   0x55557581 <__vdso_clock_gettime+17>:	add    ebx,0xfffffefb
+   0x55557587 <__vdso_clock_gettime+23>:	cmp    DWORD PTR [ebp+0x8],0x1
+   0x5555758b <__vdso_clock_gettime+27>:	je     0x55557600 <__vdso_clock_gettime+144>
+   0x5555758d <__vdso_clock_gettime+29>:	jle    0x555576e8 <__vdso_clock_gettime+376>
+   0x55557593 <__vdso_clock_gettime+35>:	cmp    DWORD PTR [ebp+0x8],0x5
+   0x55557597 <__vdso_clock_gettime+39>:	lea    edi,ds:0xffffec04
+   0x5555759d <__vdso_clock_gettime+45>:	lea    ecx,ds:0xffffec44
+   0x555575a3 <__vdso_clock_gettime+51>:	lea    edx,ds:0xffffec4c
+   0x555575a9 <__vdso_clock_gettime+57>:	je     0x555575d8 <__vdso_clock_gettime+104>
+   0x555575ab <__vdso_clock_gettime+59>:	cmp    DWORD PTR [ebp+0x8],0x6
+   0x555575af <__vdso_clock_gettime+63>:	je     0x555577e0 <__vdso_clock_gettime+624>
+   0x555575b5 <__vdso_clock_gettime+69>:	mov    ecx,esi
+   0x555575b7 <__vdso_clock_gettime+71>:	mov    eax,0x109
+   0x555575bc <__vdso_clock_gettime+76>:	mov    edx,ebx
+   0x555575be <__vdso_clock_gettime+78>:	mov    ebx,DWORD PTR [ebp+0x8]
+   0x555575c1 <__vdso_clock_gettime+81>:	call   0x55557b50 <__kernel_vsyscall>
+   0x555575c6 <__vdso_clock_gettime+86>:	mov    ebx,edx
+   0x555575c8 <__vdso_clock_gettime+88>:	add    esp,0x3c
+   0x555575cb <__vdso_clock_gettime+91>:	pop    ebx
+   0x555575cc <__vdso_clock_gettime+92>:	pop    esi
+   0x555575cd <__vdso_clock_gettime+93>:	pop    edi
+   0x555575ce <__vdso_clock_gettime+94>:	pop    ebp
+   0x555575cf <__vdso_clock_gettime+95>:	ret    
+   0x555575d0 <__vdso_clock_gettime+96>:	pause  
+   0x555575d2 <__vdso_clock_gettime+98>:	lea    esi,[esi+0x0]
+   0x555575d8 <__vdso_clock_gettime+104>:	mov    eax,DWORD PTR [edi+ebx*1]
+   0x555575db <__vdso_clock_gettime+107>:	test   al,0x1
+   0x555575dd <__vdso_clock_gettime+109>:	mov    DWORD PTR [ebp-0x14],eax
+   0x555575e0 <__vdso_clock_gettime+112>:	jne    0x555575d0 <__vdso_clock_gettime+96>
+   0x555575e2 <__vdso_clock_gettime+114>:	mov    eax,DWORD PTR [ecx+ebx*1]
+   0x555575e5 <__vdso_clock_gettime+117>:	mov    DWORD PTR [esi],eax
+   0x555575e7 <__vdso_clock_gettime+119>:	mov    eax,DWORD PTR [edx+ebx*1]
+   0x555575ea <__vdso_clock_gettime+122>:	mov    DWORD PTR [esi+0x4],eax
+   0x555575ed <__vdso_clock_gettime+125>:	mov    eax,DWORD PTR [ebp-0x14]
+   0x555575f0 <__vdso_clock_gettime+128>:	cmp    eax,DWORD PTR [edi+ebx*1]
+   0x555575f3 <__vdso_clock_gettime+131>:	jne    0x555575d8 <__vdso_clock_gettime+104>
+   0x555575f5 <__vdso_clock_gettime+133>:	xor    eax,eax
+   0x555575f7 <__vdso_clock_gettime+135>:	add    esp,0x3c
+   0x555575fa <__vdso_clock_gettime+138>:	pop    ebx
+   0x555575fb <__vdso_clock_gettime+139>:	pop    esi
+   0x555575fc <__vdso_clock_gettime+140>:	pop    edi
+   0x555575fd <__vdso_clock_gettime+141>:	pop    ebp
+   0x555575fe <__vdso_clock_gettime+142>:	ret    
+   0x555575ff <__vdso_clock_gettime+143>:	nop
+   0x55557600 <__vdso_clock_gettime+144>:	lea    eax,ds:0xffffec08
+   0x55557606 <__vdso_clock_gettime+150>:	mov    DWORD PTR [ebp-0x14],eax
+   0x55557609 <__vdso_clock_gettime+153>:	lea    edx,ds:0xffffec20
+   0x5555760f <__vdso_clock_gettime+159>:	lea    ecx,ds:0xffffec34
+   0x55557615 <__vdso_clock_gettime+165>:	lea    eax,ds:0xffffec3c
+   0x5555761b <__vdso_clock_gettime+171>:	lea    edi,ds:0xffffec04
+   0x55557621 <__vdso_clock_gettime+177>:	mov    DWORD PTR [ebp-0x20],edx
+   0x55557624 <__vdso_clock_gettime+180>:	mov    DWORD PTR [ebp-0x1c],ecx
+   0x55557627 <__vdso_clock_gettime+183>:	mov    DWORD PTR [ebp-0x28],eax
+   0x5555762a <__vdso_clock_gettime+186>:	mov    eax,DWORD PTR [edi+ebx*1]
+   0x5555762d <__vdso_clock_gettime+189>:	test   al,0x1
+   0x5555762f <__vdso_clock_gettime+191>:	mov    DWORD PTR [ebp-0x18],eax
+   0x55557632 <__vdso_clock_gettime+194>:	jne    0x555578d6 <__vdso_clock_gettime+870>
+   0x55557638 <__vdso_clock_gettime+200>:	mov    edx,DWORD PTR [ebp-0x14]
+   0x5555763b <__vdso_clock_gettime+203>:	mov    ecx,DWORD PTR [ebp-0x1c]
+   0x5555763e <__vdso_clock_gettime+206>:	mov    edx,DWORD PTR [edx+ebx*1]
+   0x55557641 <__vdso_clock_gettime+209>:	mov    eax,DWORD PTR [ecx+ebx*1]
+   0x55557644 <__vdso_clock_gettime+212>:	mov    DWORD PTR [ebp-0x2c],edx
+   0x55557647 <__vdso_clock_gettime+215>:	mov    edx,DWORD PTR [ebp-0x28]
+   0x5555764a <__vdso_clock_gettime+218>:	mov    DWORD PTR [esi],eax
+   0x5555764c <__vdso_clock_gettime+220>:	mov    eax,DWORD PTR [edx+ebx*1]
+   0x5555764f <__vdso_clock_gettime+223>:	mov    edx,DWORD PTR [edx+ebx*1+0x4]
+   0x55557653 <__vdso_clock_gettime+227>:	mov    DWORD PTR [ebp-0x38],eax
+   0x55557656 <__vdso_clock_gettime+230>:	mov    eax,DWORD PTR [ebp-0x14]
+   0x55557659 <__vdso_clock_gettime+233>:	mov    DWORD PTR [ebp-0x34],edx
+   0x5555765c <__vdso_clock_gettime+236>:	mov    ecx,DWORD PTR [eax+ebx*1]
+   0x5555765f <__vdso_clock_gettime+239>:	cmp    ecx,0x1
+   0x55557662 <__vdso_clock_gettime+242>:	je     0x55557820 <__vdso_clock_gettime+688>
+   0x55557668 <__vdso_clock_gettime+248>:	cmp    ecx,0x2
+   0x5555766b <__vdso_clock_gettime+251>:	je     0x55557858 <__vdso_clock_gettime+744>
+   0x55557671 <__vdso_clock_gettime+257>:	xor    eax,eax
+   0x55557673 <__vdso_clock_gettime+259>:	xor    edx,edx
+   0x55557675 <__vdso_clock_gettime+261>:	cmp    ecx,0x3
+   0x55557678 <__vdso_clock_gettime+264>:	je     0x555578b8 <__vdso_clock_gettime+840>
+   0x5555767e <__vdso_clock_gettime+270>:	mov    ecx,DWORD PTR [ebp-0x20]
+   0x55557681 <__vdso_clock_gettime+273>:	add    eax,DWORD PTR [ebp-0x38]
+   0x55557684 <__vdso_clock_gettime+276>:	adc    edx,DWORD PTR [ebp-0x34]
+   0x55557687 <__vdso_clock_gettime+279>:	mov    ecx,DWORD PTR [ecx+ebx*1]
+   0x5555768a <__vdso_clock_gettime+282>:	shrd   eax,edx,cl
+   0x5555768d <__vdso_clock_gettime+285>:	shr    edx,cl
+   0x5555768f <__vdso_clock_gettime+287>:	test   cl,0x20
+   0x55557692 <__vdso_clock_gettime+290>:	je     0x55557698 <__vdso_clock_gettime+296>
+   0x55557694 <__vdso_clock_gettime+292>:	mov    eax,edx
+   0x55557696 <__vdso_clock_gettime+294>:	xor    edx,edx
+   0x55557698 <__vdso_clock_gettime+296>:	mov    ecx,DWORD PTR [ebp-0x18]
+   0x5555769b <__vdso_clock_gettime+299>:	cmp    ecx,DWORD PTR [edi+ebx*1]
+   0x5555769e <__vdso_clock_gettime+302>:	jne    0x5555762a <__vdso_clock_gettime+186>
+   0x555576a0 <__vdso_clock_gettime+304>:	cmp    edx,0x0
+   0x555576a3 <__vdso_clock_gettime+307>:	mov    edi,DWORD PTR [esi]
+   0x555576a5 <__vdso_clock_gettime+309>:	mov    DWORD PTR [ebp-0x14],eax
+   0x555576a8 <__vdso_clock_gettime+312>:	ja     0x555576b3 <__vdso_clock_gettime+323>
+   0x555576aa <__vdso_clock_gettime+314>:	xor    ecx,ecx
+   0x555576ac <__vdso_clock_gettime+316>:	cmp    eax,0x3b9ac9ff
+   0x555576b1 <__vdso_clock_gettime+321>:	jbe    0x555576cf <__vdso_clock_gettime+351>
+   0x555576b3 <__vdso_clock_gettime+323>:	xor    ecx,ecx
+   0x555576b5 <__vdso_clock_gettime+325>:	lea    esi,[esi+0x0]
+   0x555576b8 <__vdso_clock_gettime+328>:	add    eax,0xc4653600
+   0x555576bd <__vdso_clock_gettime+333>:	adc    edx,0xffffffff
+   0x555576c0 <__vdso_clock_gettime+336>:	add    ecx,0x1
+   0x555576c3 <__vdso_clock_gettime+339>:	cmp    edx,0x0
+   0x555576c6 <__vdso_clock_gettime+342>:	ja     0x555576b8 <__vdso_clock_gettime+328>
+   0x555576c8 <__vdso_clock_gettime+344>:	cmp    eax,0x3b9ac9ff
+   0x555576cd <__vdso_clock_gettime+349>:	ja     0x555576b8 <__vdso_clock_gettime+328>
+   0x555576cf <__vdso_clock_gettime+351>:	mov    DWORD PTR [esi+0x4],eax
+   0x555576d2 <__vdso_clock_gettime+354>:	mov    eax,DWORD PTR [ebp-0x2c]
+   0x555576d5 <__vdso_clock_gettime+357>:	add    ecx,edi
+   0x555576d7 <__vdso_clock_gettime+359>:	mov    DWORD PTR [esi],ecx
+   0x555576d9 <__vdso_clock_gettime+361>:	test   eax,eax
+   0x555576db <__vdso_clock_gettime+363>:	je     0x555575b5 <__vdso_clock_gettime+69>
+   0x555576e1 <__vdso_clock_gettime+369>:	xor    eax,eax
+   0x555576e3 <__vdso_clock_gettime+371>:	jmp    0x555575f7 <__vdso_clock_gettime+135>
+   0x555576e8 <__vdso_clock_gettime+376>:	lea    eax,ds:0xffffec24
+   0x555576ee <__vdso_clock_gettime+382>:	mov    DWORD PTR [ebp-0x38],eax
+   0x555576f1 <__vdso_clock_gettime+385>:	mov    eax,DWORD PTR [ebp+0x8]
+   0x555576f4 <__vdso_clock_gettime+388>:	lea    edx,ds:0xffffec08
+   0x555576fa <__vdso_clock_gettime+394>:	mov    DWORD PTR [ebp-0x14],edx
+   0x555576fd <__vdso_clock_gettime+397>:	lea    ecx,ds:0xffffec2c
+   0x55557703 <__vdso_clock_gettime+403>:	lea    edx,ds:0xffffec20
+   0x55557709 <__vdso_clock_gettime+409>:	lea    edi,ds:0xffffec04
+   0x5555770f <__vdso_clock_gettime+415>:	test   eax,eax
+   0x55557711 <__vdso_clock_gettime+417>:	mov    DWORD PTR [ebp-0x2c],ecx
+   0x55557714 <__vdso_clock_gettime+420>:	mov    DWORD PTR [ebp-0x20],edx
+   0x55557717 <__vdso_clock_gettime+423>:	jne    0x555575b5 <__vdso_clock_gettime+69>
+   0x5555771d <__vdso_clock_gettime+429>:	mov    ecx,DWORD PTR [edi+ebx*1]
+   0x55557720 <__vdso_clock_gettime+432>:	mov    DWORD PTR [ebp-0x18],ecx
+   0x55557723 <__vdso_clock_gettime+435>:	and    ecx,0x1
+   0x55557726 <__vdso_clock_gettime+438>:	jne    0x555578cf <__vdso_clock_gettime+863>
+   0x5555772c <__vdso_clock_gettime+444>:	mov    eax,DWORD PTR [ebp-0x14]
+   0x5555772f <__vdso_clock_gettime+447>:	mov    edx,DWORD PTR [ebp-0x2c]
+   0x55557732 <__vdso_clock_gettime+450>:	mov    eax,DWORD PTR [eax+ebx*1]
+   0x55557735 <__vdso_clock_gettime+453>:	mov    DWORD PTR [ebp-0x1c],eax
+   0x55557738 <__vdso_clock_gettime+456>:	mov    eax,DWORD PTR [edx+ebx*1]
+   0x5555773b <__vdso_clock_gettime+459>:	mov    edx,DWORD PTR [ebp-0x38]
+   0x5555773e <__vdso_clock_gettime+462>:	mov    DWORD PTR [esi],eax
+   0x55557740 <__vdso_clock_gettime+464>:	mov    eax,DWORD PTR [edx+ebx*1]
+   0x55557743 <__vdso_clock_gettime+467>:	mov    edx,DWORD PTR [edx+ebx*1+0x4]
+   0x55557747 <__vdso_clock_gettime+471>:	mov    DWORD PTR [ebp-0x28],eax
+   0x5555774a <__vdso_clock_gettime+474>:	mov    eax,DWORD PTR [ebp-0x14]
+   0x5555774d <__vdso_clock_gettime+477>:	mov    DWORD PTR [ebp-0x24],edx
+   0x55557750 <__vdso_clock_gettime+480>:	mov    ecx,DWORD PTR [eax+ebx*1]
+   0x55557753 <__vdso_clock_gettime+483>:	cmp    ecx,0x1
+   0x55557756 <__vdso_clock_gettime+486>:	je     0x555578c8 <__vdso_clock_gettime+856>
+   0x5555775c <__vdso_clock_gettime+492>:	cmp    ecx,0x2
+   0x5555775f <__vdso_clock_gettime+495>:	je     0x55557868 <__vdso_clock_gettime+760>
+   0x55557765 <__vdso_clock_gettime+501>:	xor    eax,eax
+   0x55557767 <__vdso_clock_gettime+503>:	xor    edx,edx
+   0x55557769 <__vdso_clock_gettime+505>:	cmp    ecx,0x3
+   0x5555776c <__vdso_clock_gettime+508>:	je     0x555578a8 <__vdso_clock_gettime+824>
+   0x55557772 <__vdso_clock_gettime+514>:	mov    ecx,DWORD PTR [ebp-0x20]
+   0x55557775 <__vdso_clock_gettime+517>:	add    eax,DWORD PTR [ebp-0x28]
+   0x55557778 <__vdso_clock_gettime+520>:	adc    edx,DWORD PTR [ebp-0x24]
+   0x5555777b <__vdso_clock_gettime+523>:	mov    ecx,DWORD PTR [ecx+ebx*1]
+   0x5555777e <__vdso_clock_gettime+526>:	shrd   eax,edx,cl
+   0x55557781 <__vdso_clock_gettime+529>:	shr    edx,cl
+   0x55557783 <__vdso_clock_gettime+531>:	test   cl,0x20
+   0x55557786 <__vdso_clock_gettime+534>:	je     0x5555778c <__vdso_clock_gettime+540>
+   0x55557788 <__vdso_clock_gettime+536>:	mov    eax,edx
+   0x5555778a <__vdso_clock_gettime+538>:	xor    edx,edx
+   0x5555778c <__vdso_clock_gettime+540>:	mov    ecx,DWORD PTR [ebp-0x18]
+   0x5555778f <__vdso_clock_gettime+543>:	cmp    ecx,DWORD PTR [edi+ebx*1]
+   0x55557792 <__vdso_clock_gettime+546>:	jne    0x5555771d <__vdso_clock_gettime+429>
+   0x55557794 <__vdso_clock_gettime+548>:	cmp    edx,0x0
+   0x55557797 <__vdso_clock_gettime+551>:	mov    edi,DWORD PTR [esi]
+   0x55557799 <__vdso_clock_gettime+553>:	mov    DWORD PTR [ebp-0x14],eax
+   0x5555779c <__vdso_clock_gettime+556>:	ja     0x555577a7 <__vdso_clock_gettime+567>
+   0x5555779e <__vdso_clock_gettime+558>:	xor    ecx,ecx
+   0x555577a0 <__vdso_clock_gettime+560>:	cmp    eax,0x3b9ac9ff
+   0x555577a5 <__vdso_clock_gettime+565>:	jbe    0x555577c7 <__vdso_clock_gettime+599>
+   0x555577a7 <__vdso_clock_gettime+567>:	xor    ecx,ecx
+   0x555577a9 <__vdso_clock_gettime+569>:	lea    esi,[esi+eiz*1+0x0]
+   0x555577b0 <__vdso_clock_gettime+576>:	add    eax,0xc4653600
+   0x555577b5 <__vdso_clock_gettime+581>:	adc    edx,0xffffffff
+   0x555577b8 <__vdso_clock_gettime+584>:	add    ecx,0x1
+   0x555577bb <__vdso_clock_gettime+587>:	cmp    edx,0x0
+   0x555577be <__vdso_clock_gettime+590>:	ja     0x555577b0 <__vdso_clock_gettime+576>
+   0x555577c0 <__vdso_clock_gettime+592>:	cmp    eax,0x3b9ac9ff
+   0x555577c5 <__vdso_clock_gettime+597>:	ja     0x555577b0 <__vdso_clock_gettime+576>
+   0x555577c7 <__vdso_clock_gettime+599>:	mov    DWORD PTR [esi+0x4],eax
+   0x555577ca <__vdso_clock_gettime+602>:	mov    eax,DWORD PTR [ebp-0x1c]
+   0x555577cd <__vdso_clock_gettime+605>:	add    ecx,edi
+   0x555577cf <__vdso_clock_gettime+607>:	mov    DWORD PTR [esi],ecx
+   0x555577d1 <__vdso_clock_gettime+609>:	test   eax,eax
+   0x555577d3 <__vdso_clock_gettime+611>:	je     0x555575b5 <__vdso_clock_gettime+69>
+   0x555577d9 <__vdso_clock_gettime+617>:	xor    eax,eax
+   0x555577db <__vdso_clock_gettime+619>:	jmp    0x555575f7 <__vdso_clock_gettime+135>
+   0x555577e0 <__vdso_clock_gettime+624>:	lea    edx,ds:0xffffec5c
+   0x555577e6 <__vdso_clock_gettime+630>:	lea    edi,ds:0xffffec04
+   0x555577ec <__vdso_clock_gettime+636>:	lea    ecx,ds:0xffffec54
+   0x555577f2 <__vdso_clock_gettime+642>:	mov    DWORD PTR [ebp-0x14],edx
+   0x555577f5 <__vdso_clock_gettime+645>:	mov    eax,DWORD PTR [edi+ebx*1]
+   0x555577f8 <__vdso_clock_gettime+648>:	test   al,0x1
+   0x555577fa <__vdso_clock_gettime+650>:	jne    0x555578e5 <__vdso_clock_gettime+885>
+   0x55557800 <__vdso_clock_gettime+656>:	mov    edx,DWORD PTR [ecx+ebx*1]
+   0x55557803 <__vdso_clock_gettime+659>:	mov    DWORD PTR [esi],edx
+   0x55557805 <__vdso_clock_gettime+661>:	mov    edx,DWORD PTR [ebp-0x14]
+   0x55557808 <__vdso_clock_gettime+664>:	mov    edx,DWORD PTR [edx+ebx*1]
+   0x5555780b <__vdso_clock_gettime+667>:	mov    DWORD PTR [esi+0x4],edx
+   0x5555780e <__vdso_clock_gettime+670>:	cmp    eax,DWORD PTR [edi+ebx*1]
+   0x55557811 <__vdso_clock_gettime+673>:	jne    0x555577f5 <__vdso_clock_gettime+645>
+   0x55557813 <__vdso_clock_gettime+675>:	xor    eax,eax
+   0x55557815 <__vdso_clock_gettime+677>:	jmp    0x555575f7 <__vdso_clock_gettime+135>
+   0x5555781a <__vdso_clock_gettime+682>:	lea    esi,[esi+0x0]
+   0x55557820 <__vdso_clock_gettime+688>:	call   0x55557500
+   0x55557825 <__vdso_clock_gettime+693>:	mov    ecx,DWORD PTR [ebx-0x13ec]
+   0x5555782b <__vdso_clock_gettime+699>:	sub    eax,DWORD PTR [ebx-0x13f4]
+   0x55557831 <__vdso_clock_gettime+705>:	sbb    edx,DWORD PTR [ebx-0x13f0]
+   0x55557837 <__vdso_clock_gettime+711>:	and    ecx,eax
+   0x55557839 <__vdso_clock_gettime+713>:	mov    eax,DWORD PTR [ebx-0x13e4]
+   0x5555783f <__vdso_clock_gettime+719>:	mov    DWORD PTR [ebp-0x30],ecx
+   0x55557842 <__vdso_clock_gettime+722>:	mov    ecx,DWORD PTR [ebx-0x13e8]
+   0x55557848 <__vdso_clock_gettime+728>:	and    ecx,edx
+   0x5555784a <__vdso_clock_gettime+730>:	imul   ecx,eax
+   0x5555784d <__vdso_clock_gettime+733>:	mul    DWORD PTR [ebp-0x30]
+   0x55557850 <__vdso_clock_gettime+736>:	add    edx,ecx
+   0x55557852 <__vdso_clock_gettime+738>:	jmp    0x5555767e <__vdso_clock_gettime+270>
+   0x55557857 <__vdso_clock_gettime+743>:	nop
+   0x55557858 <__vdso_clock_gettime+744>:	mov    eax,DWORD PTR [ebx-0x238c]
+   0x5555785e <__vdso_clock_gettime+750>:	xor    edx,edx
+   0x55557860 <__vdso_clock_gettime+752>:	jmp    0x55557825 <__vdso_clock_gettime+693>
+   0x55557862 <__vdso_clock_gettime+754>:	lea    esi,[esi+0x0]
+   0x55557868 <__vdso_clock_gettime+760>:	mov    eax,DWORD PTR [ebx-0x238c]
+   0x5555786e <__vdso_clock_gettime+766>:	xor    edx,edx
+   0x55557870 <__vdso_clock_gettime+768>:	mov    ecx,DWORD PTR [ebx-0x13ec]
+   0x55557876 <__vdso_clock_gettime+774>:	sub    eax,DWORD PTR [ebx-0x13f4]
+   0x5555787c <__vdso_clock_gettime+780>:	sbb    edx,DWORD PTR [ebx-0x13f0]
+   0x55557882 <__vdso_clock_gettime+786>:	and    ecx,eax
+   0x55557884 <__vdso_clock_gettime+788>:	mov    eax,DWORD PTR [ebx-0x13e4]
+   0x5555788a <__vdso_clock_gettime+794>:	mov    DWORD PTR [ebp-0x30],ecx
+   0x5555788d <__vdso_clock_gettime+797>:	mov    ecx,DWORD PTR [ebx-0x13e8]
+   0x55557893 <__vdso_clock_gettime+803>:	and    ecx,edx
+   0x55557895 <__vdso_clock_gettime+805>:	imul   ecx,eax
+   0x55557898 <__vdso_clock_gettime+808>:	mul    DWORD PTR [ebp-0x30]
+   0x5555789b <__vdso_clock_gettime+811>:	add    edx,ecx
+   0x5555789d <__vdso_clock_gettime+813>:	jmp    0x55557772 <__vdso_clock_gettime+514>
+   0x555578a2 <__vdso_clock_gettime+818>:	lea    esi,[esi+0x0]
+   0x555578a8 <__vdso_clock_gettime+824>:	mov    DWORD PTR [ebp-0x1c],0x0
+   0x555578af <__vdso_clock_gettime+831>:	jmp    0x55557870 <__vdso_clock_gettime+768>
+   0x555578b1 <__vdso_clock_gettime+833>:	lea    esi,[esi+eiz*1+0x0]
+   0x555578b8 <__vdso_clock_gettime+840>:	mov    DWORD PTR [ebp-0x2c],0x0
+   0x555578bf <__vdso_clock_gettime+847>:	jmp    0x55557825 <__vdso_clock_gettime+693>
+   0x555578c4 <__vdso_clock_gettime+852>:	lea    esi,[esi+eiz*1+0x0]
+   0x555578c8 <__vdso_clock_gettime+856>:	call   0x55557500
+   0x555578cd <__vdso_clock_gettime+861>:	jmp    0x55557870 <__vdso_clock_gettime+768>
+   0x555578cf <__vdso_clock_gettime+863>:	pause  
+   0x555578d1 <__vdso_clock_gettime+865>:	jmp    0x5555771d <__vdso_clock_gettime+429>
+   0x555578d6 <__vdso_clock_gettime+870>:	pause  
+   0x555578d8 <__vdso_clock_gettime+872>:	nop
+   0x555578d9 <__vdso_clock_gettime+873>:	lea    esi,[esi+eiz*1+0x0]
+   0x555578e0 <__vdso_clock_gettime+880>:	jmp    0x5555762a <__vdso_clock_gettime+186>
+   0x555578e5 <__vdso_clock_gettime+885>:	pause  
+   0x555578e7 <__vdso_clock_gettime+887>:	mov    esi,esi
+   0x555578e9 <__vdso_clock_gettime+889>:	lea    edi,[edi+eiz*1+0x0]
+   0x555578f0 <__vdso_clock_gettime+896>:	jmp    0x555577f5 <__vdso_clock_gettime+645>
+   0x555578f5:	lea    esi,[esi+eiz*1+0x0]
+   0x555578f9:	lea    edi,[edi+eiz*1+0x0]
+   0x55557900 <__vdso_gettimeofday>:	push   ebp
+   0x55557901 <__vdso_gettimeofday+1>:	mov    ebp,esp
+   0x55557903 <__vdso_gettimeofday+3>:	push   edi
+   0x55557904 <__vdso_gettimeofday+4>:	push   esi
+   0x55557905 <__vdso_gettimeofday+5>:	push   ebx
+   0x55557906 <__vdso_gettimeofday+6>:	sub    esp,0x2c
+   0x55557909 <__vdso_gettimeofday+9>:	mov    edi,DWORD PTR [ebp+0x8]
+   0x5555790c <__vdso_gettimeofday+12>:	call   0x55557b2c
+   0x55557911 <__vdso_gettimeofday+17>:	add    ebx,0xfffffb6b
+   0x55557917 <__vdso_gettimeofday+23>:	test   edi,edi
+   0x55557919 <__vdso_gettimeofday+25>:	je     0x55557a06 <__vdso_gettimeofday+262>
+   0x5555791f <__vdso_gettimeofday+31>:	mov    eax,DWORD PTR [ebx-0x13fc]
+   0x55557925 <__vdso_gettimeofday+37>:	lea    edx,ds:0xffffec04
+   0x5555792b <__vdso_gettimeofday+43>:	mov    DWORD PTR [ebp-0x1c],edx
+   0x5555792e <__vdso_gettimeofday+46>:	lea    ecx,ds:0xffffec2c
+   0x55557934 <__vdso_gettimeofday+52>:	lea    edx,ds:0xffffec20
+   0x5555793a <__vdso_gettimeofday+58>:	lea    esi,ds:0xffffec08
+   0x55557940 <__vdso_gettimeofday+64>:	mov    DWORD PTR [ebp-0x14],eax
+   0x55557943 <__vdso_gettimeofday+67>:	lea    eax,ds:0xffffec24
+   0x55557949 <__vdso_gettimeofday+73>:	mov    DWORD PTR [ebp-0x30],ecx
+   0x5555794c <__vdso_gettimeofday+76>:	mov    DWORD PTR [ebp-0x2c],eax
+   0x5555794f <__vdso_gettimeofday+79>:	mov    DWORD PTR [ebp-0x20],edx
+   0x55557952 <__vdso_gettimeofday+82>:	test   BYTE PTR [ebp-0x14],0x1
+   0x55557956 <__vdso_gettimeofday+86>:	jne    0x55557a9f <__vdso_gettimeofday+415>
+   0x5555795c <__vdso_gettimeofday+92>:	mov    ecx,DWORD PTR [ebp-0x30]
+   0x5555795f <__vdso_gettimeofday+95>:	mov    edx,DWORD PTR [esi+ebx*1]
+   0x55557962 <__vdso_gettimeofday+98>:	mov    eax,DWORD PTR [ecx+ebx*1]
+   0x55557965 <__vdso_gettimeofday+101>:	mov    DWORD PTR [ebp-0x18],edx
+   0x55557968 <__vdso_gettimeofday+104>:	mov    edx,DWORD PTR [ebp-0x2c]
+   0x5555796b <__vdso_gettimeofday+107>:	mov    DWORD PTR [edi],eax
+   0x5555796d <__vdso_gettimeofday+109>:	mov    ecx,DWORD PTR [esi+ebx*1]
+   0x55557970 <__vdso_gettimeofday+112>:	mov    eax,DWORD PTR [edx+ebx*1]
+   0x55557973 <__vdso_gettimeofday+115>:	mov    edx,DWORD PTR [edx+ebx*1+0x4]
+   0x55557977 <__vdso_gettimeofday+119>:	cmp    ecx,0x1
+   0x5555797a <__vdso_gettimeofday+122>:	mov    DWORD PTR [ebp-0x28],eax
+   0x5555797d <__vdso_gettimeofday+125>:	mov    DWORD PTR [ebp-0x24],edx
+   0x55557980 <__vdso_gettimeofday+128>:	je     0x55557a98 <__vdso_gettimeofday+408>
+   0x55557986 <__vdso_gettimeofday+134>:	cmp    ecx,0x2
+   0x55557989 <__vdso_gettimeofday+137>:	je     0x55557a48 <__vdso_gettimeofday+328>
+   0x5555798f <__vdso_gettimeofday+143>:	xor    eax,eax
+   0x55557991 <__vdso_gettimeofday+145>:	xor    edx,edx
+   0x55557993 <__vdso_gettimeofday+147>:	cmp    ecx,0x3
+   0x55557996 <__vdso_gettimeofday+150>:	je     0x55557a88 <__vdso_gettimeofday+392>
+   0x5555799c <__vdso_gettimeofday+156>:	mov    ecx,DWORD PTR [ebp-0x20]
+   0x5555799f <__vdso_gettimeofday+159>:	add    eax,DWORD PTR [ebp-0x28]
+   0x555579a2 <__vdso_gettimeofday+162>:	adc    edx,DWORD PTR [ebp-0x24]
+   0x555579a5 <__vdso_gettimeofday+165>:	mov    ecx,DWORD PTR [ecx+ebx*1]
+   0x555579a8 <__vdso_gettimeofday+168>:	shrd   eax,edx,cl
+   0x555579ab <__vdso_gettimeofday+171>:	shr    edx,cl
+   0x555579ad <__vdso_gettimeofday+173>:	test   cl,0x20
+   0x555579b0 <__vdso_gettimeofday+176>:	je     0x555579b6 <__vdso_gettimeofday+182>
+   0x555579b2 <__vdso_gettimeofday+178>:	mov    eax,edx
+   0x555579b4 <__vdso_gettimeofday+180>:	xor    edx,edx
+   0x555579b6 <__vdso_gettimeofday+182>:	mov    ecx,DWORD PTR [ebp-0x1c]
+   0x555579b9 <__vdso_gettimeofday+185>:	mov    ecx,DWORD PTR [ecx+ebx*1]
+   0x555579bc <__vdso_gettimeofday+188>:	mov    DWORD PTR [ebp-0x28],ecx
+   0x555579bf <__vdso_gettimeofday+191>:	mov    ecx,DWORD PTR [ebp-0x14]
+   0x555579c2 <__vdso_gettimeofday+194>:	cmp    DWORD PTR [ebp-0x28],ecx
+   0x555579c5 <__vdso_gettimeofday+197>:	jne    0x55557aaa <__vdso_gettimeofday+426>
+   0x555579cb <__vdso_gettimeofday+203>:	cmp    edx,0x0
+   0x555579ce <__vdso_gettimeofday+206>:	mov    esi,DWORD PTR [edi]
+   0x555579d0 <__vdso_gettimeofday+208>:	mov    DWORD PTR [ebp-0x14],eax
+   0x555579d3 <__vdso_gettimeofday+211>:	ja     0x55557a20 <__vdso_gettimeofday+288>
+   0x555579d5 <__vdso_gettimeofday+213>:	xor    ecx,ecx
+   0x555579d7 <__vdso_gettimeofday+215>:	cmp    eax,0x3b9ac9ff
+   0x555579dc <__vdso_gettimeofday+220>:	ja     0x55557a20 <__vdso_gettimeofday+288>
+   0x555579de <__vdso_gettimeofday+222>:	xchg   ax,ax
+   0x555579e0 <__vdso_gettimeofday+224>:	add    ecx,esi
+   0x555579e2 <__vdso_gettimeofday+226>:	mov    esi,DWORD PTR [ebp-0x18]
+   0x555579e5 <__vdso_gettimeofday+229>:	mov    DWORD PTR [edi],ecx
+   0x555579e7 <__vdso_gettimeofday+231>:	mov    ecx,eax
+   0x555579e9 <__vdso_gettimeofday+233>:	mov    DWORD PTR [edi+0x4],eax
+   0x555579ec <__vdso_gettimeofday+236>:	test   esi,esi
+   0x555579ee <__vdso_gettimeofday+238>:	je     0x55557ab5 <__vdso_gettimeofday+437>
+   0x555579f4 <__vdso_gettimeofday+244>:	mov    edx,0x10624dd3
+   0x555579f9 <__vdso_gettimeofday+249>:	imul   edx
+   0x555579fb <__vdso_gettimeofday+251>:	sar    ecx,0x1f
+   0x555579fe <__vdso_gettimeofday+254>:	sar    edx,0x6
+   0x55557a01 <__vdso_gettimeofday+257>:	sub    edx,ecx
+   0x55557a03 <__vdso_gettimeofday+259>:	mov    DWORD PTR [edi+0x4],edx
+   0x55557a06 <__vdso_gettimeofday+262>:	mov    edx,DWORD PTR [ebp+0xc]
+   0x55557a09 <__vdso_gettimeofday+265>:	test   edx,edx
+   0x55557a0b <__vdso_gettimeofday+267>:	jne    0x55557acd <__vdso_gettimeofday+461>
+   0x55557a11 <__vdso_gettimeofday+273>:	xor    eax,eax
+   0x55557a13 <__vdso_gettimeofday+275>:	add    esp,0x2c
+   0x55557a16 <__vdso_gettimeofday+278>:	pop    ebx
+   0x55557a17 <__vdso_gettimeofday+279>:	pop    esi
+   0x55557a18 <__vdso_gettimeofday+280>:	pop    edi
+   0x55557a19 <__vdso_gettimeofday+281>:	pop    ebp
+   0x55557a1a <__vdso_gettimeofday+282>:	ret    
+   0x55557a1b <__vdso_gettimeofday+283>:	nop
+   0x55557a1c <__vdso_gettimeofday+284>:	lea    esi,[esi+eiz*1+0x0]
+   0x55557a20 <__vdso_gettimeofday+288>:	xor    ecx,ecx
+   0x55557a22 <__vdso_gettimeofday+290>:	lea    esi,[esi+0x0]
+   0x55557a28 <__vdso_gettimeofday+296>:	add    eax,0xc4653600
+   0x55557a2d <__vdso_gettimeofday+301>:	adc    edx,0xffffffff
+   0x55557a30 <__vdso_gettimeofday+304>:	add    ecx,0x1
+   0x55557a33 <__vdso_gettimeofday+307>:	cmp    edx,0x0
+   0x55557a36 <__vdso_gettimeofday+310>:	ja     0x55557a28 <__vdso_gettimeofday+296>
+   0x55557a38 <__vdso_gettimeofday+312>:	cmp    eax,0x3b9ac9ff
+   0x55557a3d <__vdso_gettimeofday+317>:	ja     0x55557a28 <__vdso_gettimeofday+296>
+   0x55557a3f <__vdso_gettimeofday+319>:	jmp    0x555579e0 <__vdso_gettimeofday+224>
+   0x55557a41 <__vdso_gettimeofday+321>:	lea    esi,[esi+eiz*1+0x0]
+   0x55557a48 <__vdso_gettimeofday+328>:	mov    eax,DWORD PTR [ebx-0x238c]
+   0x55557a4e <__vdso_gettimeofday+334>:	xor    edx,edx
+   0x55557a50 <__vdso_gettimeofday+336>:	mov    ecx,DWORD PTR [ebx-0x13ec]
+   0x55557a56 <__vdso_gettimeofday+342>:	sub    eax,DWORD PTR [ebx-0x13f4]
+   0x55557a5c <__vdso_gettimeofday+348>:	sbb    edx,DWORD PTR [ebx-0x13f0]
+   0x55557a62 <__vdso_gettimeofday+354>:	and    ecx,eax
+   0x55557a64 <__vdso_gettimeofday+356>:	mov    eax,DWORD PTR [ebx-0x13e4]
+   0x55557a6a <__vdso_gettimeofday+362>:	mov    DWORD PTR [ebp-0x34],ecx
+   0x55557a6d <__vdso_gettimeofday+365>:	mov    ecx,DWORD PTR [ebx-0x13e8]
+   0x55557a73 <__vdso_gettimeofday+371>:	and    ecx,edx
+   0x55557a75 <__vdso_gettimeofday+373>:	imul   ecx,eax
+   0x55557a78 <__vdso_gettimeofday+376>:	mul    DWORD PTR [ebp-0x34]
+   0x55557a7b <__vdso_gettimeofday+379>:	add    edx,ecx
+   0x55557a7d <__vdso_gettimeofday+381>:	jmp    0x5555799c <__vdso_gettimeofday+156>
+   0x55557a82 <__vdso_gettimeofday+386>:	lea    esi,[esi+0x0]
+   0x55557a88 <__vdso_gettimeofday+392>:	mov    DWORD PTR [ebp-0x18],0x0
+   0x55557a8f <__vdso_gettimeofday+399>:	jmp    0x55557a50 <__vdso_gettimeofday+336>
+   0x55557a91 <__vdso_gettimeofday+401>:	lea    esi,[esi+eiz*1+0x0]
+   0x55557a98 <__vdso_gettimeofday+408>:	call   0x55557500
+   0x55557a9d <__vdso_gettimeofday+413>:	jmp    0x55557a50 <__vdso_gettimeofday+336>
+   0x55557a9f <__vdso_gettimeofday+415>:	pause  
+   0x55557aa1 <__vdso_gettimeofday+417>:	mov    eax,DWORD PTR [ebp-0x1c]
+   0x55557aa4 <__vdso_gettimeofday+420>:	mov    eax,DWORD PTR [eax+ebx*1]
+   0x55557aa7 <__vdso_gettimeofday+423>:	mov    DWORD PTR [ebp-0x28],eax
+   0x55557aaa <__vdso_gettimeofday+426>:	mov    ecx,DWORD PTR [ebp-0x28]
+   0x55557aad <__vdso_gettimeofday+429>:	mov    DWORD PTR [ebp-0x14],ecx
+   0x55557ab0 <__vdso_gettimeofday+432>:	jmp    0x55557952 <__vdso_gettimeofday+82>
+   0x55557ab5 <__vdso_gettimeofday+437>:	mov    eax,0x4e
+   0x55557aba <__vdso_gettimeofday+442>:	mov    ecx,DWORD PTR [ebp+0xc]
+   0x55557abd <__vdso_gettimeofday+445>:	mov    edx,ebx
+   0x55557abf <__vdso_gettimeofday+447>:	mov    ebx,edi
+   0x55557ac1 <__vdso_gettimeofday+449>:	call   0x55557b50 <__kernel_vsyscall>
+   0x55557ac6 <__vdso_gettimeofday+454>:	mov    ebx,edx
+   0x55557ac8 <__vdso_gettimeofday+456>:	jmp    0x55557a13 <__vdso_gettimeofday+275>
+   0x55557acd <__vdso_gettimeofday+461>:	mov    eax,DWORD PTR [ebx-0x139c]
+   0x55557ad3 <__vdso_gettimeofday+467>:	mov    ecx,DWORD PTR [ebp+0xc]
+   0x55557ad6 <__vdso_gettimeofday+470>:	mov    DWORD PTR [ecx],eax
+   0x55557ad8 <__vdso_gettimeofday+472>:	mov    eax,DWORD PTR [ebx-0x1398]
+   0x55557ade <__vdso_gettimeofday+478>:	mov    DWORD PTR [ecx+0x4],eax
+   0x55557ae1 <__vdso_gettimeofday+481>:	xor    eax,eax
+   0x55557ae3 <__vdso_gettimeofday+483>:	jmp    0x55557a13 <__vdso_gettimeofday+275>
+   0x55557ae8:	nop
+   0x55557ae9:	lea    esi,[esi+eiz*1+0x0]
+   0x55557af0 <__vdso_time>:	call   0x55557b28
+   0x55557af5 <__vdso_time+5>:	add    ecx,0xfffff987
+   0x55557afb <__vdso_time+11>:	push   ebp
+   0x55557afc <__vdso_time+12>:	mov    ebp,esp
+   0x55557afe <__vdso_time+14>:	sub    esp,0x8
+   0x55557b01 <__vdso_time+17>:	mov    edx,DWORD PTR [ebp+0x8]
+   0x55557b04 <__vdso_time+20>:	mov    DWORD PTR [ebp-0x8],esi
+   0x55557b07 <__vdso_time+23>:	mov    DWORD PTR [ebp-0x4],edi
+   0x55557b0a <__vdso_time+26>:	mov    esi,DWORD PTR [ecx-0x13d4]
+   0x55557b10 <__vdso_time+32>:	test   edx,edx
+   0x55557b12 <__vdso_time+34>:	mov    edi,DWORD PTR [ecx-0x13d0]
+   0x55557b18 <__vdso_time+40>:	mov    eax,esi
+   0x55557b1a <__vdso_time+42>:	je     0x55557b1e <__vdso_time+46>
+   0x55557b1c <__vdso_time+44>:	mov    DWORD PTR [edx],esi
+   0x55557b1e <__vdso_time+46>:	mov    esi,DWORD PTR [ebp-0x8]
+   0x55557b21 <__vdso_time+49>:	mov    edi,DWORD PTR [ebp-0x4]
+   0x55557b24 <__vdso_time+52>:	mov    esp,ebp
+   0x55557b26 <__vdso_time+54>:	pop    ebp
+   0x55557b27 <__vdso_time+55>:	ret    
+   0x55557b28:	mov    ecx,DWORD PTR [esp]
+   0x55557b2b:	ret    
+   0x55557b2c:	mov    ebx,DWORD PTR [esp]
+   0x55557b2f:	ret    
+   0x55557b30 <__kernel_sigreturn>:	pop    eax
+   0x55557b31 <__kernel_sigreturn+1>:	mov    eax,0x77
+   0x55557b36 <__kernel_sigreturn+6>:	int    0x80
+   0x55557b38 <__kernel_sigreturn+8>:	nop
+   0x55557b39:	lea    esi,[esi+eiz*1+0x0]
+   0x55557b40 <__kernel_rt_sigreturn>:	mov    eax,0xad
+   0x55557b45 <__kernel_rt_sigreturn+5>:	int    0x80
+   0x55557b47 <__kernel_rt_sigreturn+7>:	nop
+   0x55557b48:	nop
+   0x55557b49:	lea    esi,[esi+eiz*1+0x0]
+   0x55557b50 <__kernel_vsyscall>:	push   ecx
+   0x55557b51 <__kernel_vsyscall+1>:	push   edx
+   0x55557b52 <__kernel_vsyscall+2>:	push   ebp
+   0x55557b53 <__kernel_vsyscall+3>:	mov    ebp,esp
+   0x55557b55 <__kernel_vsyscall+5>:	sysenter 
+   0x55557b57 <__kernel_vsyscall+7>:	nop
+   0x55557b58 <__kernel_vsyscall+8>:	nop
+   0x55557b59 <__kernel_vsyscall+9>:	nop
+   0x55557b5a <__kernel_vsyscall+10>:	nop
+   0x55557b5b <__kernel_vsyscall+11>:	nop
+   0x55557b5c <__kernel_vsyscall+12>:	nop
+   0x55557b5d <__kernel_vsyscall+13>:	nop
+   0x55557b5e <__kernel_vsyscall+14>:	int    0x80
+   0x55557b60 <__kernel_vsyscall+16>:	pop    ebp
+   0x55557b61 <__kernel_vsyscall+17>:	pop    edx
+   0x55557b62 <__kernel_vsyscall+18>:	pop    ecx
+   0x55557b63 <__kernel_vsyscall+19>:	ret    
+   0x55557b64:	inc    edi
+   0x55557b65:	inc    ebx
+   0x55557b66:	inc    ebx
+   0x55557b67:	cmp    ah,BYTE PTR [eax]
+   0x55557b69:	sub    BYTE PTR [ebp+0x62],dl
+   0x55557b6c:	jne    0x55557bdc
+   0x55557b6e:	je     0x55557be5
+   0x55557b70:	das    
+   0x55557b71:	dec    esp
+   0x55557b72:	imul   ebp,DWORD PTR [esi+0x61],0x34206f72
+   0x55557b79:	cs ss xor ebp,DWORD PTR cs:ss:0x75627531
+   0x55557b82:	outs   dx,BYTE PTR ds:[esi]
+   0x55557b83:	je     0x55557bfa
+   0x55557b85:	xor    eax,0x2e342029
+   0x55557b8a:	ss xor eax,DWORD PTR cs:ss:[eax]
+   0x55557b8e:	add    BYTE PTR [esi],ch
+   0x55557b90:	jae    0x55557bfa
+   0x55557b92:	jae    0x55557c08
+   0x55557b94:	jb     0x55557c0a
+   0x55557b96:	popa   
+   0x55557b97:	bound  eax,QWORD PTR [eax]
+   0x55557b99:	cs
+   0x55557b9a:	push   0x687361
+   0x55557b9f:	cs
+   0x55557ba0:	fs
+   0x55557ba1:	jns    0x55557c11
+   0x55557ba3:	jae    0x55557c1e
+   0x55557ba5:	ins    DWORD PTR es:[edi],dx
+   0x55557ba6:	add    BYTE PTR [esi],ch
+   0x55557ba8:	fs
+   0x55557ba9:	jns    0x55557c19
+   0x55557bab:	jae    0x55557c21
+   0x55557bad:	jb     0x55557baf
+   0x55557baf:	outs   dx,BYTE PTR cs:[si]
+   0x55557bb2:	jne    0x55557be2
+   0x55557bb4:	jbe    0x55557c1b
+   0x55557bb6:	jb     0x55557c2b
+   0x55557bb8:	imul   ebp,DWORD PTR [edi+0x6e],0x6e672e00
+   0x55557bbf:	jne    0x55557bef
+   0x55557bc1:	jbe    0x55557c28
+   0x55557bc3:	jb     0x55557c38
+   0x55557bc5:	imul   ebp,DWORD PTR [edi+0x6e],0x2e00645f
+   0x55557bcc:	outs   dx,BYTE PTR ds:[esi]
+   0x55557bcd:	outs   dx,DWORD PTR ds:[esi]
+   0x55557bce:	je     0x55557c35
+   0x55557bd0:	add    BYTE PTR [esi],ch
+   0x55557bd2:	gs
+   0x55557bd3:	push   0x6172665f
+   0x55557bd8:	ins    DWORD PTR es:[edi],dx
+   0x55557bd9:	gs
+   0x55557bda:	pop    edi
+   0x55557bdb:	push   0x2e007264
+   0x55557be0:	gs
+   0x55557be1:	push   0x6172665f
+   0x55557be6:	ins    DWORD PTR es:[edi],dx
+   0x55557be7:	add    BYTE PTR gs:[esi],ch
+   0x55557bea:	fs
+   0x55557beb:	jns    0x55557c5b
+   0x55557bed:	popa   
+   0x55557bee:	ins    DWORD PTR es:[edi],dx
+   0x55557bef:	imul   esp,DWORD PTR [ebx+0x0],0x7461642e
+   0x55557bf6:	popa   
+   0x55557bf7:	add    BYTE PTR [esi],ch
+   0x55557bf9:	popa   
+   0x55557bfa:	ins    BYTE PTR es:[edi],dx
+   0x55557bfb:	je     0x55557c66
+   0x55557bfd:	outs   dx,BYTE PTR ds:[esi]
+   0x55557bfe:	jae    0x55557c74
+   0x55557c00:	jb     0x55557c77
+   0x55557c02:	arpl   WORD PTR [ecx+ebp*2+0x6f],si
+   0x55557c06:	outs   dx,BYTE PTR ds:[esi]
+   0x55557c07:	jae    0x55557c09
+   0x55557c09:	cs
+   0x55557c0a:	popa   
+   0x55557c0b:	ins    BYTE PTR es:[edi],dx
+   0x55557c0c:	je     0x55557c77
+   0x55557c0e:	outs   dx,BYTE PTR ds:[esi]
+   0x55557c0f:	jae    0x55557c85
+   0x55557c11:	jb     0x55557c72
+   0x55557c13:	jb     0x55557c7a
+   0x55557c15:	jo     0x55557c83
+   0x55557c17:	popa   
+   0x55557c18:	arpl   WORD PTR [ebp+0x6d],sp
+   0x55557c1b:	outs   dx,BYTE PTR gs:[esi]
+   0x55557c1d:	je     0x55557c1f
+   0x55557c1f:	cs
+   0x55557c20:	je     0x55557c87
+   0x55557c22:	js     0x55557c98
+   0x55557c24:	add    BYTE PTR [esi],ch
+   0x55557c26:	arpl   WORD PTR [edi+0x6d],bp
+   0x55557c29:	ins    DWORD PTR es:[edi],dx
+   0x55557c2a:	outs   dx,BYTE PTR gs:[esi]
+   0x55557c2c:	je     0x55557c2e
+   0x55557c2e:	add    BYTE PTR [eax],al
+   0x55557c30:	add    BYTE PTR [eax],al
+   0x55557c32:	add    BYTE PTR [eax],al
+   0x55557c34:	add    BYTE PTR [eax],al
+   0x55557c36:	add    BYTE PTR [eax],al
+   0x55557c38:	add    BYTE PTR [eax],al
+   0x55557c3a:	add    BYTE PTR [eax],al
+   0x55557c3c:	add    BYTE PTR [eax],al
+   0x55557c3e:	add    BYTE PTR [eax],al
+   0x55557c40:	add    BYTE PTR [eax],al
+   0x55557c42:	add    BYTE PTR [eax],al
+   0x55557c44:	add    BYTE PTR [eax],al
+   0x55557c46:	add    BYTE PTR [eax],al
+   0x55557c48:	add    BYTE PTR [eax],al
+   0x55557c4a:	add    BYTE PTR [eax],al
+   0x55557c4c:	add    BYTE PTR [eax],al
+   0x55557c4e:	add    BYTE PTR [eax],al
+   0x55557c50:	add    BYTE PTR [eax],al
+   0x55557c52:	add    BYTE PTR [eax],al
+   0x55557c54:	add    BYTE PTR [eax],al
+   0x55557c56:	add    BYTE PTR [eax],al
+   0x55557c58:	or     eax,DWORD PTR [eax]
+   0x55557c5a:	add    BYTE PTR [eax],al
+   0x55557c5c:	add    eax,0x2000000
+   0x55557c61:	add    BYTE PTR [eax],al
+   0x55557c63:	add    BYTE PTR [eax+eax*1+0xb40000],dh
+   0x55557c6a:	add    BYTE PTR [eax],al
+   0x55557c6c:	cmp    BYTE PTR [eax],al
+   0x55557c6e:	add    BYTE PTR [eax],al
+   0x55557c70:	add    al,BYTE PTR [eax]
+   0x55557c72:	add    BYTE PTR [eax],al
+   0x55557c74:	add    BYTE PTR [eax],al
+   0x55557c76:	add    BYTE PTR [eax],al
+   0x55557c78:	add    al,0x0
+   0x55557c7a:	add    BYTE PTR [eax],al
+   0x55557c7c:	add    al,0x0
+   0x55557c7e:	add    BYTE PTR [eax],al
+   0x55557c80:	adc    DWORD PTR [eax],eax
+   0x55557c82:	add    BYTE PTR [eax],al
+   0x55557c84:	or     eax,DWORD PTR [eax]
+   0x55557c86:	add    BYTE PTR [eax],al
+   0x55557c88:	add    al,BYTE PTR [eax]
+   0x55557c8a:	add    BYTE PTR [eax],al
+   0x55557c8c:	in     al,dx
+   0x55557c8d:	add    BYTE PTR [eax],al
+   0x55557c8f:	add    ah,ch
+   0x55557c91:	add    BYTE PTR [eax],al
+   0x55557c93:	add    BYTE PTR [eax+0x3000000],dl
+   0x55557c99:	add    BYTE PTR [eax],al
+   0x55557c9b:	add    BYTE PTR [ecx],al
+   0x55557c9d:	add    BYTE PTR [eax],al
+   0x55557c9f:	add    BYTE PTR [eax+eax*1],al
+   0x55557ca2:	add    BYTE PTR [eax],al
+   0x55557ca4:	adc    BYTE PTR [eax],al
+   0x55557ca6:	add    BYTE PTR [eax],al
+   0x55557ca8:	sbb    DWORD PTR [eax],eax
+   0x55557caa:	add    BYTE PTR [eax],al
+   0x55557cac:	add    eax,DWORD PTR [eax]
+   0x55557cae:	add    BYTE PTR [eax],al
+   0x55557cb0:	add    al,BYTE PTR [eax]
+   0x55557cb2:	add    BYTE PTR [eax],al
+   0x55557cb4:	jl     0x55557cb7
+   0x55557cb6:	add    BYTE PTR [eax],al
+   0x55557cb8:	jl     0x55557cbb
+   0x55557cba:	add    BYTE PTR [eax],al
+   0x55557cbc:	xchg   ebp,eax
+   0x55557cbd:	add    BYTE PTR [eax],al
+   0x55557cbf:	add    BYTE PTR [eax],al
+   0x55557cc1:	add    BYTE PTR [eax],al
+   0x55557cc3:	add    BYTE PTR [eax],al
+   0x55557cc5:	add    BYTE PTR [eax],al
+   0x55557cc7:	add    BYTE PTR [ecx],al
+   0x55557cc9:	add    BYTE PTR [eax],al
+   0x55557ccb:	add    BYTE PTR [eax],al
+   0x55557ccd:	add    BYTE PTR [eax],al
+   0x55557ccf:	add    BYTE PTR [ecx],ah
+   0x55557cd1:	add    BYTE PTR [eax],al
+   0x55557cd3:	add    bh,bh
+   0x55557cd5:	(bad)  
+   0x55557cd6:	jmp    FWORD PTR [edi+0x2]
+   0x55557cd9:	add    BYTE PTR [eax],al
+   0x55557cdb:	add    BYTE PTR [edx],dl
+   0x55557cdd:	add    al,BYTE PTR [eax]
+   0x55557cdf:	add    BYTE PTR [edx],dl
+   0x55557ce1:	add    al,BYTE PTR [eax]
+   0x55557ce3:	add    BYTE PTR [edx],dl
+   0x55557ce5:	add    BYTE PTR [eax],al
+   0x55557ce7:	add    BYTE PTR [edx],al
+   0x55557ce9:	add    BYTE PTR [eax],al
+   0x55557ceb:	add    BYTE PTR [eax],al
+   0x55557ced:	add    BYTE PTR [eax],al
+   0x55557cef:	add    BYTE PTR [edx],al
+   0x55557cf1:	add    BYTE PTR [eax],al
+   0x55557cf3:	add    BYTE PTR [edx],al
+   0x55557cf5:	add    BYTE PTR [eax],al
+   0x55557cf7:	add    BYTE PTR [esi],ch
+   0x55557cf9:	add    BYTE PTR [eax],al
+   0x55557cfb:	add    ch,bh
+   0x55557cfd:	(bad)  
+   0x55557cfe:	jmp    FWORD PTR [edi+0x2]
+   0x55557d01:	add    BYTE PTR [eax],al
+   0x55557d03:	add    BYTE PTR [edx+eax*1],ah
+   0x55557d06:	add    BYTE PTR [eax],al
+   0x55557d08:	and    al,0x2
+   0x55557d0a:	add    BYTE PTR [eax],al
+   0x55557d0c:	push   esp
+   0x55557d0d:	add    BYTE PTR [eax],al
+   0x55557d0f:	add    BYTE PTR [ebx],al
+   0x55557d11:	add    BYTE PTR [eax],al
+   0x55557d13:	add    BYTE PTR [ebx],al
+   0x55557d15:	add    BYTE PTR [eax],al
+   0x55557d17:	add    BYTE PTR [eax+eax*1],al
+   0x55557d1a:	add    BYTE PTR [eax],al
+   0x55557d1c:	add    BYTE PTR [eax],al
+   0x55557d1e:	add    BYTE PTR [eax],al
+   0x55557d20:	cmp    eax,0x7000000
+   0x55557d25:	add    BYTE PTR [eax],al
+   0x55557d27:	add    BYTE PTR [edx],al
+   0x55557d29:	add    BYTE PTR [eax],al
+   0x55557d2b:	add    BYTE PTR [eax+0x2],bh
+   0x55557d2e:	add    BYTE PTR [eax],al
+   0x55557d30:	js     0x55557d34
+   0x55557d32:	add    BYTE PTR [eax],al
+   0x55557d34:	pusha  
+   0x55557d35:	add    BYTE PTR [eax],al
+   0x55557d37:	add    BYTE PTR [eax],al
+   0x55557d39:	add    BYTE PTR [eax],al
+   0x55557d3b:	add    BYTE PTR [eax],al
+   0x55557d3d:	add    BYTE PTR [eax],al
+   0x55557d3f:	add    BYTE PTR [eax+eax*1],al
+   0x55557d42:	add    BYTE PTR [eax],al
+   0x55557d44:	add    BYTE PTR [eax],al
+   0x55557d46:	add    BYTE PTR [eax],al
+   0x55557d48:	inc    ebx
+   0x55557d49:	add    BYTE PTR [eax],al
+   0x55557d4b:	add    BYTE PTR [ecx],al
+   0x55557d4d:	add    BYTE PTR [eax],al
+   0x55557d4f:	add    BYTE PTR [edx],al
+   0x55557d51:	add    BYTE PTR [eax],al
+   0x55557d53:	add    al,bl
+   0x55557d55:	add    al,BYTE PTR [eax]
+   0x55557d57:	add    al,bl
+   0x55557d59:	add    al,BYTE PTR [eax]
+   0x55557d5b:	add    BYTE PTR [eax+eax*1],ah
+   0x55557d5e:	add    BYTE PTR [eax],al
+   0x55557d60:	add    BYTE PTR [eax],al
+   0x55557d62:	add    BYTE PTR [eax],al
+   0x55557d64:	add    BYTE PTR [eax],al
+   0x55557d66:	add    BYTE PTR [eax],al
+   0x55557d68:	add    al,0x0
+   0x55557d6a:	add    BYTE PTR [eax],al
+   0x55557d6c:	add    BYTE PTR [eax],al
+   0x55557d6e:	add    BYTE PTR [eax],al
+   0x55557d70:	push   ecx
+   0x55557d71:	add    BYTE PTR [eax],al
+   0x55557d73:	add    BYTE PTR [ecx],al
+   0x55557d75:	add    BYTE PTR [eax],al
+   0x55557d77:	add    BYTE PTR [edx],al
+   0x55557d79:	add    BYTE PTR [eax],al
+   0x55557d7b:	add    ah,bh
+   0x55557d7d:	add    al,BYTE PTR [eax]
+   0x55557d7f:	add    ah,bh
+   0x55557d81:	add    al,BYTE PTR [eax]
+   0x55557d83:	add    BYTE PTR [eax],cl
+   0x55557d85:	add    DWORD PTR [eax],eax
+   0x55557d87:	add    BYTE PTR [eax],al
+   0x55557d89:	add    BYTE PTR [eax],al
+   0x55557d8b:	add    BYTE PTR [eax],al
+   0x55557d8d:	add    BYTE PTR [eax],al
+   0x55557d8f:	add    BYTE PTR [eax+eax*1],al
+   0x55557d92:	add    BYTE PTR [eax],al
+   0x55557d94:	add    BYTE PTR [eax],al
+   0x55557d96:	add    BYTE PTR [eax],al
+   0x55557d98:	pop    ebx
+   0x55557d99:	add    BYTE PTR [eax],al
+   0x55557d9b:	add    BYTE PTR [esi],al
+   0x55557d9d:	add    BYTE PTR [eax],al
+   0x55557d9f:	add    BYTE PTR [ebx],al
+   0x55557da1:	add    BYTE PTR [eax],al
+   0x55557da3:	add    BYTE PTR [esp+eax*1],al
+   0x55557da6:	add    BYTE PTR [eax],al
+   0x55557da8:	add    al,0x4
+   0x55557daa:	add    BYTE PTR [eax],al
+   0x55557dac:	js     0x55557dae
+   0x55557dae:	add    BYTE PTR [eax],al
+   0x55557db0:	add    eax,DWORD PTR [eax]
+   0x55557db2:	add    BYTE PTR [eax],al
+   0x55557db4:	add    BYTE PTR [eax],al
+   0x55557db6:	add    BYTE PTR [eax],al
+   0x55557db8:	add    al,0x0
+   0x55557dba:	add    BYTE PTR [eax],al
+   0x55557dbc:	or     BYTE PTR [eax],al
+   0x55557dbe:	add    BYTE PTR [eax],al
+   0x55557dc0:	add    BYTE PTR fs:[eax],al
+   0x55557dc3:	add    BYTE PTR [ecx],al
+   0x55557dc5:	add    BYTE PTR [eax],al
+   0x55557dc7:	add    BYTE PTR [ebx],al
+   0x55557dc9:	add    BYTE PTR [eax],al
+   0x55557dcb:	add    BYTE PTR [esp+eax*1+0x0],bh
+   0x55557dcf:	add    BYTE PTR [esp+eax*1+0x0],bh
+   0x55557dd3:	add    BYTE PTR [eax+eax*1],cl
+   0x55557dd6:	add    BYTE PTR [eax],al
+   0x55557dd8:	add    BYTE PTR [eax],al
+   0x55557dda:	add    BYTE PTR [eax],al
+   0x55557ddc:	add    BYTE PTR [eax],al
+   0x55557dde:	add    BYTE PTR [eax],al
+   0x55557de0:	add    al,0x0
+   0x55557de2:	add    BYTE PTR [eax],al
+   0x55557de4:	add    al,0x0
+   0x55557de6:	add    BYTE PTR [eax],al
+   0x55557de8:	push   0x0
+   0x55557dea:	add    BYTE PTR [eax],al
+   0x55557dec:	add    DWORD PTR [eax],eax
+   0x55557dee:	add    BYTE PTR [eax],al
+   0x55557df0:	add    al,BYTE PTR [eax]
+   0x55557df2:	add    BYTE PTR [eax],al
+   0x55557df4:	mov    BYTE PTR [eax+eax*1],al
+   0x55557df7:	add    BYTE PTR [eax+0x18000004],cl
+   0x55557dfd:	add    BYTE PTR [eax],al
+   0x55557dff:	add    BYTE PTR [eax],al
+   0x55557e01:	add    BYTE PTR [eax],al
+   0x55557e03:	add    BYTE PTR [eax],al
+   0x55557e05:	add    BYTE PTR [eax],al
+   0x55557e07:	add    BYTE PTR [ecx],al
+   0x55557e09:	add    BYTE PTR [eax],al
+   0x55557e0b:	add    BYTE PTR [eax],al
+   0x55557e0d:	add    BYTE PTR [eax],al
+   0x55557e0f:	add    BYTE PTR [ebx+0x0],bh
+   0x55557e12:	add    BYTE PTR [eax],al
+   0x55557e14:	add    DWORD PTR [eax],eax
+   0x55557e16:	add    BYTE PTR [eax],al
+   0x55557e18:	push   es
+   0x55557e19:	add    BYTE PTR [eax],al
+   0x55557e1b:	add    BYTE PTR [eax-0x5ffffffc],ah
+   0x55557e21:	add    al,0x0
+   0x55557e23:	add    BYTE PTR [esi],al
+   0x55557e25:	add    BYTE PTR [eax],al
+   0x55557e27:	add    BYTE PTR [eax],al
+   0x55557e29:	add    BYTE PTR [eax],al
+   0x55557e2b:	add    BYTE PTR [eax],al
+   0x55557e2d:	add    BYTE PTR [eax],al
+   0x55557e2f:	add    BYTE PTR [ecx],al
+   0x55557e31:	add    BYTE PTR [eax],al
+   0x55557e33:	add    BYTE PTR [eax],al
+   0x55557e35:	add    BYTE PTR [eax],al
+   0x55557e37:	add    BYTE PTR [ecx+0x1000000],dl
+   0x55557e3d:	add    BYTE PTR [eax],al
+   0x55557e3f:	add    BYTE PTR [esi],al
+   0x55557e41:	add    BYTE PTR [eax],al
+   0x55557e43:	add    BYTE PTR [eax],al
+   0x55557e45:	add    eax,0x5000000
+   0x55557e4a:	add    BYTE PTR [eax],al
+   0x55557e4c:	fs
+   0x55557e4d:	push   es
+   0x55557e4e:	add    BYTE PTR [eax],al
+   0x55557e50:	add    BYTE PTR [eax],al
+   0x55557e52:	add    BYTE PTR [eax],al
+   0x55557e54:	add    BYTE PTR [eax],al
+   0x55557e56:	add    BYTE PTR [eax],al
+   0x55557e58:	adc    BYTE PTR [eax],al
+   0x55557e5a:	add    BYTE PTR [eax],al
+   0x55557e5c:	add    BYTE PTR [eax],al
+   0x55557e5e:	add    BYTE PTR [eax],al
+   0x55557e60:	xchg   edi,eax
+   0x55557e61:	add    BYTE PTR [eax],al
+   0x55557e63:	add    BYTE PTR [ecx],al
+   0x55557e65:	add    BYTE PTR [eax],al
+   0x55557e67:	add    BYTE PTR [eax],dh
+   0x55557e69:	add    BYTE PTR [eax],al
+   0x55557e6b:	add    BYTE PTR [eax],al
+   0x55557e6d:	add    BYTE PTR [eax],al
+   0x55557e6f:	add    BYTE PTR [ebx+ecx*1+0x0],ah
+   0x55557e73:	add    BYTE PTR [edx],ch
+   0x55557e75:	add    BYTE PTR [eax],al
+   0x55557e77:	add    BYTE PTR [eax],al
+   0x55557e79:	add    BYTE PTR [eax],al
+   0x55557e7b:	add    BYTE PTR [eax],al
+   0x55557e7d:	add    BYTE PTR [eax],al
+   0x55557e7f:	add    BYTE PTR [ecx],al
+   0x55557e81:	add    BYTE PTR [eax],al
+   0x55557e83:	add    BYTE PTR [ecx],al
+   0x55557e85:	add    BYTE PTR [eax],al
+   0x55557e87:	add    BYTE PTR [ecx],al
+   0x55557e89:	add    BYTE PTR [eax],al
+   0x55557e8b:	add    BYTE PTR [ebx],al
+   0x55557e8d:	add    BYTE PTR [eax],al
+   0x55557e8f:	add    BYTE PTR [eax],al
+   0x55557e91:	add    BYTE PTR [eax],al
+   0x55557e93:	add    BYTE PTR [eax],al
+   0x55557e95:	add    BYTE PTR [eax],al
+   0x55557e97:	add    BYTE PTR [esi-0x5ffffff5],cl
+   0x55557e9d:	add    BYTE PTR [eax],al
+   0x55557e9f:	add    BYTE PTR [eax],al
+   0x55557ea1:	add    BYTE PTR [eax],al
+   0x55557ea3:	add    BYTE PTR [eax],al
+   0x55557ea5:	add    BYTE PTR [eax],al
+   0x55557ea7:	add    BYTE PTR [ecx],al
+   0x55557ea9:	add    BYTE PTR [eax],al
+   0x55557eab:	add    BYTE PTR [eax],al
+   0x55557ead:	add    BYTE PTR [eax],al
+   0x55557eaf:	add    BYTE PTR [eax],al
+   0x55557eb1:	add    BYTE PTR [eax],al
+   0x55557eb3:	add    BYTE PTR [eax],al
+   0x55557eb5:	add    BYTE PTR [eax],al
+   0x55557eb7:	add    BYTE PTR [eax],al
+   0x55557eb9:	add    BYTE PTR [eax],al
+   0x55557ebb:	add    BYTE PTR [eax],al
+   0x55557ebd:	add    BYTE PTR [eax],al
+   0x55557ebf:	add    BYTE PTR [eax],al
+   0x55557ec1:	add    BYTE PTR [eax],al
+   0x55557ec3:	add    BYTE PTR [eax],al
+   0x55557ec5:	add    BYTE PTR [eax],al
+   0x55557ec7:	add    BYTE PTR [eax],al
+   0x55557ec9:	add    BYTE PTR [eax],al
+   0x55557ecb:	add    BYTE PTR [eax],al
+   0x55557ecd:	add    BYTE PTR [eax],al
+   0x55557ecf:	add    BYTE PTR [eax],al
+   0x55557ed1:	add    BYTE PTR [eax],al
+   0x55557ed3:	add    BYTE PTR [eax],al
+   0x55557ed5:	add    BYTE PTR [eax],al
+   0x55557ed7:	add    BYTE PTR [eax],al
+   0x55557ed9:	add    BYTE PTR [eax],al
+   0x55557edb:	add    BYTE PTR [eax],al
+   0x55557edd:	add    BYTE PTR [eax],al
+   0x55557edf:	add    BYTE PTR [eax],al
+   0x55557ee1:	add    BYTE PTR [eax],al
+   0x55557ee3:	add    BYTE PTR [eax],al
+   0x55557ee5:	add    BYTE PTR [eax],al
+   0x55557ee7:	add    BYTE PTR [eax],al
+   0x55557ee9:	add    BYTE PTR [eax],al
+   0x55557eeb:	add    BYTE PTR [eax],al
+   0x55557eed:	add    BYTE PTR [eax],al
+   0x55557eef:	add    BYTE PTR [eax],al
+   0x55557ef1:	add    BYTE PTR [eax],al
+   0x55557ef3:	add    BYTE PTR [eax],al
+   0x55557ef5:	add    BYTE PTR [eax],al
+   0x55557ef7:	add    BYTE PTR [eax],al
+   0x55557ef9:	add    BYTE PTR [eax],al
+   0x55557efb:	add    BYTE PTR [eax],al
+   0x55557efd:	add    BYTE PTR [eax],al
+   0x55557eff:	add    BYTE PTR [eax],al
+   0x55557f01:	add    BYTE PTR [eax],al
+   0x55557f03:	add    BYTE PTR [eax],al
+   0x55557f05:	add    BYTE PTR [eax],al
+   0x55557f07:	add    BYTE PTR [eax],al
+   0x55557f09:	add    BYTE PTR [eax],al
+   0x55557f0b:	add    BYTE PTR [eax],al
+   0x55557f0d:	add    BYTE PTR [eax],al
+   0x55557f0f:	add    BYTE PTR [eax],al
+   0x55557f11:	add    BYTE PTR [eax],al
+   0x55557f13:	add    BYTE PTR [eax],al
+   0x55557f15:	add    BYTE PTR [eax],al
+   0x55557f17:	add    BYTE PTR [eax],al
+   0x55557f19:	add    BYTE PTR [eax],al
+   0x55557f1b:	add    BYTE PTR [eax],al
+   0x55557f1d:	add    BYTE PTR [eax],al
+   0x55557f1f:	add    BYTE PTR [eax],al
+   0x55557f21:	add    BYTE PTR [eax],al
+   0x55557f23:	add    BYTE PTR [eax],al
+   0x55557f25:	add    BYTE PTR [eax],al
+   0x55557f27:	add    BYTE PTR [eax],al
+   0x55557f29:	add    BYTE PTR [eax],al
+   0x55557f2b:	add    BYTE PTR [eax],al
+   0x55557f2d:	add    BYTE PTR [eax],al
+   0x55557f2f:	add    BYTE PTR [eax],al
+   0x55557f31:	add    BYTE PTR [eax],al
+   0x55557f33:	add    BYTE PTR [eax],al
+   0x55557f35:	add    BYTE PTR [eax],al
+   0x55557f37:	add    BYTE PTR [eax],al
+   0x55557f39:	add    BYTE PTR [eax],al
+   0x55557f3b:	add    BYTE PTR [eax],al
+   0x55557f3d:	add    BYTE PTR [eax],al
+   0x55557f3f:	add    BYTE PTR [eax],al
+   0x55557f41:	add    BYTE PTR [eax],al
+   0x55557f43:	add    BYTE PTR [eax],al
+   0x55557f45:	add    BYTE PTR [eax],al
+   0x55557f47:	add    BYTE PTR [eax],al
+   0x55557f49:	add    BYTE PTR [eax],al
+   0x55557f4b:	add    BYTE PTR [eax],al
+   0x55557f4d:	add    BYTE PTR [eax],al
+   0x55557f4f:	add    BYTE PTR [eax],al
+   0x55557f51:	add    BYTE PTR [eax],al
+   0x55557f53:	add    BYTE PTR [eax],al
+   0x55557f55:	add    BYTE PTR [eax],al
+   0x55557f57:	add    BYTE PTR [eax],al
+   0x55557f59:	add    BYTE PTR [eax],al
+   0x55557f5b:	add    BYTE PTR [eax],al
+   0x55557f5d:	add    BYTE PTR [eax],al
+   0x55557f5f:	add    BYTE PTR [eax],al
+   0x55557f61:	add    BYTE PTR [eax],al
+   0x55557f63:	add    BYTE PTR [eax],al
+   0x55557f65:	add    BYTE PTR [eax],al
+   0x55557f67:	add    BYTE PTR [eax],al
+   0x55557f69:	add    BYTE PTR [eax],al
+   0x55557f6b:	add    BYTE PTR [eax],al
+   0x55557f6d:	add    BYTE PTR [eax],al
+   0x55557f6f:	add    BYTE PTR [eax],al
+   0x55557f71:	add    BYTE PTR [eax],al
+   0x55557f73:	add    BYTE PTR [eax],al
+   0x55557f75:	add    BYTE PTR [eax],al
+   0x55557f77:	add    BYTE PTR [eax],al
+   0x55557f79:	add    BYTE PTR [eax],al
+   0x55557f7b:	add    BYTE PTR [eax],al
+   0x55557f7d:	add    BYTE PTR [eax],al
+   0x55557f7f:	add    BYTE PTR [eax],al
+   0x55557f81:	add    BYTE PTR [eax],al
+   0x55557f83:	add    BYTE PTR [eax],al
+   0x55557f85:	add    BYTE PTR [eax],al
+   0x55557f87:	add    BYTE PTR [eax],al
+   0x55557f89:	add    BYTE PTR [eax],al
+   0x55557f8b:	add    BYTE PTR [eax],al
+   0x55557f8d:	add    BYTE PTR [eax],al
+   0x55557f8f:	add    BYTE PTR [eax],al
+   0x55557f91:	add    BYTE PTR [eax],al
+   0x55557f93:	add    BYTE PTR [eax],al
+   0x55557f95:	add    BYTE PTR [eax],al
+   0x55557f97:	add    BYTE PTR [eax],al
+   0x55557f99:	add    BYTE PTR [eax],al
+   0x55557f9b:	add    BYTE PTR [eax],al
+   0x55557f9d:	add    BYTE PTR [eax],al
+   0x55557f9f:	add    BYTE PTR [eax],al
+   0x55557fa1:	add    BYTE PTR [eax],al
+   0x55557fa3:	add    BYTE PTR [eax],al
+   0x55557fa5:	add    BYTE PTR [eax],al
+   0x55557fa7:	add    BYTE PTR [eax],al
+   0x55557fa9:	add    BYTE PTR [eax],al
+   0x55557fab:	add    BYTE PTR [eax],al
+   0x55557fad:	add    BYTE PTR [eax],al
+   0x55557faf:	add    BYTE PTR [eax],al
+   0x55557fb1:	add    BYTE PTR [eax],al
+   0x55557fb3:	add    BYTE PTR [eax],al
+   0x55557fb5:	add    BYTE PTR [eax],al
+   0x55557fb7:	add    BYTE PTR [eax],al
+   0x55557fb9:	add    BYTE PTR [eax],al
+   0x55557fbb:	add    BYTE PTR [eax],al
+   0x55557fbd:	add    BYTE PTR [eax],al
+   0x55557fbf:	add    BYTE PTR [eax],al
+   0x55557fc1:	add    BYTE PTR [eax],al
+   0x55557fc3:	add    BYTE PTR [eax],al
+   0x55557fc5:	add    BYTE PTR [eax],al
+   0x55557fc7:	add    BYTE PTR [eax],al
+   0x55557fc9:	add    BYTE PTR [eax],al
+   0x55557fcb:	add    BYTE PTR [eax],al
+   0x55557fcd:	add    BYTE PTR [eax],al
+   0x55557fcf:	add    BYTE PTR [eax],al
+   0x55557fd1:	add    BYTE PTR [eax],al
+   0x55557fd3:	add    BYTE PTR [eax],al
+   0x55557fd5:	add    BYTE PTR [eax],al
+   0x55557fd7:	add    BYTE PTR [eax],al
+   0x55557fd9:	add    BYTE PTR [eax],al
+   0x55557fdb:	add    BYTE PTR [eax],al
+   0x55557fdd:	add    BYTE PTR [eax],al
+   0x55557fdf:	add    BYTE PTR [eax],al
+   0x55557fe1:	add    BYTE PTR [eax],al
+   0x55557fe3:	add    BYTE PTR [eax],al
+   0x55557fe5:	add    BYTE PTR [eax],al
+   0x55557fe7:	add    BYTE PTR [eax],al
+   0x55557fe9:	add    BYTE PTR [eax],al
+   0x55557feb:	add    BYTE PTR [eax],al
+   0x55557fed:	add    BYTE PTR [eax],al
+   0x55557fef:	add    BYTE PTR [eax],al
+   0x55557ff1:	add    BYTE PTR [eax],al
+   0x55557ff3:	add    BYTE PTR [eax],al
+   0x55557ff5:	add    BYTE PTR [eax],al
+   0x55557ff7:	add    BYTE PTR [eax],al
+   0x55557ff9:	add    BYTE PTR [eax],al
+   0x55557ffb:	add    BYTE PTR [eax],al
+   0x55557ffd:	add    BYTE PTR [eax],al
+   0x55557fff:	.byte 0x0
+   0x55558000:	Cannot access memory at address 0x55558000
+A debugging session is active.
+
+	Inferior 1 [process 53537] will be killed.
+
+Quit anyway? (y or n) 
