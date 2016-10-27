@@ -235,7 +235,12 @@ def reduce(g, mu, k, l):
     row = len(g)
     col = len(g[0])
 
-    if math.fabs(mu[k][l]) > Fraction(1, 2):
+    def hack_abs(a):
+        if a < Fraction(0, 1):
+            return -a
+        return a
+
+    if hack_abs(mu[k][l]) > Fraction(1, 2):
         r = round(mu[k][l])
         b_k = get_vector(g, k)
         b_l = get_vector(g, l)
