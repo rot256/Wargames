@@ -1,0 +1,42 @@
+:VV
+
+rdi, rsi, rdx
+
+buff : rdp - 0x90 (local_90h)
+
+print("Please enter the flag:")
+
+fgets(stdin, buff, 0x80)
+
+n = strlen(buff)
+n -= 1
+local_90h[n] = 0 (remove newline)
+
+n = strlen(buff)
+
+
+
+local_c8 = strlen(org)
+local_d0 = processed
+local_c0 =
+
+while proceesed < length:
+    buff[processed] = get_tbl_entry(buff[processed])
+    processed++;
+
+if processed == 0x25:
+    strncmp(, buffer, 0x26)
+
+
+get_tbl_entry(c):
+    cnt = 0
+    val = c
+    while cnt <= 0xfe:
+        c = obj.trans_tbl[cnt+cnt]
+        if c != val:
+            cnt ++
+            continue
+        else:
+            return 0x201281[cnt+cnt]
+            // obj.trans_tbl + 1
+    return 0
