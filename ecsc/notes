@@ -1,0 +1,20 @@
+
+attack defence and jepardy run seperately
+attack-defence solely web
+
+# Logging in
+
+All challenges must be accessed though a VPS which exposes a virtual desktop via a web interface.
+This means you cannot work on challenges locally or bring your own tools and esc leaves full-screen (rip vim users)
+
+# Tooling
+
+- No pwntools
+- No strace
+- Old r2
+- But hey, it has eclipse.
+
+# Beginning
+
+# The challenges
+

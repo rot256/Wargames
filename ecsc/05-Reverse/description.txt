@@ -1,0 +1,6 @@
+You found an old program. This program was used by a library to register the books they had.
+It is known that the program stored the name of the library automatically. However, the data
+is lost and now the library that the program belonged to is unknown. Obtain the name of the
+library.
+
+Flag: The name of the library.
