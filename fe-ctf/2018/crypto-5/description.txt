@@ -1,0 +1,10 @@
+bigsh0t has been sent something interesting, but it is encrypted. Luckily there is also a decryption program, but we are missing the key.
+
+We did however manage to dump some of the memory while YYY was running the decryption program and managed to find part of the AES round keys. They are below (* means the nybble was unreadable) in hex.
+
+Round 8:
+*5*6da***f*54e***8*f83***c*c2f64
+Round 9:
+b*9399*f**46*7*458**54**944**b*3
+Round 10:
+*7b28*7d27*4**b9*f****9e**d87**d
