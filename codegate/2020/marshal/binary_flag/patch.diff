@@ -1,0 +1,2818 @@
+diff -ruN before/binr/Makefile after/binr/Makefile
+--- before/binr/Makefile	2020-01-24 23:22:38.195312447 -0800
++++ after/binr/Makefile	2020-01-24 23:24:20.629841791 -0800
+@@ -6,7 +6,7 @@
+ 
+ .PHONY: all clean install install-symlink deinstall uninstall mrproper preload
+ 
+-BINS=rax2 rasm2 rabin2 rahash2 radiff2 radare2 rafind2 rarun2 ragg2 r2agent
++BINS=rax2 rasm2 rabin2 rahash2 radiff2 radare2 rafind2 rarun2 ragg2 r2agent prob
+ 
+ LIBR2=$(call libname-version,libr2.$(EXT_SO),${LIBVERSION})
+ 
+diff -ruN before/binr/prob/main.c after/binr/prob/main.c
+--- before/binr/prob/main.c	1969-12-31 16:00:00.000000000 -0800
++++ after/binr/prob/main.c	2020-01-24 23:24:20.629841791 -0800
+@@ -0,0 +1,140 @@
++#include <stdio.h>
++#include <stdlib.h>
++#include <r_bin.h>
++#include <r_asm.h>
++#include <r_list.h>
++#include <r_util/r_buf.h>
++#include <r_types.h>
++
++typedef struct {
++	RBuffer *f_buf;
++	RAsm *f_asm;
++} file;
++
++static void printmenu() {
++	puts("[1] Load a new file\n[2] Print disassembly");
++}
++
++static ut32 read_ut32() {
++	char buf[0x20];
++	fgets(buf, sizeof(buf), stdin);
++	return (ut32)atoi(buf);
++}
++
++static ut64 read_ut64() {
++	char buf[0x20];
++	fgets(buf, sizeof(buf), stdin);
++	return (ut64)atoll(buf);
++}
++
++static file *load_file() {
++	
++	printf("Enter length: ");
++	ut64 len = read_ut64();
++	if (len > 0x1000) {
++		puts("too long!");
++		return NULL;
++	}
++
++	ut8 *ptr = calloc(sizeof(ut8), len);
++	fread(ptr, sizeof(ut8), len, stdin);
++
++	RAsm *asm_ = r_asm_new(); 
++	RBin *bin = r_bin_new();
++	RBuffer *buf = r_buf_new_with_bytes(ptr, len);
++	free(ptr);
++
++	RBinOptions opt = {0};
++	opt.sz = len;
++	opt.pluginname = "pyc";
++	opt.filename = "sample";
++
++	bool res = r_bin_open_buf (bin, buf, &opt);
++	if (!res) {
++	error:
++		puts("invalid file");
++		r_bin_free (bin);
++		return NULL;
++	}
++
++	if (!r_asm_use(asm_, "pyc")) {
++		puts("unreachable error: contact admin");
++		goto error;
++	}
++
++	r_bin_bind(bin, &asm_->binb);
++
++	file *new = R_NEW0(file);
++	new->f_buf = buf;
++	new->f_asm = asm_;
++
++	return new;
++}
++
++static void print_disasm(file *f) {
++	RAsm *asm_ = f->f_asm;
++	RBuffer *buf = f->f_buf;
++	RAsmOp op;
++	ut64 dlen, pos;
++	ut8 *data;
++	data = r_buf_data(buf, &dlen);
++	if (!data) {
++		puts("out of memory!");
++		exit(-1);
++	}
++	pos = 0;
++	while(pos < dlen) {
++		r_asm_set_pc(asm_, pos);
++		int incr = r_asm_disassemble(asm_, &op, data + pos, dlen - pos);
++		if (!incr) {
++			pos++;
++		}
++		else {
++			printf("[%08x] %s\n", pos, r_asm_op_get_asm(&op));
++			pos += incr;
++		}
++		
++	}
++	
++}
++
++int main(int argc, char **argv) {
++
++	setvbuf(stdin, NULL, _IONBF, 0);
++	setvbuf(stdout, NULL, _IONBF, 0);
++	setvbuf(stderr, NULL, _IONBF, 0);
++
++	RList *files = r_list_new();
++
++	while(1) {
++		printmenu();
++		ut32 opt = read_ut32();
++		switch(opt) {
++			case 1: {
++				file *f = load_file();
++				if (f) {
++					if (!r_list_append(files, f)) {
++						puts("r_list_append failed");
++						exit(-1);
++					}
++				}
++				break;
++			}	
++			case 2: {
++				printf("Enter index: ");
++				ut32 idx = read_ut32();
++				if (idx >= r_list_length(files)) {
++					puts("invalid index");
++					exit(-1);
++				}
++				print_disasm(r_list_get_n(files, idx));
++				break;
++			}	
++			default:
++				puts("invalid option!");
++				exit(-1);
++		}
++	}
++	
++	return 0;
++}
+\ No newline at end of file
+diff -ruN before/binr/prob/Makefile after/binr/prob/Makefile
+--- before/binr/prob/Makefile	1969-12-31 16:00:00.000000000 -0800
++++ after/binr/prob/Makefile	2020-01-24 23:24:20.629841791 -0800
+@@ -0,0 +1,10 @@
++BIN=prob
++BINDEPS=r_bin r_asm r_util
++
++include ../../libr/main/deps.mk
++include ../rules.mk
++
++LDFLAGS+=$(LINK)
++
++prob.o: main.c
++	gcc -c -o $@ $^ $(CFLAGS) $(LDFLAGS)
+diff -ruN before/libr/asm/arch/pyc/opcode.h after/libr/asm/arch/pyc/opcode.h
+--- before/libr/asm/arch/pyc/opcode.h	1969-12-31 16:00:00.000000000 -0800
++++ after/libr/asm/arch/pyc/opcode.h	2020-01-24 23:24:20.629841791 -0800
+@@ -0,0 +1,154 @@
++#define STOP_CODE	0
++#define POP_TOP		1
++#define ROT_TWO		2
++#define ROT_THREE	3
++#define DUP_TOP		4
++#define ROT_FOUR	5
++#define NOP		9
++
++#define UNARY_POSITIVE	10
++#define UNARY_NEGATIVE	11
++#define UNARY_NOT	12
++#define UNARY_CONVERT	13
++
++#define UNARY_INVERT	15
++
++#define BINARY_POWER	19
++
++#define BINARY_MULTIPLY	20
++#define BINARY_DIVIDE	21
++#define BINARY_MODULO	22
++#define BINARY_ADD	23
++#define BINARY_SUBTRACT	24
++#define BINARY_SUBSCR	25
++#define BINARY_FLOOR_DIVIDE 26
++#define BINARY_TRUE_DIVIDE 27
++#define INPLACE_FLOOR_DIVIDE 28
++#define INPLACE_TRUE_DIVIDE 29
++
++#define SLICE		30
++/* Also uses 31-33 */
++#define SLICE_1		31
++#define SLICE_2		32
++#define SLICE_3		33
++
++#define STORE_SLICE	40
++/* Also uses 41-43 */
++#define STORE_SLICE_1	41
++#define STORE_SLICE_2	42
++#define STORE_SLICE_3	43
++
++#define DELETE_SLICE	50
++/* Also uses 51-53 */
++#define DELETE_SLICE_1	51
++#define DELETE_SLICE_2	52
++#define DELETE_SLICE_3	53
++
++#define STORE_MAP	54
++#define INPLACE_ADD	55
++#define INPLACE_SUBTRACT	56
++#define INPLACE_MULTIPLY	57
++#define INPLACE_DIVIDE	58
++#define INPLACE_MODULO	59
++#define STORE_SUBSCR	60
++#define DELETE_SUBSCR	61
++
++#define BINARY_LSHIFT	62
++#define BINARY_RSHIFT	63
++#define BINARY_AND	64
++#define BINARY_XOR	65
++#define BINARY_OR	66
++#define INPLACE_POWER	67
++#define GET_ITER	68
++
++#define PRINT_EXPR	70
++#define PRINT_ITEM	71
++#define PRINT_NEWLINE	72
++#define PRINT_ITEM_TO   73
++#define PRINT_NEWLINE_TO 74
++#define INPLACE_LSHIFT	75
++#define INPLACE_RSHIFT	76
++#define INPLACE_AND	77
++#define INPLACE_XOR	78
++#define INPLACE_OR	79
++#define BREAK_LOOP	80
++#define WITH_CLEANUP    81
++#define LOAD_LOCALS	82
++#define RETURN_VALUE	83
++#define IMPORT_STAR	84
++#define EXEC_STMT	85
++#define YIELD_VALUE	86
++#define POP_BLOCK	87
++#define END_FINALLY	88
++#define BUILD_CLASS	89
++
++#define HAVE_ARGUMENT	90	/* Opcodes from here have an argument: */
++
++#define STORE_NAME	90	/* Index in name list */
++#define DELETE_NAME	91	/* "" */
++#define UNPACK_SEQUENCE	92	/* Number of sequence items */
++#define FOR_ITER	93
++#define LIST_APPEND	94
++
++#define STORE_ATTR	95	/* Index in name list */
++#define DELETE_ATTR	96	/* "" */
++#define STORE_GLOBAL	97	/* "" */
++#define DELETE_GLOBAL	98	/* "" */
++#define DUP_TOPX	99	/* number of items to duplicate */
++#define LOAD_CONST	100	/* Index in const list */
++#define LOAD_NAME	101	/* Index in name list */
++#define BUILD_TUPLE	102	/* Number of tuple items */
++#define BUILD_LIST	103	/* Number of list items */
++#define BUILD_SET	104     /* Number of set items */
++#define BUILD_MAP	105	/* Always zero for now */
++#define LOAD_ATTR	106	/* Index in name list */
++#define COMPARE_OP	107	/* Comparison operator */
++#define IMPORT_NAME	108	/* Index in name list */
++#define IMPORT_FROM	109	/* Index in name list */
++#define JUMP_FORWARD	110	/* Number of bytes to skip */
++
++#define JUMP_IF_FALSE_OR_POP 111 /* Target byte offset from beginning
++                                    of code */
++#define JUMP_IF_TRUE_OR_POP 112	/* "" */
++#define JUMP_ABSOLUTE	113	/* "" */
++#define POP_JUMP_IF_FALSE 114	/* "" */
++#define POP_JUMP_IF_TRUE 115	/* "" */
++
++#define LOAD_GLOBAL	116	/* Index in name list */
++
++#define CONTINUE_LOOP	119	/* Start of loop (absolute) */
++#define SETUP_LOOP	120	/* Target address (relative) */
++#define SETUP_EXCEPT	121	/* "" */
++#define SETUP_FINALLY	122	/* "" */
++
++#define LOAD_FAST	124	/* Local variable number */
++#define STORE_FAST	125	/* Local variable number */
++#define DELETE_FAST	126	/* Local variable number */
++
++#define RAISE_VARARGS	130	/* Number of raise arguments (1, 2 or 3) */
++/* CALL_FUNCTION_XXX opcodes defined below depend on this definition */
++#define CALL_FUNCTION	131	/* #args + (#kwargs<<8) */
++#define MAKE_FUNCTION	132	/* #defaults */
++#define BUILD_SLICE 	133	/* Number of items */
++
++#define MAKE_CLOSURE    134     /* #free vars */
++#define LOAD_CLOSURE    135     /* Load free variable from closure */
++#define LOAD_DEREF      136     /* Load and dereference from closure cell */ 
++#define STORE_DEREF     137     /* Store into cell */ 
++
++/* The next 3 opcodes must be contiguous and satisfy
++   (CALL_FUNCTION_VAR - CALL_FUNCTION) & 3 == 1  */
++#define CALL_FUNCTION_VAR          140	/* #args + (#kwargs<<8) */
++#define CALL_FUNCTION_KW           141	/* #args + (#kwargs<<8) */
++#define CALL_FUNCTION_VAR_KW       142	/* #args + (#kwargs<<8) */
++
++#define SETUP_WITH 143
++
++/* Support for opargs more than 16 bits long */
++#define EXTENDED_ARG  145
++
++#define SET_ADD         146
++#define MAP_ADD         147
++
++char *op_name[0xff + 1];
++
+diff -ruN before/libr/asm/arch/pyc/pyc_disasm.c after/libr/asm/arch/pyc/pyc_disasm.c
+--- before/libr/asm/arch/pyc/pyc_disasm.c	1969-12-31 16:00:00.000000000 -0800
++++ after/libr/asm/arch/pyc/pyc_disasm.c	2020-01-24 23:24:20.633841734 -0800
+@@ -0,0 +1,307 @@
++#include "pyc_dis.h"
++
++void init_opname_table () {
++    int i;
++
++    for(i = 0; i < 0xff+1; i++)
++        op_name[i] = NULL;
++
++    op_name[STOP_CODE] = "STOP_CODE";
++    op_name[POP_TOP] = "POP_TOP";
++    op_name[ROT_TWO] = "ROT_TWO";
++    op_name[ROT_THREE] = "ROT_THREE";
++    op_name[DUP_TOP] = "DUP_TOP";
++    op_name[ROT_FOUR] = "ROT_FOUR";
++    op_name[NOP] = "NOP";
++    op_name[UNARY_POSITIVE] = "UNARY_POSITIVE";
++    op_name[UNARY_NEGATIVE] = "UNARY_NEGATIVE";
++    op_name[UNARY_NOT] = "UNARY_NOT";
++    op_name[UNARY_CONVERT] = "UNARY_CONVERT";
++    op_name[UNARY_INVERT] = "UNARY_INVERT";
++    op_name[BINARY_POWER] = "BINARY_POWER";
++    op_name[BINARY_MULTIPLY] = "BINARY_MULTIPLY";
++    op_name[BINARY_DIVIDE] = "BINARY_DIVIDE";
++    op_name[BINARY_MODULO] = "BINARY_MODULO";
++    op_name[BINARY_ADD] = "BINARY_ADD";
++    op_name[BINARY_SUBTRACT] = "BINARY_SUBTRACT";
++    op_name[BINARY_SUBSCR] = "BINARY_SUBSCR";
++    op_name[BINARY_FLOOR_DIVIDE] = "BINARY_FLOOR_DIVIDE";
++    op_name[BINARY_TRUE_DIVIDE] = "BINARY_TRUE_DIVIDE";
++    op_name[INPLACE_FLOOR_DIVIDE] = "INPLACE_FLOOR_DIVIDE";
++    op_name[INPLACE_TRUE_DIVIDE] = "INPLACE_TRUE_DIVIDE";
++    op_name[SLICE] = "SLICE";
++    op_name[SLICE_1] = "SLICE_1";
++    op_name[SLICE_2] = "SLICE_2";
++    op_name[SLICE_3] = "SLICE_3";
++    op_name[STORE_SLICE] = "STORE_SLICE";
++    op_name[STORE_SLICE_1] = "STORE_SLICE_1";
++    op_name[STORE_SLICE_2] = "STORE_SLICE_2";
++    op_name[STORE_SLICE_3] = "STORE_SLICE_3";
++    op_name[DELETE_SLICE] = "DELETE_SLICE";
++    op_name[DELETE_SLICE_1] = "DELETE_SLICE_1";
++    op_name[DELETE_SLICE_2] = "DELETE_SLICE_2";
++    op_name[DELETE_SLICE_3] = "DELETE_SLICE_3";
++    op_name[STORE_MAP] = "STORE_MAP";
++    op_name[INPLACE_ADD] = "INPLACE_ADD";
++    op_name[INPLACE_SUBTRACT] = "INPLACE_SUBTRACT";
++    op_name[INPLACE_MULTIPLY] = "INPLACE_MULTIPLY";
++    op_name[INPLACE_DIVIDE] = "INPLACE_DIVIDE";
++    op_name[INPLACE_MODULO] = "INPLACE_MODULO";
++    op_name[STORE_SUBSCR] = "STORE_SUBSCR";
++    op_name[DELETE_SUBSCR] = "DELETE_SUBSCR";
++    op_name[BINARY_LSHIFT] = "BINARY_LSHIFT";
++    op_name[BINARY_RSHIFT] = "BINARY_RSHIFT";
++    op_name[BINARY_AND] = "BINARY_AND";
++    op_name[BINARY_XOR] = "BINARY_XOR";
++    op_name[BINARY_OR] = "BINARY_OR";
++    op_name[INPLACE_POWER] = "INPLACE_POWER";
++    op_name[GET_ITER] = "GET_ITER";
++    op_name[PRINT_EXPR] = "PRINT_EXPR";
++    op_name[PRINT_ITEM] = "PRINT_ITEM";
++    op_name[PRINT_NEWLINE] = "PRINT_NEWLINE";
++    op_name[PRINT_ITEM_TO] = "PRINT_ITEM_TO";
++    op_name[PRINT_NEWLINE_TO] = "PRINT_NEWLINE_TO";
++    op_name[INPLACE_LSHIFT] = "INPLACE_LSHIFT";
++    op_name[INPLACE_RSHIFT] = "INPLACE_RSHIFT";
++    op_name[INPLACE_AND] = "INPLACE_AND";
++    op_name[INPLACE_XOR] = "INPLACE_XOR";
++    op_name[INPLACE_OR] = "INPLACE_OR";
++    op_name[BREAK_LOOP] = "BREAK_LOOP";
++    op_name[WITH_CLEANUP] = "WITH_CLEANUP";
++    op_name[LOAD_LOCALS] = "LOAD_LOCALS";
++    op_name[RETURN_VALUE] = "RETURN_VALUE";
++    op_name[IMPORT_STAR] = "IMPORT_STAR";
++    op_name[EXEC_STMT] = "EXEC_STMT";
++    op_name[YIELD_VALUE] = "YIELD_VALUE";
++    op_name[POP_BLOCK] = "POP_BLOCK";
++    op_name[END_FINALLY] = "END_FINALLY";
++    op_name[BUILD_CLASS] = "BUILD_CLASS";
++    op_name[HAVE_ARGUMENT] = "HAVE_ARGUMENT";
++    op_name[STORE_NAME] = "STORE_NAME";
++    op_name[DELETE_NAME] = "DELETE_NAME";
++    op_name[UNPACK_SEQUENCE] = "UNPACK_SEQUENCE";
++    op_name[FOR_ITER] = "FOR_ITER";
++    op_name[LIST_APPEND] = "LIST_APPEND";
++    op_name[STORE_ATTR] = "STORE_ATTR";
++    op_name[DELETE_ATTR] = "DELETE_ATTR";
++    op_name[STORE_GLOBAL] = "STORE_GLOBAL";
++    op_name[DELETE_GLOBAL] = "DELETE_GLOBAL";
++    op_name[DUP_TOPX] = "DUP_TOPX";
++    op_name[LOAD_CONST] = "LOAD_CONST";
++    op_name[LOAD_NAME] = "LOAD_NAME";
++    op_name[BUILD_TUPLE] = "BUILD_TUPLE";
++    op_name[BUILD_LIST] = "BUILD_LIST";
++    op_name[BUILD_SET] = "BUILD_SET";
++    op_name[BUILD_MAP] = "BUILD_MAP";
++    op_name[LOAD_ATTR] = "LOAD_ATTR";
++    op_name[COMPARE_OP] = "COMPARE_OP";
++    op_name[IMPORT_NAME] = "IMPORT_NAME";
++    op_name[IMPORT_FROM] = "IMPORT_FROM";
++    op_name[JUMP_FORWARD] = "JUMP_FORWARD";
++    op_name[JUMP_IF_FALSE_OR_POP] = "JUMP_IF_FALSE_OR_POP";
++    op_name[JUMP_IF_TRUE_OR_POP] = "JUMP_IF_TRUE_OR_POP";
++    op_name[JUMP_ABSOLUTE] = "JUMP_ABSOLUTE";
++    op_name[POP_JUMP_IF_FALSE] = "POP_JUMP_IF_FALSE";
++    op_name[POP_JUMP_IF_TRUE] = "POP_JUMP_IF_TRUE";
++    op_name[LOAD_GLOBAL] = "LOAD_GLOBAL";
++    op_name[CONTINUE_LOOP] = "CONTINUE_LOOP";
++    op_name[SETUP_LOOP] = "SETUP_LOOP";
++    op_name[SETUP_EXCEPT] = "SETUP_EXCEPT";
++    op_name[SETUP_FINALLY] = "SETUP_FINALLY";
++    op_name[LOAD_FAST] = "LOAD_FAST";
++    op_name[STORE_FAST] = "STORE_FAST";
++    op_name[DELETE_FAST] = "DELETE_FAST";
++    op_name[RAISE_VARARGS] = "RAISE_VARARGS";
++    op_name[CALL_FUNCTION] = "CALL_FUNCTION";
++    op_name[MAKE_FUNCTION] = "MAKE_FUNCTION";
++    op_name[BUILD_SLICE] = "BUILD_SLICE";
++    op_name[MAKE_CLOSURE] = "MAKE_CLOSURE";
++    op_name[LOAD_CLOSURE] = "LOAD_CLOSURE";
++    op_name[LOAD_DEREF] = "LOAD_DEREF";
++    op_name[STORE_DEREF] = "STORE_DEREF";
++    op_name[CALL_FUNCTION_VAR] = "CALL_FUNCTION_VAR";
++    op_name[CALL_FUNCTION_KW] = "CALL_FUNCTION_KW";
++    op_name[CALL_FUNCTION_VAR_KW] = "CALL_FUNCTION_VAR_KW";
++    op_name[SETUP_WITH] = "SETUP_WITH";
++    op_name[EXTENDED_ARG] = "EXTENDED_ARG";
++    op_name[SET_ADD] = "SET_ADD";
++    op_name[MAP_ADD] = "MAP_ADD";
++}
++
++int r_pyc_disasm (RAsmOp *opstruct, const ut8 *code, RList *cobjs, RList *interned_table, ut64 pc) {
++    pyc_code_object *cobj = NULL, *t = NULL;
++    ut32 extended_arg = 0, i = 0, oparg;
++    st64 start_offset, end_offset;
++    RListIter *iter = NULL;
++
++    char *name = NULL;
++    char *arg = NULL;
++    RList *varnames;
++    RList *consts;
++    RList *names;
++    ut8 op;
++  
++    r_list_foreach (cobjs, iter, t) {
++        start_offset = t->start_offset;
++        end_offset = t->end_offset;
++        if (pc > start_offset && pc < end_offset) {
++            cobj = t;
++            break;
++        }   
++    }
++
++    if (cobj != NULL) {
++        /* TODO: adding line number and offset */
++        varnames = cobj->varnames->data;
++        consts = cobj->consts->data;
++        names = cobj->names->data;
++
++        op = code[i];
++        i += 1;
++        name = op_name[op];
++        r_strbuf_set (&opstruct->buf_asm, name);
++        if (name == NULL) {
++            return 0;
++        }
++        if (op >= HAVE_ARGUMENT) {
++            oparg = code[i] + code[i+1]*256 + extended_arg;
++            extended_arg = 0;
++            i += 2;
++            if (op == EXTENDED_ARG)
++                  extended_arg = oparg*65536;
++              arg = parse_arg (op, oparg, names, consts, varnames, interned_table);
++            if (arg != NULL) {
++                r_strbuf_appendf (&opstruct->buf_asm, "%20s", arg);
++            }   
++        }       
++        return i;
++    }
++    return 0;
++}
++
++char *parse_arg (ut8 op, ut32 oparg, RList *names, RList *consts, RList *varnames, RList *interned_table) {
++    pyc_object *t = NULL;
++    char *arg = NULL;
++
++    switch (op) {
++    case DUP_TOPX:
++    case UNPACK_SEQUENCE:
++    case BUILD_TUPLE:
++    case BUILD_LIST: //checked
++    case BUILD_SET:
++    case JUMP_FORWARD:
++    case CONTINUE_LOOP:
++    case SETUP_LOOP:
++    case BUILD_SLICE:
++    case CALL_FUNCTION:
++    case POP_JUMP_IF_FALSE:
++    case POP_JUMP_IF_TRUE:
++    case JUMP_ABSOLUTE:
++    case JUMP_IF_TRUE_OR_POP:
++    case JUMP_IF_FALSE_OR_POP:
++    case LOAD_CLOSURE:
++    case LOAD_DEREF:
++    case CALL_FUNCTION_KW:
++        arg = r_str_newf ("%u", oparg);
++    break;
++    case LOAD_FAST:
++    case STORE_FAST:
++    case DELETE_FAST:
++        t = (pyc_object*)r_list_get_n (varnames, oparg);
++        if (t == NULL)
++            return NULL;
++        arg = t->data;
++    break;
++    case LOAD_CONST:
++        t = (pyc_object*)r_list_get_n (consts, oparg);
++        if (t == NULL)
++            return NULL;
++        switch (t->type) {
++        case TYPE_CODE_v1:
++            arg = strdup("CodeObject");
++        break;
++        case TYPE_TUPLE:
++            arg = generic_array_obj_to_string (t->data);
++        break;
++        case TYPE_STRING:
++        case TYPE_INTERNED:
++        case TYPE_STRINGREF:
++            arg = r_str_newf ("'%s'", t->data);
++        break;
++        default:
++            arg = t->data;
++        }
++    break;
++    case STORE_NAME:
++    case STORE_ATTR:
++    case LOAD_NAME:
++    case LOAD_ATTR:
++    case IMPORT_NAME:
++    case IMPORT_FROM:
++    case LOAD_GLOBAL:
++        t = (pyc_object*)r_list_get_n (names, oparg);
++        if (t == NULL)
++            return NULL;
++        arg = t->data;
++    break;
++    }
++    return arg;
++}
++
++/* for debugging purpose */
++void dump (RList *l) {
++    RListIter *it;
++    pyc_object *e = NULL;
++
++    r_list_foreach (l, it, e) {
++        if (e->type == TYPE_TUPLE) {
++            eprintf ("[TYPE_TUPLE] %s\n", generic_array_obj_to_string(e->data));
++            return;
++        }
++        eprintf("[DATA] %s\n", (char *)e->data);
++    }
++}
++
++char *generic_array_obj_to_string (RList *l) {
++    RListIter *iter = NULL;
++    pyc_object *e = NULL;
++    ut32 size = 256, used = 0;
++    char *r = NULL, *buf = NULL;
++
++    buf = (char*)calloc (size + 10, 1);
++    r_list_foreach (l, iter, e) {
++        while ( !(strlen (e->data) < size) ) {
++            size *= 2;
++            buf = realloc (buf, used + size);
++            if (!buf) {
++                eprintf ("generic_array_obj_to_string cannot request more memory");
++                return NULL;
++            }
++        }
++        strcat (buf, e->data);
++        strcat (buf, ",");
++        size -= strlen (e->data) + 1;
++        used += strlen (e->data) + 1;
++    }
++    /* remove last , */
++    buf[ strlen(buf)-1 ] = '\0';
++    r = r_str_newf ("(%s)", buf);
++    free(buf);
++    return r;
++}
++
++void dump_cobj (pyc_code_object *c) {
++    eprintf("[DUMP]\n");
++    eprintf("name: %s\n", (char *)c->name->data);
++    eprintf("const_start\n");
++    dump(c->consts->data);
++    eprintf("consts_end\n");
++
++    eprintf("names_start\n");
++    dump(c->names->data);
++    eprintf("names_end\n");
++
++    eprintf("varnames_start\n");
++    dump(c->varnames->data);
++    eprintf("varnames_end\n");
++}
+diff -ruN before/libr/asm/arch/pyc/pyc_dis.h after/libr/asm/arch/pyc/pyc_dis.h
+--- before/libr/asm/arch/pyc/pyc_dis.h	1969-12-31 16:00:00.000000000 -0800
++++ after/libr/asm/arch/pyc/pyc_dis.h	2020-01-24 23:24:20.633841734 -0800
+@@ -0,0 +1,76 @@
++#include <r_types.h>
++#include <r_lib.h>
++#include <r_util.h>
++#include <r_asm.h>
++
++#include "opcode.h"
++
++typedef enum {
++	TYPE_ASCII = 'a',
++	TYPE_ASCII_INTERNED = 'A',
++	TYPE_BINARY_COMPLEX = 'y',
++	TYPE_BINARY_FLOAT = 'g',
++	TYPE_CODE_v0 = 'C',
++	TYPE_CODE_v1 = 'c',
++	TYPE_COMPLEX = 'x',
++	TYPE_DICT = '{',
++	TYPE_ELLIPSIS = '.',
++	TYPE_FALSE = 'F',
++	TYPE_FLOAT = 'f',
++	TYPE_FROZENSET = '>',
++	TYPE_INT64 = 'I',
++	TYPE_INTERNED = 't',
++	TYPE_INT = 'i',
++	TYPE_LIST = '[',
++	TYPE_LONG = 'l',
++	TYPE_NONE = 'N',
++	TYPE_NULL = '0',
++	TYPE_REF = 'r',
++	TYPE_SET = '<',
++	TYPE_SHORT_ASCII_INTERNED = 'Z',
++	TYPE_SHORT_ASCII = 'z',
++	TYPE_SMALL_TUPLE = ')',
++	TYPE_STOPITER = 'S',
++	TYPE_STRINGREF = 'R',
++	TYPE_STRING = 's',
++	TYPE_TRUE = 'T',
++	TYPE_TUPLE = '(',
++	TYPE_UNICODE = 'u',
++	TYPE_UNKNOWN = '?',
++} pyc_marshal_type;
++
++typedef enum {
++	FLAG_REF = '\x80',
++} pyc_marshal_flag;
++
++typedef struct {
++	pyc_marshal_type type;
++	void *data;
++} pyc_object;
++
++typedef struct {
++	ut32 argcount;
++	ut32 kwonlyargcount;
++	ut32 nlocals;
++	ut32 stacksize;
++	ut32 flags;
++	pyc_object *code;
++	pyc_object *consts;
++	pyc_object *names;
++	pyc_object *varnames;
++	pyc_object *freevars;
++	pyc_object *cellvars;
++	pyc_object *filename;
++	pyc_object *name;
++	ut32 firstlineno;
++	pyc_object *lnotab;
++	st64 start_offset;
++	st64 end_offset;
++} pyc_code_object;
++
++char *parse_arg (ut8 op, ut32 oparg, RList *names, RList *consts, RList *varnames, RList *interned_table);
++int r_pyc_disasm (RAsmOp *op, const ut8 *buf, RList *cobjs, RList *interned_table, ut64 pc);
++char *generic_array_obj_to_string (RList *l);
++void dump_cobj (pyc_code_object *c);
++void init_opname_table ();
++void dump (RList *l);
+diff -ruN before/libr/asm/p/asm_pyc.c after/libr/asm/p/asm_pyc.c
+--- before/libr/asm/p/asm_pyc.c	1969-12-31 16:00:00.000000000 -0800
++++ after/libr/asm/p/asm_pyc.c	2020-01-24 23:24:20.633841734 -0800
+@@ -0,0 +1,53 @@
++#include <r_types.h>
++#include <r_lib.h>
++#include <r_util.h>
++#include <r_asm.h>
++
++#include "../arch/pyc/pyc_dis.h"
++
++static int disassemble (RAsm *a, RAsmOp *opstruct, const ut8 *buf, int len) {
++	RList *interned_table = NULL;
++	RList *shared = NULL;
++	RList *cobjs = NULL;
++
++	RBin *bin = a->binb.bin;
++	ut64 pc = a->pc;
++  
++	RBinPlugin *plugin = bin && bin->cur && bin->cur->o ?
++		bin->cur->o->plugin : NULL;
++
++	if (plugin) {
++		if (!strcmp (plugin->name, "pyc")) {
++			shared = bin->cur->o->bin_obj;
++		}
++	}
++	cobjs = r_list_get_n (shared, 0);
++	interned_table = r_list_get_n (shared, 1);
++	int r = r_pyc_disasm (opstruct, buf, cobjs, interned_table, pc);
++	opstruct->size = r;
++	return r;
++}
++
++static bool init (void *user) {
++	init_opname_table ();
++	return true;
++}
++
++RAsmPlugin r_asm_plugin_pyc = {
++	.name = "pyc",
++	.arch = "pyc",
++	.license = "LGPL3",
++	.bits = 32,
++	.desc = "PYC disassemble plugin",
++	.disassemble = &disassemble,
++	.init = &init,
++};
++
++#ifndef CORELIB
++struct r_lib_struct_t radare_plugin = {
++	.type = R_LIB_TYPE_ASM,
++	.data = &r_asm_plugin_pyc,
++	.version = R2_VERSION
++};
++
++#endif
+diff -ruN before/libr/asm/p/Makefile after/libr/asm/p/Makefile
+--- before/libr/asm/p/Makefile	2020-01-24 23:22:38.307310832 -0800
++++ after/libr/asm/p/Makefile	2020-01-24 23:24:20.633841734 -0800
+@@ -24,6 +24,7 @@
+ ARCHS+=6502.mk h8300.mk cr16.mk v850.mk spc700.mk propeller.mk msp430.mk i4004.mk
+ ARCHS+=lh5801.mk v810.mk mcs96.mk lm32.mk
+ ARCHS+=riscv.mk rsp.mk mcore.mk
++ARCHS+=pyc.mk
+ include $(ARCHS)
+ 
+ clean:
+diff -ruN before/libr/asm/p/pyc.mk after/libr/asm/p/pyc.mk
+--- before/libr/asm/p/pyc.mk	1969-12-31 16:00:00.000000000 -0800
++++ after/libr/asm/p/pyc.mk	2020-01-24 23:24:20.633841734 -0800
+@@ -0,0 +1,13 @@
++OBJ_PYC=asm_pyc.o
++OBJ_PYC+=../arch/pyc/pyc_disasm.o
++
++STATIC_OBJ+=${OBJ_PYC}
++TARGET_PYC=asm_pyc.$(LIBEXT)
++
++ALL_TARGETS+=${TARGET_PYC}
++CFLAGS+=-I../arch/pyc
++
++${TARGET_PYC}: ${OBJ_PYC}
++	echo $(LIBEXT)
++	exit 1
++	${CC} ${CFLAGS} $(LDFLAGS) -o ${TARGET_PYC} ${OBJ_PYC} -lr_util
+diff -ruN before/libr/bin/format/pyc/marshal.c after/libr/bin/format/pyc/marshal.c
+--- before/libr/bin/format/pyc/marshal.c	1969-12-31 16:00:00.000000000 -0800
++++ after/libr/bin/format/pyc/marshal.c	2020-01-24 23:24:20.633841734 -0800
+@@ -0,0 +1,975 @@
++/* radare - LGPL3 - Copyright 2016 - Matthieu (c0riolis) Tardy - l0stb1t*/
++
++#include <r_io.h>
++#include <r_bin.h>
++#include "marshal.h"
++
++#define SIZE32_MAX  0x7FFFFFFF
++
++static RList *refs = NULL;
++
++
++/* interned_table is used to handle TYPE_INTERNED object */
++extern RList *interned_table;
++
++static pyc_object *get_object (RBuffer *buffer);
++static pyc_object *copy_object (pyc_object *object);
++
++static void free_object (pyc_object *object);
++
++static ut8 get_ut8 (RBuffer *buffer, bool *error) {
++    ut8 ret = 0;
++    int size = r_buf_read (buffer, &ret, sizeof (ret));
++    if (size < sizeof (ret))
++        *error = true;
++    return ret;
++}
++
++static ut16 get_ut16 (RBuffer *buffer, bool *error) {
++    ut16 ret = 0;
++
++    int size = r_buf_read (buffer, (ut8*)&ret, sizeof(ret));
++    if (size != sizeof (ret))
++        *error = true;
++    return ret;
++}
++
++static ut32 get_ut32 (RBuffer *buffer, bool *error) {
++    ut32 ret = 0;
++    int size = r_buf_read (buffer, (ut8*)&ret, sizeof (ret));
++    if (size != sizeof (ret))
++        *error = true;
++    return ret;
++}
++
++static st32 get_st32 (RBuffer *buffer, bool *error) {
++    st32 ret = 0;
++    int size = r_buf_read (buffer, (ut8*)&ret, sizeof (ret));
++    if (size < sizeof (ret))
++        *error = true;
++    return ret;
++}
++
++static st64 get_st64 (RBuffer *buffer, bool *error) {
++    st64 ret = 0;
++    int size = r_buf_read (buffer, (ut8 *)&ret, sizeof (ret));
++    if ( size < sizeof (ret) )
++        *error  = true;
++    return ret;
++}
++
++static double get_float64 (RBuffer *buffer, bool *error) {
++    double ret = 0;
++    int size = r_buf_read (buffer, (ut8*)&ret, sizeof(ret));
++    if ( size < sizeof (ret) )
++        *error = true;
++    return ret;
++}
++
++static ut8 *get_bytes (RBuffer *buffer, ut32 size) {
++    ut8 *ret = R_NEWS0 (ut8, size + 1);
++    if (!ret)
++        return NULL;
++    if (r_buf_read (buffer, ret, size) < size) {
++        free (ret);
++        return NULL;
++    }
++    return ret;
++}
++
++static pyc_object *get_none_object (void) {
++    pyc_object *ret;
++
++    ret = R_NEW0 (pyc_object);
++    if (!ret)
++        return NULL;
++    ret->type = TYPE_NONE;
++    ret->data = strdup ("None");
++    if (!ret->data)
++        R_FREE (ret);
++    return ret;
++}
++
++static pyc_object *get_false_object (void) {
++    pyc_object *ret = R_NEW0 (pyc_object);
++    if (!ret)
++        return NULL;
++    ret->type = TYPE_FALSE;
++    ret->data = strdup ("False");
++    if (!ret->data)
++        R_FREE (ret);
++    return ret;
++}
++
++static pyc_object *get_true_object (void) {
++    pyc_object *ret = R_NEW0 (pyc_object);
++    if (!ret)
++        return NULL;
++    ret->type = TYPE_TRUE;
++    ret->data = strdup ("True");
++    if (!ret->data)
++        R_FREE (ret);
++    return ret;
++}
++
++static pyc_object *get_int_object (RBuffer *buffer) {
++    bool error = false;
++    pyc_object *ret = NULL;
++
++    st32 i = get_st32 (buffer, &error);
++    if (error) 
++        return NULL;
++    ret = R_NEW0 (pyc_object);
++    if (!ret) 
++        return NULL;
++    ret->type = TYPE_INT;
++    ret->data = r_str_newf ("%d", i);
++    if (!ret->data)
++        R_FREE (ret);
++    return ret;
++}
++
++static pyc_object *get_int64_object (RBuffer *buffer) {
++    pyc_object *ret = NULL;
++    bool error = false;
++
++    st64 i = get_st64 (buffer, &error);
++    if (error) 
++        return NULL;
++    ret = R_NEW0 (pyc_object);
++    if (!ret) 
++        return NULL;
++    ret->type = TYPE_INT64;
++    ret->data = r_str_newf ("%lld", i);
++    if (!ret->data) 
++        R_FREE (ret);
++    return ret;
++}
++
++/* long is used when the number is > MAX_INT64 */
++static pyc_object *get_long_object (RBuffer *buffer) {
++
++    pyc_object *ret = NULL;
++    
++    /*
++    bool error = false;
++    bool neg = false;
++    ut16 base = 32768;
++    mpz_t pow, N, s;
++    ut32 i;
++
++    st32 ndigits = get_st32 (buffer, &error);
++    if (ndigits < -SIZE32_MAX || ndigits > SIZE32_MAX) {
++        eprintf("bad marshal data (long size out of range)");
++        return NULL;
++    }
++    if (error) 
++        return NULL;
++    ret = R_NEW0 (pyc_object);
++    if (!ret) 
++        return NULL;
++    ret->type = TYPE_LONG;
++    if (ndigits < 0) {
++        ndigits = -ndigits;
++        neg = true;
++    }
++    mpz_init (pow);
++    mpz_init (N);
++    mpz_init (s);
++    mpz_set_ui (pow, 1);
++
++    for (i = 0; i < ndigits; i++) {
++        mpz_mul_ui(s, pow, get_ut16(buffer, &error));
++        mpz_add(N, N, s);
++        mpz_mul_ui(pow, pow, base);
++        mpz_set_ui(s, 0);
++    }
++
++    if (neg) 
++        mpz_neg(N, N);
++    char *buf = malloc (mpz_sizeinbase(N, 10) + 2);
++    mpz_get_str (buf, 10, N);
++    ret->data = buf;
++    ret->type = TYPE_LONG;
++    mpz_clear (pow);
++    mpz_clear (N);
++    mpz_clear (s);
++    */
++    return ret;
++}
++
++static pyc_object *get_stringref_object (RBuffer *buffer) {
++    pyc_object *ret = NULL;
++    bool error = false;
++    ut32 n = 0;
++
++    n = get_st32 (buffer, &error);
++    if (n >= r_list_length(interned_table)) {
++        eprintf("bad marshal data (string ref out of range)");
++        return NULL;
++    }
++    if (error) 
++        return NULL;
++    ret = R_NEW0 (pyc_object);
++    if (!ret) 
++        return NULL;
++    ret->type = TYPE_STRINGREF;
++    ret->data = r_list_get_n (interned_table, n);
++    if (!ret->data)
++        R_FREE (ret);
++    return ret;
++}
++
++static pyc_object *get_float_object (RBuffer *buffer) {
++    pyc_object *ret = NULL;
++    bool error = false;
++    ut32 size = 0;
++    ut8 n = 0;
++
++    n = get_ut8 (buffer, &error);
++    if (error) 
++        return NULL;
++    ret = R_NEW0 (pyc_object);
++    if (!ret) 
++        return NULL;
++    ut8 *s = malloc (n + 1);
++    if (!s) 
++        return NULL;
++    /* object contain string representation of the number */
++    size = r_buf_read (buffer, s, n);
++    if (size != n) {
++        R_FREE (s);
++        R_FREE (ret);
++        return NULL;
++    }
++    s[n] = '\0';
++    ret->type = TYPE_FLOAT;
++    ret->data = s;
++    return ret;
++}
++
++static pyc_object *get_binary_float_object (RBuffer *buffer) {
++    pyc_object *ret = NULL;
++    bool error = false;
++    double f;
++    
++    f = get_float64 (buffer, &error);
++    if (error) 
++        return NULL;
++    ret = R_NEW0 (pyc_object);
++    if (!ret) 
++        return NULL;
++    ret->type = TYPE_FLOAT;
++    ret->data = r_str_newf ("%.15g", f);
++    if (!ret->data) {
++        R_FREE (ret);
++        return NULL;
++    }
++    return ret;
++}
++
++static pyc_object *get_complex_object (RBuffer *buffer) {
++
++    pyc_object *ret = NULL;
++    bool error = false;
++    ut8 *buf = NULL;
++    ut32 size = 0;
++    ut8 n;
++
++    n = get_ut8 (buffer, &error);
++    if (error) 
++        return NULL;
++    buf = (ut8 *)malloc (256);
++    size = r_buf_read (buffer, buf, n);
++    if (size != n)
++        eprintf("EOF read where object expected"); 
++        return NULL;
++    buf[n] = '\0';
++    ret = R_NEW0 (pyc_object);
++    if (!ret) {
++        free (buf);
++        return NULL;
++    }
++    ret->type = TYPE_COMPLEX;
++    return ret;
++
++}
++
++static pyc_object *get_binary_complex_object (RBuffer *buffer) {
++    pyc_object *ret = NULL;
++    bool error = false;
++    double a, b;
++
++    //a + bj
++    a = get_float64 (buffer, &error);
++    b = get_float64 (buffer, &error);
++    if (error) 
++        return NULL;
++    ret = R_NEW0 (pyc_object);
++    if (!ret) 
++        return NULL;
++    ret->type = TYPE_BINARY_COMPLEX;
++    ret->data = r_str_newf ("%.15g+%.15gj", a, b);
++    if (!ret->data) {
++        R_FREE (ret);
++        return NULL;
++    }
++    return ret;
++}
++
++static pyc_object *get_string_object (RBuffer *buffer) {
++    pyc_object *ret = NULL;
++    bool error = false;
++    ut32 n = 0;
++
++    n = get_ut32 (buffer, &error);
++    if (n < 0 || n > SIZE32_MAX) {
++        eprintf("bad marshal data (string size out of range)");
++        return NULL;
++    }
++    if (error) 
++        return NULL;
++    ret = R_NEW0 (pyc_object);
++    if (!ret) 
++        return NULL;
++    ret->type = TYPE_STRING;
++    ret->data = get_bytes (buffer, n);
++    if (!ret->data) {
++        R_FREE (ret);
++        return NULL;
++    }
++    return ret;
++}
++
++static pyc_object *get_unicode_object (RBuffer *buffer) {
++    pyc_object *ret = NULL;
++    bool error = false;
++    ut32 n = 0;
++
++    n = get_ut32 (buffer, &error);
++    if (n < 0 || n > SIZE32_MAX) {
++        eprintf("bad marshal data (unicode size out of range)");
++        return NULL;
++    }
++    if (error) 
++        return NULL;
++    ret = R_NEW0 (pyc_object);
++    ret->type = TYPE_UNICODE;
++    ret->data = get_bytes (buffer, n);
++    if (!ret->data) {
++        R_FREE (ret);
++        return NULL;
++    }
++    return ret;
++}
++
++static pyc_object *get_interned_object (RBuffer *buffer) {
++    pyc_object *ret = NULL;
++    bool error = false;
++    ut32 n = 0;
++
++    n = get_ut32 (buffer, &error);
++    if (n < 0 || n > SIZE32_MAX) {
++        eprintf("bad marshal data (string size out of range)");
++        return NULL;
++    }
++    if (error) 
++        return NULL;
++    ret = R_NEW0 (pyc_object);
++    if (!ret)
++        return NULL;
++    ret->type = TYPE_INTERNED;
++    ret->data = get_bytes (buffer, n);
++    /* add data pointer to interned table */
++    r_list_append (interned_table, ret->data);
++    if (!ret->data)
++        R_FREE (ret);
++    return ret;
++}
++
++static pyc_object *get_array_object_generic (RBuffer *buffer, ut32 size) {
++    pyc_object *tmp = NULL;
++    pyc_object *ret = NULL;
++    ut32 i = 0;
++
++    ret = R_NEW0 (pyc_object);
++    if (!ret) 
++        return NULL;
++    ret->data = r_list_new ();
++    if (!ret->data) {
++        free (ret);
++        return NULL;
++    }
++    for (i = 0; i < size; i++) {
++        tmp = get_object (buffer);
++        if (!tmp) {
++            r_list_free (ret->data);
++            R_FREE (ret);
++            return NULL;
++            break;
++        }
++        if (!r_list_append (ret->data, tmp)) {
++            free (tmp);
++            r_list_free (ret->data);
++            return NULL;
++            break;
++        }
++    }
++    return ret;
++}
++
++/* small TYPE_SMALL_TUPLE doesn't exist in python2 */
++/* */
++pyc_object *get_small_tuple_object (RBuffer *buffer) {
++    pyc_object *ret = NULL;
++    bool error = false; 
++    ut8 n = 0;
++
++    n = get_ut8 (buffer, &error);
++    if (error) 
++        return NULL;
++    ret = get_array_object_generic (buffer, n);
++    if (ret) {
++        ret->type = TYPE_SMALL_TUPLE;
++        return ret;
++    }
++    return NULL;
++}
++
++pyc_object *get_tuple_object (RBuffer *buffer) {
++    pyc_object *ret = NULL;
++    bool error = false;
++    ut32 n = 0;
++
++    n = get_ut32 (buffer, &error);
++    if (n > SIZE32_MAX) {
++        eprintf("bad marshal data (tuple size out of range)");
++        return NULL;
++    }
++    if (error) 
++        return NULL;
++    ret = get_array_object_generic (buffer, n);
++    if (ret) {
++        ret->type = TYPE_TUPLE;
++        return ret;
++    }
++    return NULL;
++}
++
++pyc_object *get_list_object (RBuffer *buffer) {
++    pyc_object* ret = NULL; 
++    bool error = false;
++    ut32 n = 0;
++
++    n = get_ut32 (buffer, &error);
++    if (n > SIZE32_MAX) {
++        eprintf("bad marshal data (list size out of range)");
++        return NULL;
++    }
++    if (error) 
++        return NULL;
++    ret = get_array_object_generic (buffer, n);
++    ret->type = TYPE_LIST;
++    return ret;
++}
++
++pyc_object *get_dict_object (RBuffer *buffer) {
++    pyc_object  *ret = NULL, 
++                *key = NULL,
++                *val = NULL;
++
++    ret = R_NEW0 (pyc_object);
++    if (!ret) 
++        return NULL;
++    ret->data = r_list_new ();
++    if (!ret->data) {
++        R_FREE (ret);
++        return NULL;
++    }
++    for(;;) {
++        key = get_object (buffer);
++        if (key == NULL) 
++            break;
++        if (!r_list_append (ret->data, key)) {
++            r_list_free (ret->data);
++            R_FREE (ret);
++            R_FREE (key);
++            return NULL;
++        }
++        val = get_object (buffer);
++        if (!r_list_append (ret->data, val))
++            return NULL;
++        if (val == NULL) 
++            break;
++    }
++    ret->type = TYPE_DICT;
++    return ret;
++}
++
++pyc_object *get_set_object (RBuffer *buffer) {
++    pyc_object *ret = NULL;
++    bool error = false;
++    ut32 n = 0;
++    
++    n = get_ut32 (buffer, &error);
++    if (n > SIZE32_MAX) {
++        eprintf("bad marshal data (set size out of range)");
++        return NULL;
++    }
++    if (error) {
++        return NULL;
++    }
++    ret = get_array_object_generic (buffer, n);
++    if (!ret) 
++        return NULL;
++    ret->type = TYPE_SET;
++    return ret;
++}
++
++static pyc_object *get_ascii_object_generic (RBuffer *buffer, ut32 size, bool interned) {
++    pyc_object *ret = NULL;
++
++    ret = R_NEW0 (pyc_object);
++    if (!ret)
++        return NULL;
++    ret->type = TYPE_ASCII;
++    ret->data = get_bytes (buffer, size);
++    if (!ret->data)
++        R_FREE (ret);
++    return ret;
++}
++
++static pyc_object *get_ascii_object (RBuffer *buffer) {
++    bool error = false;
++    ut32 n = 0;
++
++    n = get_ut32 (buffer, &error);
++    if (error)
++        return NULL;
++    return get_ascii_object_generic (buffer, n, true);
++}
++
++static pyc_object *get_ascii_interned_object (RBuffer *buffer) {
++    bool error = false;
++    ut32 n;
++
++    n = get_ut32 (buffer, &error);
++    if (error)
++        return NULL;
++    return get_ascii_object_generic (buffer, n, true);
++}
++
++static pyc_object *get_short_ascii_object(RBuffer *buffer) {
++    bool error = false;
++    ut8 n;
++
++    n = get_ut8 (buffer, &error);
++    if (error)
++        return NULL;
++    return get_ascii_object_generic (buffer, n, false);
++}
++
++static pyc_object *get_short_ascii_interned_object(RBuffer *buffer) {
++    bool error = false;
++    ut8 n;
++    
++    n = get_ut8 (buffer, &error);
++    if (error)
++        return NULL;
++    return get_ascii_object_generic (buffer, n, true);
++}
++
++static pyc_object *get_ref_object(RBuffer *buffer) {
++    bool error = false;
++    pyc_object *ret;
++    pyc_object *obj;
++    ut32 index;
++
++    index = get_ut32 (buffer, &error);
++    if (error) 
++        return NULL;
++    if (index >= r_list_length (refs))
++        return NULL;
++    obj = r_list_get_n (refs, index);
++    if (!obj)
++        return NULL;
++    ret = copy_object (obj);
++    if (!ret)
++        free (obj);
++    return ret;
++}
++
++
++void free_object(pyc_object *object) {
++    if (!object)
++        return;
++    switch (object->type) {
++    case TYPE_SMALL_TUPLE:
++    case TYPE_TUPLE:
++        r_list_free (object->data);
++        break;
++    case TYPE_STRING:
++    case TYPE_TRUE:
++    case TYPE_FALSE:
++    case TYPE_INT:
++    case TYPE_NONE:
++    case TYPE_NULL:
++    case TYPE_ASCII_INTERNED:
++    case TYPE_SHORT_ASCII:
++    case TYPE_ASCII:
++    case TYPE_SHORT_ASCII_INTERNED:
++        free (object->data);
++        break;
++    case TYPE_CODE_v1:
++        {
++            pyc_code_object *cobj = object->data;
++            free_object (cobj->code);
++            free_object (cobj->consts);
++            free_object (cobj->names);
++            free_object (cobj->varnames);
++            free_object (cobj->freevars);
++            free_object (cobj->cellvars);
++            free_object (cobj->filename);
++            free_object (cobj->name);
++            free_object (cobj->lnotab);
++            free (object->data);
++        }
++        break;
++    case TYPE_REF:
++        free_object (object->data);
++        break;
++    case TYPE_SET:
++    case TYPE_FROZENSET:
++    case TYPE_ELLIPSIS:
++    case TYPE_STOPITER:
++    case TYPE_BINARY_COMPLEX:
++    case TYPE_BINARY_FLOAT:
++    case TYPE_CODE_v0:
++    case TYPE_COMPLEX:
++    case TYPE_STRINGREF:
++    case TYPE_DICT:
++    case TYPE_FLOAT:
++    case TYPE_INT64:
++    case TYPE_INTERNED:
++    case TYPE_LIST:
++    case TYPE_LONG:
++    case TYPE_UNICODE:
++    case TYPE_UNKNOWN:
++        eprintf ("Free not implemented for type %x\n", object->type);
++        return;
++    default:
++        eprintf ("Undefined type in free_object (%x)\n", object->type);
++        return;
++    }
++    free (object);
++}
++
++pyc_object *copy_object (pyc_object *object) {
++    pyc_object *copy = R_NEW0 (pyc_object);
++    if (!copy || !object) {
++        free (copy);
++        return NULL;
++    }
++    copy->type = object->type;
++    switch (object->type) {
++    case TYPE_NULL:
++        break;
++    case TYPE_TUPLE:
++    case TYPE_SMALL_TUPLE:
++        copy->data = r_list_clone (object->data);
++        break;
++    case TYPE_INT:
++    case TYPE_NONE:
++    case TYPE_TRUE:
++    case TYPE_FALSE:
++    case TYPE_STRING:
++    case TYPE_ASCII:
++    case TYPE_SHORT_ASCII:
++    case TYPE_ASCII_INTERNED:
++    case TYPE_SHORT_ASCII_INTERNED:
++        copy->data = strdup(object->data);
++        break;
++    case TYPE_CODE_v1:
++        {
++            pyc_code_object *src = object->data;
++            pyc_code_object *dst = R_NEW0 (pyc_code_object);
++            if (!dst)
++                break;
++            memcpy (dst, src, sizeof (*dst));
++            dst->code = copy_object (src->code);
++            dst->consts = copy_object (src->consts);
++            dst->names = copy_object (src->names);
++            dst->varnames = copy_object (src->varnames);
++            dst->freevars = copy_object (src->freevars);
++            dst->cellvars = copy_object (src->cellvars);
++            dst->filename = copy_object (src->filename);
++            dst->name = copy_object (src->name);
++            dst->lnotab = copy_object (src->lnotab);
++            copy->data = dst;
++        }
++        break;
++    case TYPE_REF:
++        copy->data = copy_object (object->data);
++        break;
++    case TYPE_ELLIPSIS:
++    case TYPE_STOPITER:
++    case TYPE_BINARY_COMPLEX:
++    case TYPE_BINARY_FLOAT:
++    case TYPE_CODE_v0:
++    case TYPE_COMPLEX:
++    case TYPE_STRINGREF:
++    case TYPE_DICT:
++    case TYPE_FLOAT:
++    case TYPE_FROZENSET:
++    case TYPE_INT64:
++    case TYPE_INTERNED:
++    case TYPE_LIST:
++    case TYPE_LONG:
++    case TYPE_SET:
++    case TYPE_UNICODE:
++    case TYPE_UNKNOWN:
++        eprintf ("Copy not implemented for type %x\n", object->type);
++        return NULL;
++    default:
++        eprintf ("Undefined type in copy_object (%x)\n", object->type);
++        return NULL;
++    }
++    if (!copy->data)
++        R_FREE (copy);
++    return copy;
++}
++
++
++
++static pyc_object *get_code_object (RBuffer *buffer) {
++    bool error = false;
++    
++    pyc_object *ret = R_NEW0 (pyc_object);
++    pyc_code_object *cobj = R_NEW0 (pyc_code_object);
++    if (!ret || !cobj) {
++        free (ret);
++        free (cobj);
++        return NULL;
++    }
++    
++    ret->type = TYPE_CODE_v1;
++    ret->data = cobj;
++
++    cobj->argcount = get_ut32 (buffer, &error);
++    //cobj->kwonlyargcount = get_ut32 (buffer, &error);
++    cobj->nlocals = get_ut32 (buffer, &error);
++    cobj->stacksize = get_ut32 (buffer, &error);
++    cobj->flags = get_ut32 (buffer, &error);
++
++    //to help disassemble the code
++    cobj->start_offset = r_buf_tell(buffer) + 4; 
++    cobj->code = get_object (buffer);
++    cobj->end_offset = r_buf_tell(buffer);
++
++    cobj->consts = get_object (buffer);
++    cobj->names = get_object (buffer);
++    cobj->varnames = get_object (buffer);
++    cobj->freevars = get_object (buffer);
++    cobj->cellvars = get_object (buffer);
++    cobj->filename = get_object (buffer);
++    cobj->name = get_object (buffer);
++    cobj->firstlineno = get_ut32 (buffer, &error);
++    cobj->lnotab = get_object (buffer);
++    if (error) {
++        free_object (cobj->code);
++        free_object (cobj->consts);
++        free_object (cobj->names);
++        free_object (cobj->varnames);
++        free_object (cobj->freevars);
++        free_object (cobj->cellvars);
++        free_object (cobj->filename);
++        free_object (cobj->name);
++        free_object (cobj->lnotab);
++        free (cobj);
++        R_FREE (ret);
++    }
++    return ret;
++}
++
++static pyc_object *get_object (RBuffer *buffer) {
++
++    bool error = false;
++    pyc_object *ret = NULL;
++    ut8 code = get_ut8 (buffer, &error);
++
++    ut8 flag = code & FLAG_REF;
++    RListIter *ref_idx;
++    
++    ut8 type = code & ~FLAG_REF;
++
++    if (error)
++        return NULL;
++
++    if (flag) {
++        ret = get_none_object ();
++        if (!ret)
++            return NULL;
++        ref_idx = r_list_append (refs, ret);
++        if (!ref_idx) {
++            free (ret);
++            return NULL;
++        }
++    }
++
++    switch (type) {
++    case TYPE_NULL:
++        return NULL;
++    case TYPE_TRUE:
++        return get_true_object ();
++    case TYPE_FALSE:
++        return get_false_object ();
++    case TYPE_NONE:
++        return get_none_object ();
++    case TYPE_REF:
++        return get_ref_object (buffer);
++    case TYPE_SMALL_TUPLE:
++        ret = get_small_tuple_object (buffer);
++        break;
++    case TYPE_TUPLE:
++        ret = get_tuple_object (buffer);
++        break;
++    case TYPE_STRING:
++        ret = get_string_object (buffer);
++        break;
++    case TYPE_CODE_v1:
++        ret = get_code_object (buffer);
++        break;
++    case TYPE_INT:
++        ret = get_int_object (buffer);
++        break;
++    case TYPE_ASCII_INTERNED:
++        ret = get_ascii_interned_object (buffer);
++        break;
++    case TYPE_SHORT_ASCII:
++        ret = get_short_ascii_object (buffer);
++        break;
++    case TYPE_ASCII:
++        ret = get_ascii_object (buffer);
++        break;
++    case TYPE_SHORT_ASCII_INTERNED:
++        ret = get_short_ascii_interned_object (buffer);
++        break;
++    case TYPE_INT64:
++        ret = get_int64_object(buffer);
++        break;
++    case TYPE_INTERNED:
++        ret = get_interned_object(buffer);
++        break;
++    case TYPE_STRINGREF:
++        ret = get_stringref_object(buffer);
++        break;
++    case TYPE_FLOAT:
++        ret = get_float_object(buffer);
++        break;
++    case TYPE_BINARY_FLOAT:
++        ret = get_binary_float_object(buffer);
++        break;
++    case TYPE_COMPLEX:
++        ret = get_complex_object(buffer);
++        break;
++    case TYPE_BINARY_COMPLEX:
++        ret = get_binary_complex_object(buffer);
++        break;
++    case TYPE_LIST:
++        ret = get_list_object(buffer);
++        break;
++    case TYPE_LONG:
++        ret = get_long_object(buffer);
++        break;
++    case TYPE_UNICODE:
++        ret = get_unicode_object(buffer);
++        break;
++    case TYPE_DICT:
++        ret = get_dict_object(buffer);
++        break;
++    case TYPE_FROZENSET:
++    case TYPE_SET:
++        ret = get_set_object(buffer);
++        break;
++    case TYPE_STOPITER:
++        ret = R_NEW0(pyc_object);
++        break;
++    case TYPE_ELLIPSIS:
++        ret = R_NEW0(pyc_object);
++        break;
++    case TYPE_CODE_v0: 
++    case TYPE_UNKNOWN:
++        eprintf ("Get not implemented for type 0x%x\n", type);
++        return NULL;
++    default:
++        eprintf ("Undefined type in get_object (0x%x)\n", type);
++        return NULL;
++    }
++
++    if (ret == NULL) {
++        eprintf("***%d***\n", type);
++    }
++    
++    if (flag) {
++        free_object (ref_idx->data);
++        ref_idx->data = copy_object (ret);
++    }
++
++    return ret;
++}
++
++static bool extract_sections (pyc_object *obj, RList *sections, RList *cobjs, char *prefix) {
++
++    pyc_code_object *cobj = NULL;
++    RBinSection *section = NULL;
++    RListIter *i = NULL;
++
++    //each code object is a section
++    if (!obj || (obj->type != TYPE_CODE_v1))
++        return false;
++    cobj = obj->data;
++    if (!cobj || !cobj->name)
++        return false;
++    if (cobj->name->type != TYPE_ASCII && cobj->name->type != TYPE_STRING && cobj->name->type != TYPE_INTERNED)
++        return false;
++    if (!cobj->name->data)
++        return false;
++    //add the cobj to objs list
++    if (!r_list_append (cobjs, cobj))
++        goto fail;
++    section = R_NEW0 (RBinSection);
++    prefix = r_str_newf ("%s%s%s", prefix ? prefix : "",
++                prefix ? "." : "", cobj->name->data);
++    if (!prefix || !section)
++        goto fail;
++    //if (!strncpy ((char*)&section->name, prefix, R_BIN_SIZEOF_STRINGS))
++    if (!(section->name = strdup(prefix)))
++        goto fail;
++    section->paddr = cobj->start_offset+1;
++    section->vaddr = cobj->start_offset+1;
++    section->size = cobj->end_offset - cobj->start_offset- 1;
++    section->vsize = cobj->end_offset - cobj->start_offset - 1;
++    if (!r_list_append (sections, section))
++        goto fail;
++    if (cobj->consts->type != TYPE_TUPLE)
++        return false;
++    r_list_foreach (((RList*)(cobj->consts->data)), i, obj)
++        extract_sections (obj, sections, cobjs, prefix);
++    free (prefix);
++    return true;
++fail:
++
++    free (section);
++    free (prefix);
++    return false;
++}
++
++bool get_sections_from_code_objects(RBuffer *buffer, RList *sections, RList *cobjs) {
++    bool ret;
++    refs = r_list_new ();
++    refs->free = (RListFree)free_object;
++    r_buf_seek(buffer, 8, R_BUF_SET);
++    ret = extract_sections (get_object (buffer), sections, cobjs, NULL);
++    r_list_free (refs);
++    return ret;
++}
+diff -ruN before/libr/bin/format/pyc/marshal.h after/libr/bin/format/pyc/marshal.h
+--- before/libr/bin/format/pyc/marshal.h	1969-12-31 16:00:00.000000000 -0800
++++ after/libr/bin/format/pyc/marshal.h	2020-01-24 23:24:20.633841734 -0800
+@@ -0,0 +1,74 @@
++/* radare - LGPL3 - Copyright 2016 - Matthieu (c0riolis) Tardy */
++
++#ifndef MARSHAL_H
++#define MARSHAL_H
++
++#include <r_util.h>
++#include <r_types.h>
++
++typedef enum {
++	TYPE_ASCII = 'a',
++	TYPE_ASCII_INTERNED = 'A',
++	TYPE_BINARY_COMPLEX = 'y',
++	TYPE_BINARY_FLOAT = 'g',
++	TYPE_CODE_v0 = 'C',
++	TYPE_CODE_v1 = 'c',
++	TYPE_COMPLEX = 'x',
++	TYPE_DICT = '{',
++	TYPE_ELLIPSIS = '.',
++	TYPE_FALSE = 'F',
++	TYPE_FLOAT = 'f',
++	TYPE_FROZENSET = '>',
++	TYPE_INT64 = 'I',
++	TYPE_INTERNED = 't',
++	TYPE_INT = 'i',
++	TYPE_LIST = '[',
++	TYPE_LONG = 'l',
++	TYPE_NONE = 'N',
++	TYPE_NULL = '0',
++	TYPE_REF = 'r',
++	TYPE_SET = '<',
++	TYPE_SHORT_ASCII_INTERNED = 'Z',
++	TYPE_SHORT_ASCII = 'z',
++	TYPE_SMALL_TUPLE = ')',
++	TYPE_STOPITER = 'S',
++	TYPE_STRINGREF = 'R',
++	TYPE_STRING = 's',
++	TYPE_TRUE = 'T',
++	TYPE_TUPLE = '(',
++	TYPE_UNICODE = 'u',
++	TYPE_UNKNOWN = '?',
++} pyc_marshal_type;
++
++typedef enum {
++	FLAG_REF = '\x80',
++} pyc_marshal_flag;
++
++typedef struct {
++	pyc_marshal_type type;
++	void *data;
++} pyc_object;
++
++typedef struct {
++	ut32 argcount;
++	ut32 kwonlyargcount;
++	ut32 nlocals;
++	ut32 stacksize;
++	ut32 flags;
++	pyc_object *code;
++	pyc_object *consts;
++	pyc_object *names;
++	pyc_object *varnames;
++	pyc_object *freevars;
++	pyc_object *cellvars;
++	pyc_object *filename;
++	pyc_object *name;
++	ut32 firstlineno;
++	pyc_object *lnotab;
++	st64 start_offset;
++	st64 end_offset;
++} pyc_code_object;
++
++bool get_sections_from_code_objects(RBuffer *buffer, RList *sections, RList *objs);
++
++#endif
+diff -ruN before/libr/bin/format/pyc/pyc.c after/libr/bin/format/pyc/pyc.c
+--- before/libr/bin/format/pyc/pyc.c	1969-12-31 16:00:00.000000000 -0800
++++ after/libr/bin/format/pyc/pyc.c	2020-01-24 23:24:20.633841734 -0800
+@@ -0,0 +1,150 @@
++/* radare - LGPL3 - Copyright 2016 - Matthieu (c0riolis) Tardy */
++
++#include "pyc.h"
++#include "marshal.h"
++
++bool pyc_get_sections(RList *sections, RList *cobjs, RBuffer *buf, ut32 magic) {
++	return get_sections_from_code_objects (buf, sections, cobjs);
++}
++
++ut64 pyc_get_entrypoint(ut32 magic) {
++	switch (magic) {
++	case MAGIC_0_9_4_BETA:
++	case MAGIC_0_9_9_v0:
++	case MAGIC_0_9_9_v1:
++	case MAGIC_0_9_9_v2:
++	case MAGIC_1_0_1:
++	case MAGIC_1_1:
++	case MAGIC_1_2:
++	case MAGIC_1_3_B1:
++	case MAGIC_1_4_B1_v0:
++	case MAGIC_1_4_B1_v1:
++	case MAGIC_1_4:
++	case MAGIC_1_5_A1:
++	case MAGIC_1_6_A2:
++	case MAGIC_2_0_B1_v0:
++	case MAGIC_2_0_B1_v1_U:
++	case MAGIC_2_0_B1_v2:
++	case MAGIC_2_0_B1_v2_U:
++	case MAGIC_2_0_B1_v3:
++	case MAGIC_2_0_B1_v3_U:
++	case MAGIC_2_0_B1_v4:
++	case MAGIC_2_0_B1_v4_U:
++	case MAGIC_2_0_B1_v5_U:
++	case MAGIC_2_0_B1_v6_U:
++	case MAGIC_2_1_A1:
++	case MAGIC_2_1_A1_U:
++	case MAGIC_2_1_A2:
++	case MAGIC_2_1_A2_U:
++	case MAGIC_2_2_A0:
++	case MAGIC_2_2_A0_U:
++	case MAGIC_2_2_A1:
++	case MAGIC_2_2_A1_U:
++	case MAGIC_2_3_A0_v0:
++	case MAGIC_2_3_A0_v0_U:
++	case MAGIC_2_3_A0_v1:
++	case MAGIC_2_3_A0_v1_U:
++	case MAGIC_2_3_A0_v2:
++	case MAGIC_2_3_A0_v2_U:
++	case MAGIC_2_4_A0_v0:
++	case MAGIC_2_4_A0_v0_U:
++	case MAGIC_2_4_A0_v1:
++	case MAGIC_2_4_A0_v1_U:
++	case MAGIC_2_4_A2:
++	case MAGIC_2_4_A2_U:
++	case MAGIC_2_4_A3:
++	case MAGIC_2_4_A3_U:
++	case MAGIC_2_5_A0_v0:
++	case MAGIC_2_5_A0_v0_U:
++	case MAGIC_2_5_A0_v1:
++	case MAGIC_2_5_A0_v1_U:
++	case MAGIC_2_5_A0_v2:
++	case MAGIC_2_5_A0_v2_U:
++	case MAGIC_2_5_A0_v3_U:
++	case MAGIC_2_5_B2_v0:
++	case MAGIC_2_5_B2_v0_U:
++	case MAGIC_2_5_B2_v1:
++	case MAGIC_2_5_B2_v1_U:
++	case MAGIC_2_5_C3:
++	case MAGIC_2_5_C3_U:
++	case MAGIC_2_6_A0_v0:
++	case MAGIC_2_6_A0_v0_U:
++	case MAGIC_2_6_A0_v1:
++	case MAGIC_2_6_A0_v1_U:
++	case MAGIC_2_6_A0_v2:
++	case MAGIC_2_6_A0_v2_U:
++	case MAGIC_2_6_A1_PLUS_v0:
++	case MAGIC_2_6_A1_PLUS_v0_U:
++	case MAGIC_2_6_A1_PLUS_v1:
++	case MAGIC_2_6_A1_PLUS_v1_U:
++	case MAGIC_2_7_A0_v0:
++	case MAGIC_2_7_A0_v0_U:
++	case MAGIC_2_7_A0_v1:
++	case MAGIC_2_7_A0_v1_U:
++	case MAGIC_2_7_A0_v2:
++	case MAGIC_2_7_A0_v2_U:
++	case MAGIC_2_7_A2_PLUS_v0:
++	case MAGIC_2_7_A2_PLUS_v0_U:
++	case MAGIC_2_7_A2_PLUS_v1:
++	case MAGIC_2_7_A2_PLUS_v1_U:
++	case MAGIC_3_0X_v0:
++	case MAGIC_3_0X_v0_U:
++	case MAGIC_3_0X_v1:
++	case MAGIC_3_0X_v1_U:
++	case MAGIC_3_0X_v2:
++	case MAGIC_3_0X_v2_U:
++	case MAGIC_3_0X_v3:
++	case MAGIC_3_0X_v3_U:
++	case MAGIC_3_0X_v4:
++	case MAGIC_3_0X_v4_U:
++	case MAGIC_3_0X_v5:
++	case MAGIC_3_0X_v5_U:
++	case MAGIC_3_0X_v6:
++	case MAGIC_3_0X_v6_U:
++	case MAGIC_3_0_A1_v0:
++	case MAGIC_3_0_A1_v0_U:
++	case MAGIC_3_0_A1_v1:
++	case MAGIC_3_0_A1_v1_U:
++	case MAGIC_3_0_A1_PLUS:
++	case MAGIC_3_0_A1_PLUS_U:
++	case MAGIC_3_0_A2:
++	case MAGIC_3_0_A2_U:
++	case MAGIC_3_0_A2_PLUS:
++	case MAGIC_3_0_A2_PLUS_U:
++	case MAGIC_3_0_A3_PLUS:
++	case MAGIC_3_0_A3_PLUS_U:
++	case MAGIC_3_0_A5_PLUS:
++	case MAGIC_3_0_A5_PLUS_U:
++	case MAGIC_3_1_A0_v0:
++	case MAGIC_3_1_A0_v0_U:
++	case MAGIC_3_1_A0_v1:
++	case MAGIC_3_1_A0_v1_U:
++	case MAGIC_3_2_A0:
++	case MAGIC_3_2_A0_U:
++	case MAGIC_3_2_A1_PLUS_U:
++	case MAGIC_3_2_A2_PLUS_U:
++	case MAGIC_3_3_A0_U:
++	case MAGIC_3_3_0_A0_v0_U:
++		return 0x8;
++	case MAGIC_3_3_0_A0_v1_U:
++	case MAGIC_3_3_0_A1_PLUS_U:
++	case MAGIC_3_3_0_A3_PLUS_U:
++	case MAGIC_3_4_0_A0_v0_U:
++	case MAGIC_3_4_0_A0_v1_U:
++	case MAGIC_3_4_0_A0_v2_U:
++	case MAGIC_3_4_0_A0_v3_U:
++	case MAGIC_3_4_0_A0_v4_U:
++	case MAGIC_3_4_0_A3_PLUS_v0_U:
++	case MAGIC_3_4_0_A3_PLUS_v1_U:
++	case MAGIC_3_4_0_RC1_PLUS_U:
++	case MAGIC_3_5_0_A0_U:
++	case MAGIC_3_5_0_A4_PLUS_U:
++	case MAGIC_3_5_0_B1_PLUS_U:
++	case MAGIC_3_5_0_B2_PLUS_U:
++	case MAGIC_3_6_0_A0_v0_U:
++	case MAGIC_3_6_0_A0_v1_U:
++		return 0xc;
++	default:
++		return 0x0;
++	}
++}
+diff -ruN before/libr/bin/format/pyc/pyc.h after/libr/bin/format/pyc/pyc.h
+--- before/libr/bin/format/pyc/pyc.h	1969-12-31 16:00:00.000000000 -0800
++++ after/libr/bin/format/pyc/pyc.h	2020-01-24 23:24:20.633841734 -0800
+@@ -0,0 +1,15 @@
++/* radare - LGPL3 - Copyright 2016 - Matthieu (c0riolis) Tardy */
++
++#ifndef PYC_H
++#define PYC_H
++
++#include <r_types.h>
++#include <r_util.h>
++#include <r_lib.h>
++#include <r_bin.h>
++#include "pyc_magic.h"
++	
++bool pyc_get_sections(RList *sections, RList* mem, RBuffer *buf, ut32 magic);
++ut64 pyc_get_entrypoint(ut32 magic);
++
++#endif
+diff -ruN before/libr/bin/format/pyc/pyc_magic.c after/libr/bin/format/pyc/pyc_magic.c
+--- before/libr/bin/format/pyc/pyc_magic.c	1969-12-31 16:00:00.000000000 -0800
++++ after/libr/bin/format/pyc/pyc_magic.c	2020-01-24 23:24:20.633841734 -0800
+@@ -0,0 +1,156 @@
++/* radare - LGPL3 - Copyright 2016 - Matthieu (c0riolis) Tardy */
++
++#include "pyc_magic.h"
++
++static struct pyc_version versions[] = {
++	{MAGIC_0_9_4_BETA,         "0.9.4 beta", "77b80a91d357c1d95d8e7cd4cbbe799e5deb777e", false},
++	{MAGIC_0_9_9_v0,           "0.9.9",      "1cabc2b6c9701aea29bb506b593946e67bf7593a", false},
++	{MAGIC_0_9_9_v1,           "0.9.9",      "f820e6917f07e5012bdd103ef97389318d5a10f8", false},
++	{MAGIC_0_9_9_v2,           "0.9.9",      "9fed5726a36d7ce1355c30592838d93321d580ee", false},
++	{MAGIC_1_0_1,              "1.0.1",      "1808ca5d8883097c72c6a8a89143041c20ea13c1", false},
++	{MAGIC_1_1,                "1.1",        "d1e6c9a64a563841f60177ac907739f953f15630", false},
++	{MAGIC_1_2,                "1.2",        "fb3daf9b2456dc1a3d99f56f78c5e6270eeaf1e8", false},
++	{MAGIC_1_3_B1,             "1.3b1",      "0261bf5b3819b03d83f254562947244634604026", false},
++	{MAGIC_1_4_B1_v0,          "1.4b1",      "d1ae0ea9a585f912d7aa3d004ff817d0dea112f8", false},
++	{MAGIC_1_4_B1_v1,          "1.4b1",      "22e29b1747e139d9598eaa5126c59313af39949d", false},
++	{MAGIC_1_4,                "1.4",        "b82d847b3dcbccd63de075e3879a9369dfb34e0d", false},
++	{MAGIC_1_5_A1,             "1.5a1",      "104a646fc7a67f27df25d4e941b20035e5876f9f", false},
++	{MAGIC_1_6_A2,             "1.6a2",      "84cd52b560e571eba371d7136abcc9c42c27b002", false},
++	{MAGIC_2_0_B1_v0,          "2.0b1",      "f79434ee41fa86019216240ba32be660bcfc5419", false},
++	{MAGIC_2_0_B1_v1,          "2.0b1",      "4388249506d190a76a4dbbbc70294ef6ba0656d5", false},
++	{MAGIC_2_0_B1_v1_U,        "2.0b1",      "4388249506d190a76a4dbbbc70294ef6ba0656d5", true,},
++	{MAGIC_2_0_B1_v2,          "2.0b1",      "4eaa463c031a1bdb5e7791c370d04108e0682dd4", false},
++	{MAGIC_2_0_B1_v2_U,        "2.0b1",      "4eaa463c031a1bdb5e7791c370d04108e0682dd4", true },
++	{MAGIC_2_0_B1_v3,          "2.0b1",      "18385172fac0b7099bd2d2264df614ed4466f083", false},
++	{MAGIC_2_0_B1_v3_U,        "2.0b1",      "18385172fac0b7099bd2d2264df614ed4466f083", true },
++	{MAGIC_2_0_B1_v4,          "2.0b1",      "f657dc8ff25e93b877305bbcfc45e360191bb326", false},
++	{MAGIC_2_0_B1_v4_U,        "2.0b1",      "f657dc8ff25e93b877305bbcfc45e360191bb326", true },
++	{MAGIC_2_0_B1_v5,          "2.0b1",      "1b9fd0cbd914947cc421ba7e45aa093d7ba9af00", false},
++	{MAGIC_2_0_B1_v5_U,        "2.0b1",      "1b9fd0cbd914947cc421ba7e45aa093d7ba9af00", true },
++	{MAGIC_2_0_B1_v6,          "2.0b1",      "1f1a156ed5af8f7a50ce05fc85f85423a24f2aa4", false},
++	{MAGIC_2_0_B1_v6_U,        "2.0b1",      "1f1a156ed5af8f7a50ce05fc85f85423a24f2aa4", true },
++	{MAGIC_2_1_A1,             "2.1a1",      "fd8c7203251ff37dbb397f7d423ae41f16a03c68", false},
++	{MAGIC_2_1_A1_U,           "2.1a1",      "fd8c7203251ff37dbb397f7d423ae41f16a03c68", true },
++	{MAGIC_2_1_A2,             "2.1a2",      "0076e8d28f9eba9eff4508696dc33730af2b4001", false},
++	{MAGIC_2_1_A2_U,           "2.1a2",      "0076e8d28f9eba9eff4508696dc33730af2b4001", true },
++	{MAGIC_2_2_A0,             "2.2a0",      "32e7d0898eab85de8134f932680a85c6e7abcec0", false},
++	{MAGIC_2_2_A0_U,           "2.2a0",      "32e7d0898eab85de8134f932680a85c6e7abcec0", true },
++	{MAGIC_2_2_A1,             "2.2a1",      "09df3254b49d7c9306585302fe815ab0bdb53439", false},
++	{MAGIC_2_2_A1_U,           "2.2a1",      "09df3254b49d7c9306585302fe815ab0bdb53439", true },
++	{MAGIC_2_3_A0_v0,          "2.3a0",      "abedb2418f6231adf24205092a59996f1f1e4c02", false},
++	{MAGIC_2_3_A0_v0_U,        "2.3a0",      "abedb2418f6231adf24205092a59996f1f1e4c02", true },
++	{MAGIC_2_3_A0_v1,          "2.3a0",      "d6ae544acd24a1f72ce00534fed464fde91ee504", false},
++	{MAGIC_2_3_A0_v1_U,        "2.3a0",      "d6ae544acd24a1f72ce00534fed464fde91ee504", true },
++	{MAGIC_2_3_A0_v2,          "2.3a0",      "cf5928fab108de9fbe02632d07176c717c2b3aa7", false},
++	{MAGIC_2_3_A0_v2_U,        "2.3a0",      "cf5928fab108de9fbe02632d07176c717c2b3aa7", true },
++	{MAGIC_2_3_A0_v3,          "2.3a0",      "5fe4d93df429134ef8695c12e59ff962ff8b73d2", false},
++	{MAGIC_2_3_A0_v3_U,        "2.3a0",      "5fe4d93df429134ef8695c12e59ff962ff8b73d2", true },
++	{MAGIC_2_4_A0_v0,          "2.4a0",      "adb42a71169604d3609ac2fbdb64cf8cd1c7250b", false},
++	{MAGIC_2_4_A0_v0_U,        "2.4a0",      "adb42a71169604d3609ac2fbdb64cf8cd1c7250b", true },
++	{MAGIC_2_4_A0_v1,          "2.4a0",      "3df36e2e5ddc1149af8eb52e20bc225d806236d4", false},
++	{MAGIC_2_4_A0_v1_U,        "2.4a0",      "3df36e2e5ddc1149af8eb52e20bc225d806236d4", true },
++	{MAGIC_2_4_A2,             "2.4a2",      "1f9b9c226b43ed20cb61e6d21aea6cb966e8bcd3", false},
++	{MAGIC_2_4_A2_U,           "2.4a2",      "1f9b9c226b43ed20cb61e6d21aea6cb966e8bcd3", true },
++	{MAGIC_2_4_A3,             "2.4a3",      "2b49b4a85d9eb4a4cfa9f29c21d649c383945671", false},
++	{MAGIC_2_4_A3_U,           "2.4a3",      "2b49b4a85d9eb4a4cfa9f29c21d649c383945671", true },
++	{MAGIC_2_5_A0_v0,          "2.5a0",      "44e3f21f052590ddfabc12909af5188a4cd89d8c", false},
++	{MAGIC_2_5_A0_v0_U,        "2.5a0",      "44e3f21f052590ddfabc12909af5188a4cd89d8c", true },
++	{MAGIC_2_5_A0_v1,          "2.5a0",      "eb15cdd4a2f1001792074ca0789026989452ff82", false},
++	{MAGIC_2_5_A0_v1_U,        "2.5a0",      "eb15cdd4a2f1001792074ca0789026989452ff82", true },
++	{MAGIC_2_5_A0_v2,          "2.5a0",      "b6d2f6fd3e116b9b9fe95bc982ac763c359ff103", false},
++	{MAGIC_2_5_A0_v2_U,        "2.5a0",      "b6d2f6fd3e116b9b9fe95bc982ac763c359ff103", true },
++	{MAGIC_2_5_A0_v3,          "2.5a0",      "5c36c222e7ca5310e5cc8b8db283bd669d1e24d4", false},
++	{MAGIC_2_5_A0_v3_U,        "2.5a0",      "5c36c222e7ca5310e5cc8b8db283bd669d1e24d4", true },
++	{MAGIC_2_5_B2_v0,          "2.5b2",      "2c3ec720aa7beb0da4002b847cc5ed7dc782566c", false},
++	{MAGIC_2_5_B2_v0_U,        "2.5b2",      "2c3ec720aa7beb0da4002b847cc5ed7dc782566c", true },
++	{MAGIC_2_5_B2_v1,          "2.5b2",      "b745b3fd66a649a5fa540bdf47971c26af0a959e", false},
++	{MAGIC_2_5_B2_v1_U,        "2.5b2",      "b745b3fd66a649a5fa540bdf47971c26af0a959e", true },
++	{MAGIC_2_5_C3,             "2.5c3",      "b90a8b0395bd43fd193842451d0c49573b4d7166", false},
++	{MAGIC_2_5_C3_U,           "2.5c3",      "b90a8b0395bd43fd193842451d0c49573b4d7166", true },
++	{MAGIC_2_6_A0_v0,          "2.6a0",      "8dcb882ec3e1aac7d336a40aa64ec66561fc3dec", false},
++	{MAGIC_2_6_A0_v0_U,        "2.6a0",      "8dcb882ec3e1aac7d336a40aa64ec66561fc3dec", true },
++	{MAGIC_2_6_A0_v1,          "2.6a0",      "3985d7e2067db75f170e0891994b0fd70963e40b", false},
++	{MAGIC_2_6_A0_v1_U,        "2.6a0",      "3985d7e2067db75f170e0891994b0fd70963e40b", true },
++	{MAGIC_2_6_A0_v2,          "2.6a0",      "07aa19170a673da6b3e8c4c66bfd868b2f90c0e4", false},
++	{MAGIC_2_6_A0_v2_U,        "2.6a0",      "07aa19170a673da6b3e8c4c66bfd868b2f90c0e4", true },
++	{MAGIC_2_6_A1_PLUS_v0,     "2.6a1+",     "343597c7d682b3552580352deddd0cdb36978a04", false},
++	{MAGIC_2_6_A1_PLUS_v0_U,   "2.6a1+",     "343597c7d682b3552580352deddd0cdb36978a04", true },
++	{MAGIC_2_6_A1_PLUS_v1,     "2.6a1+",     "eac41f90296c69c6d07d29f1feb453a4c0e400d1", false},
++	{MAGIC_2_6_A1_PLUS_v1_U,   "2.6a1+",     "eac41f90296c69c6d07d29f1feb453a4c0e400d1", true },
++	{MAGIC_2_6_A1_PLUS_v2,     "2.6a1+",     "a0ea3a0efc710934ad66e3907211230ff227d6a1", false},
++	{MAGIC_2_6_A1_PLUS_v2_U,   "2.6a1+",     "a0ea3a0efc710934ad66e3907211230ff227d6a1", true },
++	{MAGIC_2_7_A0_v0,          "2.7a0",      "94e79d78dff0dfb5c53f49842c7df65ad5b79e66", false},
++	{MAGIC_2_7_A0_v0_U,        "2.7a0",      "94e79d78dff0dfb5c53f49842c7df65ad5b79e66", true },
++	{MAGIC_2_7_A0_v1,          "2.7a0",      "ef8fe90886968b1eb468cb91ebae103f773fa17f", false},
++	{MAGIC_2_7_A0_v1_U,        "2.7a0",      "ef8fe90886968b1eb468cb91ebae103f773fa17f", true },
++	{MAGIC_2_7_A0_v2,          "2.7a0",      "145376df3ad728f7052fdd8b6eba600a8317fece", false},
++	{MAGIC_2_7_A0_v2_U,        "2.7a0",      "145376df3ad728f7052fdd8b6eba600a8317fece", true },
++	{MAGIC_2_7_A2_PLUS_v0,     "2.7a2+",     "c2fdf25329ff30cf8d68c0c0e7cf479d7b203745", false},
++	{MAGIC_2_7_A2_PLUS_v0_U,   "2.7a2+",     "c2fdf25329ff30cf8d68c0c0e7cf479d7b203745", true },
++	{MAGIC_2_7_A2_PLUS_v1,     "2.7a2+",     "edfed0e32cedf3b84c6e999052486a750a3f5bee", false},
++	{MAGIC_2_7_A2_PLUS_v1_U,   "2.7a2+",     "edfed0e32cedf3b84c6e999052486a750a3f5bee", true },
++	{MAGIC_3_0X_v0,            "3.0x",       "49c6eb688906b1dddabf578f08129e6729d6151f", false},
++	{MAGIC_3_0X_v0_U,          "3.0x",       "49c6eb688906b1dddabf578f08129e6729d6151f", true },
++	{MAGIC_3_0X_v1,            "3.0x",       "f87a3e61853d72b1d133992f991e397b31aac8e8", false},
++	{MAGIC_3_0X_v1_U,          "3.0x",       "f87a3e61853d72b1d133992f991e397b31aac8e8", true },
++	{MAGIC_3_0X_v2,            "3.0x",       "d0b83c4630c0924df661063543f3c5478c8c35ac", false},
++	{MAGIC_3_0X_v2_U,          "3.0x",       "d0b83c4630c0924df661063543f3c5478c8c35ac", true },
++	{MAGIC_3_0X_v3,            "3.0x",       "1cce0526d9b0a53f4ff95713dde153dc70dae2dc", false},
++	{MAGIC_3_0X_v3_U,          "3.0x",       "1cce0526d9b0a53f4ff95713dde153dc70dae2dc", true },
++	{MAGIC_3_0X_v4,            "3.0x",       "7a35d3d1ac5a301ef3dc52f9140844f0422011a5", false},
++	{MAGIC_3_0X_v4_U,          "3.0x",       "7a35d3d1ac5a301ef3dc52f9140844f0422011a5", true },
++	{MAGIC_3_0X_v5,            "3.0x",       "793e0323d4d65bfc89b40d78162cd771c575a18e", false},
++	{MAGIC_3_0X_v5_U,          "3.0x",       "793e0323d4d65bfc89b40d78162cd771c575a18e", true },
++	{MAGIC_3_0X_v6,            "3.0x",       "19f7ff443718f7a9da1aea9edbf00a135f860883", false},
++	{MAGIC_3_0X_v6_U,          "3.0x",       "19f7ff443718f7a9da1aea9edbf00a135f860883", true },
++	{MAGIC_3_0_A1_v0,          "3.0a1",      "a89d469e1ff77716914ce1a4244fa529a71ce68a", false},
++	{MAGIC_3_0_A1_v0_U,        "3.0a1",      "a89d469e1ff77716914ce1a4244fa529a71ce68a", true },
++	{MAGIC_3_0_A1_v1,          "3.0a1",      "19319e70fc3edbb45b2d007161c1b3a1de094181", false},
++	{MAGIC_3_0_A1_v1_U,        "3.0a1",      "19319e70fc3edbb45b2d007161c1b3a1de094181", true },
++	{MAGIC_3_0_A1_PLUS,        "3.0a1+",     "0d462d789b18ec6a59ebe2116688d5b6985c215d", false},
++	{MAGIC_3_0_A1_PLUS_U,      "3.0a1+",     "0d462d789b18ec6a59ebe2116688d5b6985c215d", true },
++	{MAGIC_3_0_A2,             "3.0a2",      "4dc01402d78afe2c9b4a4bd8004eb08e2647335d", false},
++	{MAGIC_3_0_A2_U,           "3.0a2",      "4dc01402d78afe2c9b4a4bd8004eb08e2647335d", true },
++	{MAGIC_3_0_A2_PLUS,        "3.0a2+",     "73e1bf179a01ad7824ff5aa2b29ce068a457cd67", false},
++	{MAGIC_3_0_A2_PLUS_U,      "3.0a2+",     "73e1bf179a01ad7824ff5aa2b29ce068a457cd67", true },
++	{MAGIC_3_0_A3_PLUS,        "3.0a3+",     "832c820e9d144cb76c8778ad6fcffe232b1f5c46", false},
++	{MAGIC_3_0_A3_PLUS_U,      "3.0a3+",     "832c820e9d144cb76c8778ad6fcffe232b1f5c46", true },
++	{MAGIC_3_0_A5_PLUS,        "3.0a5+",     "212a1fee6bf93f8b74f81dd3567bf964e627ea20", false},
++	{MAGIC_3_0_A5_PLUS_U,      "3.0a5+",     "212a1fee6bf93f8b74f81dd3567bf964e627ea20", true },
++	{MAGIC_3_1_A0_v0,          "3.1a0",      "2ee4653927f72f9bb3ff14b3083d4a203d684dfc", false},
++	{MAGIC_3_1_A0_v0_U,        "3.1a0",      "2ee4653927f72f9bb3ff14b3083d4a203d684dfc", true },
++	{MAGIC_3_1_A0_v1,          "3.1a0",      "643d8d4fc8ebcc69155d3416357aadca9c053388", false},
++	{MAGIC_3_1_A0_v1_U,        "3.1a0",      "643d8d4fc8ebcc69155d3416357aadca9c053388", true },
++	{MAGIC_3_2_A0,             "3.2a0",      "3aaf2e065db05401803705ed4bfa3fd2f9030df8", false},
++	{MAGIC_3_2_A0_U,           "3.2a0",      "3aaf2e065db05401803705ed4bfa3fd2f9030df8", true },
++	{MAGIC_3_2_A1_PLUS_U,      "3.2a1+",     "72523121127327c022096d30e7b28a4a5a89495d", true },
++	{MAGIC_3_2_A2_PLUS_U,      "3.2a2+",     "252895d491570d5a27452809b582717be409b24d", true },
++	{MAGIC_3_3_A0_U,           "3.3a0",      "9a6d9ac6fb2e1bb15bbb4e8c2a6c939d07088477", true },
++	{MAGIC_3_3_0_A0_v0_U,      "3.3.0a0",    "e1dbc72bd97f36c1aed7e3ba2a58278f4da807be", true },
++	{MAGIC_3_3_0_A0_v1_U,      "3.3.0a0",    "87331661042b89022f6f49506ae9c1ae459a95be", true },
++	{MAGIC_3_3_0_A1_PLUS_U,    "3.3.0a1+",   "c0a6569fdad624cc89cdd24b68331dc2a9b64827", true },
++	{MAGIC_3_3_0_A3_PLUS_U,    "3.3.0a3+",   "96ab78ef82a775da11a538fc47aebe70d9c34f04", true },
++	{MAGIC_3_4_0_A0_v0_U,      "3.4.0a0",    "d296cf1600a8c2c7098737944b5ee793b67a6883", true },
++	{MAGIC_3_4_0_A0_v1_U,      "3.4.0a0",    "2528e4aea33801b40ec902a77b5451ebc925a331", true },
++	{MAGIC_3_4_0_A0_v2_U,      "3.4.0a0",    "cf65c7a75f558e6cd68903f4c2800f6b9574a35f", true },
++	{MAGIC_3_4_0_A0_v3_U,      "3.4.0a0",    "3d858f1eef546e6adb2c073be9384065cfc2537e", true },
++	{MAGIC_3_4_0_A0_v4_U,      "3.4.0a0",    "6db3741e59be2b6427032a0f51d8a06625d64c28", true },
++	{MAGIC_3_4_0_A3_PLUS_v0_U, "3.4.0a3+",   "35b384ed594b4618a7ea345dad7d2149eabcf3e7", true },
++	{MAGIC_3_4_0_A3_PLUS_v1_U, "3.4.0a3+",   "bb2affc1e317a85c4edfe450c119bdec851a08ee", true },
++	{MAGIC_3_4_0_RC1_PLUS_U,   "3.4.0rc1+",  "e301a515f8f4c5cdde3b9726ec298bd4de1af963", true },
++	{MAGIC_3_5_0_A0_U,         "3.5.0a0",    "c553d8f72d659b3bc14fe326662ba53ca97bf38a", true },
++	{MAGIC_3_5_0_A4_PLUS_U,    "3.5.0a4+",   "a65f685ba8c011bf117cadf26c13ab7a0cbb122c", true },
++	{MAGIC_3_5_0_B1_PLUS_U,    "3.5.0b1+",   "6f05f83c7010764aff53793fbff162c42018f57e", true },
++	{MAGIC_3_5_0_B2_PLUS_U,    "3.5.0b2+",   "7a0a1a4ac63942f4ea3c7804e323adf668d40a21", true },
++	{MAGIC_3_6_0_A0_v0_U,      "3.6.0a0",    "1ddeb2e175df5009571b3632a709c6b74995cb29", true },
++	{MAGIC_3_6_0_A0_v1_U,      "3.6.0a0",    "775b74e0e103f816382a0fc009b6ac51ea956750", true },
++};
++
++struct pyc_version get_pyc_version(ut32 magic) {
++	struct pyc_version fail = {-1, 0, 0, false};
++	ut32 i;
++	for (i = 0; i < sizeof (versions) / sizeof (*versions); ++i)
++		if (versions[i].magic == magic)
++			return versions[i];
++	return fail;
++}
+diff -ruN before/libr/bin/format/pyc/pyc_magic.h after/libr/bin/format/pyc/pyc_magic.h
+--- before/libr/bin/format/pyc/pyc_magic.h	1969-12-31 16:00:00.000000000 -0800
++++ after/libr/bin/format/pyc/pyc_magic.h	2020-01-24 23:24:20.633841734 -0800
+@@ -0,0 +1,159 @@
++/* radare - LGPL3 - Copyright 2016 - Matthieu (c0riolis) Tardy */
++
++#ifndef PYC_MAGIC_H
++#define PYC_MAGIC_H
++
++#include <r_types.h>
++
++#define MAGIC_0_9_4_BETA         0x00949494
++#define MAGIC_0_9_9_v0           0x0099be2a
++#define MAGIC_0_9_9_v1           0x0099be3a
++#define MAGIC_0_9_9_v2           0x00999901
++#define MAGIC_1_0_1              0x00999902
++#define MAGIC_1_1                0x00999903
++#define MAGIC_1_2                0x0a0d4127
++#define MAGIC_1_3_B1             0x0a0d2e89
++#define MAGIC_1_4_B1_v0          0x0a0d0767
++#define MAGIC_1_4_B1_v1          0x0a0d1704
++#define MAGIC_1_4                0x0a0d4e95
++#define MAGIC_1_5_A1             0x0a0d4e99
++#define MAGIC_1_6_A2             0x0a0dc4fc
++#define MAGIC_2_0_B1_v0          0x0a0dc61b
++#define MAGIC_2_0_B1_v1          0x0a0dc4fc
++#define MAGIC_2_0_B1_v1_U        0x0a0dc4fd
++#define MAGIC_2_0_B1_v2          0x0a0dc67b
++#define MAGIC_2_0_B1_v2_U        0x0a0dc67c
++#define MAGIC_2_0_B1_v3          0x0a0dc67f
++#define MAGIC_2_0_B1_v3_U        0x0a0dc680
++#define MAGIC_2_0_B1_v4          0x0a0dc685
++#define MAGIC_2_0_B1_v4_U        0x0a0dc686
++#define MAGIC_2_0_B1_v5          0x0a0dc686
++#define MAGIC_2_0_B1_v5_U        0x0a0dc687
++#define MAGIC_2_0_B1_v6          0x0a0dc687
++#define MAGIC_2_0_B1_v6_U        0x0a0dc688
++#define MAGIC_2_1_A1             0x0a0deadc
++#define MAGIC_2_1_A1_U           0x0a0deadd
++#define MAGIC_2_1_A2             0x0a0deb2a
++#define MAGIC_2_1_A2_U           0x0a0deb2b
++#define MAGIC_2_2_A0             0x0a0dec04
++#define MAGIC_2_2_A0_U           0x0a0dec05
++#define MAGIC_2_2_A1             0x0a0ded2d
++#define MAGIC_2_2_A1_U           0x0a0ded2e
++#define MAGIC_2_3_A0_v0          0x0a0df231
++#define MAGIC_2_3_A0_v0_U        0x0a0df232
++#define MAGIC_2_3_A0_v1          0x0a0df23b
++#define MAGIC_2_3_A0_v1_U        0x0a0df23c
++#define MAGIC_2_3_A0_v2          0x0a0df245
++#define MAGIC_2_3_A0_v2_U        0x0a0df246
++#define MAGIC_2_3_A0_v3          0x0a0df23b
++#define MAGIC_2_3_A0_v3_U        0x0a0df23c
++#define MAGIC_2_4_A0_v0          0x0a0df24f
++#define MAGIC_2_4_A0_v0_U        0x0a0df250
++#define MAGIC_2_4_A0_v1          0x0a0df259
++#define MAGIC_2_4_A0_v1_U        0x0a0df25a
++#define MAGIC_2_4_A2             0x0a0df263
++#define MAGIC_2_4_A2_U           0x0a0df264
++#define MAGIC_2_4_A3             0x0a0df26d
++#define MAGIC_2_4_A3_U           0x0a0df26e
++#define MAGIC_2_5_A0_v0          0x0a0df277
++#define MAGIC_2_5_A0_v0_U        0x0a0df278
++#define MAGIC_2_5_A0_v1          0x0a0df281
++#define MAGIC_2_5_A0_v1_U        0x0a0df282
++#define MAGIC_2_5_A0_v2          0x0a0df28b
++#define MAGIC_2_5_A0_v2_U        0x0a0df28c
++#define MAGIC_2_5_A0_v3          0x0a0df28c
++#define MAGIC_2_5_A0_v3_U        0x0a0df28d
++#define MAGIC_2_5_B2_v0          0x0a0df295
++#define MAGIC_2_5_B2_v0_U        0x0a0df296
++#define MAGIC_2_5_B2_v1          0x0a0df29f
++#define MAGIC_2_5_B2_v1_U        0x0a0df2a0
++#define MAGIC_2_5_C3             0x0a0df2a9
++#define MAGIC_2_5_C3_U           0x0a0df2aa
++#define MAGIC_2_6_A0_v0          0x0a0df2b3
++#define MAGIC_2_6_A0_v0_U        0x0a0df2b4
++#define MAGIC_2_6_A0_v1          0x0a0df2bd
++#define MAGIC_2_6_A0_v1_U        0x0a0df2be
++#define MAGIC_2_6_A0_v2          0x0a0df2c7
++#define MAGIC_2_6_A0_v2_U        0x0a0df2c8
++#define MAGIC_2_6_A1_PLUS_v0     0x0a0df2d1
++#define MAGIC_2_6_A1_PLUS_v0_U   0x0a0df2d2
++#define MAGIC_2_6_A1_PLUS_v1     0x0a0df2d3
++#define MAGIC_2_6_A1_PLUS_v1_U   0x0a0df2d4
++#define MAGIC_2_6_A1_PLUS_v2     0x0a0df2d1
++#define MAGIC_2_6_A1_PLUS_v2_U   0x0a0df2d2
++#define MAGIC_2_7_A0_v0          0x0a0df2db
++#define MAGIC_2_7_A0_v0_U        0x0a0df2dc
++#define MAGIC_2_7_A0_v1          0x0a0df2e5
++#define MAGIC_2_7_A0_v1_U        0x0a0df2e6
++#define MAGIC_2_7_A0_v2          0x0a0df2ef
++#define MAGIC_2_7_A0_v2_U        0x0a0df2f0
++#define MAGIC_2_7_A2_PLUS_v0     0x0a0df2f9
++#define MAGIC_2_7_A2_PLUS_v0_U   0x0a0df2fa
++#define MAGIC_2_7_A2_PLUS_v1     0x0a0df303
++#define MAGIC_2_7_A2_PLUS_v1_U   0x0a0df304
++#define MAGIC_3_0X_v0            0x0a0d0bb8
++#define MAGIC_3_0X_v0_U          0x0a0d0bb9
++#define MAGIC_3_0X_v1            0x0a0d0bc2
++#define MAGIC_3_0X_v1_U          0x0a0d0bc3
++#define MAGIC_3_0X_v2            0x0a0d0bcc
++#define MAGIC_3_0X_v2_U          0x0a0d0bcd
++#define MAGIC_3_0X_v3            0x0a0d0bd6
++#define MAGIC_3_0X_v3_U          0x0a0d0bd7
++#define MAGIC_3_0X_v4            0x0a0d0be0
++#define MAGIC_3_0X_v4_U          0x0a0d0be1
++#define MAGIC_3_0X_v5            0x0a0d0bea
++#define MAGIC_3_0X_v5_U          0x0a0d0beb
++#define MAGIC_3_0X_v6            0x0a0d0bf4
++#define MAGIC_3_0X_v6_U          0x0a0d0bf5
++#define MAGIC_3_0_A1_v0          0x0a0d0bfe
++#define MAGIC_3_0_A1_v0_U        0x0a0d0bff
++#define MAGIC_3_0_A1_v1          0x0a0d0c08
++#define MAGIC_3_0_A1_v1_U        0x0a0d0c09
++#define MAGIC_3_0_A1_PLUS        0x0a0d0c12
++#define MAGIC_3_0_A1_PLUS_U      0x0a0d0c13
++#define MAGIC_3_0_A2             0x0a0d0c1c
++#define MAGIC_3_0_A2_U           0x0a0d0c1d
++#define MAGIC_3_0_A2_PLUS        0x0a0d0c1e
++#define MAGIC_3_0_A2_PLUS_U      0x0a0d0c1f
++#define MAGIC_3_0_A3_PLUS        0x0a0d0c26
++#define MAGIC_3_0_A3_PLUS_U      0x0a0d0c27
++#define MAGIC_3_0_A5_PLUS        0x0a0d0c3a
++#define MAGIC_3_0_A5_PLUS_U      0x0a0d0c3b
++#define MAGIC_3_1_A0_v0          0x0a0d0c44
++#define MAGIC_3_1_A0_v0_U        0x0a0d0c45
++#define MAGIC_3_1_A0_v1          0x0a0d0c4e
++#define MAGIC_3_1_A0_v1_U        0x0a0d0c4f
++#define MAGIC_3_2_A0             0x0a0d0c58
++#define MAGIC_3_2_A0_U           0x0a0d0c59
++#define MAGIC_3_2_A1_PLUS_U      0x0a0d0c62
++#define MAGIC_3_2_A2_PLUS_U      0x0a0d0c6c
++#define MAGIC_3_3_A0_U           0x0a0d0c76
++#define MAGIC_3_3_0_A0_v0_U      0x0a0d0c80
++#define MAGIC_3_3_0_A0_v1_U      0x0a0d0c8a
++#define MAGIC_3_3_0_A1_PLUS_U    0x0a0d0c94
++#define MAGIC_3_3_0_A3_PLUS_U    0x0a0d0c9e
++#define MAGIC_3_4_0_A0_v0_U      0x0a0d0ca8
++#define MAGIC_3_4_0_A0_v1_U      0x0a0d0cb2
++#define MAGIC_3_4_0_A0_v2_U      0x0a0d0cbc
++#define MAGIC_3_4_0_A0_v3_U      0x0a0d0cc6
++#define MAGIC_3_4_0_A0_v4_U      0x0a0d0cd0
++#define MAGIC_3_4_0_A3_PLUS_v0_U 0x0a0d0cda
++#define MAGIC_3_4_0_A3_PLUS_v1_U 0x0a0d0ce4
++#define MAGIC_3_4_0_RC1_PLUS_U   0x0a0d0cee
++#define MAGIC_3_5_0_A0_U         0x0a0d0cf8
++#define MAGIC_3_5_0_A4_PLUS_U    0x0a0d0d02
++#define MAGIC_3_5_0_B1_PLUS_U    0x0a0d0d0c
++#define MAGIC_3_5_0_B2_PLUS_U    0x0a0d0d16
++#define MAGIC_3_6_0_A0_v0_U      0x0a0d0d20
++#define MAGIC_3_6_0_A0_v1_U      0x0a0d0d21
++
++struct pyc_version {
++	ut32 magic;
++	char *version;
++	char *revision;
++	bool unicode;
++};
++
++struct pyc_version get_pyc_version(ut32 magic);
++
++#endif
+diff -ruN before/libr/bin/p/bin_pyc.c after/libr/bin/p/bin_pyc.c
+--- before/libr/bin/p/bin_pyc.c	1969-12-31 16:00:00.000000000 -0800
++++ after/libr/bin/p/bin_pyc.c	2020-01-24 23:24:20.633841734 -0800
+@@ -0,0 +1,106 @@
++/* radare - LGPL3 - Copyright 2016-2017 - Matthieu (c0riolis) Tardy */
++
++#include <r_bin.h>
++#include "../format/pyc/pyc_magic.h"
++#include "../format/pyc/pyc.h"
++
++// XXX: to not use globals
++
++static struct pyc_version version;
++/* used from marshall.c */
++RList *interned_table = NULL;
++
++static bool check_bytes(const ut8 *buf, ut64 length) {
++	if (!buf || length < 8) {
++		// magic + timestamp 
++		return false;
++	}
++	version = get_pyc_version (*(ut32*)buf);
++	return version.magic != -1;
++}
++
++static bool load_bytes(RBinFile *bf, void **bin_obj, const ut8 *buf, ut64 sz, ut64 loadaddr, Sdb *sdb) {
++	return check_bytes (buf, sz);
++}
++
++static bool load_buffer(RBinFile *bf, void **bin_obj, RBuffer *buf, ut64 loadaddr, Sdb *sdb) {
++	ut64 size;
++	ut8 *d = r_buf_data(buf, &size);
++	return load_bytes(bf, bin_obj, d, size, loadaddr, sdb);
++}
++
++static RBinInfo *info(RBinFile *arch) {
++	RBinInfo *ret = R_NEW0 (RBinInfo);
++	if (!ret)
++		return NULL;
++	ret->file = strdup (arch->file);
++	ret->type = r_str_newf ("Python %s%s byte-compiled file", version.version,
++				version.unicode ? " Unicode" : "");
++	ret->bclass = strdup ("Python byte-compiled file");
++	ret->rclass = strdup ("pyc");
++	ret->machine = r_str_newf ("Python %s VM (rev %s)", version.version,
++				version.revision);
++	ret->os = strdup ("any");
++	ret->bits = 32;
++	return ret;
++}
++
++static RList *sections(RBinFile *arch) {
++	RList *shared = r_list_new ();
++	if (!shared) {
++		return NULL;
++	}
++	RList *cobjs = r_list_new ();
++	if (!cobjs) {
++		return NULL;
++	}
++	interned_table = r_list_new ();
++	if (!interned_table) {
++		return NULL;
++	}
++	r_list_append (shared, cobjs);
++	r_list_append (shared, interned_table);
++	arch->o->bin_obj = shared;
++	RList *sections = r_list_new ();
++	if (!sections) {
++		return NULL;
++	}
++	pyc_get_sections (sections, cobjs, arch->buf, version.magic);
++	return sections;
++}
++
++static RList *entries(RBinFile *arch) {
++	RList *entries = r_list_new ();
++	if (!entries) {
++		return NULL;
++	}
++	RBinAddr *addr = R_NEW0 (RBinAddr);
++	if (!addr) {
++		return NULL;
++	}
++	ut64 entrypoint = pyc_get_entrypoint (version.magic);
++	addr->paddr = entrypoint;
++	addr->vaddr = entrypoint;
++	r_buf_seek (arch->buf, entrypoint, R_IO_SEEK_CUR);
++	r_list_append (entries, addr);
++	return entries;
++}
++
++RBinPlugin r_bin_plugin_pyc = {
++	.name = "pyc",
++	.desc = "Python byte-compiled file plugin",
++	.license = "LGPL3",
++	.info = &info,
++	.load_buffer = &load_buffer,
++	.check_bytes = &check_bytes,
++	.entries = &entries,
++	.sections = &sections,
++};
++
++#ifndef CORELIB
++RLibStruct radare_plugin = {
++	.type = R_LIB_TYPE_BIN,
++	.data = &r_bin_plugin_pyc,
++	.version = R2_VERSION,
++};
++#endif
+diff -ruN before/libr/bin/p/Makefile after/libr/bin/p/Makefile
+--- before/libr/bin/p/Makefile	2020-01-24 23:22:38.371309910 -0800
++++ after/libr/bin/p/Makefile	2020-01-24 23:24:20.633841734 -0800
+@@ -27,6 +27,7 @@
+ FORMATS+=xtr_dyldcache.mk
+ FORMATS+=xtr_fatmach0.mk
+ FORMATS+=xtr_sep64.mk
++FORMATS+=pyc.mk
+ 
+ include $(FORMATS)
+ 
+diff -ruN before/libr/bin/p/pyc.mk after/libr/bin/p/pyc.mk
+--- before/libr/bin/p/pyc.mk	1969-12-31 16:00:00.000000000 -0800
++++ after/libr/bin/p/pyc.mk	2020-01-24 23:24:20.633841734 -0800
+@@ -0,0 +1,16 @@
++OBJ_PYC=bin_pyc.o
++OBJ_PYC+=../format/pyc/marshal.o
++OBJ_PYC+=../format/pyc/pyc_magic.o
++OBJ_PYC+=../format/pyc/pyc.o
++SRC=../format/pyc/marshal.c
++SRC+=../format/pyc/pyc_magic.c
++SRC+=../format/pyc/pyc.c
++
++STATIC_OBJ+=${OBJ_PYC}
++TARGET_PYC=bin_pyc.${LIBEXT}
++CFLAGS+=-I../format/pyc/ -lr_util
++
++ALL_TARGETS+=${TARGET_PYC}
++
++${TARGET_PYC}: ${OBJ_PYC}
++	${CC} ${CFLAGS} -o ${TARGET_PYC} ${OBJ_PYC} $(R2_CFLAGS) $(R2_LDFLAGS) 
+\ No newline at end of file
+diff -ruN before/libr/include/r_asm.h after/libr/include/r_asm.h
+--- before/libr/include/r_asm.h	2020-01-24 23:22:38.479308352 -0800
++++ after/libr/include/r_asm.h	2020-01-24 23:24:20.633841734 -0800
+@@ -267,6 +267,7 @@
+ extern RAsmPlugin r_asm_plugin_xcore_cs;
+ extern RAsmPlugin r_asm_plugin_xtensa;
+ extern RAsmPlugin r_asm_plugin_z80;
++extern RAsmPlugin r_asm_plugin_pyc;
+ 
+ #endif
+ 
+diff -ruN before/libr/include/r_bin.h after/libr/include/r_bin.h
+--- before/libr/include/r_bin.h	2020-01-24 23:22:38.479308352 -0800
++++ after/libr/include/r_bin.h	2020-01-24 23:24:20.633841734 -0800
+@@ -870,6 +870,7 @@
+ extern RBinPlugin r_bin_plugin_sfc;
+ extern RBinPlugin r_bin_plugin_z64;
+ extern RBinPlugin r_bin_plugin_prg;
++extern RBinPlugin r_bin_plugin_pyc;
+ 
+ #ifdef __cplusplus
+ }
+diff -ruN before/plugins.def.cfg after/plugins.def.cfg
+--- before/plugins.def.cfg	2020-01-24 23:22:38.611306449 -0800
++++ after/plugins.def.cfg	2020-01-24 23:24:20.641841620 -0800
+@@ -116,6 +116,7 @@
+ asm.vax
+ asm.mcs96
+ asm.pic
++asm.pyc
+ bin.any
+ bin.wasm
+ bin.nro
+@@ -172,6 +173,7 @@
+ bin_ldr.ldr_linux
+ bin.zimg
+ bin.psxexe
++bin.pyc
+ bp.arm
+ bp.bf
+ bp.mips
+diff -ruN before/plugins.def.cfg.orig after/plugins.def.cfg.orig
+--- before/plugins.def.cfg.orig	1969-12-31 16:00:00.000000000 -0800
++++ after/plugins.def.cfg.orig	2020-01-24 23:22:38.611306000 -0800
+@@ -0,0 +1,273 @@
++STATIC="anal.8051
++anal.amd29k
++anal.arc
++anal.arm_cs
++anal.arm_gnu
++anal.avr
++anal.i4004
++anal.bf
++anal.chip8
++anal.cr16
++anal.cris
++anal.dalvik
++anal.ebc
++anal.gb
++anal.h8300
++anal.hexagon
++anal.i8080
++anal.java
++anal.m68k_cs
++anal.m680x_cs
++anal.xtensa
++anal.malbolge
++anal.mcore
++anal.mips_cs
++anal.mips_gnu
++anal.msp430
++anal.nios2
++anal.null
++anal.or1k
++anal.ppc_cs
++anal.ppc_gnu
++anal.sh
++anal.sparc_cs
++anal.sparc_gnu
++anal.sysz
++anal.tms320
++anal.v850
++anal.ws
++anal.xap
++anal.x86_cs
++anal.xcore_cs
++anal.z80
++anal.v810
++anal.vax
++anal.6502
++anal.6502_cs
++anal.snes
++anal.riscv
++anal.riscv_cs
++anal.pic
++anal.rsp
++anal.wasm
++asm.8051
++asm.6502
++asm.6502_cs
++asm.amd29k
++asm.arc
++asm.arm_cs
++asm.arm_gnu
++asm.arm_winedbg
++asm.avr
++asm.bf
++asm.chip8
++asm.cr16
++asm.cris_gnu
++asm.dalvik
++asm.dcpu16
++asm.null
++asm.hexagon
++asm.ebc
++asm.gb
++asm.h8300
++asm.hppa_gnu
++asm.i4004
++asm.i8080
++asm.java
++asm.lm32
++asm.tricore
++asm.xtensa
++asm.m68k_cs
++asm.m680x_cs
++asm.malbolge
++asm.mcore
++asm.mips_cs
++asm.mips_gnu
++asm.msp430
++asm.nios2
++asm.or1k
++asm.ppc_cs
++asm.ppc_gnu
++asm.propeller
++asm.riscv
++asm.riscv_cs
++asm.rsp
++asm.lanai_gnu
++asm.sh
++asm.snes
++asm.sparc_cs
++asm.sparc_gnu
++asm.spc700
++asm.sysz
++asm.tms320
++asm.v850
++asm.ws
++asm.xap
++asm.arm_as
++asm.wasm
++asm.x86_as
++asm.x86_cs
++asm.x86_nz
++asm.x86_nasm
++asm.xcore_cs
++asm.z80
++asm.lh5801
++asm.v810
++asm.vax
++asm.mcs96
++asm.pic
++bin.any
++bin.wasm
++bin.nro
++bin.nso
++bin.art
++bin.bf
++bin.bflt
++bin.bios
++bin.symbols
++bin.bootimg
++bin.cgc
++bin.coff
++bin.dex
++bin.dol
++bin.elf
++bin.elf64
++bin.fs
++bin.java
++bin.le
++bin.menuet
++bin.mach0
++bin.mach064
++bin.mbn
++bin.mdmp
++bin.ne
++bin.mz
++bin.nes
++bin.qnx
++bin.nin3ds
++bin.ninds
++bin.ningb
++bin.ningba
++bin.omf
++bin.p9
++bin.pe
++bin.pe64
++bin.pebble
++bin.prg
++bin.smd
++bin.sms
++bin.avr
++bin.sfc
++bin.spc700
++bin.te
++bin.vsf
++bin.xbe
++bin.z64
++bin.dyldcache
++bin.xnu_kernelcache
++bin_xtr.xtr_dyldcache
++bin_xtr.xtr_fatmach0
++bin_xtr.xtr_pemixed
++bin_xtr.xtr_sep64
++bin_ldr.ldr_linux
++bin.zimg
++bin.psxexe
++bp.arm
++bp.bf
++bp.mips
++bp.ppc
++bp.x86
++core.a2f
++core.java
++crypto.aes
++crypto.des
++crypto.rc4
++crypto.cps2
++crypto.xor
++crypto.blowfish
++crypto.rc2
++crypto.rot
++crypto.rol
++crypto.ror
++crypto.base64
++crypto.base91
++crypto.aes_cbc
++crypto.punycode
++crypto.rc6
++crypto.serpent
++debug.bf
++debug.io
++debug.esil
++debug.gdb
++debug.qnx
++debug.native
++debug.rap
++debug.windbg
++debug.bochs
++debug.null
++egg.exec
++egg.xor
++fs.io
++fs.r2
++fs.ext2
++fs.fat
++fs.fb
++fs.hfs
++fs.hfsplus
++fs.iso9660
++fs.jfs
++fs.minix
++fs.ntfs
++fs.posix
++fs.reiserfs
++fs.sfs
++fs.tar
++fs.udf
++fs.ufs
++fs.xfs
++io.null
++io.bfdbg
++io.bochs
++io.debug
++io.default
++io.gprobe
++io.gdb
++io.qnx
++io.r2pipe
++io.gzip
++io.http
++io.tcp
++io.r2web
++io.ihex
++io.mach
++io.malloc
++io.sparse
++io.mmap
++io.procpid
++io.ptrace
++io.rap
++io.self
++io.shm
++io.w32
++io.w32dbg
++io.windbg
++io.winedbg
++io.zip
++io.r2k
++io.ar
++io.rbuf
++lang.vala
++parse.6502_pseudo
++parse.arm_pseudo
++parse.att2intel
++parse.chip8_pseudo
++parse.dalvik_pseudo
++parse.m68k_pseudo
++parse.mips_pseudo
++parse.ppc_pseudo
++parse.sh_pseudo
++parse.wasm_pseudo
++parse.avr_pseudo
++parse.x86_pseudo
++parse.z80_pseudo"
++SHARED="io.shm"
