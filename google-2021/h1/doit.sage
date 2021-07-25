@@ -54,13 +54,13 @@ def lll_solve(t, u):
         print(row)
         break
 
+    # flip
     row[0] = -row[0]
 
     k1 = int(''.join([4 * ('%02x' % v) for v in row[:16]][::-1]), 16)
+    k2 = int(''.join([4 * ('%02x' % v) for v in row[16:32]][::-1]), 16)
 
-    print(hex(k1))
-
-    return k1
+    return k1, k2
 
 
 def get_u_t(s1, r1, h1, s2, r2, h2):
@@ -141,13 +141,12 @@ t = -1 * t
 
 # t, u = get_u_t(r1, s1, h1, r2, s2, h2)
 
+k1, k2 = lll_solve(t, u)
 
+assert F(k1) + t * F(k2) + u == F(0)
 
-# assert F(k1) + t * F(k2) + u == F(0)
-
-k1 = lll_solve(t, u)
-
-print('k1=', k1)
+print('k1 = 0%x' % k1)
+print('k2 = 0%x' % k2)
 
 d = (k1 * s1 - z1) / F(r1)
 d = int(d)
@@ -160,36 +159,36 @@ r, s, _ = (861841635424700986517378332278228338580072656851977976379069115727806
 
 msga = b'Hello Bob.'
 
+def recover_key(r, s, h):
+
+    # compute possible x-coordinates
+    xs = [D(int(r))]
+    if D.order() > F.order():
+        xs.append(D(int(r) + n))
+
+    pks = []
+    for x in xs:
+
+        # find curve point with the given x-coordinate
+        try:
+            R = E.lift_x(x)
+        except ValueError:
+            # not on the curve
+            continue
+
+        # it is either R or -R (for which the x-coordinate is the same)
+        pks.append(int(r^-1) * (int(s) * R - int(h) * G))
+        pks.append(int(r^-1) * (int(s) * (-R) - int(h) * G))
+
+    return pks
+
+
 R = E.lift_x(D(r))
 r = F(r)
 s = F(s)
-z = msg_to_h(msga)
 
-print('R:', R)
+for pk in recover_key(r, s, h = msg_to_h(msga)):
+    ss = int((int(d) * pk)[0])
+    print('ss = 0x%x' % ss)
 
-pk1 = int(r^-1) * (int(s) * R - int(z) * G)
-pk2 = int(r^-1) * (int(s) * (-R) - int(z) * G)
-
-ss1 = int(d) * pk1
-ss2 = int(d) * pk2
-
-print('x1 =', ss1[0])
-print('x2 =', ss2[0])
-
-from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives import padding
-from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-
-def Decrypt(ciphertext, x):
-    key = hashlib.sha256(str(x).encode()).digest()
-    aes = algorithms.AES(key)
-    decryptor = Cipher(aes, modes.ECB(), default_backend()).decryptor()
-    unpadder = padding.PKCS7(aes.block_size).unpadder()
-    decrypted_data = decryptor.update(ciphertext) + decryptor.finalize()
-    plaintext = unpadder.update(decrypted_data) + unpadder.finalize()
-    return plaintext
-
-(_, _, ca) = (8832295267397231051293216564016639537146222596144354850230682204978731311879255662259663270183445827348338041752369314181111940713714991119349376636404112, 8683784208731634307361157916911868656279723101808163939313971801256736484458199874570532609285522391139002296248059424750941962344918156540408403221858292, 105398535464409171419472607677747462033030589690350997911381059472020486557672504778060748058626707326992258591478040500759349352824508941100030623708235493999018571171774658661651532338275358740821547158517615704187173346885098836066743736788259192831313414309775979590033581301910426314601982482556670097620)
-
-print(Decrypt(ca, d))
 
